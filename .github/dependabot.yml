@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    commit-message:
+      prefix: 'build'
+      include: 'scope'
+    ignore:
+      - dependency-name: 'next'
+        versions: ['> 16.2.10'] # Khóa Next.js ở version hiện tại để tránh breaking changes
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    commit-message:
+      prefix: 'ci'
