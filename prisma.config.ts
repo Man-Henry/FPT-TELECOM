@@ -14,6 +14,8 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    // DIRECT_URL (session-mode, port 5432) cho migrations
+    // Fallback sang DATABASE_URL nếu DIRECT_URL chưa set
+    url: process.env["DIRECT_URL"] || process.env["DATABASE_URL"],
   },
 });
