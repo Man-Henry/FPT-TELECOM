@@ -28,10 +28,7 @@ export const leadFormSchema = z.object({
     .max(100, 'Họ tên không được quá 100 ký tự')
     .trim(),
 
-  phone: z
-    .string()
-    .regex(phoneRegex, 'Số điện thoại không hợp lệ (VD: 0901234567)')
-    .trim(),
+  phone: z.string().regex(phoneRegex, 'Số điện thoại không hợp lệ (VD: 0901234567)').trim(),
 
   service: z.enum(SERVICE_OPTIONS, {
     message: 'Vui lòng chọn dịch vụ quan tâm',
@@ -45,11 +42,7 @@ export const leadFormSchema = z.object({
 
   package: z.string().max(100).trim().optional(),
 
-  notes: z
-    .string()
-    .max(500, 'Ghi chú không được quá 500 ký tự')
-    .trim()
-    .optional(),
+  notes: z.string().max(500, 'Ghi chú không được quá 500 ký tự').trim().optional(),
 
   consent: z.boolean().refine((val) => val === true, {
     message: 'Bạn cần đồng ý với Chính sách bảo mật để tiếp tục',

@@ -10,8 +10,7 @@ import { Redis } from '@upstash/redis';
 
 // --- Kiểm tra Upstash config ---
 // Nếu thiếu env vars, rate limiter sẽ bị bypass (cho phép dev không cần Redis).
-const hasUpstashConfig =
-  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN;
+const hasUpstashConfig = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN;
 
 // Khởi tạo Redis client từ env vars (UPSTASH_REDIS_REST_URL + TOKEN)
 const redis = hasUpstashConfig ? Redis.fromEnv() : null;

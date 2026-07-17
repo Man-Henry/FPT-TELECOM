@@ -1,7 +1,8 @@
 # FPT TELECOM PROJECT RULES
 
 ## 🛑 CRITICAL CONSTRAINTS
-1. **Security**: 
+
+1. **Security**:
    - NEVER commit `.env` or files containing secrets.
    - Always check `.gitignore` before suggesting git commands.
 2. **Data Consistency**:

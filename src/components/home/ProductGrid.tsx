@@ -52,54 +52,69 @@ const products = [
 
 export function ProductGrid() {
   return (
-    <section className="py-24 bg-slate-50 dark:bg-background">
+    <section className="dark:bg-background bg-slate-50 py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16 max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
+        <div className="mx-auto mb-16 max-w-2xl text-center">
+          <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight md:text-4xl">
             Dịch Vụ Nổi Bật Của FPT Telecom
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Lựa chọn dịch vụ phù hợp nhất với nhu cầu của bạn. Trải nghiệm công nghệ vượt trội cùng FPT.
+          <p className="text-muted-foreground text-lg">
+            Lựa chọn dịch vụ phù hợp nhất với nhu cầu của bạn. Trải nghiệm công nghệ vượt trội cùng
+            FPT.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {products.map((product, index) => {
             const Icon = product.icon;
             return (
               <div
                 key={index}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white dark:bg-card border border-border/50 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
+                className="group dark:bg-card border-border/50 relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="p-6 pb-0">
-                  <div className={cn('inline-flex p-3 rounded-xl mb-4', product.bgColor, product.color)}>
+                  <div
+                    className={cn(
+                      'mb-4 inline-flex rounded-xl p-3',
+                      product.bgColor,
+                      product.color,
+                    )}
+                  >
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{product.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-6 h-10 line-clamp-2">
+                  <h3 className="text-foreground mb-2 text-xl font-bold">{product.title}</h3>
+                  <p className="text-muted-foreground mb-6 line-clamp-2 h-10 text-sm">
                     {product.description}
                   </p>
-                  
+
                   <div className="mb-6">
-                    <span className="text-sm text-muted-foreground font-medium">Giá chỉ từ</span>
+                    <span className="text-muted-foreground text-sm font-medium">Giá chỉ từ</span>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">{product.price}</span>
-                      <span className="text-sm text-muted-foreground">/tháng</span>
+                      <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                        {product.price}
+                      </span>
+                      <span className="text-muted-foreground text-sm">/tháng</span>
                     </div>
                   </div>
 
-                  <ul className="space-y-3 mb-8">
+                  <ul className="mb-8 space-y-3">
                     {product.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-foreground">
-                        <div className="mr-2 h-1.5 w-1.5 rounded-full bg-orange-500 shrink-0" />
+                      <li key={idx} className="text-foreground flex items-center text-sm">
+                        <div className="mr-2 h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500" />
                         {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="p-6 pt-0 mt-auto">
-                  <Link href={product.href} className={cn(buttonVariants({ variant: 'outline' }), "w-full group-hover:bg-orange-50 dark:group-hover:bg-orange-950/30 group-hover:text-orange-600 group-hover:border-orange-200 transition-colors")}>
+                <div className="mt-auto p-6 pt-0">
+                  <Link
+                    href={product.href}
+                    className={cn(
+                      buttonVariants({ variant: 'outline' }),
+                      'w-full transition-colors group-hover:border-orange-200 group-hover:bg-orange-50 group-hover:text-orange-600 dark:group-hover:bg-orange-950/30',
+                    )}
+                  >
                     Xem chi tiết <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
@@ -109,23 +124,23 @@ export function ProductGrid() {
                   type="application/ld+json"
                   dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
-                      "@context": "https://schema.org",
-                      "@type": "Product",
-                      "name": product.title,
-                      "description": product.description,
-                      "brand": {
-                        "@type": "Brand",
-                        "name": siteConfig.name
+                      '@context': 'https://schema.org',
+                      '@type': 'Product',
+                      name: product.title,
+                      description: product.description,
+                      brand: {
+                        '@type': 'Brand',
+                        name: siteConfig.name,
                       },
-                      "offers": {
-                        "@type": "Offer",
-                        "url": `${siteConfig.url}${product.href}`,
-                        "priceCurrency": "VND",
-                        "price": product.price.replace(/\D/g, ''),
-                        "itemCondition": "https://schema.org/NewCondition",
-                        "availability": "https://schema.org/InStock"
-                      }
-                    })
+                      offers: {
+                        '@type': 'Offer',
+                        url: `${siteConfig.url}${product.href}`,
+                        priceCurrency: 'VND',
+                        price: product.price.replace(/\D/g, ''),
+                        itemCondition: 'https://schema.org/NewCondition',
+                        availability: 'https://schema.org/InStock',
+                      },
+                    }),
                   }}
                 />
               </div>

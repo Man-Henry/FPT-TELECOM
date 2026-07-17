@@ -114,21 +114,21 @@ export function LeadFormInner() {
   }
 
   return (
-    <section id="dang-ky" className="py-24 bg-slate-50 dark:bg-background">
+    <section id="dang-ky" className="dark:bg-background bg-slate-50 py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="max-w-2xl mx-auto bg-white dark:bg-card p-8 md:p-10 rounded-3xl shadow-xl border border-border/50">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground mb-4">
+        <div className="dark:bg-card border-border/50 mx-auto max-w-2xl rounded-3xl border bg-white p-8 shadow-xl md:p-10">
+          <div className="mb-8 text-center">
+            <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight">
               Đăng Ký Khảo Sát Hạ Tầng & Báo Giá
             </h2>
             <p className="text-muted-foreground">
-              Để lại thông tin, nhân viên FPT Telecom sẽ liên hệ tư vấn miễn phí cho bạn trong vòng 5 phút.
+              Để lại thông tin, nhân viên FPT Telecom sẽ liên hệ tư vấn miễn phí cho bạn trong vòng
+              5 phút.
             </p>
           </div>
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              
               {/* Field Ẩn chống Spam (Honeypot) */}
               <div className="hidden" aria-hidden="true">
                 <FormField
@@ -145,13 +145,15 @@ export function LeadFormInner() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <FormField
                   control={form.control}
                   name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Họ và Tên <span className="text-red-500">*</span></FormLabel>
+                      <FormLabel>
+                        Họ và Tên <span className="text-red-500">*</span>
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="Nguyễn Văn A" {...field} />
                       </FormControl>
@@ -165,7 +167,9 @@ export function LeadFormInner() {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Số điện thoại <span className="text-red-500">*</span></FormLabel>
+                      <FormLabel>
+                        Số điện thoại <span className="text-red-500">*</span>
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="0987654321" type="tel" {...field} />
                       </FormControl>
@@ -180,7 +184,9 @@ export function LeadFormInner() {
                 name="service"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Dịch vụ quan tâm <span className="text-red-500">*</span></FormLabel>
+                    <FormLabel>
+                      Dịch vụ quan tâm <span className="text-red-500">*</span>
+                    </FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -190,7 +196,9 @@ export function LeadFormInner() {
                       <SelectContent>
                         <SelectItem value="Internet Cáp Quang">Internet Cáp Quang</SelectItem>
                         <SelectItem value="Truyền Hình FPT Play">Truyền Hình FPT Play</SelectItem>
-                        <SelectItem value="Combo Internet + Truyền Hình">Combo Internet + Truyền Hình</SelectItem>
+                        <SelectItem value="Combo Internet + Truyền Hình">
+                          Combo Internet + Truyền Hình
+                        </SelectItem>
                         <SelectItem value="Camera FPT">Camera FPT</SelectItem>
                         <SelectItem value="Khác">Khác / Cần tư vấn thêm</SelectItem>
                       </SelectContent>
@@ -205,7 +213,9 @@ export function LeadFormInner() {
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Địa chỉ lắp đặt <span className="text-red-500">*</span></FormLabel>
+                    <FormLabel>
+                      Địa chỉ lắp đặt <span className="text-red-500">*</span>
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="Số nhà, Tên đường, Phường/Xã, Quận/Huyện" {...field} />
                     </FormControl>
@@ -256,20 +266,22 @@ export function LeadFormInner() {
                 control={form.control}
                 name="consent"
                 render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm">
+                  <FormItem className="flex flex-row items-start space-y-0 space-x-3 rounded-md border p-4 shadow-sm">
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
                         Tôi đồng ý với{' '}
-                        <a href="/chinh-sach-bao-mat" className="text-orange-600 hover:underline" target="_blank">
+                        <a
+                          href="/chinh-sach-bao-mat"
+                          className="text-orange-600 hover:underline"
+                          target="_blank"
+                        >
                           Chính sách bảo mật
                         </a>{' '}
-                        và cho phép FPT Telecom liên hệ tư vấn. <span className="text-red-500">*</span>
+                        và cho phép FPT Telecom liên hệ tư vấn.{' '}
+                        <span className="text-red-500">*</span>
                       </FormLabel>
                       <FormDescription>
                         Bảo vệ dữ liệu cá nhân theo Nghị định 13/2023/NĐ-CP.
@@ -280,12 +292,16 @@ export function LeadFormInner() {
               />
 
               {errorMsg && (
-                <div className="text-sm font-medium text-red-500 bg-red-50 dark:bg-red-950/50 p-3 rounded-md">
+                <div className="rounded-md bg-red-50 p-3 text-sm font-medium text-red-500 dark:bg-red-950/50">
                   {errorMsg}
                 </div>
               )}
 
-              <Button type="submit" className="w-full h-12 text-lg bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-lg shadow-orange-500/30" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                className="h-12 w-full rounded-full bg-orange-500 text-lg text-white shadow-lg shadow-orange-500/30 hover:bg-orange-600"
+                disabled={isSubmitting}
+              >
                 {isSubmitting && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
                 {isSubmitting ? 'Đang gửi yêu cầu...' : 'Gửi Yêu Cầu Tư Vấn'}
               </Button>
@@ -296,17 +312,24 @@ export function LeadFormInner() {
 
       {/* Success Dialog */}
       <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
-        <DialogContent className="sm:max-w-md text-center p-8">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900 mb-6">
+        <DialogContent className="p-8 text-center sm:max-w-md">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
             <CheckCircle2 className="h-10 w-10 text-green-600 dark:text-green-400" />
           </div>
           <DialogHeader>
-            <DialogTitle className="text-2xl mb-2">Đăng ký thành công!</DialogTitle>
+            <DialogTitle className="mb-2 text-2xl">Đăng ký thành công!</DialogTitle>
             <DialogDescription className="text-base">
-              Cảm ơn bạn đã quan tâm đến dịch vụ của FPT Telecom. Yêu cầu của bạn đã được ghi nhận. Chuyên viên tư vấn sẽ liên hệ lại qua số điện thoại bạn cung cấp trong thời gian sớm nhất (thường là 5 phút).
+              Cảm ơn bạn đã quan tâm đến dịch vụ của FPT Telecom. Yêu cầu của bạn đã được ghi nhận.
+              Chuyên viên tư vấn sẽ liên hệ lại qua số điện thoại bạn cung cấp trong thời gian sớm
+              nhất (thường là 5 phút).
             </DialogDescription>
           </DialogHeader>
-          <Button type="button" variant="secondary" onClick={() => setShowSuccess(false)} className="mt-6 w-full">
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={() => setShowSuccess(false)}
+            className="mt-6 w-full"
+          >
             Đóng
           </Button>
         </DialogContent>
@@ -317,7 +340,7 @@ export function LeadFormInner() {
 
 export function LeadForm() {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '';
-  
+
   return (
     <GoogleReCaptchaProvider reCaptchaKey={siteKey}>
       <LeadFormInner />

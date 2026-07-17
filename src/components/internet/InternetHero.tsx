@@ -8,14 +8,14 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from '@/components/ui/breadcrumb';
 
 export function InternetHero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-900 text-white">
+    <section className="relative overflow-hidden bg-slate-900 pt-32 pb-20 text-white md:pt-40 md:pb-28">
       {/* Background with overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800/90 to-transparent z-10" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-900 via-slate-800/90 to-transparent" />
         {/* TODO: Thay bằng ảnh thật từ CMS/CDN */}
         <Image
           src="/images/hero-internet-fpt.jpg"
@@ -26,37 +26,46 @@ export function InternetHero() {
         />
       </div>
 
-      <div className="container relative z-20 mx-auto px-4 md:px-6">
+      <div className="relative z-20 container mx-auto px-4 md:px-6">
         <Breadcrumb className="mb-8">
           <BreadcrumbList className="text-slate-300">
             <BreadcrumbItem>
-              <BreadcrumbLink href="/" className="flex items-center hover:text-white transition-colors">
-                <Home className="h-4 w-4 mr-1" />
+              <BreadcrumbLink
+                href="/"
+                className="flex items-center transition-colors hover:text-white"
+              >
+                <Home className="mr-1 h-4 w-4" />
                 Trang chủ
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator className="text-slate-400" />
             <BreadcrumbItem>
-              <BreadcrumbPage className="text-white font-semibold">Internet Cáp Quang</BreadcrumbPage>
+              <BreadcrumbPage className="font-semibold text-white">
+                Internet Cáp Quang
+              </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
         <div className="max-w-3xl">
-          <div className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-sm font-medium text-orange-400 mb-6 backdrop-blur-sm">
+          <div className="mb-6 inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-sm font-medium text-orange-400 backdrop-blur-sm">
             <Zap className="mr-2 h-4 w-4" />
             Băng thông không giới hạn
           </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-            Lắp Mạng Internet Cáp Quang <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">FPT Telecom</span>
+
+          <h1 className="mb-6 text-4xl leading-tight font-extrabold tracking-tight md:text-5xl lg:text-6xl">
+            Lắp Mạng Internet Cáp Quang{' '}
+            <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+              FPT Telecom
+            </span>
           </h1>
-          
-          <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl leading-relaxed">
-            Trải nghiệm tốc độ Wi-Fi 6 đỉnh cao, đường truyền cáp quang ổn định 100%, đáp ứng mọi nhu cầu từ giải trí gia đình đến vận hành doanh nghiệp.
+
+          <p className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-300 md:text-xl">
+            Trải nghiệm tốc độ Wi-Fi 6 đỉnh cao, đường truyền cáp quang ổn định 100%, đáp ứng mọi
+            nhu cầu từ giải trí gia đình đến vận hành doanh nghiệp.
           </p>
 
-          <div className="flex flex-wrap gap-6 mt-12">
+          <div className="mt-12 flex flex-wrap gap-6">
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/20 text-blue-400 backdrop-blur-sm">
                 <Wifi className="h-6 w-6" />
@@ -66,7 +75,7 @@ export function InternetHero() {
                 <span className="text-sm text-slate-400">Thiết bị thế hệ mới</span>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20 text-green-400 backdrop-blur-sm">
                 <ShieldCheck className="h-6 w-6" />
@@ -79,11 +88,11 @@ export function InternetHero() {
           </div>
         </div>
       </div>
-      
+
       {/* Wave transition to next section */}
-      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-20">
+      <div className="absolute right-0 bottom-0 left-0 z-20 w-full overflow-hidden leading-none">
         <svg
-          className="relative block w-full h-[50px] md:h-[100px]"
+          className="relative block h-[50px] w-full md:h-[100px]"
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"

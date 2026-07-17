@@ -4,8 +4,7 @@ import { leadApiSchema } from '@/lib/validations/lead';
 import { checkRateLimit } from '@/lib/rate-limit';
 
 // Nội dung consent tại thời điểm hiện tại — lưu vào DB cho PDPA compliance
-const CONSENT_TEXT =
-  'Tôi đồng ý với Chính sách bảo mật và cho phép FPT Telecom liên hệ tư vấn.';
+const CONSENT_TEXT = 'Tôi đồng ý với Chính sách bảo mật và cho phép FPT Telecom liên hệ tư vấn.';
 
 export async function POST(request: Request) {
   try {
@@ -45,9 +44,7 @@ export async function POST(request: Request) {
     if (body.visitorId && body.visitorId !== 'unknown') {
       const fpRateLimit = await checkRateLimit(`fp:${body.visitorId}`);
       if (!fpRateLimit.success) {
-        console.warn(
-          `[Spam Blocked] Bot detected via fingerprint rate limit: ${body.visitorId}`,
-        );
+        console.warn(`[Spam Blocked] Bot detected via fingerprint rate limit: ${body.visitorId}`);
         return NextResponse.json(
           {
             success: false,

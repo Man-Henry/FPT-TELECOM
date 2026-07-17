@@ -46,7 +46,7 @@ const tvPackages = [
 
 export function MegaMenu() {
   return (
-    <NavigationMenu className="hidden md:flex z-50">
+    <NavigationMenu className="z-50 hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Internet Cáp Quang</NavigationMenuTrigger>
@@ -81,7 +81,7 @@ export function MegaMenu() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        
+
         <NavigationMenuItem>
           <Link href="/khuyen-mai" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -94,27 +94,24 @@ export function MegaMenu() {
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<'a'>,
-  React.ComponentPropsWithoutRef<'a'>
->(({ className, title, children, href, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink
-        href={href || '#'}
-        ref={ref}
-        className={cn(
-          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-          className
-        )}
-        {...props}
-      >
-        <div className="text-sm font-medium leading-none">{title}</div>
-        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-2">
-          {children}
-        </p>
-      </NavigationMenuLink>
-    </li>
-  );
-});
+const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
+  ({ className, title, children, href, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink
+          href={href || '#'}
+          ref={ref}
+          className={cn(
+            'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none',
+            className,
+          )}
+          {...props}
+        >
+          <div className="text-sm leading-none font-medium">{title}</div>
+          <p className="text-muted-foreground mt-2 line-clamp-2 text-sm leading-snug">{children}</p>
+        </NavigationMenuLink>
+      </li>
+    );
+  },
+);
 ListItem.displayName = 'ListItem';

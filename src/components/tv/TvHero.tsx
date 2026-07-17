@@ -8,14 +8,14 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from '@/components/ui/breadcrumb';
 
 export function TvHero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-900 text-white">
+    <section className="relative overflow-hidden bg-slate-900 pt-32 pb-20 text-white md:pt-40 md:pb-28">
       {/* Background with overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent z-10" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
         {/* TODO: Thay bằng ảnh thật từ CMS/CDN */}
         <Image
           src="/images/hero-truyen-hinh-fpt.jpg"
@@ -26,37 +26,46 @@ export function TvHero() {
         />
       </div>
 
-      <div className="container relative z-20 mx-auto px-4 md:px-6">
+      <div className="relative z-20 container mx-auto px-4 md:px-6">
         <Breadcrumb className="mb-8">
           <BreadcrumbList className="text-slate-300">
             <BreadcrumbItem>
-              <BreadcrumbLink href="/" className="flex items-center hover:text-white transition-colors">
-                <Home className="h-4 w-4 mr-1" />
+              <BreadcrumbLink
+                href="/"
+                className="flex items-center transition-colors hover:text-white"
+              >
+                <Home className="mr-1 h-4 w-4" />
                 Trang chủ
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator className="text-slate-400" />
             <BreadcrumbItem>
-              <BreadcrumbPage className="text-white font-semibold">Truyền Hình FPT Play</BreadcrumbPage>
+              <BreadcrumbPage className="font-semibold text-white">
+                Truyền Hình FPT Play
+              </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
         <div className="max-w-3xl">
-          <div className="inline-flex items-center rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-sm font-medium text-green-400 mb-6 backdrop-blur-sm">
+          <div className="mb-6 inline-flex items-center rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-sm font-medium text-green-400 backdrop-blur-sm">
             <Play className="mr-2 h-4 w-4 fill-current" />
             Không Giới Hạn Giải Trí
           </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-            Thế Giới Giải Trí Đỉnh Cao Cùng <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">FPT Play</span>
+
+          <h1 className="mb-6 text-4xl leading-tight font-extrabold tracking-tight md:text-5xl lg:text-6xl">
+            Thế Giới Giải Trí Đỉnh Cao Cùng{' '}
+            <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+              FPT Play
+            </span>
           </h1>
-          
-          <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl leading-relaxed">
-            Sở hữu bản quyền UEFA, V-League, AFC và hàng vạn giờ phim điện ảnh đặc sắc. Trải nghiệm xem truyền hình tương tác mượt mà trên mọi thiết bị.
+
+          <p className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-300 md:text-xl">
+            Sở hữu bản quyền UEFA, V-League, AFC và hàng vạn giờ phim điện ảnh đặc sắc. Trải nghiệm
+            xem truyền hình tương tác mượt mà trên mọi thiết bị.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-8">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-8">
             <div className="flex items-center gap-2 text-slate-200">
               <CheckCircle2 className="h-5 w-5 text-green-500" />
               <span>Gần 200 kênh truyền hình</span>
@@ -72,11 +81,11 @@ export function TvHero() {
           </div>
         </div>
       </div>
-      
+
       {/* Wave transition */}
-      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-20">
+      <div className="absolute right-0 bottom-0 left-0 z-20 w-full overflow-hidden leading-none">
         <svg
-          className="relative block w-full h-[50px] md:h-[100px]"
+          className="relative block h-[50px] w-full md:h-[100px]"
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"

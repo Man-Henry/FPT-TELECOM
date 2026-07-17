@@ -12,67 +12,71 @@ const services = [
     href: '/internet-cap-quang',
     icon: <Wifi className="h-6 w-6" />,
     description: 'Tốc độ siêu tốc, kết nối ổn định',
-    color: 'text-orange-600 bg-orange-100 dark:bg-orange-900/30'
+    color: 'text-orange-600 bg-orange-100 dark:bg-orange-900/30',
   },
   {
     name: 'Truyền Hình FPT Play',
     href: '/truyen-hinh-fpt-play',
     icon: <Tv className="h-6 w-6" />,
     description: 'Trực tiếp UEFA, hàng ngàn giờ phim',
-    color: 'text-green-600 bg-green-100 dark:bg-green-900/30'
+    color: 'text-green-600 bg-green-100 dark:bg-green-900/30',
   },
   {
     name: 'Camera Thông Minh',
     href: '/camera-fpt',
     icon: <Camera className="h-6 w-6" />,
     description: 'Cảnh báo AI, lưu trữ Cloud an toàn',
-    color: 'text-sky-600 bg-sky-100 dark:bg-sky-900/30'
+    color: 'text-sky-600 bg-sky-100 dark:bg-sky-900/30',
   },
   {
     name: 'Gói Combo Tiết Kiệm',
     href: '/goi-combo',
     icon: <Package className="h-6 w-6" />,
     description: 'Đa tiện ích trên một hoá đơn',
-    color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30'
-  }
+    color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30',
+  },
 ];
 
 export function OtherServices() {
   const pathname = usePathname();
-  
+
   // Filter out the current page
-  const otherServices = services.filter(service => service.href !== pathname);
+  const otherServices = services.filter((service) => service.href !== pathname);
 
   return (
-    <section className="py-24 bg-white dark:bg-background border-t border-border/50">
+    <section className="dark:bg-background border-border/50 border-t bg-white py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">
+        <div className="mb-12 text-center">
+          <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight">
             Khám Phá Dịch Vụ Khác
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
             Giải pháp công nghệ toàn diện từ FPT Telecom đáp ứng mọi nhu cầu của bạn.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
           {otherServices.slice(0, 3).map((service, index) => (
-            <Link 
-              key={index} 
+            <Link
+              key={index}
               href={service.href}
-              className="group flex flex-col p-6 rounded-2xl border border-border/50 bg-slate-50 dark:bg-slate-900 hover:shadow-lg hover:border-primary/50 transition-all hover:-translate-y-1"
+              className="group border-border/50 hover:border-primary/50 flex flex-col rounded-2xl border bg-slate-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg dark:bg-slate-900"
             >
-              <div className={cn("h-14 w-14 rounded-xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110", service.color)}>
+              <div
+                className={cn(
+                  'mb-6 flex h-14 w-14 items-center justify-center rounded-xl transition-transform group-hover:scale-110',
+                  service.color,
+                )}
+              >
                 {service.icon}
               </div>
-              <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+              <h3 className="text-foreground group-hover:text-primary mb-2 text-xl font-bold transition-colors">
                 {service.name}
               </h3>
-              <p className="text-muted-foreground text-sm flex-1 mb-6">
-                {service.description}
-              </p>
-              <div className="flex items-center text-sm font-semibold text-primary mt-auto">
-                Tìm hiểu thêm <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <p className="text-muted-foreground mb-6 flex-1 text-sm">{service.description}</p>
+              <div className="text-primary mt-auto flex items-center text-sm font-semibold">
+                Tìm hiểu thêm{' '}
+                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
           ))}
