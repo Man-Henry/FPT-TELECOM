@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Play, Tv, Home, CheckCircle2 } from 'lucide-react';
+import { Play, Home, CheckCircle2 } from 'lucide-react';
 import {
   Breadcrumb,
   BreadcrumbItem,

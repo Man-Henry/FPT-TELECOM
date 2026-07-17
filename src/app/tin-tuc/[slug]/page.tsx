@@ -4,7 +4,8 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { MDXComponents } from '@/components/mdx/MDXComponents';
 import { TableOfContents } from '@/components/blog/TableOfContents';
 import { Metadata } from 'next';
-import { Calendar, Clock, ChevronRight, User } from 'lucide-react';
+import { Calendar, Clock, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // Generate static params for pre-rendering
@@ -123,10 +124,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </header>
 
               <div className="w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden mb-12">
-                <img 
+                <Image 
                   src={metadata.image} 
                   alt={metadata.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </div>
 

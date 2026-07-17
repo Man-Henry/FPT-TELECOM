@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowRight, Calendar, User } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -58,10 +59,11 @@ export function RelatedArticles() {
             <article key={article.id} className="group rounded-2xl border border-border/50 overflow-hidden hover:shadow-lg transition-all hover:-translate-y-1 bg-card flex flex-col">
               <Link href={article.slug} className="aspect-video overflow-hidden relative block">
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10" />
-                <img 
+                <Image 
                   src={article.image} 
                   alt={article.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </Link>
               

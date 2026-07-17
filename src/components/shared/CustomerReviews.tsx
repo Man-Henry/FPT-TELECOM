@@ -50,7 +50,7 @@ export function CustomerReviews({
               </div>
               
               <p className="text-muted-foreground mb-8 text-base leading-relaxed italic flex-1">
-                "{review.content}"
+                &ldquo;{review.content}&rdquo;
               </p>
               
               <div className="flex items-center gap-4 mt-auto">

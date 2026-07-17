@@ -112,9 +112,8 @@ export async function POST(request: Request) {
 `;
 
     // 4. Save to Database (Primary Storage)
-    let leadId = '';
     try {
-      const newLead = await db.lead.create({
+      await db.lead.create({
         data: {
           fullName: validatedData.fullName,
           phone: validatedData.phone,
@@ -130,7 +129,6 @@ export async function POST(request: Request) {
           userAgent: userAgent || null,
         },
       });
-      leadId = newLead.id;
     } catch (dbError) {
       console.error('Database Save Error:', dbError);
       // Tiếp tục gửi Telegram nếu DB sập — để sale vẫn biết có khách

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getAllPosts } from '@/lib/mdx';
 import { ArrowRight, Calendar, Clock, User } from 'lucide-react';
 import {
@@ -49,10 +50,11 @@ export default function BlogIndexPage() {
         <div className="mb-16 rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-border shadow-sm group">
           <Link href={`/tin-tuc/${featuredPost.slug}`} className="flex flex-col md:flex-row">
             <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden">
-              <img 
+              <Image 
                 src={featuredPost.image} 
                 alt={featuredPost.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute top-4 left-4 bg-orange-600 text-white text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-full">
                 Mới nhất
@@ -96,10 +98,11 @@ export default function BlogIndexPage() {
               className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-border hover:shadow-md hover:border-orange-500/30 transition-all group"
             >
               <div className="h-48 overflow-hidden relative">
-                <img 
+                <Image 
                   src={post.image} 
                   alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6 flex flex-col flex-1">

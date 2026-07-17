@@ -34,7 +34,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { leadFormSchema, SERVICE_OPTIONS, type LeadFormData } from '@/lib/validations/lead';
+import { leadFormSchema, type LeadFormData } from '@/lib/validations/lead';
 
 export function LeadFormInner() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);

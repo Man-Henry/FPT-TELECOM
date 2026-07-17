@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { ListCollapse } from 'lucide-react';
 
@@ -11,11 +11,7 @@ interface TocItem {
 }
 
 export function TableOfContents({ content }: { content: string }) {
-  const [toc, setToc] = useState<TocItem[]>([]);
-  const [activeId, setActiveId] = useState<string>('');
-
-  useEffect(() => {
-    // Extract headers (## and ###) from markdown string
+  const toc = useMemo(() => {
     const headingRegex = /^(#{2,3})\s+(.+)$/gm;
     const items: TocItem[] = [];
     
@@ -24,10 +20,9 @@ export function TableOfContents({ content }: { content: string }) {
       const level = match[1].length;
       const text = match[2].trim();
       
-      // Simple slugify matching rehype-slug output (roughly)
       const id = text
         .toLowerCase()
-        .normalize('NFD') // Remove accents
+        .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/(^-|-$)+/g, '');
@@ -35,8 +30,9 @@ export function TableOfContents({ content }: { content: string }) {
       items.push({ id, level, text });
     }
     
-    setToc(items);
+    return items;
   }, [content]);
+  const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(

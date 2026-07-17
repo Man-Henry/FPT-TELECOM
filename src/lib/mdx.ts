@@ -55,7 +55,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
 
     return {
       metadata: {
-        ...(data as any),
+        ...(data as Omit<PostMetadata, 'slug' | 'readingTime'>),
         slug: realSlug,
         readingTime,
       },
