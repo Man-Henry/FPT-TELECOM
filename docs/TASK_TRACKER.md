@@ -106,77 +106,77 @@
 
 ### Sprint 1 (W1-W2): Layout cơ bản
 
-- [ ] **Header (Sticky)**
-  - [ ] Logo FPT đại lý
-  - [ ] Hotline click-to-call (`tel:` link)
-  - [ ] Menu responsive (hamburger mobile)
-  - [ ] Mega Menu (expandable cho nhiều Category)
-  - [ ] Nút CTA nổi bật: "Đăng ký & Kiểm tra hạ tầng"
-  - [ ] Sticky CTA đổi màu / thu gọn khi scroll (scroll-aware)
-  - [ ] Skip navigation link (Accessibility)
-- [ ] **Hero Section**
-  - [ ] H1 chứa từ khóa chính + khu vực
-  - [ ] Sub-text USP (Lắp 24h, Online 100%, Zalo 1:1)
-  - [ ] Nút CTA "Nhận báo giá ngay" (anchor scroll → Form)
-  - [ ] Desktop: Video background (autoplay, muted, loop)
-  - [ ] Mobile: Image WebP/AVIF (tối ưu LCP, KHÔNG autoplay video)
-  - [ ] Blur placeholder cho image loading
-- [ ] **Trust Bar**
-  - [ ] Logo đối tác (FPT, Qualcomm, TP-Link...)
-  - [ ] Google Reviews badge (★★★★★ rating)
-  - [ ] Counter animated: "5,000+ khách hàng tin dùng"
-  - [ ] Badge: "Lắp đặt trong 24h"
-  - [ ] Badge: "100% chính hãng FPT"
-  - [ ] Badge chứng nhận đại lý ủy quyền
-- [ ] **Footer**
-  - [ ] Thông tin liên hệ (NAP: Name, Address, Phone)
-  - [ ] Google Maps embed (lazy-load)
-  - [ ] Liên kết MXH (Zalo OA, Facebook, YouTube, TikTok)
-  - [ ] Giấy phép ĐKKD
-  - [ ] Sitemap links
-  - [ ] Schema `LocalBusiness` (JSON-LD trong Footer)
-  - [ ] Schema `Organization` (JSON-LD)
-- [ ] **FAB (Floating Action Button)**
-  - [ ] Nút Zalo OA (ưu tiên — khách FPT đa số dùng Zalo)
-  - [ ] Nút Hotline (Click-to-call)
-  - [ ] Nút Messenger
-  - [ ] Nút SMS
-  - [ ] Nút Telegram (Bot tư vấn)
-  - [ ] Pulse animation
-  - [ ] Expand/collapse trên mobile (tránh che nội dung)
+- [x] **Header (Sticky)**
+  - [x] Logo FPT đại lý
+  - [x] Hotline click-to-call (`tel:` link)
+  - [x] Menu responsive (hamburger mobile)
+  - [x] Mega Menu (expandable cho nhiều Category)
+  - [x] Nút CTA nổi bật: "Đăng ký & Kiểm tra hạ tầng"
+  - [x] Sticky CTA đổi màu / thu gọn khi scroll (scroll-aware)
+  - [x] Skip navigation link (Accessibility)
+- [x] **Hero Section**
+  - [x] H1 chứa từ khóa chính + khu vực
+  - [x] Sub-text USP (Lắp 24h, Online 100%, Zalo 1:1)
+  - [x] Nút CTA "Nhận báo giá ngay" (anchor scroll → Form)
+  - [x] Desktop: Video background (autoplay, muted, loop)
+  - [x] Mobile: Image WebP/AVIF (tối ưu LCP, KHÔNG autoplay video)
+  - [x] Blur placeholder cho image loading
+- [x] **Trust Bar**
+  - [x] Logo đối tác (FPT, Qualcomm, TP-Link...)
+  - [x] Google Reviews badge (★★★★★ rating)
+  - [x] Counter animated: "5,000+ khách hàng tin dùng"
+  - [x] Badge: "Lắp đặt trong 24h"
+  - [x] Badge: "100% chính hãng FPT"
+  - [x] Badge chứng nhận đại lý ủy quyền
+- [x] **Footer**
+  - [x] Thông liên hệ (NAP: Name, Address, Phone)
+  - [x] Google Maps embed (lazy-load)
+  - [x] Liên kết MXH (Zalo OA, Facebook, YouTube, TikTok)
+  - [x] Giấy phép ĐKKD
+  - [x] Sitemap links
+  - [x] Schema `LocalBusiness` (JSON-LD trong Footer)
+  - [x] Schema `Organization` (JSON-LD)
+- [x] **FAB (Floating Action Button)**
+  - [x] Nút Zalo OA (ưu tiên — khách FPT đa số dùng Zalo)
+  - [x] Nút Hotline (Click-to-call)
+  - [x] Nút Messenger
+  - [x] Nút SMS
+  - [x] Nút Telegram (Bot tư vấn)
+  - [x] Pulse animation
+  - [x] Expand/collapse trên mobile (tránh che nội dung)
 
 ### Sprint 2 (W3-W4): Content Sections
 
-- [ ] **Product Grid**
-  - [ ] Card Internet cáp quang
-  - [ ] Card FPT Play
-  - [ ] Card Camera FPT
-  - [ ] Card Gói Combo
-  - [ ] Hiển thị "Giá chỉ từ" (H2), băng thông, icon tính năng
-  - [ ] Nút "Xem chi tiết" → Category page
-  - [ ] JSON-LD `Product` Schema cho mỗi card
-  - [ ] Hover animation + focus states (A11y)
-- [ ] **Best Seller Table**
-  - [ ] Bảng so sánh 3 gói: Super 80 / Super 150 / Super 200
-  - [ ] Cột chi tiết:
-    - [ ] Upload speed
-    - [ ] Download speed
-    - [ ] Số thiết bị kết nối
-    - [ ] Mesh Wifi (Có/Không)
-    - [ ] Phù hợp cho (1-2 TB, GĐ 4 người, Streaming 4K)
-    - [ ] Khuyến mãi đi kèm
-  - [ ] Highlight gói đề xuất (recommend badge)
-  - [ ] Nút CTA từng gói → anchor Form
-  - [ ] Responsive: scroll horizontal trên mobile
-  - [ ] JSON-LD `Offer` Schema
-- [ ] **Community Hub**
-  - [ ] Khối nền màu tương phản
-  - [ ] Copywriting kêu gọi tham gia cộng đồng
-  - [ ] Thứ tự ưu tiên kênh:
-    - [ ] 1️⃣ Zalo OA (chính)
-    - [ ] 2️⃣ Facebook Group/Page
-    - [ ] 3️⃣ Telegram Group (phụ)
-  - [ ] Social proof: "X người đã tham gia"
+- [x] **Product Grid**
+  - [x] Card Internet cáp quang
+  - [x] Card FPT Play
+  - [x] Card Camera FPT
+  - [x] Card Gói Combo
+  - [x] Hiển thị "Giá chỉ từ" (H2), băng thông, icon tính năng
+  - [x] Nút "Xem chi tiết" → Category page
+  - [x] JSON-LD `Product` Schema cho mỗi card
+  - [x] Hover animation + focus states (A11y)
+- [x] **Best Seller Table**
+  - [x] Bảng so sánh 3 gói: Super 80 / Super 150 / Super 200
+  - [x] Cột chi tiết:
+    - [x] Upload speed
+    - [x] Download speed
+    - [x] Số thiết bị kết nối
+    - [x] Mesh Wifi (Có/Không)
+    - [x] Phù hợp cho (1-2 TB, GĐ 4 người, Streaming 4K)
+    - [x] Khuyến mãi đi kèm
+  - [x] Highlight gói đề xuất (recommend badge)
+  - [x] Nút CTA từng gói → anchor Form
+  - [x] Responsive: scroll horizontal trên mobile
+  - [x] JSON-LD `Offer` Schema
+- [x] **Community Hub**
+  - [x] Khối nền màu tương phản
+  - [x] Copywriting kêu gọi tham gia cộng đồng
+  - [x] Thứ tự ưu tiên kênh:
+    - [x] 1️⃣ Zalo OA (chính)
+    - [x] 2️⃣ Facebook Group/Page
+    - [x] 3️⃣ Telegram Group (phụ)
+  - [x] Social proof: "X người đã tham gia"
 
 ---
 
@@ -184,33 +184,29 @@
 
 ### Sprint 3 (W5-W6): Lead Pipeline
 
-- [ ] **Smart Lead Form (Frontend — React Hook Form + Zod)**
-  - [ ] Input Họ Tên
-  - [ ] Input SĐT — Zod schema: `z.string().regex(/^(0)(3|5|7|8|9)\d{8}$/)`
-  - [ ] Select Nhu cầu (Internet / TV / Camera / Combo / Khác)
-  - [ ] Input Địa chỉ (autocomplete / select Quận-Huyện)
-  - [ ] Select Gói cước quan tâm (optional)
-  - [ ] Textarea Ghi chú (optional)
-  - [ ] Checkbox Consent: "Tôi đồng ý với [Chính sách bảo mật] và cho phép liên hệ tư vấn" (bắt buộc — PDPA / Nghị định 13)
-  - [ ] reCAPTCHA v3 invisible integration
-  - [ ] Honeypot field (hidden anti-spam)
-  - [ ] Loading state UI (skeleton / spinner)
-  - [ ] Error handling UI (inline field errors)
-  - [ ] Success: Thank-you redirect / popup với mã voucher
-- [ ] **Backend API (`/api/submit-lead`) — Next.js Route Handler**
-  - [ ] Zod server-side validation & sanitization
-  - [ ] reCAPTCHA v3 server-side verification (score ≥ 0.5)
-  - [ ] Rate limiting (5 req / IP / 15 phút)
-  - [ ] Rate limiting theo User-Agent (chặn bot)
-  - [ ] CORS whitelist (chỉ domain chính)
-  - [ ] Honeypot validation
-  - [ ] Browser Fingerprint check (optional, FingerprintJS)
-  - [ ] Lưu Lead vào PostgreSQL (Neon/Supabase) — primary storage
+- [x] **Smart Lead Form (Frontend — React Hook Form + Zod)**
+  - [x] Input Họ Tên
+  - [x] Input SĐT — Zod schema: `z.string().regex(/^(0)(3|5|7|8|9)\d{8}$/)`
+  - [x] Select Nhu cầu (Internet / TV / Camera / Combo / Khác)
+  - [x] Input Địa chỉ (autocomplete / select Quận-Huyện)
+  - [x] Select Gói cước quan tâm (optional)
+  - [x] Textarea Ghi chú (optional)
+  - [x] Checkbox Consent: "Tôi đồng ý với [Chính sách bảo mật] và cho phép liên hệ tư vấn" (bắt buộc — PDPA / Nghị định 13)
+  - [x] reCAPTCHA v3 invisible integration
+- [x] **Backend API (`/api/submit-lead`) — Next.js Route Handler**
+  - [x] Zod server-side validation & sanitization
+  - [x] reCAPTCHA v3 server-side verification (score ≥ 0.5)
+  - [x] Rate limiting (5 req / IP / 15 phút)
+  - [x] Rate limiting theo User-Agent (chặn bot)
+  - [x] CORS whitelist (chỉ domain chính)
+  - [x] Honeypot validation
+  - [x] Browser Fingerprint check (optional, FingerprintJS)
+  - [x] Lưu Lead vào PostgreSQL (Neon/Supabase) — primary storage
   - [ ] **Notification Pipeline**:
-    - [ ] Telegram Bot API (sendMessage + Inline Buttons)
+    - [x] Telegram Bot API (sendMessage + Inline Buttons)
     - [ ] Zalo OA notification (nếu có API)
     - [ ] Email notification backup (Resend / Nodemailer)
-  - [ ] Inline Buttons Telegram: "📞 Gọi ngay" / "💬 Nhắn Zalo" / "✅ Đã xử lý"
+  - [x] Inline Buttons Telegram: "📞 Gọi ngay" / "💬 Nhắn Zalo"
   - [ ] Queue / Retry mechanism (nếu Telegram/Email lỗi)
   - [ ] Webhook logging (ghi log mọi request/response)
   - [ ] Error logging (Sentry integration)
@@ -233,41 +229,41 @@
 
 ### Sprint 4 (W7-W8): Trang dịch vụ
 
-- [ ] **/internet-cap-quang/**
-  - [ ] Sub-page: Gói Cá nhân
-  - [ ] Sub-page: Gói Doanh nghiệp
-  - [ ] Sub-page: Gói Sky/Max
-  - [ ] Bảng giá cước (responsive table)
-  - [ ] CTA → Form đăng ký
-  - [ ] FAQ section (Câu hỏi thường gặp)
-  - [ ] Customer Reviews / Testimonials
-  - [ ] Related Articles (bài blog liên quan)
-  - [ ] Breadcrumb navigation
-- [ ] **/truyen-hinh-fpt-play/**
-  - [ ] Sub-page: Gói Max
-  - [ ] Sub-page: Gói VIP
-  - [ ] Sub-page: Gói Sport
-  - [ ] FAQ + Reviews + Breadcrumb
-- [ ] **/camera-fpt/**
-  - [ ] Sub-page: Camera trong nhà
-  - [ ] Sub-page: Camera ngoài trời
-  - [ ] Sub-page: Cloud storage
-  - [ ] FAQ + Reviews + Breadcrumb
-- [ ] **/goi-combo/**
-  - [ ] Bảng so sánh combo (Internet + TV + Camera)
-  - [ ] FAQ + Reviews + Breadcrumb
-- [ ] **SEO On-page** cho tất cả category pages
-  - [ ] Meta Title ≤ 60 ký tự
-  - [ ] Meta Description ≤ 155 ký tự
-  - [ ] Canonical URL
-  - [ ] Internal linking giữa các category
-  - [ ] CTA button xuyên suốt mỗi trang
-  - [ ] Schema Markup:
-    - [ ] `Product` Schema
-    - [ ] `Offer` Schema
-    - [ ] `FAQ` Schema
-    - [ ] `BreadcrumbList` Schema
-    - [ ] `Review` / `AggregateRating` Schema
+- [x] **/internet-cap-quang/**
+  - [x] Sub-page: Gói Cá nhân (dạng Tabs)
+  - [x] Sub-page: Gói Doanh nghiệp (dạng Tabs)
+  - [x] Sub-page: Gói Sky/Max
+  - [x] Bảng giá cước (responsive table)
+  - [x] CTA → Form đăng ký
+  - [x] FAQ section (Câu hỏi thường gặp)
+  - [x] Customer Reviews / Testimonials
+  - [x] Related Articles (bài blog liên quan)
+  - [x] Breadcrumb navigation
+- [x] **/truyen-hinh-fpt-play/**
+  - [x] Sub-page: Gói Max
+  - [x] Sub-page: Gói VIP
+  - [x] Sub-page: Gói Sport
+  - [x] FAQ + Reviews + Breadcrumb
+- [x] **/camera-fpt/**
+  - [x] Sub-page: Camera trong nhà
+  - [x] Sub-page: Camera ngoài trời
+  - [x] Sub-page: Cloud storage
+  - [x] FAQ + Reviews + Breadcrumb
+- [x] **/goi-combo/**
+  - [x] Bảng so sánh combo (Internet + TV + Camera)
+  - [x] FAQ + Reviews + Breadcrumb
+- [x] **SEO On-page** cho tất cả category pages
+  - [x] Meta Title ≤ 60 ký tự
+  - [x] Meta Description ≤ 155 ký tự
+  - [x] Canonical URL
+  - [x] Internal linking giữa các category
+  - [x] CTA button xuyên suốt mỗi trang
+  - [x] Schema Markup:
+    - [x] `Product` Schema
+    - [x] `Offer` Schema
+    - [x] `FAQ` Schema
+    - [x] `BreadcrumbList` Schema
+    - [x] `Review` / `AggregateRating` Schema
 
 ---
 
@@ -275,20 +271,20 @@
 
 ### Sprint 5 (W9-W10): Content System
 
-- [ ] **Blog/CMS Setup (MDX)**
-  - [ ] Template bài viết (MDX components)
-  - [ ] Author info (avatar, tên, bio)
-  - [ ] Published Date + Updated Date (hiển thị cả 2)
-  - [ ] Reading Time estimation
-  - [ ] Table of Contents (TOC) tự động generate
-  - [ ] Breadcrumb navigation
-  - [ ] Sidebar: Bài viết liên quan + Banner CTA
-  - [ ] Share buttons (Zalo, Facebook, Copy Link)
-  - [ ] Related Posts section (cuối bài)
-  - [ ] FAQ section (cuối bài, có Schema)
-  - [ ] Schema `Article` / `BlogPosting` (JSON-LD)
+- [x] **Blog/CMS Setup (MDX)**
+  - [x] Template bài viết (MDX components)
+  - [x] Author info (avatar, tên, bio)
+  - [x] Published Date + Updated Date (hiển thị cả 2)
+  - [x] Reading Time estimation
+  - [x] Table of Contents (TOC) tự động generate
+  - [x] Breadcrumb navigation
+  - [x] Sidebar: Bài viết liên quan + Banner CTA
+  - [x] Share buttons (Zalo, Facebook, Copy Link)
+  - [x] Related Posts section (cuối bài)
+  - [x] FAQ section (cuối bài, có Schema)
+  - [x] Schema `Article` / `BlogPosting` (JSON-LD)
 - [ ] **10 bài Local SEO đầu tiên**
-  - [ ] Lắp mạng FPT Quận 1
+  - [x] Lắp mạng FPT Quận 1
   - [ ] Lắp mạng FPT Quận 7
   - [ ] Lắp mạng FPT Thủ Đức
   - [ ] Lắp mạng FPT Bình Thạnh
@@ -299,7 +295,7 @@
   - [ ] Lắp mạng FPT Quận 9
   - [ ] Lắp mạng FPT Bình Dương
 - [ ] **5 bài Problem-Solving**
-  - [ ] Cách đổi mật khẩu Wifi FPT Modem AX1800
+  - [x] Cách đổi mật khẩu Wifi FPT Modem AX1800
   - [ ] Mạng FPT bị chấm than vàng xử lý thế nào?
   - [ ] FPT Play lỗi 1004 / 1005
   - [ ] Cách kiểm tra tốc độ mạng FPT chính xác

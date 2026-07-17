@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Trạng thái xử lý Lead
+enum LeadStatus {
+  NEW        // Mới tạo, chưa liên hệ
+  CONTACTED  // Đã liên hệ tư vấn
+  CONVERTED  // Đã chuyển đổi thành khách hàng
+  CANCELLED  // Huỷ / không quan tâm
+}
+
+// Nguồn Lead đến từ đâu
+enum LeadSource {
+  WEBSITE       // Form trên website chính
+  LANDING_PAGE  // Landing page riêng (/dang-ky-lap-dat)
+  ZALO          // Zalo OA
+  TELEGRAM      // Telegram Bot
+}
+
+model Lead {
+  id          String     @id @default(cuid())
+  fullName    String
+  phone       String
+  service     String
+  address     String
+  package     String?    // Gói cước quan tâm (optional)
+  notes       String?
+  consent     Boolean    @default(true)   // PDPA — bắt buộc lưu bằng chứng
+  consentText String?    // Nội dung consent tại thời điểm đồng ý
+  source      LeadSource @default(WEBSITE)
+  ip          String?
+  visitorId   String?
+  userAgent   String?
+  status      LeadStatus @default(NEW)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([phone])
+  @@index([createdAt])
+  @@index([status])
+}

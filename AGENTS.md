@@ -1,6 +1,14 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# FPT TELECOM PROJECT RULES
 
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+## 🛑 CRITICAL CONSTRAINTS
+1. **Security**: 
+   - NEVER commit `.env` or files containing secrets.
+   - Always check `.gitignore` before suggesting git commands.
+2. **Data Consistency**:
+   - Prisma Schema is the Source of Truth.
+   - Frontend (React Hook Form) and Backend (Zod) MUST use the exact same field names as Prisma (e.g., `fullName`, `service`).
+   - No local Zod schemas in API routes; always import from `src/lib/validations/`.
+3. **Serverless Architecture**:
+   - NEVER use in-memory variables (Map, Set, global let) for rate limiting or caching on Vercel. Use Redis (@upstash).
+4. **Assets**:
+   - No Unsplash/W3Schools placeholders in production code. Use Env Vars or CMS.

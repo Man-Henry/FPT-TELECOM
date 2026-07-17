@@ -5,15 +5,19 @@
 // --- Lead / Form ---
 export interface Lead {
   id: string;
-  name: string;
+  fullName: string;
   phone: string;
-  need: string;
+  service: string;
   address?: string;
   package?: string;
-  note?: string;
+  notes?: string;
   consent: boolean;
-  source: 'website' | 'landing_page' | 'zalo' | 'telegram';
-  status: 'new' | 'contacted' | 'converted' | 'cancelled';
+  consentText?: string;
+  source: 'WEBSITE' | 'LANDING_PAGE' | 'ZALO' | 'TELEGRAM';
+  status: 'NEW' | 'CONTACTED' | 'CONVERTED' | 'CANCELLED';
+  ip?: string;
+  visitorId?: string;
+  userAgent?: string;
   createdAt: Date;
   updatedAt: Date;
 }
