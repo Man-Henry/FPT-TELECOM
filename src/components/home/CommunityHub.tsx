@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { MessageCircle, Send, ThumbsUp, Users } from 'lucide-react';
+import { MessageCircle, ThumbsUp, Users } from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
@@ -31,7 +31,7 @@ export function CommunityHub() {
               rel="noreferrer"
               className={cn(
                 buttonVariants({ size: 'lg' }),
-                'bg-primary text-primary-foreground h-12 rounded-lg px-6 font-semibold hover:bg-primary/90',
+                'bg-primary text-primary-foreground hover:bg-primary/90 h-12 rounded-lg px-6 font-semibold',
               )}
             >
               <MessageCircle className="mr-2 h-4 w-4" />
@@ -50,7 +50,6 @@ export function CommunityHub() {
               <ThumbsUp className="mr-2 h-4 w-4" />
               Facebook
             </a>
-
           </div>
         </div>
       </div>

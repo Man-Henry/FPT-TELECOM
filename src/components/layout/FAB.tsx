@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Phone, MessageCircle, MessageSquare, Send, Mail, X, Plus } from 'lucide-react';
+import { Phone, MessageCircle, MessageSquare, Mail, X, Plus } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 
@@ -60,7 +60,7 @@ export function FAB() {
 
         <a
           href={`tel:${siteConfig.hotline.replace(/\./g, '')}`}
-          className="bg-primary text-primary-foreground flex h-12 w-12 items-center justify-center rounded-full shadow-sm transition-colors hover:bg-primary/90"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 flex h-12 w-12 items-center justify-center rounded-full shadow-sm transition-colors"
           aria-label="Gọi Hotline"
         >
           <Phone className="h-5 w-5" />

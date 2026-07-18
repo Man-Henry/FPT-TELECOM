@@ -30,25 +30,21 @@ export function Analytics() {
 
     // Microsoft Clarity
     if (clarityId) {
-      (window as { clarity?: (id: string) => void }).clarity = function (id: string) {
+      (window as { clarity?: (id: string) => void }).clarity = function () {
         // Clarity is loaded via script tag
       };
     }
 
     // Meta Pixel (Facebook Pixel)
     if (metaPixelId) {
-      (window as { fbq?: (...args: unknown[]) => void }).fbq = function (
-        ...args: unknown[]
-      ) {
+      (window as { fbq?: (...args: unknown[]) => void }).fbq = function () {
         // fbq is loaded via script tag
       };
     }
 
     // TikTok Pixel
     if (tiktokPixelId) {
-      (window as { ttq?: (...args: unknown[]) => void }).ttq = function (
-        ...args: unknown[]
-      ) {
+      (window as { ttq?: (...args: unknown[]) => void }).ttq = function () {
         // ttq is loaded via script tag
       };
     }
@@ -57,12 +53,7 @@ export function Analytics() {
   return (
     <>
       {/* Google Analytics 4 */}
-      {ga4Id && (
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
-        />
-      )}
+      {ga4Id && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} />}
 
       {/* Microsoft Clarity */}
       {clarityId && (
