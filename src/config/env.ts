@@ -9,9 +9,9 @@ import { z } from 'zod';
 
 // --- Server-only environment variables ---
 const serverSchema = z.object({
-  TELEGRAM_BOT_TOKEN: z.string().min(1, 'TELEGRAM_BOT_TOKEN is required'),
-  TELEGRAM_CHAT_ID: z.string().min(1, 'TELEGRAM_CHAT_ID is required'),
-  RECAPTCHA_SECRET_KEY: z.string().min(1, 'RECAPTCHA_SECRET_KEY is required'),
+  TELEGRAM_BOT_TOKEN: z.string().optional(),
+  TELEGRAM_CHAT_ID: z.string().optional(),
+  RECAPTCHA_SECRET_KEY: z.string().optional(),
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
   UPSTASH_REDIS_REST_URL: z.string().url().optional(),
   UPSTASH_REDIS_REST_TOKEN: z.string().optional(),
@@ -27,9 +27,10 @@ const clientSchema = z.object({
   NEXT_PUBLIC_APP_NAME: z.string().default('FPT Telecom'),
   NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string().min(1, 'RECAPTCHA_SITE_KEY is required'),
   // Site Config
-  NEXT_PUBLIC_HOTLINE: z.string().default('0888.888.888'),
+  NEXT_PUBLIC_HOTLINE: z.string().default('0383900321'),
   NEXT_PUBLIC_ADDRESS: z.string().optional(),
   NEXT_PUBLIC_ZALO_OA_URL: z.string().url().optional(),
+  NEXT_PUBLIC_ZALO_GROUP_URL: z.string().url().optional(),
   NEXT_PUBLIC_TELEGRAM_URL: z.string().url().optional(),
   NEXT_PUBLIC_FACEBOOK_URL: z.string().url().optional(),
   NEXT_PUBLIC_YOUTUBE_URL: z.string().url().optional(),
@@ -53,6 +54,7 @@ const clientEnv = clientSchema.safeParse({
   NEXT_PUBLIC_HOTLINE: process.env.NEXT_PUBLIC_HOTLINE,
   NEXT_PUBLIC_ADDRESS: process.env.NEXT_PUBLIC_ADDRESS,
   NEXT_PUBLIC_ZALO_OA_URL: process.env.NEXT_PUBLIC_ZALO_OA_URL,
+  NEXT_PUBLIC_ZALO_GROUP_URL: process.env.NEXT_PUBLIC_ZALO_GROUP_URL,
   NEXT_PUBLIC_TELEGRAM_URL: process.env.NEXT_PUBLIC_TELEGRAM_URL,
   NEXT_PUBLIC_FACEBOOK_URL: process.env.NEXT_PUBLIC_FACEBOOK_URL,
   NEXT_PUBLIC_YOUTUBE_URL: process.env.NEXT_PUBLIC_YOUTUBE_URL,
@@ -69,11 +71,11 @@ export const env = {
   // Server env sẽ chỉ available trong server context
   ...(isServer
     ? (() => {
-        const result = serverSchema.safeParse(process.env);
-        if (!result.success && process.env.NODE_ENV === 'production') {
-          console.error('❌ Missing server environment variables:', result.error.flatten());
-        }
-        return result.success ? result.data : ({} as z.infer<typeof serverSchema>);
-      })()
+      const result = serverSchema.safeParse(process.env);
+      if (!result.success && process.env.NODE_ENV === 'production') {
+        console.error('❌ Missing server environment variables:', result.error.flatten());
+      }
+      return result.success ? result.data : ({} as z.infer<typeof serverSchema>);
+    })()
     : {}),
 } as z.infer<typeof serverSchema> & z.infer<typeof clientSchema>;

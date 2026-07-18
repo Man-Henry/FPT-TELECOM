@@ -16,17 +16,17 @@ import {
 const internetPackages = [
   {
     title: 'Gói Cá Nhân & Gia Đình',
-    href: '/internet-cap-quang/ca-nhan',
+    href: '/internet-cap-quang#ca-nhan',
     description: 'Băng thông không giới hạn, phù hợp giải trí đa phương tiện.',
   },
   {
     title: 'Gói Doanh Nghiệp',
-    href: '/internet-cap-quang/doanh-nghiep',
+    href: '/internet-cap-quang#doanh-nghiep',
     description: 'Băng thông quốc tế lớn, cam kết tốc độ cao, độ trễ thấp.',
   },
   {
     title: 'Gói F-Game / Sky / Max',
-    href: '/internet-cap-quang/sky-max',
+    href: '/internet-cap-quang#f-game-sky-max',
     description: 'Tối ưu đặc biệt cho game thủ và streamer.',
   },
 ];
@@ -34,12 +34,12 @@ const internetPackages = [
 const tvPackages = [
   {
     title: 'Gói FPT Play Max',
-    href: '/truyen-hinh-fpt-play/goi-max',
+    href: '/truyen-hinh-fpt-play#goi-max',
     description: 'Hơn 200 kênh truyền hình trong nước và quốc tế đặc sắc.',
   },
   {
     title: 'Gói FPT Play VIP',
-    href: '/truyen-hinh-fpt-play/goi-vip',
+    href: '/truyen-hinh-fpt-play#goi-vip',
     description: 'Kho phim HBO GO, trực tiếp độc quyền UEFA Champions League.',
   },
 ];
@@ -51,7 +51,7 @@ export function MegaMenu() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Internet Cáp Quang</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+            <ul className="grid w-[400px] gap-2 rounded-lg border border-white/[0.06] bg-[#0F1A2E] p-3 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {internetPackages.map((item) => (
                 <ListItem key={item.title} title={item.title} href={item.href}>
                   {item.description}
@@ -64,7 +64,7 @@ export function MegaMenu() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Truyền Hình FPT Play</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+            <ul className="grid w-[400px] gap-2 rounded-lg border border-white/[0.06] bg-[#0F1A2E] p-3 md:w-[500px] md:grid-cols-2">
               {tvPackages.map((item) => (
                 <ListItem key={item.title} title={item.title} href={item.href}>
                   {item.description}
@@ -75,19 +75,15 @@ export function MegaMenu() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/camera-fpt" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Camera FPT
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink render={<Link href="/camera-fpt" />} className={navigationMenuTriggerStyle()}>
+            Camera FPT
+          </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/khuyen-mai" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Khuyến Mãi
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink render={<Link href="/goi-combo#khuyen-mai" />} className={navigationMenuTriggerStyle()}>
+            Khuyến Mãi
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
@@ -102,7 +98,7 @@ const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWit
           href={href || '#'}
           ref={ref}
           className={cn(
-            'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none',
+            'block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-white/[0.04] focus:bg-white/[0.04]',
             className,
           )}
           {...props}

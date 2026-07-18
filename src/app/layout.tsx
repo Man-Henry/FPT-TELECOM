@@ -1,19 +1,20 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import { siteConfig } from '@/config/site';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FAB } from '@/components/layout/FAB';
+import { Analytics } from '@/components/layout/Analytics';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const inter = Inter({
+  variable: '--font-sans',
+  subsets: ['latin', 'vietnamese'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-heading',
+  subsets: ['latin', 'vietnamese'],
 });
 
 export const metadata: Metadata = {
@@ -31,10 +32,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="vi" className={`${inter.variable} ${spaceGrotesk.variable} dark h-full antialiased`}>
+      <head>
+        <Analytics />
+      </head>
       <body className="flex min-h-full flex-col font-sans">
         <Header />
-        <main className="flex-1 pt-16">{children}</main>
+        <main id="main-content" className="flex-1 pt-16">
+          {children}
+        </main>
         <Footer />
         <FAB />
       </body>

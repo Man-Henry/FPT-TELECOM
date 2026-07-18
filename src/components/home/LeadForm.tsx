@@ -34,7 +34,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { leadFormSchema, type LeadFormData } from '@/lib/validations/lead';
+import { leadFormSchema, type LeadFormData, SERVICE_OPTIONS } from '@/lib/validations/lead';
 
 export function LeadFormInner() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -114,9 +114,9 @@ export function LeadFormInner() {
   }
 
   return (
-    <section id="dang-ky" className="dark:bg-background bg-slate-50 py-24">
+    <section id="dang-ky" className="bg-background py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="dark:bg-card border-border/50 mx-auto max-w-2xl rounded-3xl border bg-white p-8 shadow-xl md:p-10">
+        <div className="mx-auto max-w-2xl rounded-xl border border-white/[0.06] bg-[#0F1A2E] p-8 md:p-10">
           <div className="mb-8 text-center">
             <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight">
               Đăng Ký Khảo Sát Hạ Tầng & Báo Giá
@@ -194,13 +194,11 @@ export function LeadFormInner() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Internet Cáp Quang">Internet Cáp Quang</SelectItem>
-                        <SelectItem value="Truyền Hình FPT Play">Truyền Hình FPT Play</SelectItem>
-                        <SelectItem value="Combo Internet + Truyền Hình">
-                          Combo Internet + Truyền Hình
-                        </SelectItem>
-                        <SelectItem value="Camera FPT">Camera FPT</SelectItem>
-                        <SelectItem value="Khác">Khác / Cần tư vấn thêm</SelectItem>
+                        {SERVICE_OPTIONS.map((option) => (
+                          <SelectItem key={option} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -234,7 +232,7 @@ export function LeadFormInner() {
                   <FormItem>
                     <FormLabel>Gói cước quan tâm (Tùy chọn)</FormLabel>
                     <FormControl>
-                      <Input placeholder="VD: Gói SUPER 200, Gói F-Safe..." {...field} />
+                      <Input placeholder="VD: Gói GIGA, SKY, F-GAME, META..." {...field} />
                     </FormControl>
                     <FormDescription>
                       Nếu chưa rõ, nhân viên sẽ tư vấn gói phù hợp khi liên hệ.
@@ -275,7 +273,7 @@ export function LeadFormInner() {
                         Tôi đồng ý với{' '}
                         <a
                           href="/chinh-sach-bao-mat"
-                          className="text-orange-600 hover:underline"
+                          className="text-primary hover:underline"
                           target="_blank"
                         >
                           Chính sách bảo mật
@@ -299,7 +297,7 @@ export function LeadFormInner() {
 
               <Button
                 type="submit"
-                className="h-12 w-full rounded-full bg-orange-500 text-lg text-white shadow-lg shadow-orange-500/30 hover:bg-orange-600"
+                className="bg-primary text-primary-foreground h-12 w-full rounded-lg text-base font-semibold hover:bg-primary/90"
                 disabled={isSubmitting}
               >
                 {isSubmitting && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
@@ -313,8 +311,8 @@ export function LeadFormInner() {
       {/* Success Dialog */}
       <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
         <DialogContent className="p-8 text-center sm:max-w-md">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-            <CheckCircle2 className="h-10 w-10 text-green-600 dark:text-green-400" />
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+            <CheckCircle2 className="text-primary h-10 w-10" />
           </div>
           <DialogHeader>
             <DialogTitle className="mb-2 text-2xl">Đăng ký thành công!</DialogTitle>

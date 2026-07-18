@@ -85,7 +85,7 @@ export default function InternetCapQuangPage() {
           name: 'Modem Wi-Fi 6 được trang bị miễn phí không?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Đúng vậy! Tất cả khách hàng đăng ký mới các gói cước từ Giga trở lên đều được trang bị miễn phí Modem Wi-Fi 6.',
+            text: 'Các gói cước từ SKY trở lên được trang bị miễn phí Modem ONT Wi-Fi 6 thế hệ mới. Gói GIGA được trang bị Modem Wifi tiêu chuẩn.',
           },
         },
       ],
@@ -98,7 +98,7 @@ export default function InternetCapQuangPage() {
       name: 'Anh Tuấn',
       role: 'Khách hàng cá nhân - Hà Nội',
       content:
-        'Mạng cực kỳ ổn định. Mình đăng ký gói Giga, được trang bị modem Wi-Fi 6 sóng khoẻ lắm, kéo qua 2 lớp tường vẫn xem Netflix 4K mượt mà. Kỹ thuật viên hỗ trợ nhiệt tình.',
+        'Mạng cực kỳ ổn định. Mình đăng ký gói Sky, được trang bị modem ONT Wi-Fi 6 sóng khoẻ lắm, kéo qua 2 lớp tường vẫn xem Netflix 4K mượt mà. Kỹ thuật viên hỗ trợ nhiệt tình.',
       rating: 5,
       avatar: 'T',
     },
@@ -136,7 +136,7 @@ export default function InternetCapQuangPage() {
     {
       question: 'Modem Wi-Fi 6 được trang bị miễn phí không?',
       answer:
-        'Đúng vậy! Tất cả khách hàng đăng ký mới các gói cước từ Giga trở lên đều được trang bị miễn phí Modem Wi-Fi 6 thế hệ mới nhất, giúp tăng tốc độ và vùng phủ sóng lên đáng kể.',
+        'Các gói cước từ SKY trở lên được trang bị miễn phí Modem ONT Wi-Fi 6 thế hệ mới nhất, giúp tăng tốc độ và vùng phủ sóng lên đáng kể. Gói GIGA được trang bị Modem Wifi tiêu chuẩn.',
     },
     {
       question: 'Nếu mạng gặp sự cố thì báo hỏng bằng cách nào?',
@@ -147,6 +147,11 @@ export default function InternetCapQuangPage() {
       question: 'Tôi có thể nâng cấp gói cước đang sử dụng được không?',
       answer:
         'Hoàn toàn được và miễn phí chuyển đổi gói. Bạn chỉ cần liên hệ tổng đài hoặc qua app Hi FPT, hệ thống sẽ cập nhật băng thông ngay trong vài phút mà không cần phải thay đổi thiết bị hay kéo lại dây.',
+    },
+    {
+      question: 'Phí lắp đặt và các phụ phí phát sinh tính thế nào?',
+      answer:
+        'Phí hòa mạng/lắp đặt ban đầu: 300.000đ (có thể thay đổi tùy hình thức trả trước). Phí lắp đặt từ thiết bị thứ 2 trở đi: 400.000đ. Nếu bạn lắp thêm Mesh/Modem, cước phí cộng thêm 20.000đ/tháng cho mỗi thiết bị.',
     },
   ];
 

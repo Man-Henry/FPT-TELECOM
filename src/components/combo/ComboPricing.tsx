@@ -7,53 +7,19 @@ import { cn } from '@/lib/utils';
 
 const comboPlans = [
   {
-    name: 'Combo GIGA',
-    price: '235.000đ',
-    speed: '150 Mbps',
-    description: 'Internet 150Mbps + FPT Play MAX',
-    features: [
-      'Trang bị Modem Wi-Fi 6',
-      'Đầu thu FPT Play Box giọng nói',
-      'Gần 200 kênh truyền hình',
-      'Độc quyền thể thao UEFA',
-    ],
-    icons: [<Wifi key="w" className="h-5 w-5" />, <Tv key="t" className="h-5 w-5" />],
-    popular: false,
-    color: 'border-pink-500',
+    name: 'Combo GIGA', price: '235.000đ', speed: '300 Mbps', description: 'Internet 300Mbps + FPT Play MAX',
+    features: ['Trang bị Modem Wi-Fi 6', 'Đầu thu FPT Play Box giọng nói', 'Gần 200 kênh truyền hình', 'Độc quyền thể thao UEFA'],
+    icons: [<Wifi key="w" className="h-4 w-4" />, <Tv key="t" className="h-4 w-4" />], popular: false,
   },
   {
-    name: 'Combo SKY',
-    price: '285.000đ',
-    speed: '1 Gbps',
-    description: 'Internet Không Giới Hạn + FPT Play MAX',
-    features: [
-      'Tốc độ Download lên đến 1Gbps',
-      'Trang bị Modem Wi-Fi 6 2 băng tần',
-      'Đầu thu FPT Play Box giọng nói',
-      'Gần 200 kênh truyền hình, UEFA',
-    ],
-    icons: [<Wifi key="w" className="h-5 w-5" />, <Tv key="t" className="h-5 w-5" />],
-    popular: true,
-    color: 'border-purple-600',
+    name: 'Combo SKY', price: '285.000đ', speed: '1 Gbps', description: 'Internet Không Giới Hạn + FPT Play MAX',
+    features: ['Tốc độ Download lên đến 1Gbps', 'Trang bị Modem Wi-Fi 6 2 băng tần', 'Đầu thu FPT Play Box giọng nói', 'Gần 200 kênh truyền hình, UEFA'],
+    icons: [<Wifi key="w" className="h-4 w-4" />, <Tv key="t" className="h-4 w-4" />], popular: true,
   },
   {
-    name: 'Combo 3-IN-1',
-    price: '350.000đ',
-    speed: '1 Gbps',
-    description: 'Internet SKY + TV MAX + Camera IQ',
-    features: [
-      'Giải pháp toàn diện nhất',
-      'Trang bị Modem Wi-Fi 6 & Tivi Box',
-      'Trang bị 01 Camera IQ thông minh',
-      'Miễn phí triển khai toàn bộ',
-    ],
-    icons: [
-      <Wifi key="w" className="h-5 w-5" />,
-      <Tv key="t" className="h-5 w-5" />,
-      <Camera key="c" className="h-5 w-5" />,
-    ],
-    popular: false,
-    color: 'border-blue-600',
+    name: 'Combo 3-IN-1', price: '350.000đ', speed: '1 Gbps', description: 'Internet SKY + TV MAX + Camera IQ',
+    features: ['Giải pháp toàn diện nhất', 'Trang bị Modem Wi-Fi 6 & Tivi Box', 'Tặng 01 Camera IQ trị giá 510.000đ', 'Miễn phí triển khai toàn bộ'],
+    icons: [<Wifi key="w" className="h-4 w-4" />, <Tv key="t" className="h-4 w-4" />, <Camera key="c" className="h-4 w-4" />], popular: false,
   },
 ];
 
@@ -62,33 +28,24 @@ export function ComboPricing() {
     <section className="bg-background py-24">
       <div className="container mx-auto max-w-6xl px-4 md:px-6">
         <div className="mb-16 text-center">
-          <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight md:text-4xl">
-            Bảng Giá Gói Combo
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Sự kết hợp hoàn hảo mang lại trải nghiệm đỉnh cao với chi phí tiết kiệm tối đa.
-          </p>
+          <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight md:text-4xl">Bảng Giá Gói Combo</h2>
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">Kết hợp hoàn hảo, chi phí tiết kiệm tối đa.</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {comboPlans.map((plan, index) => (
-            <div
-              key={index}
-              className={cn(
-                'bg-card relative flex flex-col rounded-3xl border p-8 transition-all hover:-translate-y-1 hover:shadow-xl',
-                plan.popular
-                  ? 'z-10 scale-100 border-purple-600 shadow-lg shadow-purple-600/10 md:scale-105'
-                  : 'border-border',
-              )}
-            >
+            <div key={index} className={cn(
+              'relative flex flex-col rounded-xl border p-7',
+              plan.popular ? 'border-primary/30 bg-[#0F1A2E]' : 'border-white/[0.06] bg-[#0C1524]',
+            )}>
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 px-4 py-1.5 text-xs font-bold tracking-wider text-white uppercase shadow-md">
+                <div className="bg-primary text-primary-foreground absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-xs font-semibold uppercase">
                   Đăng Ký Nhiều Nhất
                 </div>
               )}
 
-              <div className="border-border/50 mb-6 border-b pb-6 text-center">
-                <div className="mb-4 flex items-center justify-center gap-2 text-slate-500 dark:text-slate-400">
+              <div className="mb-6 border-b border-white/[0.06] pb-6 text-center">
+                <div className="mb-3 flex items-center justify-center gap-2 text-slate-500">
                   {plan.icons.map((icon, idx) => (
                     <React.Fragment key={idx}>
                       {icon}
@@ -96,52 +53,29 @@ export function ComboPricing() {
                     </React.Fragment>
                   ))}
                 </div>
-
-                <h3
-                  className={cn(
-                    'mb-2 text-2xl font-bold',
-                    plan.popular ? 'text-purple-600' : 'text-foreground',
-                  )}
-                >
-                  {plan.name}
-                </h3>
-                <p className="mb-2 text-sm font-semibold text-orange-500">{plan.speed}</p>
-                <p className="text-muted-foreground mb-4 h-10 text-sm">{plan.description}</p>
-
+                <h3 className={cn('mb-2 text-xl font-bold', plan.popular ? 'text-primary' : 'text-foreground')}>{plan.name}</h3>
+                <p className="text-primary mb-1 text-sm font-medium">{plan.speed}</p>
+                <p className="text-muted-foreground mb-4 text-sm">{plan.description}</p>
                 <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-foreground text-4xl font-extrabold">{plan.price}</span>
-                  <span className="text-muted-foreground font-medium">/ tháng</span>
+                  <span className="text-foreground text-3xl font-extrabold">{plan.price}</span>
+                  <span className="text-muted-foreground">/ tháng</span>
                 </div>
               </div>
 
-              <ul className="mb-8 flex-1 space-y-4">
+              <ul className="mb-8 flex-1 space-y-3">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div
-                      className={cn(
-                        'mt-0.5 shrink-0 rounded-full p-1',
-                        plan.popular
-                          ? 'bg-purple-100 text-purple-600'
-                          : 'bg-pink-100 text-pink-600',
-                      )}
-                    >
-                      <Check className="h-3.5 w-3.5" />
-                    </div>
-                    <span className="text-muted-foreground font-medium">{feature}</span>
+                  <li key={i} className="flex items-start gap-2">
+                    <Check className="text-primary/50 mt-0.5 h-4 w-4 shrink-0" />
+                    <span className="text-muted-foreground text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <a
-                href="#dang-ky"
-                className={cn(
-                  buttonVariants({ variant: plan.popular ? 'default' : 'outline' }),
-                  'h-12 w-full rounded-xl text-base font-semibold transition-all',
-                  plan.popular
-                    ? 'bg-purple-600 text-white shadow-md shadow-purple-500/20 hover:bg-purple-700'
-                    : '',
-                )}
-              >
+              <a href="#dang-ky" className={cn(
+                buttonVariants({ variant: plan.popular ? 'default' : 'outline' }),
+                'h-11 w-full rounded-lg font-semibold',
+                plan.popular ? 'bg-primary text-primary-foreground hover:bg-primary/90' : 'border-white/[0.06] text-slate-300 hover:bg-white/[0.04]',
+              )}>
                 Đăng Ký {plan.name}
               </a>
             </div>

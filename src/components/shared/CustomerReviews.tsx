@@ -57,7 +57,7 @@ export function CustomerReviews({
               </p>
 
               <div className="mt-auto flex items-center gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-orange-100 text-lg font-bold text-orange-600 dark:bg-orange-900/30 dark:text-orange-400">
+                <div className="bg-primary/10 text-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-lg font-bold">
                   {review.avatar}
                 </div>
                 <div>

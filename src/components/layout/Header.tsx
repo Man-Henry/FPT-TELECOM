@@ -15,6 +15,13 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
+function scrollToDangKy() {
+  const element = document.getElementById('dang-ky');
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 export function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -39,15 +46,14 @@ export function Header() {
         className={cn(
           'fixed top-0 right-0 left-0 z-50 w-full transition-all duration-300',
           isScrolled
-            ? 'bg-background/95 border-border border-b shadow-sm backdrop-blur-md'
+            ? 'border-b border-white/[0.06] bg-[#0C1524]/90 shadow-sm backdrop-blur-md'
             : 'bg-transparent',
         )}
       >
         <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            {/* Thay placeholder bằng Image thật sau này */}
-            <div className="bg-primary/20 text-primary flex h-8 w-24 items-center justify-center rounded-md font-bold">
+            <div className="text-foreground flex h-8 w-24 items-center justify-center rounded font-bold">
               {siteConfig.name}
             </div>
           </Link>
@@ -55,16 +61,16 @@ export function Header() {
           {/* Desktop Mega Menu */}
           <MegaMenu />
 
-          {/* Desktop CTA */}
-          <div className="hidden items-center gap-4 md:flex">
+{/* Desktop CTA */}
+          <div className="hidden items-center gap-3 md:flex">
             <a
               href={`tel:${siteConfig.hotline.replace(/\./g, '')}`}
-              className={cn(buttonVariants({ variant: 'ghost' }), 'font-semibold')}
+              className={cn(buttonVariants({ variant: 'ghost' }), 'text-muted-foreground font-medium hover:text-foreground')}
             >
               <PhoneCall className="mr-2 h-4 w-4" />
               {siteConfig.hotline}
             </a>
-            <Button className="bg-orange-500 font-semibold text-white hover:bg-orange-600">
+            <Button className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90" onClick={scrollToDangKy}>
               Đăng ký ngay
             </Button>
           </div>
@@ -77,9 +83,9 @@ export function Header() {
             >
               <Menu className="h-6 w-6" />
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <SheetContent side="right" className="w-[300px] border-white/[0.06] bg-[#0C1524] sm:w-[400px]">
               <SheetHeader>
-                <SheetTitle className="text-left">Menu</SheetTitle>
+                <SheetTitle className="text-left text-white">Menu</SheetTitle>
               </SheetHeader>
               <div className="mt-6 flex flex-col gap-4">
                 <Accordion defaultValue={['internet']} className="w-full">
@@ -88,14 +94,16 @@ export function Header() {
                     <AccordionContent>
                       <div className="flex flex-col gap-3">
                         <Link
-                          href="/internet-cap-quang/ca-nhan"
+                          href="/internet-cap-quang#ca-nhan"
                           onClick={() => setIsMobileMenuOpen(false)}
+                          className="text-muted-foreground transition-colors hover:text-foreground"
                         >
                           Gói Cá Nhân & Gia Đình
                         </Link>
                         <Link
-                          href="/internet-cap-quang/doanh-nghiep"
+                          href="/internet-cap-quang#doanh-nghiep"
                           onClick={() => setIsMobileMenuOpen(false)}
+                          className="text-muted-foreground transition-colors hover:text-foreground"
                         >
                           Gói Doanh Nghiệp
                         </Link>
@@ -107,14 +115,16 @@ export function Header() {
                     <AccordionContent>
                       <div className="flex flex-col gap-3">
                         <Link
-                          href="/truyen-hinh-fpt-play/goi-max"
+                          href="/truyen-hinh-fpt-play#goi-max"
                           onClick={() => setIsMobileMenuOpen(false)}
+                          className="text-muted-foreground transition-colors hover:text-foreground"
                         >
                           Gói Max
                         </Link>
                         <Link
-                          href="/truyen-hinh-fpt-play/goi-vip"
+                          href="/truyen-hinh-fpt-play#goi-vip"
                           onClick={() => setIsMobileMenuOpen(false)}
+                          className="text-muted-foreground transition-colors hover:text-foreground"
                         >
                           Gói VIP
                         </Link>
@@ -125,14 +135,14 @@ export function Header() {
 
                 <Link
                   href="/camera-fpt"
-                  className="border-b py-2 font-medium"
+                  className="border-b border-white/[0.06] py-2 font-medium text-slate-300 transition-colors hover:text-white"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Camera FPT
                 </Link>
                 <Link
-                  href="/khuyen-mai"
-                  className="border-b py-2 font-medium"
+                  href="/goi-combo#khuyen-mai"
+                  className="border-b border-white/[0.06] py-2 font-medium text-slate-300 transition-colors hover:text-white"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Khuyến Mãi
@@ -141,12 +151,18 @@ export function Header() {
                 <div className="mt-6 flex flex-col gap-3">
                   <a
                     href={`tel:${siteConfig.hotline.replace(/\./g, '')}`}
-                    className={cn(buttonVariants({ variant: 'outline' }), 'w-full')}
+                    className={cn(buttonVariants({ variant: 'outline' }), 'w-full border-white/[0.06]')}
                   >
                     <PhoneCall className="mr-2 h-4 w-4" />
                     Gọi ngay {siteConfig.hotline}
                   </a>
-                  <Button className="w-full bg-orange-500 text-white hover:bg-orange-600">
+                  <Button
+                    className="bg-primary text-primary-foreground w-full"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      document.getElementById('dang-ky')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
                     Đăng ký trực tuyến
                   </Button>
                 </div>

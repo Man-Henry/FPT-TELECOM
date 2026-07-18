@@ -84,7 +84,7 @@ export default function GoiComboPage() {
           name: 'Gói Combo có được trang bị Tivi Box không?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Có. Khi đăng ký gói Combo, FPT sẽ trang bị miễn phí cho bạn 01 Modem Wi-Fi và 01 Đầu thu FPT Play Box.',
+            text: 'Có. Khi đăng ký gói Combo, FPT sẽ trang bị miễn phí cho bạn 01 Modem Wi-Fi và 01 Đầu thu FPT Play Box. Phí thiết bị Box thêm: 100.000đ/Box.',
           },
         },
       ],
@@ -131,7 +131,7 @@ export default function GoiComboPage() {
     {
       question: 'Gói Combo có được trang bị Tivi Box không?',
       answer:
-        'Có. Khi đăng ký gói Combo, FPT sẽ trang bị miễn phí cho bạn 01 Modem Wi-Fi (chuẩn Wi-Fi 5 hoặc Wi-Fi 6) và 01 Đầu thu FPT Play Box điều khiển bằng giọng nói.',
+        'Có. Khi đăng ký gói Combo, FPT sẽ trang bị miễn phí cho bạn 01 Modem Wi-Fi (chuẩn Wi-Fi 5 hoặc Wi-Fi 6) và 01 Đầu thu FPT Play Box điều khiển bằng giọng nói. Nếu cần lắp thêm Box, phí 100.000đ/Box.',
     },
     {
       question: 'Tôi có thể đổi từ gói Combo sang gói Internet đơn lẻ không?',
@@ -142,6 +142,11 @@ export default function GoiComboPage() {
       question: 'Thanh toán hoá đơn Combo bằng cách nào?',
       answer:
         'Bạn chỉ nhận 1 hoá đơn duy nhất mỗi tháng cho tất cả các dịch vụ (Internet, Truyền hình, Camera). Có thể thanh toán trực tuyến qua ứng dụng Hi FPT, Momo, ZaloPay, chuyển khoản ngân hàng hoặc thanh toán tại quầy giao dịch FPT.',
+    },
+    {
+      question: 'Phí lắp đặt và phụ phí thiết bị thêm tính thế nào?',
+      answer:
+        'Phí hòa mạng ban đầu: 300.000đ. Phí lắp đặt thiết bị thứ 2 trở đi: 400.000đ. Phí thiết bị Box thêm: 100.000đ/Box. Camera từ chiếc thứ 2: 400.000đ/Camera. Mesh/Modem lắp thêm: cộng 20.000đ/tháng vào tiền cước mỗi thiết bị.',
     },
   ];
 
