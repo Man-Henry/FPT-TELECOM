@@ -5,8 +5,8 @@ import { PrismaPg } from '@prisma/adapter-pg';
 const prismaClientSingleton = () => {
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
-    // Để không crash lúc build time nếu thiếu .env
-    return new PrismaClient();
+    // Không khởi tạo PrismaClient khi thiếu DB URL để tránh crash lúc build time
+    return null;
   }
   const pool = new Pool({ connectionString });
   const adapter = new PrismaPg(pool);
