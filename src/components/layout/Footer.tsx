@@ -23,7 +23,7 @@ export function Footer() {
                 <strong className="text-slate-300">Hotline:</strong>{' '}
                 <a
                   href={`tel:${siteConfig.hotline.replace(/\./g, '')}`}
-                  className="text-primary transition-colors hover:text-primary/80"
+                  className="text-primary hover:text-primary/80 transition-colors"
                 >
                   {siteConfig.hotline}
                 </a>
@@ -32,14 +32,17 @@ export function Footer() {
                 <strong className="text-slate-300">Giờ làm việc:</strong> {siteConfig.workingHours}
               </p>
               <p className="mt-2 border-t border-white/[0.06] pt-2">
-                <strong className="text-slate-300">Giấy phép ĐKKD:</strong> 0101778163 do Sở Kế hoạch & Đầu tư TP.Hà Nội cấp.
+                <strong className="text-slate-300">Giấy phép ĐKKD:</strong> 0101778163 do Sở Kế
+                hoạch & Đầu tư TP.Hà Nội cấp.
               </p>
             </div>
           </div>
 
           {/* Dịch vụ */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold tracking-wider text-slate-300 uppercase">Dịch Vụ</h4>
+            <h4 className="mb-4 text-sm font-semibold tracking-wider text-slate-300 uppercase">
+              Dịch Vụ
+            </h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/internet-cap-quang" className="transition-colors hover:text-slate-200">
@@ -47,7 +50,10 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/truyen-hinh-fpt-play" className="transition-colors hover:text-slate-200">
+                <Link
+                  href="/truyen-hinh-fpt-play"
+                  className="transition-colors hover:text-slate-200"
+                >
                   Truyền Hình FPT Play
                 </Link>
               </li>
@@ -66,7 +72,9 @@ export function Footer() {
 
           {/* Hỗ trợ */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold tracking-wider text-slate-300 uppercase">Hỗ Trợ</h4>
+            <h4 className="mb-4 text-sm font-semibold tracking-wider text-slate-300 uppercase">
+              Hỗ Trợ
+            </h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <a href="#huong-dan-thanh-toan" className="transition-colors hover:text-slate-200">
@@ -93,7 +101,9 @@ export function Footer() {
 
           {/* Google Maps */}
           <div className="col-span-1 md:col-span-4 lg:col-span-1">
-            <h4 className="mb-4 text-sm font-semibold tracking-wider text-slate-300 uppercase">Bản Đồ</h4>
+            <h4 className="mb-4 text-sm font-semibold tracking-wider text-slate-300 uppercase">
+              Bản Đồ
+            </h4>
             <div className="h-40 w-full overflow-hidden rounded-lg border border-white/[0.06] bg-[#0F1A2E]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.924840833758!2d105.7876801!3d21.0351717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab483eb8957b%3A0xc39115f57630fa98!2sFPT%20Telecom!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
@@ -114,10 +124,38 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <div className="mt-4 flex gap-4 md:mt-0">
-            <a href={siteConfig.social.facebook} target="_blank" rel="noreferrer" className="transition-colors hover:text-slate-300">Facebook</a>
-            <a href={siteConfig.social.zalo} target="_blank" rel="noreferrer" className="transition-colors hover:text-slate-300">Zalo</a>
-            <a href={siteConfig.social.youtube} target="_blank" rel="noreferrer" className="transition-colors hover:text-slate-300">YouTube</a>
-            <a href={siteConfig.social.tiktok} target="_blank" rel="noreferrer" className="transition-colors hover:text-slate-300">TikTok</a>
+            <a
+              href={siteConfig.social.facebook}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-slate-300"
+            >
+              Facebook
+            </a>
+            <a
+              href={siteConfig.social.zalo}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-slate-300"
+            >
+              Zalo
+            </a>
+            <a
+              href={siteConfig.social.youtube}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-slate-300"
+            >
+              YouTube
+            </a>
+            <a
+              href={siteConfig.social.tiktok}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-slate-300"
+            >
+              TikTok
+            </a>
           </div>
         </div>
       </div>

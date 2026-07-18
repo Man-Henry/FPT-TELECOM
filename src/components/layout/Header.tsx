@@ -61,16 +61,22 @@ export function Header() {
           {/* Desktop Mega Menu */}
           <MegaMenu />
 
-{/* Desktop CTA */}
+          {/* Desktop CTA */}
           <div className="hidden items-center gap-3 md:flex">
             <a
               href={`tel:${siteConfig.hotline.replace(/\./g, '')}`}
-              className={cn(buttonVariants({ variant: 'ghost' }), 'text-muted-foreground font-medium hover:text-foreground')}
+              className={cn(
+                buttonVariants({ variant: 'ghost' }),
+                'text-muted-foreground hover:text-foreground font-medium',
+              )}
             >
               <PhoneCall className="mr-2 h-4 w-4" />
               {siteConfig.hotline}
             </a>
-            <Button className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90" onClick={scrollToDangKy}>
+            <Button
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
+              onClick={scrollToDangKy}
+            >
               Đăng ký ngay
             </Button>
           </div>
@@ -83,7 +89,10 @@ export function Header() {
             >
               <Menu className="h-6 w-6" />
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] border-white/[0.06] bg-[#0C1524] sm:w-[400px]">
+            <SheetContent
+              side="right"
+              className="w-[300px] border-white/[0.06] bg-[#0C1524] sm:w-[400px]"
+            >
               <SheetHeader>
                 <SheetTitle className="text-left text-white">Menu</SheetTitle>
               </SheetHeader>
@@ -96,14 +105,14 @@ export function Header() {
                         <Link
                           href="/internet-cap-quang#ca-nhan"
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="text-muted-foreground transition-colors hover:text-foreground"
+                          className="text-muted-foreground hover:text-foreground transition-colors"
                         >
                           Gói Cá Nhân & Gia Đình
                         </Link>
                         <Link
                           href="/internet-cap-quang#doanh-nghiep"
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="text-muted-foreground transition-colors hover:text-foreground"
+                          className="text-muted-foreground hover:text-foreground transition-colors"
                         >
                           Gói Doanh Nghiệp
                         </Link>
@@ -117,14 +126,14 @@ export function Header() {
                         <Link
                           href="/truyen-hinh-fpt-play#goi-max"
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="text-muted-foreground transition-colors hover:text-foreground"
+                          className="text-muted-foreground hover:text-foreground transition-colors"
                         >
                           Gói Max
                         </Link>
                         <Link
                           href="/truyen-hinh-fpt-play#goi-vip"
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="text-muted-foreground transition-colors hover:text-foreground"
+                          className="text-muted-foreground hover:text-foreground transition-colors"
                         >
                           Gói VIP
                         </Link>
@@ -151,7 +160,10 @@ export function Header() {
                 <div className="mt-6 flex flex-col gap-3">
                   <a
                     href={`tel:${siteConfig.hotline.replace(/\./g, '')}`}
-                    className={cn(buttonVariants({ variant: 'outline' }), 'w-full border-white/[0.06]')}
+                    className={cn(
+                      buttonVariants({ variant: 'outline' }),
+                      'w-full border-white/[0.06]',
+                    )}
                   >
                     <PhoneCall className="mr-2 h-4 w-4" />
                     Gọi ngay {siteConfig.hotline}

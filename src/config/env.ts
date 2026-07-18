@@ -71,11 +71,11 @@ export const env = {
   // Server env sẽ chỉ available trong server context
   ...(isServer
     ? (() => {
-      const result = serverSchema.safeParse(process.env);
-      if (!result.success && process.env.NODE_ENV === 'production') {
-        console.error('❌ Missing server environment variables:', result.error.flatten());
-      }
-      return result.success ? result.data : ({} as z.infer<typeof serverSchema>);
-    })()
+        const result = serverSchema.safeParse(process.env);
+        if (!result.success && process.env.NODE_ENV === 'production') {
+          console.error('❌ Missing server environment variables:', result.error.flatten());
+        }
+        return result.success ? result.data : ({} as z.infer<typeof serverSchema>);
+      })()
     : {}),
 } as z.infer<typeof serverSchema> & z.infer<typeof clientSchema>;

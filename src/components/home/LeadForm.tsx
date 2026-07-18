@@ -297,7 +297,7 @@ export function LeadFormInner() {
 
               <Button
                 type="submit"
-                className="bg-primary text-primary-foreground h-12 w-full rounded-lg text-base font-semibold hover:bg-primary/90"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 w-full rounded-lg text-base font-semibold"
                 disabled={isSubmitting}
               >
                 {isSubmitting && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
@@ -311,7 +311,7 @@ export function LeadFormInner() {
       {/* Success Dialog */}
       <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
         <DialogContent className="p-8 text-center sm:max-w-md">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+          <div className="bg-primary/10 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full">
             <CheckCircle2 className="text-primary h-10 w-10" />
           </div>
           <DialogHeader>

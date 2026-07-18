@@ -37,9 +37,7 @@ export function Hero() {
       <div className="relative z-10 container mx-auto px-4 text-center text-white md:px-6">
         <h1 className="mb-6 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl">
           Internet Cáp Quang FPT <br className="hidden md:block" />
-          <span className="text-primary">
-            Tốc Độ Vượt Trội
-          </span>
+          <span className="text-primary">Tốc Độ Vượt Trội</span>
         </h1>
 
         <p className="text-muted-foreground mx-auto mb-10 max-w-2xl text-lg md:text-xl">
@@ -50,7 +48,7 @@ export function Hero() {
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button
             size="lg"
-            className="bg-primary text-primary-foreground h-13 w-full rounded-lg px-8 text-base font-semibold hover:bg-primary/90 sm:w-auto"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-13 w-full rounded-lg px-8 text-base font-semibold sm:w-auto"
             onClick={scrollToDangKy}
           >
             Nhận báo giá ngay

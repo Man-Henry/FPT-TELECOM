@@ -73,9 +73,7 @@ export function BestSellerTable() {
           <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight md:text-4xl">
             Bảng Giá Internet
           </h2>
-          <p className="text-muted-foreground text-lg">
-            So sánh các gói cước bán chạy nhất.
-          </p>
+          <p className="text-muted-foreground text-lg">So sánh các gói cước bán chạy nhất.</p>
         </div>
 
         <div className="hide-scrollbar -mx-4 flex snap-x snap-mandatory overflow-x-auto px-4 pb-8 md:mx-0 md:overflow-visible md:px-0">

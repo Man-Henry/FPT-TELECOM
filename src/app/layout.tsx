@@ -32,7 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${inter.variable} ${spaceGrotesk.variable} dark h-full antialiased`}>
+    <html
+      lang="vi"
+      className={`${inter.variable} ${spaceGrotesk.variable} dark h-full antialiased`}
+    >
       <head>
         <Analytics />
       </head>

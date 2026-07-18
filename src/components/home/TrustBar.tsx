@@ -16,7 +16,10 @@ export function TrustBar() {
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div key={index} className="flex flex-col items-center justify-center space-y-2 text-center">
+              <div
+                key={index}
+                className="flex flex-col items-center justify-center space-y-2 text-center"
+              >
                 <div className="text-muted-foreground mb-2 rounded-lg bg-white/[0.04] p-3">
                   <Icon className="h-5 w-5" />
                 </div>
@@ -29,7 +32,9 @@ export function TrustBar() {
 
         {/* Partners */}
         <div className="flex flex-col items-center justify-center gap-8 border-t border-white/[0.06] pt-8 md:flex-row md:gap-12">
-          <span className="text-xs font-medium tracking-widest text-slate-500 uppercase">Đối tác</span>
+          <span className="text-xs font-medium tracking-widest text-slate-500 uppercase">
+            Đối tác
+          </span>
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm font-semibold text-slate-500 md:gap-10">
             <span>QUALCOMM</span>
             <span>TP-LINK</span>
@@ -37,7 +42,9 @@ export function TrustBar() {
             <div className="flex items-center gap-1">
               Google Reviews
               <span className="ml-1 flex text-yellow-500/70">
-                {[...Array(5)].map((_, i) => <Star key={i} className="h-3 w-3 fill-current" />)}
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-3 w-3 fill-current" />
+                ))}
               </span>
             </div>
           </div>

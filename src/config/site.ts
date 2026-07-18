@@ -16,7 +16,9 @@ export const siteConfig = {
   hotline: process.env.NEXT_PUBLIC_HOTLINE || '0383900321',
   zaloOA: process.env.NEXT_PUBLIC_ZALO_OA_URL || 'https://zalo.me/YOUR_ZALO_OA_ID',
   telegram: process.env.NEXT_PUBLIC_TELEGRAM_URL || 'https://t.me/YOUR_BOT_USERNAME',
-  address: process.env.NEXT_PUBLIC_ADDRESS || '107- 109 Man Thiện, P. Tân Phú, Quận 9, Thành phố Thủ Đức, TP.HCM',
+  address:
+    process.env.NEXT_PUBLIC_ADDRESS ||
+    '107- 109 Man Thiện, P. Tân Phú, Quận 9, Thành phố Thủ Đức, TP.HCM',
   email: process.env.NEXT_PUBLIC_EMAIL || 'hotro@fpt-telecom.vn',
   workingHours: '08:00 - 21:00 (T2 - CN)',
 

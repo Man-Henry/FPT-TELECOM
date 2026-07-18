@@ -75,13 +75,19 @@ export function MegaMenu() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuLink render={<Link href="/camera-fpt" />} className={navigationMenuTriggerStyle()}>
+          <NavigationMenuLink
+            render={<Link href="/camera-fpt" />}
+            className={navigationMenuTriggerStyle()}
+          >
             Camera FPT
           </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuLink render={<Link href="/goi-combo#khuyen-mai" />} className={navigationMenuTriggerStyle()}>
+          <NavigationMenuLink
+            render={<Link href="/goi-combo#khuyen-mai" />}
+            className={navigationMenuTriggerStyle()}
+          >
             Khuyến Mãi
           </NavigationMenuLink>
         </NavigationMenuItem>

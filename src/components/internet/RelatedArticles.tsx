@@ -88,7 +88,7 @@ export function RelatedArticles() {
                   </span>
                 </div>
 
-                <h3 className="mb-3 line-clamp-2 text-xl font-bold transition-colors group-hover:text-foreground">
+                <h3 className="group-hover:text-foreground mb-3 line-clamp-2 text-xl font-bold transition-colors">
                   <Link href={article.slug}>{article.title}</Link>
                 </h3>
 
@@ -98,7 +98,7 @@ export function RelatedArticles() {
 
                 <Link
                   href={article.slug}
-                  className="text-primary mt-auto inline-flex items-center text-sm font-semibold transition-colors hover:text-primary/80"
+                  className="text-primary hover:text-primary/80 mt-auto inline-flex items-center text-sm font-semibold transition-colors"
                 >
                   Đọc tiếp <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
