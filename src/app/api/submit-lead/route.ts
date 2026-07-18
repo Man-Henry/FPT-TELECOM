@@ -109,26 +109,30 @@ export async function POST(request: Request) {
 `;
 
     // 4. Save to Database (Primary Storage)
-    try {
-      await db.lead.create({
-        data: {
-          fullName: validatedData.fullName,
-          phone: validatedData.phone,
-          service: validatedData.service,
-          address: validatedData.address,
-          package: validatedData.package,
-          notes: validatedData.notes,
-          consent: validatedData.consent,
-          consentText: CONSENT_TEXT,
-          source: 'WEBSITE',
-          ip: ip,
-          visitorId: body.visitorId || null,
-          userAgent: userAgent || null,
-        },
-      });
-    } catch (dbError) {
-      console.error('Database Save Error:', dbError);
-      // Tiếp tục gửi Telegram nếu DB sập — để sale vẫn biết có khách
+    if (db) {
+      try {
+        await db.lead.create({
+          data: {
+            fullName: validatedData.fullName,
+            phone: validatedData.phone,
+            service: validatedData.service,
+            address: validatedData.address,
+            package: validatedData.package,
+            notes: validatedData.notes,
+            consent: validatedData.consent,
+            consentText: CONSENT_TEXT,
+            source: 'WEBSITE',
+            ip: ip,
+            visitorId: body.visitorId || null,
+            userAgent: userAgent || null,
+          },
+        });
+      } catch (dbError) {
+        console.error('Database Save Error:', dbError);
+        // Tiếp tục gửi Telegram nếu DB sập — để sale vẫn biết có khách
+      }
+    } else {
+      console.warn('DATABASE_URL is missing, skipping database write.');
     }
 
     // 5. Send to Telegram
