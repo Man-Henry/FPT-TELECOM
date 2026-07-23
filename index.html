@@ -34,8 +34,7 @@
     <a class="logo logo-image" href="#home" aria-label="FPT Telecom"><img src="assets/images/logo.png"
         alt="FPT Telecom"></a>
     <button class="menu-toggle" aria-label="Mở menu" aria-expanded="false">☰</button>
-    <nav role="navigation" aria-label="Menu chính"><a href="#home">Trang chủ</a><a href="#pricing">Bảng giá</a><a
-        href="#map-3d">Bản đồ 3D</a><a href="#offers">Ưu đãi</a><a href="#areas">Khu vực</a><a href="#contact">Liên
+    <nav role="navigation" aria-label="Menu chính"><a href="#home">Trang chủ</a><a href="#pricing">Bảng giá</a><a href="#offers">Ưu đãi</a><a href="#areas">Khu vực</a><a href="#contact">Liên
         hệ</a></nav>
     <a class="btn btn-orange header-cta" href="#contact">Đăng ký ngay <span>→</span></a>
   </header>
@@ -130,7 +129,7 @@
         </div>
         <div class="triple-gift">
           <div class="camera-pair"><img src="assets/images/cameraplay4.png" alt="Camera FPT Play 4"><img
-              src="assets/images/cameraiq4s.png" alt="Camera FPT IQ 4S"></div><span>TẶNG 1 CAMERA<br><b>trị giá
+              src="assets/images/cameraiq4s.png" alt="Camera FPT IQ 4S"></div><img src="assets/images/boxtv.png" alt="FPT Play Box TV" class="single-camera"><span>TẶNG 1 CAMERA + BOX TV<br><b>trị giá
               1.000.000đ</b></span>
         </div>
         <div><span>Chỉ từ</span><strong>235.000đ<small>/tháng</small></strong><a href="#contact"
@@ -149,31 +148,6 @@
       </div>
     </section>
 
-    <section class="map-3d section" id="map-3d">
-      <div class="section-head">
-        <p class="eyebrow">BẢN ĐỒ 3D</p>
-        <h2>Phủ sóng FPT trên toàn Việt Nam</h2>
-        <p>Xem khu vực phủ sóng 3D tương tác, kiểm tra khả thi lắp đặt tại địa chỉ của bạn.</p>
-      </div>
-      <div class="map3d-wrap" id="map3d-container" aria-label="Bản đồ 3D Việt Nam phủ sóng FPT">
-        <canvas id="map3d-canvas"></canvas>
-        <div class="map3d-overlay">
-          <div class="map3d-legend">
-            <div class="legend-item"><span class="legend-dot" style="background:#00D4AA"></span>Đã phủ sóng</div>
-            <div class="legend-item"><span class="legend-dot" style="background:#FFB800"></span>Đang triển khai</div>
-            <div class="legend-item"><span class="legend-dot" style="background:#FF4757"></span>Chưa có hạ tầng</div>
-          </div>
-          <div class="map3d-controls">
-            <button class="map-btn" id="map-rotate" aria-label="Tự động quay">⟳ Tự quay</button>
-            <button class="map-btn" id="map-reset" aria-label="Đặt lại vị trí">⌂ Đặt lại</button>
-          </div>
-        </div>
-        <div class="map3d-search">
-          <input type="text" id="map-search" placeholder="Nhập địa chỉ kiểm tra phủ sóng..." autocomplete="off">
-          <button id="map-search-btn">Kiểm tra</button>
-        </div>
-      </div>
-    </section>
 
     <section class="offers" id="offers">
       <div class="offer-copy">
@@ -239,20 +213,31 @@
       </div>
     </section>
 
-    <section class="areas section" id="areas">
-      <div class="area-map">
-        <div class="map-pin p1">●</div>
-        <div class="map-pin p2">●</div>
-        <div class="map-pin p3">●</div>
-        <div class="vietnam">VIỆT NAM</div>
+    <section class="map3d section" id="areas">
+      <div class="section-head">
+        <p class="eyebrow">PHỦ SÓNG TOÀN QUỐC</p>
+        <h2>Bản đồ 3D phủ sóng FPT Việt Nam</h2>
+        <p>Hạ tầng cáp quang FPT phủ rộng 63 tỉnh thành. Kiểm tra khả năng lắp đặt tại khu vực của bạn.</p>
       </div>
-      <div class="area-copy">
-        <p class="eyebrow">PHỦ SÓNG RỘNG KHẮP</p>
-        <h2>Lắp đặt Internet FPT trên toàn quốc</h2>
-        <p>Đội ngũ kỹ thuật viên sẵn sàng khảo sát và lắp đặt nhanh chóng tại nhà bạn.</p>
-        <div class="chips"><span>TP. Hồ Chí Minh</span><span>Bình Dương</span><span>Đồng Nai</span><span>Vũng
-            Tàu</span><span>Hà Nội</span><span>Đà Nẵng</span></div>
-        <p class="notice">* Giá cước có thể khác nhau giữa khu vực phường và xã.</p>
+      <div class="map3d-wrap" id="map3d-container" aria-label="Bản đồ 3D Việt Nam phủ sóng FPT">
+        <canvas id="map3d-canvas"></canvas>
+        <div class="map3d-overlay">
+          <div class="map3d-legend">
+            <div class="legend-item"><span class="legend-dot" style="background:#00D4AA"></span>Trạm lõi (Core)</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#FFB800"></span>Trạm BTS</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#6366F1"></span>Cáp quang (Fiber)</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#06B6D4"></span>Vùng phủ sóng</div>
+          </div>
+          <div class="map3d-controls">
+            <button class="map-btn" id="map-rotate" aria-label="Tự động quay">⟳ Dừng quay</button>
+            <button class="map-btn" id="map-reset" aria-label="Đặt lại vị trí">⌂ Đặt lại</button>
+          </div>
+        </div>
+      </div>
+      <div class="map3d-legend" style="margin-top:20px">
+        <div class="chips" style="justify-content:center">
+          <span>TP. Hồ Chí Minh</span><span>Bình Dương</span><span>Đồng Nai</span><span>Vũng Tàu</span><span>Hà Nội</span><span>Đà Nẵng</span><span>Cần Thơ</span><span>Hải Phòng</span>
+        </div>
       </div>
     </section>
 
