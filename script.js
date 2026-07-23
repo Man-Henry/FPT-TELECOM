@@ -6,6 +6,30 @@ menuButton.addEventListener('click', () => {
   menuButton.setAttribute('aria-expanded', isOpen);
 });
 navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navigation.classList.remove('open')));
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+if (!prefersReducedMotion && hasFinePointer) {
+  document.querySelectorAll('.tilt-3d').forEach(card => {
+    const strength = card.classList.contains('tilt-hero') ? 4 : 7;
+    card.addEventListener('pointermove', event => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - .5;
+      const y = (event.clientY - bounds.top) / bounds.height - .5;
+      card.style.setProperty('--tilt-x', `${-y * strength}deg`);
+      card.style.setProperty('--tilt-y', `${x * strength}deg`);
+      card.style.setProperty('--glow-x', `${(x + .5) * 100}%`);
+      card.style.setProperty('--glow-y', `${(y + .5) * 100}%`);
+      card.classList.add('is-tilting');
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--tilt-x', '0deg');
+      card.style.setProperty('--tilt-y', '0deg');
+      card.classList.remove('is-tilting');
+    });
+  });
+}
 tabs.forEach(tab => tab.addEventListener('click', () => {
   tabs.forEach(item => item.classList.remove('active'));
   tab.classList.add('active');
