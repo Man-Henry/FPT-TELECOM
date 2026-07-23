@@ -94,52 +94,59 @@ function initMap3D() {
   const S = 0.6, H = 6, TOP = H;
   const P = (x, y, yTop = TOP) => new THREE.Vector3((x - 50) * S, yTop, -(y - 50) * S);
 
-  /* ── Đường viền Việt Nam chính xác hình chữ S (~90 điểm) ── */
-  const VN_BORDER = [
-    // Biên giới phía Bắc (Tây Bắc → Đông Bắc, biên giới Trung Quốc)
-    [21,89],[24,90],[27,90],[30,91],[33,91],[36,91],[39,92],
-    [42,92],[45,93],[47,94],[50,95],[53,92],[56,92],[58,91],
-    [60,87],[63,85],[65,85],[68,84],
-    // Bờ biển Đông Bắc (Quảng Ninh → Hải Phòng → vịnh Bắc Bộ)
-    [68,82],[65,81],[62,81],[59,80],[57,78],[56,77],
-    [54,76],[52,74],[51,71],[50,68],
-    // Bờ biển Bắc Trung Bộ (Hà Tĩnh → Quảng Bình → Huế)
-    [51,66],[53,64],[55,62],[56,60],[58,58],
-    // Bờ biển miền Trung (đoạn hẹp nhất → Đà Nẵng)
-    [60,56],[62,54],[64,53],[67,52],[69,51],[70,50],
-    // Bờ biển Nam Trung Bộ (Quảng Ngãi → Bình Định → Phú Yên)
-    [72,48],[73,46],[75,43],[77,40],[78,37],
-    // Khánh Hòa → Ninh Thuận → Bình Thuận
-    [79,34],[78,31],[77,29],[77,27],[75,24],[73,22],
-    // Bờ biển Đông Nam Bộ (Vũng Tàu → TP.HCM hướng biển)
-    [70,20],[68,19],[65,18],[62,17],[60,16],[58,15],
-    // Đồng bằng sông Cửu Long → Mũi Cà Mau
-    [56,13],[53,11],[50,9],[47,7],[44,6],[42,5],[40,6],
-    // Bờ biển Tây Nam (Vịnh Thái Lan → biên giới Campuchia)
-    [41,8],[42,10],[41,12],[40,14],[42,16],
-    // Biên giới Campuchia → Tây Nguyên
-    [44,18],[46,19],[48,20],[50,22],[52,24],
-    [55,25],[57,26],[58,28],[60,30],
-    // Tây Nguyên → biên giới Lào phía Nam
-    [62,32],[64,36],[64,40],[63,43],[62,46],[61,48],[60,50],
-    // Biên giới Lào miền Trung
-    [58,52],[55,54],[53,56],[50,58],[48,60],
-    [46,61],[44,63],[42,65],[40,67],
-    // Biên giới Lào miền Bắc → Tây Bắc
-    [38,69],[36,71],[34,73],[36,75],[37,77],
-    [35,79],[33,80],[30,82],[28,84],[26,86],[23,87],
-  ];
+  /* ── Giải mã bản đồ Việt Nam từ chuỗi ASCII nổi tiếng ── */
+  function decodeVNMap() {
+    const str = "LA0KCAA0BABBAJ0AP0BP0BQ0DS0CR0DO0IH0JG0KE0HG0GH0IE0JD0LC0MD0NC0OC0PC0QC0QEKABA0SDMA0TD0TE0VD0UE0UF0UF0TH0UG0UG0UG0UHOUH0TH0RJ0OM0OL0OJ0LL0JL0GABI0GACGQAAA0KGQA0KEPAAAAAA0KCEAMA0KBUA0";
+    const rows = [];
+    let row = [], col = 0, j = 1;
+    for (let i = 0; i < str.length; i++) {
+      const c = str.charCodeAt(i);
+      if (c > 64) {
+        const ch = (j & 1) ? 0 : 1; // 0=space, 1=fill
+        for (let k = 0; k < c - 64; k++) { row.push({ col: col++, fill: ch }); }
+        j++;
+      } else {
+        rows.push(row); row = []; col = 0; j = 1;
+      }
+    }
+    if (row.length) rows.push(row);
+
+    // Trích xuất cạnh trái/phải mỗi hàng
+    const edges = [];
+    rows.forEach((r, ri) => {
+      let left = -1, right = -1;
+      r.forEach(p => { if (p.fill) { if (left < 0) left = p.col; right = p.col; } });
+      if (left >= 0) edges.push({ row: ri, left, right });
+    });
+
+    // Chuyển sang tọa độ 0-100
+    const totalRows = rows.length;
+    const maxCol = Math.max(...edges.map(e => e.right));
+    const xScale = 55 / maxCol, xOff = 20;
+    const yScale = 88 / totalRows, yOff = 5;
+    const toXY = (col, row) => [
+      Math.round(col * xScale + xOff),
+      Math.round((totalRows - row) * yScale + yOff)
+    ];
+
+    // Trace bờ Đông (trên → dưới) rồi bờ Tây (dưới → trên)
+    const eastCoast = edges.map(e => toXY(e.right, e.row));
+    const westCoast = edges.slice().reverse().map(e => toXY(e.left, e.row));
+    return [...eastCoast, ...westCoast];
+  }
+
+  const VN_BORDER = decodeVNMap();
 
   /* ── Trạm phát sóng (kể cả hải đảo) ── */
   const STATIONS = [
-    { n:'Hà Nội',    x:51, y:82 },
-    { n:'Hải Phòng', x:59, y:80 },
-    { n:'Vinh',      x:52, y:68 },
-    { n:'Huế',       x:59, y:58 },
-    { n:'Đà Nẵng',   x:67, y:52 },
-    { n:'Nha Trang', x:78, y:31 },
-    { n:'Đà Lạt',    x:65, y:25 },
-    { n:'TP. HCM',   x:60, y:17 },
+    { n:'Hà Nội',    x:46, y:82 },
+    { n:'Hải Phòng', x:54, y:80 },
+    { n:'Vinh',      x:45, y:64 },
+    { n:'Huế',       x:52, y:54 },
+    { n:'Đà Nẵng',   x:56, y:48 },
+    { n:'Nha Trang', x:60, y:33 },
+    { n:'Đà Lạt',    x:58, y:28 },
+    { n:'TP. HCM',   x:58, y:22 },
     { n:'Cần Thơ',   x:48, y:14 },
     { n:'Hoàng Sa',  x:108,y:58, sea:true },
     { n:'Trường Sa', x:106,y:22, sea:true },
@@ -207,7 +214,7 @@ function initMap3D() {
   starS.closePath();
   const star = new THREE.Mesh(new THREE.ShapeGeometry(starS), new THREE.MeshBasicMaterial({ color: 0xffd400 }));
   star.rotation.x = -Math.PI / 2;
-  star.position.copy(P(47, 88, H + 0.3));
+  star.position.copy(P(44, 88, H + 0.3));
   scene.add(star);
 
   /* ── TRẠM PHÁT SÓNG + VÒNG SÓNG LAN TỎA (PULSE) ── */
