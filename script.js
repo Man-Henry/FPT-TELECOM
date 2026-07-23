@@ -58,7 +58,9 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
   result.classList.remove('error');
 
   try {
-    const response = await fetch('https://formspree.io/f/mpqvjbdw', {
+    // Decode Base64 endpoint to prevent simple bot scraping
+    const endpoint = atob('aHR0cHM6Ly9mb3Jtc3ByZWUuaW8vZi9tcHF2amJkdw==');
+    const response = await fetch(endpoint, {
       method: 'POST',
       body: new FormData(form),
       headers: { Accept: 'application/json' }
@@ -120,14 +122,35 @@ function initMap3D() {
   const geometry = new THREE.PlaneGeometry(width, height, 100, 100);
   const positions = geometry.attributes.position;
 
+  const vietnamPolygon = [
+    [102.1, 22.4], [103.0, 22.8], [104.0, 22.8], [105.0, 23.3], [105.5, 23.4], [106.0, 22.9], [107.0, 22.8], [108.0, 21.5],
+    [107.5, 20.8], [106.6, 20.0], [106.0, 19.0], [106.3, 18.0], [106.6, 17.0], [107.5, 16.2], [108.3, 15.6], [109.3, 13.8],
+    [109.4, 12.8], [109.2, 11.8], [108.5, 11.0], [107.5, 10.4], [107.0, 10.0], [106.8, 9.5], [106.0, 8.5], [104.8, 8.5],
+    [104.5, 10.0], [104.2, 10.5], [105.0, 10.8], [106.0, 11.5], [106.5, 12.0], [107.0, 13.0], [107.5, 14.5], [107.3, 16.0],
+    [106.2, 17.0], [105.5, 18.0], [104.8, 19.0], [104.0, 19.8], [103.0, 20.5], [102.2, 21.5]
+  ];
+
+  function isPointInPoly(pt, poly) {
+    let inside = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const xi = poly[i][0], yi = poly[i][1];
+      const xj = poly[j][0], yj = poly[j][1];
+      const intersect = ((yi > pt[1]) !== (yj > pt[1])) && (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
+      if (intersect) inside = !inside;
+    }
+    return inside;
+  }
+
   for (let i = 0; i < positions.count; i++) {
     const x = positions.getX(i);
     const y = positions.getY(i);
-    const lat = vietnamBounds.maxLat - (y + height / 2) / height * (vietnamBounds.maxLat - vietnamBounds.minLat);
+    const lat = vietnamBounds.minLat + (y + height / 2) / height * (vietnamBounds.maxLat - vietnamBounds.minLat);
     const lon = vietnamBounds.minLon + (x + width / 2) / width * (vietnamBounds.maxLon - vietnamBounds.minLon);
-    const inVietnam = lat >= 8.2 && lat <= 23.5 && lon >= 102 && lon <= 110;
+    const inVietnam = isPointInPoly([lon, lat], vietnamPolygon);
+    
+    // Add some noise for 3D terrain effect
     const noise = Math.sin(x * 0.1) * Math.cos(y * 0.1) * 0.5 + Math.sin(x * 0.05 + y * 0.05) * 0.3;
-    const elevation = inVietnam ? (noise + 1) * 2 : -10;
+    const elevation = inVietnam ? (noise + 1.5) * 1.5 : -10;
     positions.setZ(i, elevation);
   }
   geometry.computeVertexNormals();
@@ -150,21 +173,29 @@ function initMap3D() {
     void main() {
       float elev = vElevation;
       float t = uTime * 0.3;
-      vec3 landColor = mix(vec3(0.02, 0.15, 0.35), vec3(0.0, 0.4, 0.6), smoothstep(-1.0, 8.0, elev));
-      vec3 waterColor = vec3(0.01, 0.08, 0.2);
+      vec3 landColor = mix(vec3(0.01, 0.08, 0.22), vec3(0.0, 0.3, 0.5), smoothstep(-1.0, 8.0, elev));
+      vec3 waterColor = vec3(0.005, 0.03, 0.1);
       float waterLevel = 0.0;
       float isWater = step(elev, waterLevel);
       vec3 color = mix(landColor, waterColor, isWater);
       float grid = 0.0;
       if (elev > waterLevel) {
-        grid = step(0.95, fract(vPosition.x * 0.05 + t)) * step(0.95, fract(vPosition.y * 0.05));
-        grid += step(0.95, fract(vPosition.x * 0.05)) * step(0.95, fract(vPosition.y * 0.05 + t));
-        color += vec3(0.0, 0.8, 0.6) * grid * 0.3;
+        // Lưới công nghệ (cyber grid)
+        grid = step(0.96, fract(vPosition.x * 0.08 + t * 0.5)) * step(0.96, fract(vPosition.y * 0.08));
+        grid += step(0.96, fract(vPosition.x * 0.08)) * step(0.96, fract(vPosition.y * 0.08 + t * 0.5));
+        color += vec3(0.0, 0.9, 0.7) * grid * 0.5;
+        
+        // Hiệu ứng quét radar (Radar scanline)
+        float scanline = sin(vPosition.y * 0.05 + t * 3.0);
+        scanline = smoothstep(0.9, 1.0, scanline) * 0.6;
+        color += vec3(0.1, 1.0, 0.8) * scanline;
       }
-      float glow = smoothstep(2.0, 8.0, elev) * (0.3 + 0.2 * sin(t * 2.0 + vPosition.x * 0.1));
-      color += vec3(0.0, 0.83, 0.67) * glow;
+      // Ánh sáng phát quang (glow)
+      float glow = smoothstep(2.0, 8.0, elev) * (0.4 + 0.25 * sin(t * 3.0 + vPosition.x * 0.15));
+      color += vec3(0.0, 0.95, 0.8) * glow;
+      
       if (elev < -5.0) {
-        color = mix(waterColor, vec3(0.0, 0.3, 0.5), sin(t + vPosition.x * 0.02) * 0.5 + 0.5);
+        color = mix(waterColor, vec3(0.0, 0.2, 0.35), sin(t + vPosition.x * 0.02) * 0.5 + 0.5);
       }
       gl_FragColor = vec4(color, 1.0);
     }
@@ -237,11 +268,14 @@ function initMap3D() {
     mesh.userData.ring = ring;
   });
 
-  let autoRotate = false;
-  if (rotateBtn) rotateBtn.addEventListener('click', () => {
-    autoRotate = !autoRotate;
-    rotateBtn.textContent = autoRotate ? '⟳ Dừng quay' : '⟳ Tự quay';
-  });
+  let autoRotate = true;
+  if (rotateBtn) {
+    rotateBtn.textContent = '⟳ Dừng quay';
+    rotateBtn.addEventListener('click', () => {
+      autoRotate = !autoRotate;
+      rotateBtn.textContent = autoRotate ? '⟳ Dừng quay' : '⟳ Tự quay';
+    });
+  }
   if (resetBtn) resetBtn.addEventListener('click', () => {
     controls.reset();
     camera.position.set(0, 80, 180);
