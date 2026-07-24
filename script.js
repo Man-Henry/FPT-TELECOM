@@ -98,8 +98,7 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
   }
 
   try {
-    // Advanced Obfuscated endpoint definition to prevent automated bot scraping
-    const endpoint = _dx("==wddJma2FQct9iZv8WauUEWyB3ctJ3bm9yL6MHc0RHa");
+    const endpoint = _dx("==wdkJma2FHct9iZv8WauUWZyB3ctJ3bm9yL6MHc0RHa");
     const response = await fetch(endpoint, {
       method: 'POST',
       body: new FormData(form),
@@ -788,7 +787,7 @@ if (chatToggle && chatWidget) {
         formData.append('package', services || 'Tư vấn chung (Chat Widget)');
         formData.append('time', 'Gọi ngay từ Chat Widget');
 
-        const endpoint = _dx("==wddJma2FQct9iZv8WauUEWyB3ctJ3bm9yL6MHc0RHa");
+        const endpoint = _dx("==wdkJma2FHct9iZv8WauUWZyB3ctJ3bm9yL6MHc0RHa");
 
         await fetch(endpoint, {
           method: 'POST',
