@@ -1,12 +1,14 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { EffectComposer }  from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass }      from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-
 const tabs = document.querySelectorAll('.tab');
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('nav');
+
+// Register Service Worker for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW setup failed', err));
+  });
+}
+
 menuButton.addEventListener('click', () => {
   const isOpen = navigation.classList.toggle('open');
   menuButton.setAttribute('aria-expanded', isOpen);
@@ -41,11 +43,26 @@ tabs.forEach(tab => tab.addEventListener('click', () => {
   tab.classList.add('active');
   const area = tab.dataset.area;
   document.querySelectorAll('[data-rural]').forEach(price => price.textContent = price.dataset[area]);
+  
+  if (typeof gtag === 'function') {
+    gtag('event', 'tab_switch', {
+      'area_type': area
+    });
+  }
 }));
 
 document.querySelectorAll('a[href="#contact"]').forEach(link => link.addEventListener('click', () => {
   const packageName = link.closest('.package')?.querySelector('h3')?.textContent.trim();
-  if (packageName) document.querySelector('[name="package"]').value = packageName.includes('GIGA') ? 'GIGA / SKY' : packageName;
+  if (packageName) {
+    const finalPackage = packageName.includes('GIGA') ? 'GIGA / SKY' : packageName;
+    document.querySelector('[name="package"]').value = finalPackage;
+    
+    if (typeof gtag === 'function') {
+      gtag('event', 'package_select', {
+        'package_name': finalPackage
+      });
+    }
+  }
 }));
 
 document.querySelector('#lead-form').addEventListener('submit', async event => {
@@ -61,8 +78,9 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
   result.classList.remove('error');
 
   try {
-    // Decode Base64 endpoint to prevent simple bot scraping
-    const endpoint = atob('aHR0cHM6Ly9mb3Jtc3ByZWUuaW8vZi9tcHF2amJkdw==');
+    // Obfuscated endpoint definition to prevent automated bot scraping
+    const _0x1a = ['aHR0c', 'HM6Ly9m', 'b3Jtc3ByZWUu', 'aW8vZi9t', 'cHF2amJkdw=='];
+    const endpoint = atob(_0x1a.join(''));
     const response = await fetch(endpoint, {
       method: 'POST',
       body: new FormData(form),
@@ -70,6 +88,14 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
     });
     if (!response.ok) throw new Error('Lead submission failed');
     result.textContent = 'Cảm ơn bạn! FPT sẽ liên hệ tư vấn trong thời gian sớm nhất.';
+    
+    if (typeof gtag === 'function') {
+      gtag('event', 'form_submit', {
+        'package_name': new FormData(form).get('package'),
+        'time_preference': new FormData(form).get('time')
+      });
+    }
+    
     form.reset();
   } catch (error) {
     result.textContent = 'Chưa thể gửi thông tin. Vui lòng gọi ngay 0358513269 hoặc 0383 900 321 để được hỗ trợ.';
@@ -78,6 +104,28 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
     submitButton.disabled = false;
     submitButton.innerHTML = originalLabel;
   }
+});
+
+// Track Phone clicks
+document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+  link.addEventListener('click', () => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'phone_click', {
+        'phone_number': link.getAttribute('href').replace('tel:', '')
+      });
+    }
+  });
+});
+
+// Track Zalo clicks
+document.querySelectorAll('a[href^="https://zalo.me"]').forEach(link => {
+  link.addEventListener('click', () => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'zalo_click', {
+        'zalo_number': link.getAttribute('href').replace('https://zalo.me/', '')
+      });
+    }
+  });
 });
 
 /* =========================================================
@@ -90,6 +138,15 @@ function initMap3D() {
   const rotateBtn = document.getElementById('map-rotate');
   const resetBtn = document.getElementById('map-reset');
   const cW = container.clientWidth, cH = 560;
+
+  // Import THREE dynamically to improve initial load performance
+  Promise.all([
+    import('three'),
+    import('three/addons/controls/OrbitControls.js'),
+    import('three/addons/postprocessing/EffectComposer.js'),
+    import('three/addons/postprocessing/RenderPass.js'),
+    import('three/addons/postprocessing/UnrealBloomPass.js')
+  ]).then(([THREE, { OrbitControls }, { EffectComposer }, { RenderPass }, { UnrealBloomPass }]) => {
 
   const S = 0.6, H = 6, TOP = H;
   const P = (x, y, yTop = TOP) => new THREE.Vector3((x - 50) * S, yTop, -(y - 50) * S);
@@ -391,6 +448,188 @@ function initMap3D() {
     camera.updateProjectionMatrix();
     composer.setSize(w, cH);
   });
+  }); // End of Promise.all
 }
 
-initMap3D();
+const mapSection = document.getElementById('areas');
+if (mapSection) {
+  const mapObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      initMap3D();
+      mapObserver.disconnect();
+    }
+  }, { rootMargin: '400px' });
+  mapObserver.observe(mapSection);
+}
+
+/* =========================================================
+   CRO: STICKY CTA & SOCIAL PROOF TOAST
+   ========================================================= */
+const stickyCta = document.getElementById('sticky-cta');
+const contactSection = document.getElementById('contact');
+const heroSection = document.querySelector('.hero');
+
+if (stickyCta && contactSection && heroSection) {
+  window.addEventListener('scroll', () => {
+    const heroBottom = heroSection.getBoundingClientRect().bottom;
+    const contactTop = contactSection.getBoundingClientRect().top;
+    
+    // Show sticky CTA if scrolled past hero AND haven't reached contact form
+    if (heroBottom < 0 && contactTop > window.innerHeight) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  }, { passive: true });
+}
+
+// Social Proof Toast Logic
+const toast = document.getElementById('social-proof-toast');
+const toastName = document.getElementById('toast-name');
+const toastAction = document.getElementById('toast-action');
+
+const customers = ['Anh Khang (Q.7)', 'Chị Mai (Hà Nội)', 'Anh Tuấn (Đà Nẵng)', 'Chị Lan (Bình Dương)', 'Anh Hoàng (Biên Hòa)'];
+const actions = ['vừa đăng ký gói COMBO VIP', 'đang nhận tư vấn lắp đặt', 'vừa lắp xong gói GIGA', 'đã đăng ký gói F-GAME', 'vừa lắp Camera AI'];
+
+function showRandomToast() {
+  if (!toast) return;
+  const randomCustomer = customers[Math.floor(Math.random() * customers.length)];
+  const randomAction = actions[Math.floor(Math.random() * actions.length)];
+  
+  toastName.textContent = randomCustomer;
+  toastAction.textContent = randomAction;
+  
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4000); // Hide after 4s
+}
+
+// Show toast every 15-25 seconds
+if (toast) {
+  setTimeout(function triggerToast() {
+    showRandomToast();
+    setTimeout(triggerToast, 15000 + Math.random() * 10000);
+  }, 10000);
+}
+
+/* =========================================================
+   ADVANCED TRACKING & CRO LOGIC
+   ========================================================= */
+// 1. Page Load DataLayer Push
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  event: 'page_data',
+  page_title: document.title,
+  page_url: window.location.href,
+  page_type: 'landing_page'
+});
+
+// 2. Scroll Depth Tracking
+const scrollMarks = { 25: false, 50: false, 75: false, 100: false };
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  
+  [25, 50, 75, 100].forEach(mark => {
+    if (scrollPercent >= mark && !scrollMarks[mark]) {
+      scrollMarks[mark] = true;
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { depth: mark + '%' });
+    }
+  });
+}, { passive: true });
+
+// 3. Time on Page Tracking
+const timeSegments = [
+  { time: 30000, label: '< 30s' },
+  { time: 120000, label: '30s - 2m' },
+  { time: 300000, label: '2m - 5m' }
+];
+timeSegments.forEach(seg => {
+  setTimeout(() => {
+    if (typeof gtag === 'function') gtag('event', 'time_on_page', { segment: seg.label });
+  }, seg.time);
+});
+
+// 4. Exit Intent Popup
+let exitIntentTriggered = false;
+const exitPopup = document.getElementById('exit-popup');
+document.addEventListener('mouseleave', (e) => {
+  if (e.clientY < 0 && !exitIntentTriggered && exitPopup) {
+    exitIntentTriggered = true;
+    exitPopup.classList.add('show');
+    if (typeof gtag === 'function') gtag('event', 'exit_intent_show');
+  }
+});
+if (exitPopup) {
+  exitPopup.querySelector('.close-popup').addEventListener('click', () => {
+    exitPopup.classList.remove('show');
+  });
+}
+
+// 5. Urgency Indicator Countdown
+const slotsLeftEl = document.getElementById('slots-left');
+if (slotsLeftEl) {
+  const today = new Date().toDateString();
+  const savedDate = localStorage.getItem('fpt_urgency_date');
+  let slots = parseInt(localStorage.getItem('fpt_urgency_slots'), 10);
+
+  // If new day or invalid slots, randomize between 5 and 14
+  if (savedDate !== today || isNaN(slots) || slots < 3) {
+    slots = Math.floor(Math.random() * 10) + 5; 
+    localStorage.setItem('fpt_urgency_date', today);
+    localStorage.setItem('fpt_urgency_slots', slots);
+  }
+  
+  slotsLeftEl.textContent = slots;
+
+  setInterval(() => {
+    // Randomly drop the slot count by 1 (down to a minimum of 2)
+    if (slots > 2 && Math.random() > 0.7) {
+      slots--;
+      slotsLeftEl.textContent = slots;
+      localStorage.setItem('fpt_urgency_slots', slots);
+    }
+  }, 12000);
+}
+
+// 6. Social Proof Weekly Counter
+const socialProofCountEl = document.getElementById('social-proof-count');
+if (socialProofCountEl) {
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0 is Sunday, 1 is Monday...
+  const currentDay = dayOfWeek === 0 ? 7 : dayOfWeek; // Treat Mon as 1, Sun as 7
+  
+  // Base count scales up as the week progresses (Day 1: ~25, Day 7: ~160)
+  const baseCount = currentDay * 23 + (now.getDate() % 5);
+  
+  // Calculate current week string (e.g. "2026-W30")
+  const startDate = new Date(now.getFullYear(), 0, 1);
+  const days = Math.floor((now - startDate) / (24 * 60 * 60 * 1000));
+  const weekNumber = now.getFullYear() + '-W' + Math.ceil((now.getDay() + 1 + days) / 7);
+
+  const storedWeek = localStorage.getItem('fpt_sp_week');
+  const storedCount = parseInt(localStorage.getItem('fpt_sp_count'), 10);
+  
+  let displayCount = baseCount;
+
+  // If we are in the same week, ensure the number only goes UP, never down
+  if (storedWeek === weekNumber && !isNaN(storedCount) && storedCount > displayCount) {
+    displayCount = storedCount;
+  }
+  
+  socialProofCountEl.textContent = displayCount;
+  localStorage.setItem('fpt_sp_week', weekNumber);
+  localStorage.setItem('fpt_sp_count', displayCount);
+
+  // Auto increment by 1-3 occasionally while user is on the page
+  setInterval(() => {
+    if (Math.random() > 0.6) {
+      displayCount += Math.floor(Math.random() * 3) + 1;
+      socialProofCountEl.textContent = displayCount;
+      localStorage.setItem('fpt_sp_count', displayCount);
+    }
+  }, 45000); // Check every 45 seconds
+}
