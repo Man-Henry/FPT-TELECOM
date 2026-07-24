@@ -138,7 +138,8 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
 
     form.reset();
   } catch (error) {
-    result.textContent = 'Chưa thể gửi thông tin. Vui lòng gọi ngay 0358513269 hoặc 0383 900 321 để được hỗ trợ.';
+    console.error("Form submit error:", error);
+    result.textContent = 'Chưa thể gửi thông tin (' + error.message + '). Vui lòng gọi ngay 0358513269 hoặc 0383 900 321 để được hỗ trợ.';
     result.classList.add('error');
   } finally {
     submitButton.disabled = false;
@@ -820,16 +821,14 @@ if (chatToggle && chatWidget) {
         btn.textContent = 'Đã gửi! FPT sẽ liên hệ sớm.';
         btn.style.background = '#25d366';
         chatForm.reset();
-
+      } catch (err) {
+        console.error("Chat form error:", err);
+        btn.textContent = 'Lỗi gửi (' + err.message + ')';
+        btn.style.background = '#dc3545';
+      } finally {
         setTimeout(() => {
           btn.textContent = originalText;
           btn.style.background = '';
-          btn.disabled = false;
-        }, 4000);
-      } catch (err) {
-        btn.textContent = 'Lỗi kết nối, thử lại sau.';
-        setTimeout(() => {
-          btn.textContent = originalText;
           btn.disabled = false;
         }, 3000);
       }
