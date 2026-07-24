@@ -137,7 +137,7 @@ function initMap3D() {
   const canvas = document.getElementById('map3d-canvas');
   const rotateBtn = document.getElementById('map-rotate');
   const resetBtn = document.getElementById('map-reset');
-  const cW = container.clientWidth, cH = 560;
+  const cW = container.clientWidth, cH = container.clientHeight;
 
   // Import THREE dynamically to improve initial load performance
   Promise.all([
@@ -252,7 +252,7 @@ function initMap3D() {
   scene.fog = new THREE.FogExp2(0x02060d, 0.006);
 
   const camera = new THREE.PerspectiveCamera(50, cW / cH, 0.1, 2000);
-  camera.position.set(0, 75, 95);
+  camera.position.set(0, 75, 95 + Math.max(0, (1.5 - (cW / cH)) * 60));
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -406,7 +406,7 @@ function initMap3D() {
     });
   }
   if (resetBtn) resetBtn.addEventListener('click', () => {
-    camera.position.set(0, 75, 95);
+    camera.position.set(0, 75, 95 + Math.max(0, (1.5 - camera.aspect) * 60));
     controls.target.set(0, 0, 0);
   });
 
@@ -443,10 +443,15 @@ function initMap3D() {
   /* ── RESIZE ── */
   window.addEventListener('resize', () => {
     const w = container.clientWidth;
-    renderer.setSize(w, cH);
-    camera.aspect = w / cH;
+    const h = container.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    
+    // Tự động thu phóng để hạt xanh (bản đồ) luôn lắp đầy khung trên màn hình hẹp
+    camera.position.z = 95 + Math.max(0, (1.5 - camera.aspect) * 60);
+    
     camera.updateProjectionMatrix();
-    composer.setSize(w, cH);
+    composer.setSize(w, h);
   });
   }); // End of Promise.all
 }
