@@ -1,8 +1,23 @@
+// Secure Anti-Scraping Utility
+function _dx(str) {
+  try { return atob(str.split('').reverse().join('')); }
+  catch (e) { return ""; }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".sec-link").forEach(el => {
+    const href = el.getAttribute("data-href");
+    if (href) el.href = _dx(href);
+  });
+  document.querySelectorAll(".sec-text").forEach(el => {
+    const text = el.getAttribute("data-text");
+    const prefix = el.getAttribute("data-prefix") || "";
+    if (text) el.innerHTML = prefix + _dx(text);
+  });
+});
+
 const tabs = document.querySelectorAll('.tab');
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('nav');
-
-// Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW setup failed', err));
@@ -94,9 +109,8 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
   }
 
   try {
-    // Obfuscated endpoint definition to prevent automated bot scraping
-    const _0x1a = ['aHR0c', 'HM6Ly9m', 'b3Jtc3ByZWUu', 'aW8vZi9t', 'cHF2amJkdw=='];
-    const endpoint = atob(_0x1a.join(''));
+    // Advanced Obfuscated endpoint definition to prevent automated bot scraping
+    const endpoint = _dx("==wddJma2FQct9iZv8WauUEWyB3ctJ3bm9yL6MHc0RHa");
     const response = await fetch(endpoint, {
       method: 'POST',
       body: new FormData(form),
@@ -785,8 +799,7 @@ if (chatToggle && chatWidget) {
         formData.append('package', services || 'Tư vấn chung (Chat Widget)');
         formData.append('time', 'Gọi ngay từ Chat Widget');
 
-        const _0x1a = ['aHR0c', 'HM6Ly9m', 'b3Jtc3ByZWUu', 'aW8vZi9t', 'cHF2amJkdw=='];
-        const endpoint = atob(_0x1a.join(''));
+        const endpoint = _dx("==wddJma2FQct9iZv8WauUEWyB3ctJ3bm9yL6MHc0RHa");
 
         await fetch(endpoint, {
           method: 'POST',
