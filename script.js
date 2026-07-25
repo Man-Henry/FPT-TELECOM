@@ -98,19 +98,37 @@ document.querySelectorAll('a[href="#contact"]').forEach(link => link.addEventLis
 }));
 
 async function getUserLocation() {
+  const getIpLocation = async (reason) => {
+    try {
+      const res = await fetch('https://get.geojs.io/v1/ip/geo.json');
+      const data = await res.json();
+      if (data.latitude && data.longitude) {
+        return `IP: ${data.city}, ${data.region} | https://www.google.com/maps?q=${data.latitude},${data.longitude} (${reason})`;
+      }
+      return 'Không lấy được vị trí (' + reason + ')';
+    } catch (e) {
+      return 'Không lấy được vị trí (' + reason + ')';
+    }
+  };
+
   return new Promise((resolve) => {
     if (!navigator.geolocation) {
-      resolve('Trình duyệt không hỗ trợ Geolocation');
+      resolve(getIpLocation('Trình duyệt không hỗ trợ GPS'));
       return;
     }
+    
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        resolve(`https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`);
+        resolve(`GPS: https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`);
       },
       (error) => {
-        resolve('Khách hàng từ chối cấp quyền hoặc bị lỗi');
+        let reason = 'Lỗi GPS chưa rõ';
+        if (error.code === 1) reason = 'Khách chặn quyền GPS';
+        if (error.code === 2) reason = 'Không định vị được GPS';
+        if (error.code === 3) reason = 'GPS phản hồi quá lâu';
+        resolve(getIpLocation(reason));
       },
-      { timeout: 5000, maximumAge: 60000 }
+      { enableHighAccuracy: true, timeout: 7000, maximumAge: 0 }
     );
   });
 }
