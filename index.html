@@ -742,28 +742,17 @@
       </div>
     </div>
     <div class="chat-widget-body">
-      <div class="chat-form-container">
-        <h4>Thông tin đăng ký</h4>
-        <form id="chat-lead-form">
-          <label><span class="req">*</span> Họ và tên
-            <input type="text" name="name" required placeholder="Họ và tên">
-          </label>
-          <label><span class="req">*</span> Số điện thoại
-            <input type="tel" name="phone" required placeholder="Số điện thoại" pattern="[0-9+ ]{9,}">
-          </label>
-          <fieldset>
-            <legend><span class="req">*</span> Dịch vụ cần tư vấn</legend>
-            <label class="checkbox-label"><input type="checkbox" name="service" value="Internet"> Internet</label>
-            <label class="checkbox-label"><input type="checkbox" name="service" value="Combo Internet - Camera"> Combo
-              Internet - Camera</label>
-            <label class="checkbox-label"><input type="checkbox" name="service" value="Combo Internet + Truyền hình">
-              Combo Internet + Truyền hình</label>
-            <label class="checkbox-label"><input type="checkbox" name="service" value="Gói FPT Play"> Gói FPT
-              Play</label>
-            <label class="checkbox-label"><input type="checkbox" name="service" value="Khiếu nại - Báo lỗi"> Khiếu nại -
-              Báo lỗi</label>
-          </fieldset>
-          <button type="submit" class="chat-submit-btn">Gửi yêu cầu với FPT Telecom</button>
+      <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-msg bot-msg">
+            Chào bạn! Mình là trợ lý AI của FPT Telecom, mình có thể giúp gì cho bạn?
+          </div>
+        </div>
+        <form class="chat-input-area" id="chat-ai-form">
+          <input type="text" id="chat-ai-input" placeholder="Nhập câu hỏi của bạn..." autocomplete="off" required>
+          <button type="submit" aria-label="Gửi tin nhắn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+          </button>
         </form>
       </div>
     </div>

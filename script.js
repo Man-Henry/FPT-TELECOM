@@ -836,46 +836,59 @@ if (chatToggle && chatWidget) {
     });
   }
 
-  const chatForm = document.getElementById('chat-lead-form');
-  if (chatForm) {
-    chatForm.addEventListener('submit', async (e) => {
+  const chatAiForm = document.getElementById('chat-ai-form');
+  const chatInput = document.getElementById('chat-ai-input');
+  const chatMessages = document.getElementById('chat-messages');
+
+  if (chatAiForm) {
+    chatAiForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = chatForm.querySelector('.chat-submit-btn');
-      const originalText = btn.textContent;
-      btn.textContent = 'Đang kết nối...';
-      btn.disabled = true;
+      const message = chatInput.value.trim();
+      if (!message) return;
 
+      // 1. Hiển thị tin nhắn của User
+      const userMsg = document.createElement('div');
+      userMsg.className = 'chat-msg user-msg';
+      userMsg.textContent = message;
+      chatMessages.appendChild(userMsg);
+      
+      chatInput.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // 2. Chặn submit & tạo bong bóng "Đang suy nghĩ..." của Bot
+      const submitBtn = chatAiForm.querySelector('button');
+      submitBtn.disabled = true;
+
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chat-msg bot-msg';
+      botMsg.innerHTML = '<i>Đang trả lời...</i>';
+      chatMessages.appendChild(botMsg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // 3. Gọi Cloudflare Worker API
       try {
-        const formData = new FormData(chatForm);
-        const services = Array.from(chatForm.querySelectorAll('input[name="service"]:checked')).map(cb => cb.value).join(', ');
-        
-        const locationInfo = await getUserLocation();
-        
-        formData.append('package', services || 'Tư vấn chung (Chat Widget)');
-        formData.append('time', 'Gọi ngay từ Chat Widget');
-        formData.append('Tọa độ', locationInfo);
-
-        const endpoint = _ep();
-
-        await fetch(endpoint, {
+        const response = await fetch('https://fpttelecomvn.tvm19624.workers.dev/api/chat', {
           method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: message })
         });
-
-        btn.textContent = 'Đã gửi! FPT sẽ liên hệ sớm.';
-        btn.style.background = '#25d366';
-        chatForm.reset();
-      } catch (err) {
-        console.error("Chat form error:", err);
-        btn.textContent = 'Lỗi gửi (' + err.message + ')';
-        btn.style.background = '#dc3545';
+        
+        if (!response.ok) throw new Error('API Error');
+        
+        const data = await response.json();
+        if (data.reply) {
+          // Xử lý xuống dòng cho đẹp
+          botMsg.innerHTML = data.reply.replace(/\n/g, '<br>');
+        } else {
+          botMsg.textContent = data.error || 'Xin lỗi, trợ lý AI đang bận.';
+        }
+      } catch (error) {
+        botMsg.textContent = 'Kết nối thất bại, vui lòng thử lại sau!';
       } finally {
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = '';
-          btn.disabled = false;
-        }, 3000);
+        submitBtn.disabled = false;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        // Tự động focus lại vào ô nhập liệu (trừ mobile để tránh nhảy phím)
+        if (window.innerWidth > 760) chatInput.focus();
       }
     });
   }
