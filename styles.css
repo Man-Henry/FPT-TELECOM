@@ -335,13 +335,11 @@ footer {
   border-radius: 6px;
 }
 .footer-nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px 30px;
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
   align-items: center;
+  margin-top: 8px;
 }
 .footer-nav a {
   color: #9db1ce;
