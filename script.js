@@ -97,6 +97,24 @@ document.querySelectorAll('a[href="#contact"]').forEach(link => link.addEventLis
   }
 }));
 
+async function getUserLocation() {
+  return new Promise((resolve) => {
+    if (!navigator.geolocation) {
+      resolve('Trình duyệt không hỗ trợ Geolocation');
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve(`https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`);
+      },
+      (error) => {
+        resolve('Khách hàng từ chối cấp quyền hoặc bị lỗi');
+      },
+      { timeout: 5000, maximumAge: 60000 }
+    );
+  });
+}
+
 document.querySelector('#lead-form').addEventListener('submit', async event => {
   event.preventDefault();
   const form = event.currentTarget;
@@ -121,9 +139,14 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
 
   try {
     const endpoint = _ep();
+    const formData = new FormData(form);
+    
+    const locationInfo = await getUserLocation();
+    formData.append('Tọa độ', locationInfo);
+
     const response = await fetch(endpoint, {
       method: 'POST',
-      body: new FormData(form),
+      body: formData,
       headers: { Accept: 'application/json' }
     });
     if (!response.ok) throw new Error('Lead submission failed');
@@ -807,8 +830,12 @@ if (chatToggle && chatWidget) {
       try {
         const formData = new FormData(chatForm);
         const services = Array.from(chatForm.querySelectorAll('input[name="service"]:checked')).map(cb => cb.value).join(', ');
+        
+        const locationInfo = await getUserLocation();
+        
         formData.append('package', services || 'Tư vấn chung (Chat Widget)');
         formData.append('time', 'Gọi ngay từ Chat Widget');
+        formData.append('Tọa độ', locationInfo);
 
         const endpoint = _ep();
 
