@@ -32,11 +32,12 @@ export default {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            systemInstruction: {
-              parts: [{ text: "Bạn là một trợ lý ảo hỗ trợ khách hàng thân thiện trên Website FPT Telecom, trả lời rất ngắn gọn, súc tích bằng tiếng Việt." }]
+            system_instruction: {
+              parts: [{ text: "Bạn là trợ lý ảo AI trên Website FPT Telecom. Hãy trả lời cực kỳ ngắn gọn, súc tích, thân thiện bằng tiếng Việt. Nếu không rõ, hãy yêu cầu khách hàng để lại SĐT." }]
             },
             contents: [
               {
+                role: "user",
                 parts: [{ text: message }]
               }
             ]
@@ -44,7 +45,8 @@ export default {
         });
 
         if (!geminiRes.ok) {
-          throw new Error('Lỗi từ Gemini API');
+          const errText = await geminiRes.text();
+          throw new Error('Lỗi từ Gemini API: ' + errText);
         }
 
         const data = await geminiRes.json();
