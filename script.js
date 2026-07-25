@@ -863,3 +863,24 @@ if (chatToggle && chatWidget) {
 
   }
 }
+
+/* =========================================================
+   SCROLL ANIMATIONS (Intersection Observer)
+   ========================================================= */
+const scrollElements = document.querySelectorAll('.scroll-animate');
+if (scrollElements.length > 0) {
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        // Stop observing if we only want it to animate once
+        scrollObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.1
+  });
+
+  scrollElements.forEach(el => scrollObserver.observe(el));
+}
