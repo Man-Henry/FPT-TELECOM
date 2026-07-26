@@ -845,7 +845,24 @@ if (chatToggle && chatWidget) {
     const appendMessage = (text, sender) => {
       const msgDiv = document.createElement('div');
       msgDiv.className = `chat-msg ${sender}-msg`;
-      msgDiv.innerHTML = `<div class="msg-bubble">${text.replace(/\n/g, '<br>')}</div>`;
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble';
+
+      const parts = text.split(/(\*\*.*?\*\*|\n)/g);
+      parts.forEach(part => {
+        if (!part) return;
+        if (part === '\n') {
+          bubble.appendChild(document.createElement('br'));
+        } else if (part.startsWith('**') && part.endsWith('**') && part.length >= 4) {
+          const b = document.createElement('b');
+          b.textContent = part.slice(2, -2);
+          bubble.appendChild(b);
+        } else {
+          bubble.appendChild(document.createTextNode(part));
+        }
+      });
+
+      msgDiv.appendChild(bubble);
       chatMessages.appendChild(msgDiv);
       chatMessages.scrollTop = chatMessages.scrollHeight;
       return msgDiv;
@@ -962,9 +979,8 @@ if (chatToggle && chatWidget) {
 
         if (data.messages && data.messages.length > 0) {
           for (const m of data.messages) {
-            const formattedReply = m.text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-            appendMessage(formattedReply, 'bot');
-            chatHistory.push({ role: "model", text: formattedReply });
+            appendMessage(m.text, 'bot');
+            chatHistory.push({ role: "model", text: m.text });
             lastOwnerMsgId = Math.max(lastOwnerMsgId, m.id);
           }
         }
@@ -1044,8 +1060,7 @@ if (chatToggle && chatWidget) {
           if (typingIndicator.parentNode) chatMessages.removeChild(typingIndicator);
           
           if (data.reply) {
-            const formattedReply = data.reply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-            appendMessage(formattedReply, 'bot');
+            appendMessage(data.reply, 'bot');
             chatHistory.push({ role: "model", text: data.reply });
           } else {
             appendMessage(data.error || 'Xin lỗi, hệ thống AI đang bận.', 'bot');
