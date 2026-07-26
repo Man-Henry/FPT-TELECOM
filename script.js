@@ -1124,3 +1124,43 @@ if (scrollElements.length > 0) {
 
   scrollElements.forEach(el => scrollObserver.observe(el));
 }
+
+// --- Xử lý gửi Form Đăng Ký (Google Apps Script) ---
+document.getElementById('leadForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const form = this;
+  const submitBtn = document.getElementById('submitBtn');
+  const messageEl = document.getElementById('formMessage');
+  
+  submitBtn.textContent = 'Đang gửi...';
+  submitBtn.disabled = true;
+  messageEl.textContent = '';
+
+  const formData = new FormData(form);
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRMuBY_6td206EHfc1pAmm8baaLausW9mD_KcfxUPCEp6PzIqlGN4mfiD3e9McmPCw/exec';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.result === 'success') {
+      messageEl.style.color = 'green';
+      messageEl.textContent = '✅ Đăng ký thành công! Chúng tôi sẽ liên hệ trong 15 phút.';
+      form.reset();
+    } else {
+      throw new Error(data.error || 'Lỗi không xác định');
+    }
+  })
+  .catch(error => {
+    console.error('Lỗi:', error);
+    messageEl.style.color = 'red';
+    messageEl.textContent = '❌ Có lỗi xảy ra. Vui lòng gọi trực tiếp 0358.513.269';
+  })
+  .finally(() => {
+    submitBtn.textContent = '🚀 Gửi đăng ký ngay';
+    submitBtn.disabled = false;
+  });
+});
