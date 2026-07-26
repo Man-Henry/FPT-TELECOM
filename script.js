@@ -864,7 +864,8 @@ if (chatToggle && chatWidget) {
     let isClosed = false;
     let lastOwnerMsgId = 0;
 
-    const API_ENDPOINT = atob("aHR0cHM6Ly9tYW4" + "tY2hhdGJvdC50d" + "m0xOTYyNC53b3J" + "rZXJzLmRldi9hc" + "GkvY2hhdA==");
+    // Lưu ý: Nếu tên miền Worker của bạn khác (ví dụ man-chatbot.mantech5364.workers.dev) thì sửa lại ở đây:
+    const API_ENDPOINT = 'https://man-chatbot.tvm19624.workers.dev/api/chat';
     const POLL_ENDPOINT = API_ENDPOINT.replace('/api/chat', '/api/poll');
     const CLOSE_ENDPOINT = API_ENDPOINT.replace('/api/chat', '/api/close');
 

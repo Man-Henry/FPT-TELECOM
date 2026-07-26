@@ -16,3 +16,7 @@ database_id = "e5c6610d-917e-48b3-8f6d-69edbce121d6"
 # type = "ratelimit"
 # namespace_id = "1001"
 # simple = { limit = 20, period = 60 }
+
+[vars]
+TELEGRAM_BOT_TOKEN = "8965919634:AAE-9iGo1amBAuQdwMzj1Gg3uatYimv-JE8"
+TELEGRAM_CHAT_ID = "7072399073"

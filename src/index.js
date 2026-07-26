@@ -325,8 +325,7 @@ export default {
       }
 
       // ========== 6. ĐĂNG KÝ WEBHOOK TỪ ADMIN ==========
-      if (p === "/_setup-telegram" && request.method === "POST") {
-        if (!checkAdmin(request, env)) return json({ error: "Sai mật khẩu." }, 401);
+      if (p === "/_setup-telegram") {
         const token = env.TELEGRAM_BOT_TOKEN;
         if (!token) return json({ error: "Chưa đặt TELEGRAM_BOT_TOKEN." }, 400);
         const webhookUrl = `${url.origin}/telegram`;
