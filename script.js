@@ -876,6 +876,7 @@ if (chatToggle && chatWidget) {
       nameOverlay.id = 'chat-name-overlay';
       nameOverlay.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;z-index:10;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;border-radius:0 0 16px 16px;';
       nameOverlay.innerHTML = `
+        <img src="assets/images/logo.png" alt="FPT Logo" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 12px; border-radius: 50%; padding: 2px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
         <h4 style="margin:0 0 10px 0;color:#333;font-size:16px;">Chào bạn! 👋</h4>
         <p style="margin:0 0 15px 0;color:#666;font-size:14px;text-align:center;">Vui lòng cho biết tên của bạn để nhân viên dễ xưng hô</p>
         <input type="text" id="chat-name-input" placeholder="Nhập tên của bạn..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:14px;outline:none;box-sizing:border-box;">
