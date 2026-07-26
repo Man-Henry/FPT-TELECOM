@@ -1,5 +1,3 @@
-// Secure Anti-Scraping Utility (Enhanced XOR + Fragmentation)
-const _ep = () => 'https://script.google.com/macros/s/AKfycbyVWNLxlA8-js-zcUPMLznbcy-i_HpbqT5v7Bv_v6ji09zGj2F0ezsdmT541DbkgYna/exec';
 
 const tabs = document.querySelectorAll('.tab');
 const menuButton = document.querySelector('.menu-toggle');
@@ -108,7 +106,7 @@ async function getUserLocation() {
   });
 }
 
-document.querySelector('#lead-form').addEventListener('submit', async event => {
+document.querySelector('#leadForm').addEventListener('submit', async event => {
   event.preventDefault();
   const form = event.currentTarget;
   const submitButton = form.querySelector('button[type="submit"]');
@@ -131,23 +129,16 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
   }
 
   try {
-    const endpoint = _ep();
+    const endpoint = 'https://script.google.com/macros/s/AKfycbz3Oe508e2qCk32j38c2_ZGogZ5vluiMd15F_BQT7jpiPtf6EAIfjiVuW5X7NttwrVJlQ/exec';
     const formData = new FormData(form);
 
     const locationInfo = await getUserLocation();
     formData.append('Tọa độ', locationInfo);
 
-    const formParams = new URLSearchParams();
-    for (const [key, value] of formData.entries()) {
-      formParams.append(key, value);
-    }
-
     await fetch(endpoint, {
       method: 'POST',
-      body: formParams,
-      mode: 'no-cors'
+      body: formData
     });
-    
     result.textContent = 'Cảm ơn bạn! FPT sẽ liên hệ tư vấn trong thời gian sớm nhất.';
 
     window.dataLayer = window.dataLayer || [];
@@ -1124,43 +1115,3 @@ if (scrollElements.length > 0) {
 
   scrollElements.forEach(el => scrollObserver.observe(el));
 }
-
-// --- Xử lý gửi Form Đăng Ký (Google Apps Script) ---
-document.getElementById('leadForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const form = this;
-  const submitBtn = document.getElementById('submitBtn');
-  const messageEl = document.getElementById('formMessage');
-  
-  submitBtn.textContent = 'Đang gửi...';
-  submitBtn.disabled = true;
-  messageEl.textContent = '';
-
-  const formData = new FormData(form);
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3Oe508e2qCk32j38c2_ZGogZ5vluiMd15F_BQT7jpiPtf6EAIfjiVuW5X7NttwrVJlQ/exec';
-
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.result === 'success') {
-      messageEl.style.color = 'green';
-      messageEl.textContent = '✅ Đăng ký thành công! Chúng tôi sẽ liên hệ trong 15 phút.';
-      form.reset();
-    } else {
-      throw new Error(data.error || 'Lỗi không xác định');
-    }
-  })
-  .catch(error => {
-    console.error('Lỗi:', error);
-    messageEl.style.color = 'red';
-    messageEl.textContent = '❌ Có lỗi xảy ra. Vui lòng gọi trực tiếp 0358.513.269';
-  })
-  .finally(() => {
-    submitBtn.textContent = '🚀 Gửi đăng ký ngay';
-    submitBtn.disabled = false;
-  });
-});
