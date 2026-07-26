@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KWWKQ7KK');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/png" href="assets/images/fptlogo.png">
+    <title>Chính sách bảo mật & Điều khoản sử dụng - FPT Telecom</title>
+    <meta name="description"
+        content="Chính sách bảo mật dữ liệu, quyền riêng tư và điều khoản sử dụng các dịch vụ của FPT Telecom.">
+
+    <link rel="stylesheet" href="styles.css?v=3">
+
+    <style>
+        /* =======================================================
+       PREMIUM LEGAL PAGE STYLING
+       ======================================================= */
+        body {
+            background-color: var(--pale);
+        }
+
+        .policy-hero {
+            position: relative;
+            background: radial-gradient(circle at 50% -20%, #0665f5 0%, #071b42 80%);
+            padding: 160px 24px 120px;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .policy-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
+            pointer-events: none;
+        }
+
+        .policy-hero::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(6, 101, 245, 0.4) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .policy-hero .eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .policy-hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            margin: 0 0 20px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .policy-hero p {
+            font-size: 18px;
+            opacity: 0.85;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .policy-container {
+            max-width: 1200px;
+            margin: -60px auto 100px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Sticky Sidebar */
+        .policy-sidebar {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 24px;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 10px 30px rgba(7, 27, 66, 0.04);
+        }
+
+        .policy-sidebar h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--muted);
+            letter-spacing: 1px;
+            margin: 0 0 16px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .policy-sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .policy-sidebar a {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .policy-sidebar a:hover,
+        .policy-sidebar a.active {
+            background: var(--pale);
+            color: var(--blue);
+        }
+
+        .policy-sidebar a::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--line);
+            transition: 0.3s;
+        }
+
+        .policy-sidebar a:hover::before,
+        .policy-sidebar a.active::before {
+            background: var(--blue);
+            box-shadow: 0 0 8px var(--blue);
+        }
+
+        /* Main Content Card */
+        .policy-content {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 50px 60px;
+            box-shadow: 0 20px 40px rgba(7, 27, 66, 0.06), 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(230, 235, 243, 0.8);
+            color: #334155;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .policy-content>p:first-child {
+            font-size: 18px;
+            color: var(--ink);
+            margin-bottom: 40px;
+            padding: 24px;
+            background: var(--pale);
+            border-radius: 12px;
+            border-left: 4px solid var(--blue);
+        }
+
+        .policy-section {
+            margin-bottom: 50px;
+            scroll-margin-top: 100px;
+        }
+
+        .policy-section h2 {
+            font-size: 26px;
+            color: var(--navy);
+            margin: 0 0 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--line);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .policy-section h2 .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--pale);
+            color: var(--blue);
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        .policy-section h3 {
+            font-size: 18px;
+            color: var(--ink);
+            margin: 32px 0 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .policy-section h3::before {
+            content: "■";
+            color: var(--orange);
+            font-size: 12px;
+            margin-right: 12px;
+        }
+
+        .policy-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px 0;
+        }
+
+        .policy-section li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 12px;
+        }
+
+        .policy-section li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--blue);
+            font-weight: bold;
+            background: var(--pale);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 10px;
+        }
+
+        .policy-section li strong {
+            color: var(--navy);
+        }
+
+        .update-note {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px dashed var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .update-note strong {
+            color: var(--ink);
+        }
+
+        @media (max-width: 992px) {
+            .policy-container {
+                grid-template-columns: 1fr;
+            }
+
+            .policy-sidebar {
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .policy-sidebar nav {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 8px;
+            }
+
+            .policy-sidebar a {
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .policy-content {
+                padding: 30px 20px;
+            }
+
+            .policy-hero {
+                padding: 120px 20px 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWWKQ7KK" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="topbar">
+        <span>⚡ Ưu đãi tháng này: miễn phí lắp đặt &amp; tặng thiết bị WiFi 6</span>
+        <a href="tel:0383900321">Hotline: <b>0383 900 321</b></a>
+    </div>
+    <header class="header" id="home">
+        <a class="logo logo-image" href="index.html" aria-label="FPT Telecom">
+            <img src="assets/images/logo.png" alt="FPT Telecom" width="164" height="45">
+            <span class="auth-badge">Đại lý ủy quyền FPT</span>
+        </a>
+        <button class="menu-toggle" aria-label="Mở menu" aria-expanded="false">☰</button>
+        <nav role="navigation" aria-label="Menu chính">
+            <a href="index.html#home">Trang chủ</a>
+            <a href="index.html#pricing">Bảng giá</a>
+            <a href="index.html#offers">Ưu đãi</a>
+            <a href="index.html#areas">Khu vực</a>
+            <a href="news.html">Tin tức</a>
+            <a href="index.html#contact">Liên hệ</a>
+        </nav>
+        <a class="btn btn-orange header-cta" href="index.html#contact">Đăng ký ngay <span>→</span></a>
+    </header>
+
+    <header class="policy-hero">
+        <span class="eyebrow">Hệ thống pháp lý</span>
+        <h1>Chính Sách Bảo Mật <br>& Điều Khoản Sử Dụng</h1>
+        <p>Quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa FPT Telecom và quý khách hàng.</p>
+    </header>
+
+    <div class="policy-container">
+        <aside class="policy-sidebar">
+            <h4>Mục lục nội dung</h4>
+            <nav id="toc">
+                <a href="#bao-mat" class="active">I. Bảo mật & Quyền riêng tư</a>
+                <a href="#dieu-khoan">II. Điều khoản sử dụng</a>
+                <a href="#cap-nhat">III. Sửa đổi & Cập nhật</a>
+            </nav>
+        </aside>
+
+        <main class="policy-content">
+            <p>Chính sách bảo mật và Điều khoản sử dụng của FPT Telecom quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa nhà cung cấp dịch vụ và người dùng cá nhân hoặc tổ chức. Dưới đây là các nội dung cốt lõi được tổng hợp từ các văn bản pháp lý chính thức được công bố trên hệ thống của FPT Telecom:</p>
+
+            <div id="bao-mat" class="policy-section">
+                <h2><span class="icon">🛡️</span> I. Chính sách bảo mật dữ liệu và quyền riêng tư</h2>
+                <p>Chính sách này áp dụng cho mọi hoạt động truy cập, đăng ký tài khoản và sử dụng các dịch vụ (Internet, Truyền hình FPT Play, FPT Camera, dịch vụ đám mây Cloud).</p>
+
+                <h3>1. Thông tin thu thập</h3>
+                <ul>
+                    <li><strong>Dữ liệu bắt buộc:</strong> Họ tên, số điện thoại, email, địa chỉ lắp đặt hoặc thông tin định danh khi đăng ký tài khoản.</li>
+                    <li><strong>Dữ liệu hệ thống:</strong> Gói dịch vụ sử dụng, lịch sử liên hệ, cước tháng và nhật ký hoạt động trên nền tảng trực tuyến.</li>
+                    <li><strong>Dữ liệu vị trí (IP):</strong> Nhằm mục đích phân luồng hỗ trợ lắp đặt, hệ thống có thể thu thập vị trí tương đối thông qua địa chỉ IP (cung cấp bởi GeoJS) ngay tại thời điểm bạn bấm Gửi Form đăng ký. Đây chỉ là phương án dự phòng (fallback) tự động nếu bạn từ chối cấp quyền định vị GPS, và hoàn toàn không tự ý gọi ngầm khi bạn chỉ lướt web (chỉ kích hoạt lúc gửi Form).</li>
+                </ul>
+
+                <h3>2. Mục đích sử dụng</h3>
+                <ul>
+                    <li><strong>Xác nhận dịch vụ:</strong> Đảm bảo quyền lợi hợp pháp của chính khách hàng khi sử dụng dịch vụ.</li>
+                    <li><strong>Chăm sóc khách hàng:</strong> Hỗ trợ kỹ thuật, liên hệ giải quyết sự cố hoặc phát triển sản phẩm mới phù hợp với nhu cầu.</li>
+                </ul>
+
+                <h3>3. Cam kết bảo mật</h3>
+                <ul>
+                    <li><strong>Không chia sẻ trục lợi:</strong> Tuyệt đối không tự ý chuyển giao, bán hoặc tiết lộ thông tin khách hàng cho bên thứ ba vì mục đích không mang lại lợi ích cho khách hàng.</li>
+                    <li><strong>Hệ thống phòng vệ:</strong> Áp dụng các biện pháp kỹ thuật nghiêm ngặt (như Hệ thống Anti DDoS của FPT Telecom) nhằm ngăn chặn các cuộc tấn công và rò rỉ dữ liệu.</li>
+                    <li><strong>Quyền của người dùng:</strong> Khách hàng có toàn quyền kiểm soát dữ liệu cá nhân bao gồm quyền truy cập, chỉnh sửa, yêu cầu xóa hoặc thay đổi thông tin tài khoản đã cung cấp.</li>
+                </ul>
+            </div>
+
+            <div id="dieu-khoan" class="policy-section">
+                <h2><span class="icon">⚖️</span> II. Điều khoản sử dụng dịch vụ và website</h2>
+                <p>Văn bản này thiết lập các nguyên tắc ràng buộc pháp lý mà người dùng phải tuân thủ khi khai thác dịch vụ và tài nguyên mạng của FPT Telecom.</p>
+
+                <h3>1. Trách nhiệm người dùng</h3>
+                <ul>
+                    <li><strong>Tính chính xác:</strong> Khách hàng phải tự chịu trách nhiệm trước pháp luật về tính chính xác của các thông tin định danh được cung cấp.</li>
+                    <li><strong>Bảo mật tài khoản:</strong> Tự chịu trách nhiệm bảo mật mật khẩu, hộp thư điện tử cá nhân và phải thông báo ngay cho FPT Telecom nếu phát hiện hành vi truy cập trái phép.</li>
+                    <li><strong>Sử dụng hợp pháp:</strong> Cam kết không sử dụng hạ tầng mạng hoặc tài khoản dịch vụ vào các hoạt động vi phạm pháp luật hoặc xâm phạm quyền lợi của cá nhân, tổ chức khác.</li>
+                </ul>
+
+                <h3>2. Giới hạn trách nhiệm</h3>
+                <ul>
+                    <li><strong>Sự cố bất khả kháng:</strong> Khách hàng chấp nhận các rủi ro hoặc thiệt hại (nếu có) phát sinh từ các nguyên nhân khách quan nằm ngoài tầm kiểm soát của nhà mạng như thiên tai, hỏa hoạn, chập điện hoặc lỗi phần cứng diện rộng.</li>
+                </ul>
+            </div>
+
+            <div id="cap-nhat" class="policy-section">
+                <h2><span class="icon">🔄</span> Cập nhật chính sách</h2>
+                <ul>
+                    <li><strong>Hiệu lực sửa đổi:</strong> FPT Telecom có quyền sửa đổi, bổ sung các điều khoản này bất kỳ lúc nào.</li>
+                    <li><strong>Sự chấp thuận:</strong> Việc khách hàng tiếp tục duy trì sử dụng dịch vụ sau khi các cập nhật được đăng tải đồng nghĩa với việc hoàn toàn đồng ý với các thay đổi đó.</li>
+                </ul>
+            </div>
+
+            <div class="update-note">
+                <span><em>Cập nhật lần cuối: Tháng 7/2026.</em></span>
+                <span>Mọi thắc mắc vui lòng gọi <strong>Hotline 0358 513 269</strong></span>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a class="logo logo-image" href="index.html">
+                    <img src="assets/images/logo.png" alt="FPT Telecom" width="164" height="45" loading="lazy" decoding="async">
+                </a>
+                <p>Giải pháp viễn thông và công nghệ hàng đầu Việt Nam.</p>
+                <nav class="footer-nav" aria-label="Liên kết trang">
+                    <a href="index.html#pricing">Bảng giá</a>
+                    <a href="index.html#offers">Ưu đãi</a>
+                    <a href="index.html#areas">Khu vực</a>
+                    <a href="news.html">Tin tức</a>
+                    <a href="index.html#contact">Liên hệ</a>
+                </nav>
+            </div>
+            <div class="footer-links">
+                <a href="tel:0358513269">☎ 0358 513 269</a>
+                <a href="tel:0383900321">☎ 0383 900 321</a>
+                <a href="https://zalo.me/0358513269" target="_blank" rel="noopener">Zalo tư vấn</a>
+                <a href="chinh-sach.html">Chính sách bảo mật</a>
+                <a href="chinh-sach.html">Điều khoản sử dụng</a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="footer-copyright-inner">
+                <span>© 2026 FPT Telecom. All rights reserved.</span>
+                <span>Bản quyền thuộc về Trần Văn Mẫn - ManHenry.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=3"></script>
+    <script>
+        // Simple Intersection Observer for Table of Contents
+        const sections = document.querySelectorAll('.policy-section');
+        const navLinks = document.querySelectorAll('#toc a');
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-20% 0px -80% 0px' });
+
+            sections.forEach(sec => observer.observe(sec));
+        }
+
+        // Smooth scroll offset for TOC clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 120,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
