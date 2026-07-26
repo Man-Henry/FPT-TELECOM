@@ -296,11 +296,11 @@ export default {
 
         let sessionId = null;
         if (msg.reply_to_message?.text) {
-          const m = msg.reply_to_message.text.match(/SS:\s*([a-zA-Z0-9-]+)/);
+          const m = msg.reply_to_message.text.match(/SS:\s*([a-zA-Z0-9-_]+)/);
           if (m) sessionId = clip(m[1], 64);
         }
         if (!sessionId) {
-          const m = msg.text.match(/SS:\s*([a-zA-Z0-9-]+)/);
+          const m = msg.text.match(/SS:\s*([a-zA-Z0-9-_]+)/);
           if (m) sessionId = clip(m[1], 64);
         }
 
