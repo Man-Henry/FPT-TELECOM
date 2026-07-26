@@ -269,7 +269,7 @@ export default {
 
           const [action, sessionId] = cb.data.split(":");
           if (action === "reply") {
-            await sendTelegram(env, cb.message.chat.id, `👉 <b>Đang reply khách ${sessionId}</b>\nGõ câu trả lời ngay dưới tin này:`, null);
+            await sendTelegram(env, cb.message.chat.id, `👉 <b>Đang reply khách (SS: ${sessionId})</b>\nGõ câu trả lời ngay dưới tin này:`, null);
           } else if (action === "copy") {
             await sendTelegram(env, cb.message.chat.id, `📋 Session ID: <code>${sessionId}</code>`, null);
           }
