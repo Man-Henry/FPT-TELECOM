@@ -947,11 +947,26 @@ if (chatToggle && chatWidget) {
     }
 
     // Chuyển sang chế độ kết nối nhân viên
-    window.switchToLiveChat = function() {
+    window.switchToLiveChat = async function() {
       if (chatMode === 'live' || isClosed) return;
       chatMode = 'live';
       appendMessage('✅ Đã gửi yêu cầu kết nối trực tiếp với nhân viên hỗ trợ (Tiểu Mẫn FPT). Bạn vui lòng chờ trong giây lát nhé!', 'bot');
       startLiveChatPolling();
+
+      try {
+        await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            text: "Khách hàng vừa nhấn nút yêu cầu chat trực tiếp với nhân viên.", 
+            history: chatHistory, 
+            session: sessionId, 
+            mode: 'live' 
+          })
+        });
+      } catch (e) {
+        console.error(e);
+      }
     };
 
     // Tối ưu Polling khi ẩn/hiện Tab
