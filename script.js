@@ -1,5 +1,5 @@
 // Secure Anti-Scraping Utility (Enhanced XOR + Fragmentation)
-const _ep = () => 'https://script.google.com/macros/s/AKfycbwPs4vHbwAgsfI2vUC90De1N2Y8aR8CfchbwEksVvDylznYoRuwIZSY5nZxTQAg7Jje/exec';
+const _ep = () => 'https://script.google.com/macros/s/AKfycbyVWNLxlA8-js-zcUPMLznbcy-i_HpbqT5v7Bv_v6ji09zGj2F0ezsdmT541DbkgYna/exec';
 
 const tabs = document.querySelectorAll('.tab');
 const menuButton = document.querySelector('.menu-toggle');
