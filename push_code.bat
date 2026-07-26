@@ -5,7 +5,7 @@ git add .
 git commit -m "Push new code"
 git branch -M main
 git remote remove origin 2>nul
-git remote add origin https://github.com/Man-Henry/FPT_TELECOM.git
+git remote add origin https://github.com/Man-Henry/FPT-TELECOM.git
 echo Dang day code len GitHub va ghi de code cu...
 git push -u -f origin main
 echo Hoan thanh!

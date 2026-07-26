@@ -1,30 +1,5 @@
 // Secure Anti-Scraping Utility (Enhanced XOR + Fragmentation)
-const _ep = (() => {
-  // Encrypted fragments (XOR cipher, split for obfuscation)
-  const _0x3f = [46, 36, 32, 66, 67, 8, 25, 105, 54, 59, 64];
-  const _0x7a = [93, 65, 70, 52, 53, 49, 28, 89, 93, 25];
-  const _0x1c = [32, 127, 57, 66, 65, 68, 92, 36, 52, 35];
-  // Cipher key (derived from brand signature)
-  const _0xk = [70, 80, 84, 50, 48, 50, 54];
-  // Integrity checksum
-  const _iv = 1809;
-  let _r = null;
-  return () => {
-    if (_r) return _r;
-    const d = _0x3f.concat(_0x7a, _0x1c);
-    // Tamper detection — verify data integrity
-    let v = 0;
-    for (let i = 0; i < d.length; i++) v += d[i];
-    if (v !== _iv) return '';
-    // XOR decrypt
-    let s = '';
-    for (let i = 0; i < d.length; i++) s += String.fromCharCode(d[i] ^ _0xk[i % _0xk.length]);
-    // Format validation
-    if (s.length < 10 || s.charCodeAt(0) !== 104) return '';
-    _r = s;
-    return s;
-  };
-})();
+const _ep = () => 'https://script.google.com/macros/s/AKfycbwPs4vHbwAgsfI2vUC90De1N2Y8aR8CfchbwEksVvDylznYoRuwIZSY5nZxTQAg7Jje/exec';
 
 const tabs = document.querySelectorAll('.tab');
 const menuButton = document.querySelector('.menu-toggle');
@@ -173,8 +148,8 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       'event': 'form_submit',
-      'package_name': new FormData(form).get('package'),
-      'time_preference': new FormData(form).get('time')
+      'package_name': new FormData(form).get('Gói cước'),
+      'time_preference': new FormData(form).get('Thời gian liên hệ')
     });
 
     form.reset();
