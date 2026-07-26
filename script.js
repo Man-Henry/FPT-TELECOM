@@ -289,7 +289,7 @@ function initMap3D() {
     });
     const lineMat = new THREE.LineBasicMaterial({ color: 0x00fff0, transparent: true, opacity: 0.3 });
 
-    fetch('/assets/vn-all.geo.json')
+    fetch('assets/vn-all.geo.json')
       .then(r => r.json())
       .then(geojson => {
         // Tìm centroid của Hà Nội và TP.HCM trong GeoJSON
@@ -951,7 +951,6 @@ if (chatToggle && chatWidget) {
       if (chatMode === 'live' || isClosed) return;
       chatMode = 'live';
       appendMessage('✅ Đã gửi yêu cầu kết nối trực tiếp với nhân viên hỗ trợ (Tiểu Mẫn FPT). Bạn vui lòng chờ trong giây lát nhé!', 'bot');
-      startLiveChatPolling();
 
       try {
         await fetch(API_ENDPOINT, {
@@ -967,6 +966,8 @@ if (chatToggle && chatWidget) {
       } catch (e) {
         console.error(e);
       }
+
+      startLiveChatPolling();
     };
 
     // Tối ưu Polling khi ẩn/hiện Tab
