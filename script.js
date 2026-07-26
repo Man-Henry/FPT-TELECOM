@@ -851,13 +851,43 @@ if (chatToggle && chatWidget) {
       return msgDiv;
     };
 
-    // Khởi tạo hoặc lấy sessionId để theo dõi phiên chat Telegram
     let sessionId = localStorage.getItem('chat_session_id');
-    if (!sessionId) {
-      sessionId = 'sess_' + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem('chat_session_id', sessionId);
+    const chatWidgetBody = document.querySelector('.chat-widget-body');
+
+    function promptForNameAndStart(onComplete) {
+      const nameOverlay = document.createElement('div');
+      nameOverlay.id = 'chat-name-overlay';
+      nameOverlay.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;z-index:10;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;border-radius:0 0 16px 16px;';
+      nameOverlay.innerHTML = `
+        <h4 style="margin:0 0 10px 0;color:#333;font-size:16px;">Chào bạn! 👋</h4>
+        <p style="margin:0 0 15px 0;color:#666;font-size:14px;text-align:center;">Vui lòng cho biết tên của bạn để nhân viên dễ xưng hô</p>
+        <input type="text" id="chat-name-input" placeholder="Nhập tên của bạn..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:14px;outline:none;box-sizing:border-box;">
+        <button id="chat-name-submit" style="width:100%;padding:10px;background:#0066ff;color:#fff;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;">Bắt đầu chat</button>
+      `;
+      chatWidgetBody.appendChild(nameOverlay);
+      
+      const submitBtn = nameOverlay.querySelector('#chat-name-submit');
+      const nameInput = nameOverlay.querySelector('#chat-name-input');
+      nameInput.focus();
+      
+      const startChat = () => {
+        let name = nameInput.value.trim();
+        if (!name) name = "Khach";
+        // Lọc dấu tiếng Việt và ký tự đặc biệt để làm ID an toàn
+        const safeName = name.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-zA-Z0-9]/g, '');
+        sessionId = (safeName || 'Khach') + '_' + Math.random().toString(36).substr(2, 6);
+        localStorage.setItem('chat_session_id', sessionId);
+        nameOverlay.remove();
+        if (onComplete) onComplete();
+      };
+      
+      submitBtn.onclick = startChat;
+      nameInput.onkeydown = (e) => { if (e.key === 'Enter') startChat(); };
     }
-    
+
+    if (!sessionId) {
+      promptForNameAndStart();
+    }
     let chatMode = 'ai'; // Mặc định là chat với AI
     let pollInterval;
     let pollTimerMs = 2500;
@@ -889,9 +919,8 @@ if (chatToggle && chatWidget) {
       
       btn.onclick = () => {
         localStorage.removeItem('chat_session_id');
-        sessionId = 'sess_' + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem('chat_session_id', sessionId);
-        lastOwnerMsgId = 0;
+        promptForNameAndStart(() => {
+          lastOwnerMsgId = 0;
         isClosed = false;
         chatMode = 'ai';
         chatHistory.length = 0;
@@ -904,6 +933,7 @@ if (chatToggle && chatWidget) {
         chatInput.placeholder = "Nhập câu hỏi của bạn...";
         
         appendMessage("Chào bạn! 👋 Mình là trợ lý ảo FPT Telecom. Bạn cần tư vấn gì ạ?", "bot");
+        });
       };
       
       btnDiv.appendChild(btn);
