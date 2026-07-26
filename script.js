@@ -137,12 +137,12 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
     const locationInfo = await getUserLocation();
     formData.append('Tọa độ', locationInfo);
 
-    const response = await fetch(endpoint, {
+    await fetch(endpoint, {
       method: 'POST',
       body: formData,
-      headers: { Accept: 'application/json' }
+      mode: 'no-cors'
     });
-    if (!response.ok) throw new Error('Lead submission failed');
+    
     result.textContent = 'Cảm ơn bạn! FPT sẽ liên hệ tư vấn trong thời gian sớm nhất.';
 
     window.dataLayer = window.dataLayer || [];
