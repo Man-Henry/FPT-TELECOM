@@ -137,9 +137,14 @@ document.querySelector('#lead-form').addEventListener('submit', async event => {
     const locationInfo = await getUserLocation();
     formData.append('Tọa độ', locationInfo);
 
+    const formParams = new URLSearchParams();
+    for (const [key, value] of formData.entries()) {
+      formParams.append(key, value);
+    }
+
     await fetch(endpoint, {
       method: 'POST',
-      body: formData,
+      body: formParams,
       mode: 'no-cors'
     });
     
