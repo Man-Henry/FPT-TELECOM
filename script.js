@@ -875,7 +875,8 @@ if (chatToggle && chatWidget) {
         if (!name) name = "Khach";
         // Lọc dấu tiếng Việt và ký tự đặc biệt để làm ID an toàn
         const safeName = name.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-zA-Z0-9]/g, '');
-        sessionId = (safeName || 'Khach') + '_' + Math.random().toString(36).substr(2, 6);
+        const randomStr = (window.crypto.getRandomValues(new Uint32Array(1))[0]).toString(36).substring(0, 6);
+        sessionId = (safeName || 'Khach') + '_' + randomStr;
         localStorage.setItem('chat_session_id', sessionId);
         nameOverlay.remove();
         if (onComplete) onComplete();
