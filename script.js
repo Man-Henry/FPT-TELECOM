@@ -1138,7 +1138,7 @@ document.getElementById('leadForm').addEventListener('submit', function(e) {
   messageEl.textContent = '';
 
   const formData = new FormData(form);
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRMuBY_6td206EHfc1pAmm8baaLausW9mD_KcfxUPCEp6PzIqlGN4mfiD3e9McmPCw/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3Oe508e2qCk32j38c2_ZGogZ5vluiMd15F_BQT7jpiPtf6EAIfjiVuW5X7NttwrVJlQ/exec';
 
   fetch(SCRIPT_URL, {
     method: 'POST',
