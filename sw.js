@@ -1,9 +1,14 @@
-const CACHE_NAME = 'fpt-telecom-v2';
+const CACHE_NAME = 'fpt-telecom-v3';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/styles.css',
-  '/script.js',
+  '/pages/bang-gia.html',
+  '/pages/khu-vuc.html',
+  '/pages/lien-he.html',
+  '/pages/news.html',
+  '/pages/chinh-sach.html',
+  '/css/styles.css',
+  '/js/script.js',
   '/manifest.json',
   '/assets/images/logo.webp',
   '/assets/images/fpt-internet-family-hero.webp',

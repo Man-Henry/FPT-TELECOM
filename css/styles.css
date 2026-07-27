@@ -961,6 +961,94 @@ form .btn {
   text-align: center
 }
 
+/* =======================================================
+   NEWS SECTION & INTERACTIVE EFFECTS
+   ======================================================= */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 0 max(24px, calc((100% - 1200px)/2));
+  margin-bottom: 60px;
+}
+
+.news-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 89, 239, 0.15);
+}
+
+.news-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.news-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-img img {
+  transform: scale(1.08);
+}
+
+.news-content {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-date {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.news-content h3 {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+}
+
+.news-content h3 a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.news-content h3 a:hover {
+  color: var(--blue);
+}
+
+.news-content p:last-child {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Add hover effect for package devices */
+.package-device {
+  transition: transform 0.4s ease;
+}
+
+.package:hover .package-device {
+  transform: scale(1.1) rotate(-2deg);
+}
+
 .success {
   font-size: 12px;
   color: #109457;
