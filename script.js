@@ -1095,6 +1095,13 @@ if (chatToggle && chatWidget) {
     document.body.style.overflow = 'hidden'; // Ngăn cuộn trang nền
   };
 
+  window.openPolicyModal = (e) => {
+    if (e) e.preventDefault();
+    const modal = document.getElementById('policy-modal');
+    if (modal) modal.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Ngăn cuộn trang nền
+  };
+
   window.closePolicyModal = () => {
     const modal = document.getElementById('policy-modal');
     if (modal) modal.classList.remove('show');

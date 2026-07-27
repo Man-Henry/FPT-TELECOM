@@ -10,3 +10,4 @@ echo Dang day code len GitHub va ghi de code cu...
 git push -u -f origin main
 echo Hoan thanh!
 pause
+
