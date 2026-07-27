@@ -305,7 +305,15 @@
   ]
   </script>
 
-  <!-- GTM moved to bottom -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E8451LL5PD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-E8451LL5PD');
+  </script>
 </head>
 
 <body>
@@ -921,17 +929,8 @@
     });
   </script>
   <script>
-    // Tối ưu GTM & Analytics: Load ngầm bằng requestIdleCallback để không chặn Main Thread
+    // Tối ưu GTM: Load ngầm bằng requestIdleCallback để không chặn Main Thread
     function loadGTM() {
-      // gtag.js
-      const gtagScript = document.createElement('script');
-      gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-E8451LL5PD";
-      gtagScript.async = true;
-      document.body.appendChild(gtagScript);
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function() { dataLayer.push(arguments); };
-      gtag('js', new Date());
-      gtag('config', 'G-E8451LL5PD');
 
       // GTM
       (function (w, d, s, l, i) {
