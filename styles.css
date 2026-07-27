@@ -3462,19 +3462,19 @@ select {
 }
 
 /* =======================================================
-   FPT x CLAUDE: EDITORIAL DESIGN SYSTEM OVERRIDES
+   FPT x CLAUDE: EDITORIAL DESIGN SYSTEM OVERRIDES (BLUE THEME)
    ======================================================= */
 
-/* 1. Claude Color System + FPT Accents */
+/* 1. Claude Color System + FPT Accents (Cool Blue Tone) */
 :root {
   --blue: #0059EF;
-  --navy: #181715;
+  --navy: #071b42;
   --orange: #F16A22;
-  --ink: #141413;
-  --muted: #6c6a64;
-  --line: #e6dfd8;
-  --pale: #efe9de;
-  --canvas: #faf9f5;
+  --ink: #12234c;
+  --muted: #566882;
+  --line: #e6ebf3;
+  --pale: #f4f8ff;
+  --canvas: #ffffff;
 }
 
 /* 2. Editorial Typography */
@@ -3496,7 +3496,7 @@ body {
 
 /* 4. Tinh giản Hero & Bỏ Gradient sặc sỡ */
 .hero {
-  background: var(--canvas) !important;
+  background: var(--pale) !important;
 }
 
 .hero-visual .dots,
@@ -3505,24 +3505,24 @@ body {
 }
 
 .wifi-mark {
-  color: var(--orange) !important;
+  color: var(--blue) !important;
 }
 
 /* 5. Giao diện Thẻ & Bảng Giá (Surface Cards) */
 .package {
-  background: var(--pale) !important;
+  background: var(--canvas) !important;
   border-color: var(--line) !important;
   box-shadow: none !important;
 }
 
 .package.recommended {
-  border-color: var(--orange) !important;
-  background: #f7efe8 !important;
-  /* Tinted orange pale */
+  border-color: var(--blue) !important;
+  background: #f0f6ff !important;
+  /* Tinted blue pale */
 }
 
 .ribbon {
-  background: var(--orange) !important;
+  background: var(--blue) !important;
 }
 
 .tabs,
@@ -3550,7 +3550,7 @@ body {
 }
 
 .triple .eyebrow {
-  color: var(--orange) !important;
+  color: var(--blue) !important;
 }
 
 .triple p:not(.eyebrow),
@@ -3563,12 +3563,12 @@ body {
 }
 
 .offers {
-  background: var(--canvas) !important;
+  background: var(--pale) !important;
   color: var(--ink) !important;
 }
 
 .offers .eyebrow {
-  color: var(--orange) !important;
+  color: var(--blue) !important;
 }
 
 .offers p,
@@ -3594,10 +3594,10 @@ body {
   border-radius: 6px !important;
 }
 
-/* Ép tất cả các nút về màu Cam để đồng bộ 1 Action Color */
+/* Ép tất cả các nút về màu Xanh Biển để đồng bộ 1 Action Color */
 .btn-orange,
 .btn-blue {
-  background: var(--orange) !important;
+  background: var(--blue) !important;
   color: #fff !important;
 }
 
@@ -3612,13 +3612,13 @@ body {
 
 /* Bỏ gradient cho topbar & chuyển sang nền sáng */
 .topbar {
-  background: var(--pale) !important;
-  color: var(--muted) !important;
-  border-bottom: 1px solid var(--line) !important;
+  background: var(--navy) !important;
+  color: #cbd8ef !important;
+  border-bottom: none !important;
 }
 
 .topbar a {
-  color: var(--ink) !important;
+  color: #fff !important;
 }
 
 /* 8. Micro-interactions (Hover effects) */
@@ -3628,8 +3628,8 @@ body {
 
 .btn:hover {
   transform: translateY(-2px) scale(1.02) !important;
-  box-shadow: 0 8px 20px rgba(241, 106, 34, 0.3) !important;
-  /* Glow shadow for orange */
+  box-shadow: 0 8px 20px rgba(0, 89, 239, 0.3) !important;
+  /* Glow shadow for blue */
 }
 
 .package {
