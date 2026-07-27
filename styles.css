@@ -1185,3 +1185,59 @@ footer {
     flex: 1;
   }
 }
+
+/* =======================================================
+   UX/PERFORMANCE ENHANCEMENTS (31-Point Audit)
+   ======================================================= */
+
+/* 1. Touch-action manipulation (C17) - Chống trễ và double-tap zoom */
+a, button, input, select {
+  touch-action: manipulation;
+}
+
+/* 2. Min-height cho touch target (C13) - Nút dễ bấm trên mobile */
+.btn, input, select {
+  min-height: 44px;
+}
+
+/* 3. Hover wrapper & Active state (C14, C15) - Chỉ hover trên thiết bị có chuột, phản hồi khi bấm */
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.97);
+  }
+}
+.btn:active {
+  transform: scale(0.97) translateY(0);
+  filter: brightness(0.95);
+  transition: transform 0.1s;
+}
+
+/* 4. Focus-visible (G27) - Hỗ trợ người dùng phím Tab */
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+/* 5. Vùng an toàn viền màn hình (B11) - Dành cho iPhone tai thỏ/Home bar */
+.floating-actions, .sticky-cta-bar, .toast-notification {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 16px) !important;
+}
+
+/* 6. Khóa tỷ lệ ảnh Hero (B10) - Không méo, tránh CLS */
+.hero-photo {
+  object-fit: cover;
+  aspect-ratio: 1200 / 800;
+  width: 100%;
+  height: auto;
+}
+
+/* 7. Hỗ trợ tắt animation (G28) - Chống say chuyển động */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
