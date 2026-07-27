@@ -135,10 +135,16 @@ document.querySelector('#leadForm').addEventListener('submit', async event => {
     const locationInfo = await getUserLocation();
     formData.append('Tọa độ', locationInfo);
 
-    await fetch(endpoint, {
+    const response = await fetch(endpoint, {
       method: 'POST',
       body: formData
     });
+    
+    const responseData = await response.json();
+    if (responseData.result !== 'success') {
+      throw new Error(JSON.stringify(responseData.error));
+    }
+    
     result.textContent = 'Cảm ơn bạn! FPT sẽ liên hệ tư vấn trong thời gian sớm nhất.';
 
     window.dataLayer = window.dataLayer || [];
