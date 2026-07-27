@@ -23,6 +23,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="FPT Telecom">
 
+  <!-- Resource Hints (Tối ưu hóa tốc độ tải) -->
+  <link rel="preload" as="image" href="https://fpttelecomvn.click/assets/images/fpt-internet-family-hero.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
@@ -57,7 +61,7 @@
     content="Lắp đặt Internet FPT tốc độ cao từ 195.000đ/tháng. Miễn phí 100% phí lắp đặt, tặng kèm Modem Wi-Fi 6 thế hệ mới, tư vấn và làm hợp đồng tận nhà trên toàn quốc. Hotline hỗ trợ 24/7: 0358.513.269 - 0383.900.321.">
   <meta name="twitter:image" content="https://fpttelecomvn.click/assets/images/avata.webp">
 
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=14">
 
   <!-- PWA & Mobile App enhancements -->
   <link rel="manifest" href="manifest.json">
@@ -398,6 +402,35 @@
       </div>
     </section>
 
+    <section class="features section" id="features">
+      <div class="section-head scroll-animate">
+        <p class="eyebrow">TẠI SAO CHỌN FPT</p>
+        <h2 data-split="chars">Khác biệt từ công nghệ đỉnh cao</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card tilt-3d scroll-animate">
+          <div class="feature-icon">🚀</div>
+          <h3>Wi-Fi 6 Thế Hệ Mới</h3>
+          <p>Tốc độ vượt trội, độ trễ cực thấp. Đáp ứng nhu cầu chơi game, xem phim 4K mượt mà nhiều thiết bị cùng lúc.</p>
+        </div>
+        <div class="feature-card tilt-3d scroll-animate delay-1">
+          <div class="feature-icon">🛡️</div>
+          <h3>Bảo Mật F-Safe</h3>
+          <p>Tích hợp AI bảo vệ mạng gia đình bạn khỏi mã độc, website giả mạo và các rủi ro an ninh mạng.</p>
+        </div>
+        <div class="feature-card tilt-3d scroll-animate delay-2">
+          <div class="feature-icon">👨‍🔧</div>
+          <h3>Hỗ Trợ 24/7</h3>
+          <p>Đội ngũ kỹ thuật viên chuyên nghiệp luôn sẵn sàng hỗ trợ bạn bất cứ lúc nào qua ứng dụng Hi FPT.</p>
+        </div>
+        <div class="feature-card tilt-3d scroll-animate delay-3">
+          <div class="feature-icon">📺</div>
+          <h3>Hệ Sinh Thái FPT Play</h3>
+          <p>Gói cước tích hợp hàng ngàn kênh truyền hình, phim điện ảnh và giải đấu thể thao độc quyền.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="pricing section" id="pricing">
       <div class="section-head scroll-animate">
         <p class="eyebrow">GÓI CƯỚC LINH HOẠT</p>
@@ -625,6 +658,43 @@
     </section>
 
 
+    <section class="timeline section">
+      <div class="section-head scroll-animate">
+        <p class="eyebrow">QUY TRÌNH ĐĂNG KÝ</p>
+        <h2 data-split="lines">Đơn giản, nhanh chóng, tiện lợi</h2>
+      </div>
+      <div class="timeline-container">
+        <div class="timeline-item scroll-animate">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-content">
+            <h3>Đăng Ký Online</h3>
+            <p>Chọn gói cước và để lại số điện thoại hoặc gọi trực tiếp Hotline.</p>
+          </div>
+        </div>
+        <div class="timeline-item scroll-animate delay-1">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-content">
+            <h3>Khảo Sát & Ký Hợp Đồng</h3>
+            <p>Nhân viên FPT liên hệ khảo sát hạ tầng và hỗ trợ ký hợp đồng tận nhà.</p>
+          </div>
+        </div>
+        <div class="timeline-item scroll-animate delay-2">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-content">
+            <h3>Lắp Đặt Nhanh Chóng</h3>
+            <p>Kỹ thuật viên tiến hành triển khai lắp đặt ngay trong vòng 24 giờ.</p>
+          </div>
+        </div>
+        <div class="timeline-item scroll-animate delay-3">
+          <div class="timeline-dot">4</div>
+          <div class="timeline-content">
+            <h3>Trải Nghiệm Dịch Vụ</h3>
+            <p>Khách hàng kiểm tra chất lượng mạng và bắt đầu sử dụng dịch vụ.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="faq section">
       <div class="section-head scroll-animate">
         <p class="eyebrow">GIẢI ĐÁP NHANH</p>
@@ -648,6 +718,45 @@
           <summary>Nhà nhiều tầng có dùng được không?</summary>
           <p>Có. Kỹ thuật viên sẽ tư vấn vị trí đặt modem hoặc giải pháp mesh WiFi phù hợp với diện tích nhà bạn.</p>
         </details>
+      </div>
+    </section>
+
+    <section class="news-preview section" id="news">
+      <div class="section-head scroll-animate">
+        <p class="eyebrow">TIN TỨC CẬP NHẬT</p>
+        <h2 data-split="chars">Khuyến mãi & Tin công nghệ</h2>
+      </div>
+      <div class="news-grid" style="max-width:1200px; margin: 0 auto; display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); padding: 0 20px;">
+        <article class="news-card tilt-3d scroll-animate">
+          <a href="news.html"><img src="assets/images/fpt-internet-family-hero.webp" alt="FPT Telecom khuyến mãi" loading="lazy"></a>
+          <div class="news-content">
+            <time datetime="2026-07-27">27 Tháng 7, 2026</time>
+            <h3><a href="news.html">Tặng đến 2 tháng cước khi hòa mạng mới FPT</a></h3>
+            <p>Chương trình tri ân khách hàng đặc biệt, miễn phí lắp đặt, tặng thiết bị Modem Wi-Fi 6...</p>
+            <a href="news.html" class="read-more">Xem chi tiết →</a>
+          </div>
+        </article>
+        <article class="news-card tilt-3d scroll-animate delay-1">
+          <a href="news.html"><img src="assets/images/boxtv.webp" alt="FPT Play Box" loading="lazy" style="background:#f4f8ff; object-fit:contain;"></a>
+          <div class="news-content">
+            <time datetime="2026-07-25">25 Tháng 7, 2026</time>
+            <h3><a href="news.html">Trải nghiệm Ngoại hạng Anh độc quyền trên FPT Play</a></h3>
+            <p>Đăng ký gói Combo VIP để thưởng thức trọn vẹn các giải đấu thể thao hàng đầu thế giới...</p>
+            <a href="news.html" class="read-more">Xem chi tiết →</a>
+          </div>
+        </article>
+        <article class="news-card tilt-3d scroll-animate delay-2">
+          <a href="news.html"><img src="assets/images/cameraiq4s.webp" alt="FPT Camera AI" loading="lazy" style="background:#f4f8ff; object-fit:contain;"></a>
+          <div class="news-content">
+            <time datetime="2026-07-20">20 Tháng 7, 2026</time>
+            <h3><a href="news.html">Ra mắt FPT Camera AI thế hệ mới nhận diện khuôn mặt</a></h3>
+            <p>Giải pháp an ninh toàn diện, lưu trữ Cloud an toàn và cảnh báo xâm nhập theo thời gian thực...</p>
+            <a href="news.html" class="read-more">Xem chi tiết →</a>
+          </div>
+        </article>
+      </div>
+      <div style="text-align: center; margin-top: 40px;" class="scroll-animate">
+        <a href="news.html" class="outline-btn">Xem tất cả bài viết</a>
       </div>
     </section>
 
@@ -964,9 +1073,9 @@
       }
     </script>
   <!-- GSAP & ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script defer src="script.js?v=8"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="script.js?v=10"></script>
 
   <!-- Core Web Vitals → GA4 (native, 0 dependency) -->
   <script>

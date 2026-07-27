@@ -1231,4 +1231,121 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !pref
     ease: "power2.out",
     clearProps: "all"
   });
+
+  // 6. Tính năng nổi bật (Features Stagger)
+  gsap.from(".feature-card", {
+    scrollTrigger: {
+      trigger: ".feature-grid",
+      start: "top 85%",
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: "back.out(1.2)",
+    clearProps: "all"
+  });
+
+  // 7. Tin tức & Khuyến mãi (News Cards)
+  gsap.from(".news-card", {
+    scrollTrigger: {
+      trigger: ".news-grid",
+      start: "top 85%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.15,
+    ease: "power2.out",
+    clearProps: "all"
+  });
+
+  // 8. Magnetic Button Effect (Nút bấm từ tính)
+  if (hasFinePointer) {
+    const magneticBtns = document.querySelectorAll('.btn, .outline-btn, .magnetic-btn');
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        gsap.to(btn, {
+          x: x * 0.3,
+          y: y * 0.3,
+          duration: 0.4,
+          ease: "power2.out"
+        });
+      });
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, {
+          x: 0,
+          y: 0,
+          duration: 0.7,
+          ease: "elastic.out(1, 0.3)"
+        });
+      });
+    });
+  }
+
+  // 9. Text Splitting Animation (Vanilla JS -> GSAP)
+  // Tính năng tách chữ để tạo hiệu ứng reveal mượt mà
+  const splitTextElements = document.querySelectorAll('[data-split]');
+  splitTextElements.forEach(el => {
+    const type = el.getAttribute('data-split'); // 'chars' hoặc 'lines'
+    const text = el.innerText;
+    el.innerHTML = ''; // Xóa nội dung cũ
+    
+    if (type === 'chars') {
+      const chars = text.split('');
+      chars.forEach(char => {
+        const wrapper = document.createElement('span');
+        wrapper.className = 'char-wrapper';
+        const inner = document.createElement('span');
+        inner.className = 'char';
+        inner.innerHTML = char === ' ' ? '&nbsp;' : char;
+        wrapper.appendChild(inner);
+        el.appendChild(wrapper);
+      });
+      
+      gsap.to(el.querySelectorAll('.char'), {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+        },
+        y: "0%",
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.02,
+        ease: "power3.out"
+      });
+    } else if (type === 'lines') {
+      // Phân tách đơn giản dựa trên dấu phẩy hoặc câu để demo (thay thế SplitText trả phí)
+      const lines = text.split(/([.,])/g);
+      let html = '';
+      let currentLine = '';
+      lines.forEach(part => {
+        currentLine += part;
+        if (part === ',' || part === '.') {
+          html += `<span class="line-wrapper"><span class="line">${currentLine}</span></span> `;
+          currentLine = '';
+        }
+      });
+      if (currentLine.trim() !== '') {
+        html += `<span class="line-wrapper"><span class="line">${currentLine}</span></span>`;
+      }
+      el.innerHTML = html;
+      
+      gsap.to(el.querySelectorAll('.line'), {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+        },
+        y: "0%",
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out"
+      });
+    }
+  });
 }
