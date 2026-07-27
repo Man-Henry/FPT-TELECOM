@@ -5,14 +5,14 @@ const ASSETS_TO_CACHE = [
   '/styles.css',
   '/script.js',
   '/manifest.json',
-  '/assets/images/logo.png',
-  '/assets/images/fpt-internet-family-hero.png',
-  '/assets/images/wifi6.png',
-  '/assets/images/modemwifi.png',
-  '/assets/images/boxtv.png',
-  '/assets/images/modemmeta.png',
-  '/assets/images/cameraplay4.png',
-  '/assets/images/cameraiq4s.png',
+  '/assets/images/logo.webp',
+  '/assets/images/fpt-internet-family-hero.webp',
+  '/assets/images/wifi6.webp',
+  '/assets/images/modemwifi.webp',
+  '/assets/images/boxtv.webp',
+  '/assets/images/modemmeta.webp',
+  '/assets/images/cameraplay4.webp',
+  '/assets/images/cameraiq4s.webp',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'
 ];
 
