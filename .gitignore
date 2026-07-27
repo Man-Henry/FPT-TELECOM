@@ -17,6 +17,13 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 
+# Cloudflare Wrangler state
+.wrangler/
+.wrangler
+
 # Secrets & Local Dev (Hard Boundary)
 .dev.vars
 .env*
+.env
+secret.json
+credentials.json

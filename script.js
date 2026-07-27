@@ -129,7 +129,9 @@ document.querySelector('#leadForm').addEventListener('submit', async event => {
   }
 
   try {
-    const endpoint = 'https://script.google.com/macros/s/AKfycbz3Oe508e2qCk32j38c2_ZGogZ5vluiMd15F_BQT7jpiPtf6EAIfjiVuW5X7NttwrVJlQ/exec';
+    // Anti-scraping obfuscation for Google Script URL
+    const _enc = "h*t*t*p*s*:*/*/*s*c*r*i*p*t*.*g*o*o*g*l*e*.*c*o*m*/*m*a*c*r*o*s*/*s*/*A*K*f*y*c*b*z*3*O*e*5*0*8*e*2*q*C*k*3*2*j*3*8*c*2*_*Z*G*o*g*Z*5*v*l*u*i*M*d*1*5*F*_*B*Q*T*7*j*p*i*P*t*f*6*E*A*I*f*j*i*V*u*W*5*X*7*N*t*t*w*r*V*J*l*Q*/*e*x*e*c";
+    const endpoint = _enc.split('*').join('');
     const formData = new FormData(form);
 
     const locationInfo = await getUserLocation();
