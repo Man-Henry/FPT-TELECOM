@@ -1147,6 +1147,36 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !pref
     clearProps: "all"
   }, "-=0.6");
 
+  // 1b. Parallax Hero Effect (Trôi nổi 3D)
+  gsap.to(".hero-visual", {
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top top",
+      end: "bottom top",
+      scrub: 0.5
+    },
+    y: 80,
+    ease: "none"
+  });
+
+  // 1c. Kích hoạt toàn bộ các phần tử .scroll-animate bị bỏ sót (Tiêu đề, Text...)
+  const animateElements = gsap.utils.toArray('.scroll-animate:not(.animated)');
+  animateElements.forEach(el => {
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+        toggleActions: "play none none none"
+      },
+      y: 35,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power2.out",
+      clearProps: "all"
+    });
+    el.classList.add('animated');
+  });
+
   // 2. Package Grid (Scroll Fade-up)
   gsap.from(".package", {
     scrollTrigger: {
