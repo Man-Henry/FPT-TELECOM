@@ -1633,6 +1633,7 @@ form .btn {
   font-weight: 600;
   margin-bottom: 16px;
   animation: pulse-light 2s infinite;
+  font-variant-numeric: tabular-nums;
 }
 
 @keyframes pulse-light {
@@ -2299,6 +2300,17 @@ nav a:hover::after {
 
   .photo-visual .plan-two {
     bottom: 12px
+  }
+}
+
+@media(max-width:760px) {
+  .hero-visual.photo-visual {
+    height: 220px
+  }
+
+  .hero-photo {
+    height: 220px;
+    object-position: 65% center
   }
 }
 
