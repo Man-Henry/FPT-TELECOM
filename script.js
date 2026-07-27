@@ -4,7 +4,7 @@ const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('nav');
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW setup failed', err));
+    navigator.serviceWorker.register('./sw.js').catch(err => console.error('SW setup failed', err));
   });
 }
 
@@ -235,8 +235,8 @@ function initMap3D() {
     const camera = new THREE.PerspectiveCamera(50, cW / cH, 0.1, 2000);
     camera.position.set(0, 50, 70 + Math.max(0, (1.5 - (cW / cH)) * 40));
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
     renderer.setSize(cW, cH);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
@@ -306,14 +306,17 @@ function initMap3D() {
               if (i > 0 && i < ring.length - 1 && i % 3 !== 0) continue;
               const X = (mapX(ring[i][0]) - 50) * S;
               const Y = (mapY(ring[i][1]) - 50) * S;
-              if (i === 0) shape.moveTo(X, Y);
-              else shape.lineTo(X, Y);
+              if (!isNaN(X) && !isNaN(Y)) {
+                if (i === 0) shape.moveTo(X, Y);
+                else shape.lineTo(X, Y);
+              }
             }
             shape.closePath();
             shapes.push(shape);
           });
         });
 
+        if (shapes.length === 0) return;
         const extrudeGeo = new THREE.ExtrudeGeometry(shapes, {
           depth: H, bevelEnabled: true, bevelThickness: 0.2, bevelSize: 0.2, bevelSegments: 1, curveSegments: 1
         });
@@ -436,8 +439,17 @@ function initMap3D() {
 
     /* ── VÒNG LẶP ANIMATION ── */
     const clock = new THREE.Clock();
+    let isVisible = true;
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        isVisible = entries[0].isIntersecting;
+      });
+      observer.observe(canvas);
+    }
+
     (function animate() {
       requestAnimationFrame(animate);
+      if (!isVisible) return; // Prevent GPU stall when out of viewport
       const dt = clock.getDelta();
 
       // Vòng sóng lan tỏa + mờ dần => cảm giác "phủ sóng"
