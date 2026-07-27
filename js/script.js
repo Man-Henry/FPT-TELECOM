@@ -931,27 +931,21 @@ if (leadForm) {
         nameOverlay.innerHTML = `
         <img src="${assetBase}assets/images/logo.webp" alt="FPT Logo" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 12px; border-radius: 50%; padding: 2px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
         <h3 style="margin:0 0 10px 0;color:#333;font-size:16px;">Chào bạn! 👋</h3>
-        <p style="margin:0 0 15px 0;color:#666;font-size:14px;text-align:center;">Vui lòng để lại thông tin để nhân viên dễ xưng hô và hỗ trợ bạn tốt nhất</p>
-        <input type="text" id="chat-name-input" placeholder="Họ và tên..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;font-size:14px;outline:none;box-sizing:border-box;">
-        <input type="tel" id="chat-phone-input" placeholder="Số điện thoại..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:14px;outline:none;box-sizing:border-box;">
+        <p style="margin:0 0 15px 0;color:#666;font-size:14px;text-align:center;">Vui lòng để lại tên để nhân viên dễ xưng hô và hỗ trợ bạn tốt nhất</p>
+        <input type="text" id="chat-name-input" placeholder="Họ và tên..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:14px;outline:none;box-sizing:border-box;">
         <button id="chat-name-submit" style="width:100%;padding:10px;background:#0066ff;color:#fff;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;">Bắt đầu chat</button>
       `;
         chatWidgetBody.appendChild(nameOverlay);
 
         const submitBtn = nameOverlay.querySelector('#chat-name-submit');
         const nameInput = nameOverlay.querySelector('#chat-name-input');
-        const phoneInput = nameOverlay.querySelector('#chat-phone-input');
         nameInput.focus();
 
         const startChat = () => {
           let name = nameInput.value.trim();
-          let phone = phoneInput.value.trim();
-          if (!name) name = "Khach";
+          if (!name) name = "Khách";
 
-          if (phone) {
-            localStorage.setItem('chat_visitor_phone', phone);
-            localStorage.setItem('chat_visitor_name', name);
-          }
+          localStorage.setItem('chat_visitor_name', name);
 
           // Lọc dấu tiếng Việt và ký tự đặc biệt để làm ID an toàn
           const safeName = name.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-zA-Z0-9]/g, '');
