@@ -1241,3 +1241,111 @@ a, button, input, select {
     scroll-behavior: auto !important;
   }
 }
+
+/* =======================================================
+   FPT x CLAUDE: EDITORIAL DESIGN SYSTEM OVERRIDES
+   ======================================================= */
+
+/* 1. Claude Color System + FPT Accents */
+:root {
+  --blue: #0059EF;
+  --navy: #181715; 
+  --orange: #F16A22;
+  --ink: #141413;
+  --muted: #6c6a64;
+  --line: #e6dfd8;
+  --pale: #efe9de; 
+  --canvas: #faf9f5;
+}
+
+/* 2. Editorial Typography */
+h1, h2, h3, h4, .quote {
+  font-family: 'Lora', serif !important;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+/* 3. Base Canvas & Text */
+body {
+  background-color: var(--canvas) !important;
+  color: var(--ink) !important;
+}
+
+/* 4. Tinh giản Hero & Bỏ Gradient sặc sỡ */
+.hero {
+  background: var(--canvas) !important;
+}
+.hero-visual .dots, .hero-visual .wave {
+  opacity: 0.3;
+}
+.wifi-mark {
+  color: var(--orange) !important;
+}
+
+/* 5. Giao diện Thẻ & Bảng Giá (Surface Cards) */
+.package {
+  background: var(--pale) !important;
+  border-color: var(--line) !important;
+  box-shadow: none !important;
+}
+.package.recommended {
+  border-color: var(--orange) !important;
+  background: #f7efe8 !important; /* Tinted orange pale */
+}
+.ribbon {
+  background: var(--orange) !important;
+}
+.tabs, .best {
+  background: var(--pale) !important;
+}
+.tab.active {
+  background: var(--canvas) !important;
+  color: var(--ink) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+}
+
+/* 6. Vùng Tương Phản Tối (Dark Navy Surfaces) */
+.triple {
+  background: var(--navy) !important;
+  color: var(--canvas) !important;
+}
+.triple-gift b, .triple h3 {
+  color: var(--canvas) !important;
+}
+.triple-gift {
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.offers {
+  background: var(--navy) !important;
+  color: var(--canvas) !important;
+}
+.offer-list > div {
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.contact {
+  background: var(--pale) !important;
+}
+
+/* 7. Flat Design Buttons (Simplicity) */
+.btn {
+  box-shadow: none !important;
+  border-radius: 6px !important;
+}
+.btn-orange {
+  background: var(--orange) !important;
+}
+.btn-blue {
+  background: var(--blue) !important;
+}
+.outline-btn {
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+}
+.outline-btn:hover {
+  background: var(--line) !important;
+}
+
+/* Bỏ gradient cho topbar & header */
+.topbar {
+  background: var(--navy) !important;
+}
