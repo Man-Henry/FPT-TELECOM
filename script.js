@@ -1118,22 +1118,81 @@ if (chatToggle && chatWidget) {
 }
 
 /* =========================================================
-   SCROLL ANIMATIONS (Intersection Observer)
+   GSAP & SCROLLTRIGGER PREMIUM ANIMATIONS
    ========================================================= */
-const scrollElements = document.querySelectorAll('.scroll-animate');
-if (scrollElements.length > 0) {
-  const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate');
-        // Stop observing if we only want it to animate once
-        scrollObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    rootMargin: '0px 0px -50px 0px',
-    threshold: 0.1
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 1. Hero Reveal (Stagger Fade-in Up)
+  const heroTl = gsap.timeline();
+  heroTl.from(".hero-copy > *", {
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: "power3.out",
+    clearProps: "all"
+  })
+  .from(".hero-visual", {
+    scale: 1.05,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power2.out",
+    clearProps: "all"
+  }, "-=0.6");
+
+  // 2. Package Grid (Scroll Fade-up)
+  gsap.from(".package", {
+    scrollTrigger: {
+      trigger: ".package-grid",
+      start: "top 80%",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: "back.out(1.2)",
+    clearProps: "all"
   });
 
-  scrollElements.forEach(el => scrollObserver.observe(el));
+  // 3. Triple Combo Banner (Scale & Glow)
+  gsap.from(".triple", {
+    scrollTrigger: {
+      trigger: ".triple",
+      start: "top 85%",
+    },
+    scale: 0.95,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.out",
+    clearProps: "all"
+  });
+
+  // 4. Offers List (Slide-in)
+  gsap.from(".offer-list > div", {
+    scrollTrigger: {
+      trigger: ".offer-list",
+      start: "top 85%",
+    },
+    x: -30,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.1,
+    ease: "power2.out",
+    clearProps: "all"
+  });
+
+  // 5. Testimonials (Scroll Fade-up)
+  gsap.from(".testimonial-grid figure", {
+    scrollTrigger: {
+      trigger: ".testimonial-grid",
+      start: "top 85%",
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: "power2.out",
+    clearProps: "all"
+  });
 }
