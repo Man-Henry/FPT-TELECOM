@@ -1133,6 +1133,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !pref
   const heroTl = gsap.timeline();
   heroTl.from(".hero-copy > *", {
     y: 30,
+    opacity: 0,
     duration: 0.8,
     stagger: 0.15,
     ease: "power3.out",
@@ -1140,6 +1141,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !pref
   })
   .from(".hero-visual", {
     scale: 1.05,
+    opacity: 0,
     duration: 1.2,
     ease: "power2.out",
     clearProps: "all"
