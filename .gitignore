@@ -61,3 +61,6 @@ firebase-debug.log*
 # AI / Agents (if containing sensitive prompts/keys)
 .agents/
 .gemini/
+
+# Backend / Cloudflare Worker (Contains System Prompts and Bot Logic)
+src/
