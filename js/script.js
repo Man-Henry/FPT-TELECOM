@@ -1,3 +1,51 @@
+// Countdown Timer Logic
+function initCountdown() {
+  const timerElement = document.getElementById('countdown-timer');
+  const announceElement = document.getElementById('countdown-announce');
+  if (!timerElement) return;
+
+  function updateTimer() {
+    const now = new Date();
+    const endOfDay = new Date();
+    endOfDay.setHours(23, 59, 59, 999);
+    
+    const diff = endOfDay - now;
+    if (diff <= 0) {
+      timerElement.textContent = "00:00:00";
+      return;
+    }
+    
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
+    const m = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
+    const s = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
+    
+    timerElement.textContent = `${h}:${m}:${s}`;
+    
+    // Trợ năng (Accessibility) - đọc mỗi phút
+    if (announceElement && s === '00') {
+      announceElement.textContent = `Thời gian ưu đãi còn lại: ${h} giờ, ${m} phút.`;
+    }
+  }
+  
+  updateTimer();
+  setInterval(updateTimer, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initCountdown();
+
+  // Lazy load image reveal effect
+  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+  lazyImages.forEach(img => {
+    if (img.complete) {
+      img.classList.add('is-loaded');
+    } else {
+      img.addEventListener('load', () => {
+        img.classList.add('is-loaded');
+      });
+    }
+  });
+});
 
 const tabs = document.querySelectorAll('.tab');
 const menuButton = document.querySelector('.menu-toggle');
@@ -871,19 +919,28 @@ if (chatToggle && chatWidget) {
       nameOverlay.innerHTML = `
         <img src="assets/images/logo.webp" alt="FPT Logo" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 12px; border-radius: 50%; padding: 2px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
         <h3 style="margin:0 0 10px 0;color:#333;font-size:16px;">Chào bạn! 👋</h3>
-        <p style="margin:0 0 15px 0;color:#666;font-size:14px;text-align:center;">Vui lòng cho biết tên của bạn để nhân viên dễ xưng hô</p>
-        <input type="text" id="chat-name-input" placeholder="Nhập tên của bạn..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:14px;outline:none;box-sizing:border-box;">
+        <p style="margin:0 0 15px 0;color:#666;font-size:14px;text-align:center;">Vui lòng để lại thông tin để nhân viên dễ xưng hô và hỗ trợ bạn tốt nhất</p>
+        <input type="text" id="chat-name-input" placeholder="Họ và tên..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;font-size:14px;outline:none;box-sizing:border-box;">
+        <input type="tel" id="chat-phone-input" placeholder="Số điện thoại..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:14px;outline:none;box-sizing:border-box;">
         <button id="chat-name-submit" style="width:100%;padding:10px;background:#0066ff;color:#fff;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;">Bắt đầu chat</button>
       `;
       chatWidgetBody.appendChild(nameOverlay);
       
       const submitBtn = nameOverlay.querySelector('#chat-name-submit');
       const nameInput = nameOverlay.querySelector('#chat-name-input');
+      const phoneInput = nameOverlay.querySelector('#chat-phone-input');
       nameInput.focus();
       
       const startChat = () => {
         let name = nameInput.value.trim();
+        let phone = phoneInput.value.trim();
         if (!name) name = "Khach";
+        
+        if (phone) {
+          localStorage.setItem('chat_visitor_phone', phone);
+          localStorage.setItem('chat_visitor_name', name);
+        }
+        
         // Lọc dấu tiếng Việt và ký tự đặc biệt để làm ID an toàn
         const safeName = name.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-zA-Z0-9]/g, '');
         const randomStr = (window.crypto.getRandomValues(new Uint32Array(1))[0]).toString(36).substring(0, 6);
