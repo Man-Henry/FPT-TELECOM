@@ -1,0 +1,4 @@
+# Chuẩn hóa tên miền (Chuyển hướng từ www sang non-www và http sang https)
+http://fpttelecomvn.click/* https://fpttelecomvn.click/:splat 301!
+http://www.fpttelecomvn.click/* https://fpttelecomvn.click/:splat 301!
+https://www.fpttelecomvn.click/* https://fpttelecomvn.click/:splat 301!
