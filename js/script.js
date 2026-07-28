@@ -1,39 +1,5 @@
 
-// Countdown Timer Logic
-function initCountdown() {
-  const timerElement = document.getElementById('countdown-timer');
-  const announceElement = document.getElementById('countdown-announce');
-  if (!timerElement) return;
-
-  function updateTimer() {
-    const now = new Date();
-    const endOfDay = new Date();
-    endOfDay.setHours(23, 59, 59, 999);
-
-    const diff = endOfDay - now;
-    if (diff <= 0) {
-      timerElement.textContent = "00:00:00";
-      return;
-    }
-
-    const h = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
-    const m = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
-    const s = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
-
-    timerElement.textContent = `${h}:${m}:${s}`;
-
-    // Trợ năng (Accessibility) - đọc mỗi phút
-    if (announceElement && s === '00') {
-      announceElement.textContent = `Thời gian ưu đãi còn lại: ${h} giờ, ${m} phút.`;
-    }
-  }
-
-  updateTimer();
-  setInterval(updateTimer, 1000);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-  initCountdown();
 
   // Lazy load image reveal effect
   const lazyImages = document.querySelectorAll('img[loading="lazy"]');
@@ -796,9 +762,8 @@ if (leadForm) {
       const hh = h.toString().padStart(2, '0');
       const mm = m.toString().padStart(2, '0');
       const ss = s.toString().padStart(2, '0');
-      const text = d > 0 
-        ? `${d} ngày ${hh}:${mm}` 
-        : `${hh}:${mm}:${ss}`;
+      const dd = d > 0 ? `<span class="t-unit">${d}</span> ngày ` : '';
+      const text = `${dd}<span class="t-unit">${hh}</span>:<span class="t-unit">${mm}</span>:<span class="t-unit">${ss}</span>`;
       timer.innerHTML = text;
 
       // Announce cho screen reader mỗi 5 phút (300 ticks)
@@ -1479,6 +1444,30 @@ if (leadForm) {
       }
     });
   };
+
+  // --- Header Glassmorphism & Scroll Observer (AOS-lite) ---
+  const header = document.querySelector('.header');
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        scrollObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+  document.querySelectorAll('.fade-up, .slide-left, .slide-right').forEach(el => {
+    scrollObserver.observe(el);
+  });
+
+  window.addEventListener('scroll', () => {
+    if (header && window.scrollY > 50) {
+      header.classList.add('sticky-header');
+    } else if (header) {
+      header.classList.remove('sticky-header');
+    }
+  }, { passive: true });
+  // ---------------------------------------------------------
 
   // Ensure scripts are fully loaded (fixes cross-browser defer execution order bugs)
   if (document.readyState === 'loading') {

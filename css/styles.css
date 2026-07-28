@@ -1659,12 +1659,15 @@ form .btn {
 }
 
 #countdown-timer {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  font-weight: 700;
   display: inline-block;
-  min-width: 75px; /* Ngăn chặn nhảy chữ */
-  text-align: left;
+  margin-left: 4px;
+}
+
+.t-unit {
+  display: inline-block;
+  min-width: 18px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 @keyframes pulse-light {
@@ -4359,4 +4362,49 @@ footer {
   .timeline-item {
     padding-left: 50px;
   }
+}
+
+/* 6. Scroll Animations (AOS-lite) */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: opacity, transform;
+}
+
+.slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: opacity, transform;
+}
+
+.slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: opacity, transform;
+}
+
+.fade-up.is-visible, .slide-left.is-visible, .slide-right.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* 7. Header Glassmorphism */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
