@@ -1475,3 +1475,93 @@ if (leadForm) {
   } else {
     initPremiumAnimations();
   }
+
+/* =======================================================
+   PREMIUM INTERACTION EFFECTS
+   ======================================================= */
+
+// --- Ripple Click Effect ---
+document.querySelectorAll('.btn, .btn-orange, .outline-btn').forEach(btn => {
+  btn.style.position = 'relative';
+  btn.style.overflow = 'hidden';
+  btn.addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple-effect';
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2;
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+    ripple.style.top  = (e.clientY - rect.top  - size/2) + 'px';
+    btn.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+
+// --- Count-up Animation for Trust Stats ---
+function animateCountUp(el) {
+  const target = el.textContent.replace(/[^0-9]/g, '');
+  const suffix = el.textContent.replace(/[0-9]/g, '');
+  if (!target) return;
+  const end = parseInt(target, 10);
+  const duration = 1600;
+  const step = duration / end;
+  let current = 0;
+  const timer = setInterval(() => {
+    current += Math.ceil(end / 60);
+    if (current >= end) {
+      current = end;
+      clearInterval(timer);
+      el.classList.add('count-done');
+    }
+    el.textContent = current.toLocaleString('vi-VN') + suffix;
+  }, step);
+}
+
+const trustObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('b').forEach(animateCountUp);
+      trustObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.6 });
+
+const trustSection = document.querySelector('.trust');
+if (trustSection) trustObserver.observe(trustSection);
+
+// --- Cursor Spotlight (desktop only) ---
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  const spotlight = document.createElement('div');
+  spotlight.style.cssText = `
+    position:fixed; pointer-events:none; z-index:9998;
+    width:320px; height:320px; border-radius:50%;
+    background: radial-gradient(circle, rgba(6,101,245,0.07) 0%, transparent 70%);
+    transform:translate(-50%,-50%);
+    transition:opacity 0.4s ease;
+    opacity:0;
+  `;
+  document.body.appendChild(spotlight);
+  document.addEventListener('mousemove', e => {
+    spotlight.style.left = e.clientX + 'px';
+    spotlight.style.top  = e.clientY + 'px';
+    spotlight.style.opacity = '1';
+  });
+  document.addEventListener('mouseleave', () => {
+    spotlight.style.opacity = '0';
+  });
+}
+
+// --- Staggered Section Entrance (scroll-animate) ---
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      entry.target.classList.add('is-visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.scroll-animate').forEach(el => {
+  sectionObserver.observe(el);
+});
+

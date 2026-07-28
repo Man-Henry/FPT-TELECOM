@@ -2299,88 +2299,199 @@ form .btn {
   }
 }
 
+/* =========================================================
+   CINEMATIC HERO IMAGE — fptfamily.webp
+   Ken Burns · Light Leak · Depth Overlay · Badge Entrance
+   ========================================================= */
+
 .hero-visual.photo-visual {
   position: relative;
   overflow: hidden;
   border-radius: 22px;
-  box-shadow: 0 22px 42px rgba(50, 107, 173, 0.24);
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  box-shadow:
+    0 22px 60px rgba(6, 101, 245, 0.28),
+    0 0 0 1px rgba(255,255,255,0.12) inset;
+  transition:
+    transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 0.5s ease;
 }
 
+/* Hover lift — full card */
 .hero-visual.photo-visual:hover {
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 30px 55px rgba(6, 101, 245, 0.28);
+  transform: translateY(-8px) scale(1.012);
+  box-shadow:
+    0 40px 80px rgba(6, 101, 245, 0.35),
+    0 0 0 1.5px rgba(255,255,255,0.2) inset;
 }
 
+/* ── Ken Burns continuous slow zoom-pan ─────────────── */
 .hero-photo {
   display: block;
   width: 100%;
   height: 410px;
   object-fit: cover;
   object-position: 66% center;
-  transition: transform 0.6s ease;
-  animation: hero-photo-float 7s ease-in-out infinite alternate;
+  transform-origin: 66% 50%;
+  animation: ken-burns 18s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
+@keyframes ken-burns {
+  0%   { transform: scale(1.00) translate( 0px,  0px); }
+  25%  { transform: scale(1.06) translate(-6px, -4px); }
+  50%  { transform: scale(1.09) translate(-2px, -8px); }
+  75%  { transform: scale(1.05) translate( 4px, -3px); }
+  100% { transform: scale(1.02) translate( 8px,  2px); }
+}
+
+/* ── Cinematic Color Grade Overlay ─────────────────── */
+.hero-visual.photo-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(6, 101, 245, 0.12) 0%,
+      rgba(0, 0, 0, 0.0)      40%,
+      rgba(0, 30, 80, 0.22)   100%
+    );
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Cinematic Light Leak (top-right) ───────────────── */
+.hero-visual.photo-visual::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 210, 120, 0.22) 0%,
+    rgba(255, 150, 60, 0.10)  40%,
+    transparent 70%
+  );
+  animation: light-leak-drift 8s ease-in-out infinite alternate;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes light-leak-drift {
+  0%   { transform: translate( 0px, 0px) scale(1.0); opacity: 0.85; }
+  50%  { transform: translate(-20px, 18px) scale(1.15); opacity: 1;    }
+  100% { transform: translate( 12px, -8px) scale(0.92); opacity: 0.6;  }
+}
+
+/* ── Horizontal Scan Line sweep ─────────────────────── */
+.hero-visual.photo-visual .scan-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 198, 255, 0.55) 30%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(0, 198, 255, 0.55) 70%,
+    transparent 100%
+  );
+  animation: scan-sweep 6s linear infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+@keyframes scan-sweep {
+  0%   { top: -2px;   opacity: 0; }
+  5%   { opacity: 0.7; }
+  95%  { opacity: 0.7; }
+  100% { top: 100%;  opacity: 0; }
+}
+
+/* ── Plan badges — glassmorphic + entrance ──────────── */
 .photo-visual .plan {
   position: absolute;
-  z-index: 3;
-  padding: 10px 16px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 10px 25px rgba(0, 21, 54, 0.15);
+  z-index: 4;
+  padding: 10px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 8px 28px rgba(0, 21, 54, 0.18),
+    0 0 0 0.5px rgba(255,255,255,0.4) inset;
   font-weight: 700;
   font-size: 0.95rem;
-  color: #0665f5;
-  transition: all 0.3s ease;
-  animation: plan-float-smooth 4.5s ease-in-out infinite;
+  color: #0056d6;
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation: badge-float 5s ease-in-out infinite;
 }
 
 .photo-visual .plan small {
-  font-size: 0.75rem;
-  color: #555;
+  display: block;
+  font-size: 0.73rem;
+  color: #445;
   font-weight: 500;
+  margin-top: 2px;
 }
 
-.photo-visual .plan:hover {
-  transform: translateY(-4px) scale(1.05);
-  background: #ffffff;
-  box-shadow: 0 14px 30px rgba(6, 101, 245, 0.25);
-}
-
+/* Badge entrance from outside */
 .photo-visual .plan-one {
   top: 20px;
   left: 20px;
-  animation-delay: 0s;
+  animation: badge-float 5.0s ease-in-out 0.2s infinite,
+             badge-enter-left 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
-
 .photo-visual .plan-two {
   right: 20px;
   bottom: 20px;
-  animation-delay: -1.5s;
+  animation: badge-float 5.0s ease-in-out 1.5s infinite,
+             badge-enter-right 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.3s forwards;
 }
-
 .photo-visual .plan-three {
   top: 20px;
   right: 20px;
-  background: rgba(255, 245, 235, 0.92);
-  border-color: rgba(255, 107, 0, 0.3);
-  color: #ff6b00;
-  animation-delay: -3s;
+  background: rgba(255, 245, 230, 0.88);
+  border-color: rgba(255, 107, 0, 0.35);
+  color: #e05000;
+  animation: badge-float 5.0s ease-in-out 3s infinite,
+             badge-enter-top 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.15s forwards;
 }
 
-@keyframes hero-photo-float {
-  0% { transform: scale(1.02) translateY(0); }
-  100% { transform: scale(1.06) translateY(-8px); }
+.photo-visual .plan:hover {
+  transform: translateY(-6px) scale(1.08) !important;
+  box-shadow: 0 18px 40px rgba(6,101,245,0.3);
+  background: #fff;
 }
 
-@keyframes plan-float-smooth {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+@keyframes badge-float {
+  0%, 100% { transform: translateY(0px);   }
+  45%       { transform: translateY(-9px);  }
+  55%       { transform: translateY(-9px);  }
 }
+@keyframes badge-enter-left {
+  from { opacity:0; transform: translateX(-30px) scale(0.85); }
+  to   { opacity:1; transform: translateX(0)      scale(1);    }
+}
+@keyframes badge-enter-right {
+  from { opacity:0; transform: translateX(30px)  scale(0.85); }
+  to   { opacity:1; transform: translateX(0)      scale(1);    }
+}
+@keyframes badge-enter-top {
+  from { opacity:0; transform: translateY(-24px) scale(0.85); }
+  to   { opacity:1; transform: translateY(0)      scale(1);    }
+}
+
+/* ── Parallax tilt enhanced ─────────────────────────── */
+.hero-visual.photo-visual.is-tilting .hero-photo {
+  transition: none;
+}
+
 
 
 /* =======================================================
@@ -4469,4 +4580,203 @@ footer {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,0,0,0.05);
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* =======================================================
+   PREMIUM EFFECTS — Shimmer, Glow, Ripple, Orb, Counter
+   ======================================================= */
+
+/* --- Shimmer Card Highlight --- */
+@keyframes shimmer-slide {
+  0%   { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(220%) skewX(-20deg); }
+}
+.news-card,
+.package,
+.feature-card,
+.faq-item {
+  position: relative;
+  overflow: hidden;
+}
+.news-card::before,
+.package::before,
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 50%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.18) 50%,
+    transparent 100%
+  );
+  transform: translateX(-120%) skewX(-20deg);
+  pointer-events: none;
+  z-index: 2;
+}
+.news-card:hover::before,
+.package:hover::before,
+.feature-card:hover::before {
+  animation: shimmer-slide 0.65s ease;
+}
+
+/* --- News Card Image Zoom & Overlay Reveal --- */
+.news-card .news-img {
+  overflow: hidden;
+  position: relative;
+}
+.news-card .news-img::after {
+  content: 'Xem chi tiết →';
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 101, 245, 0.65);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  letter-spacing: 0.05em;
+}
+.news-card:hover .news-img::after {
+  opacity: 1;
+}
+.news-card .news-img img {
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.news-card:hover .news-img img {
+  transform: scale(1.07);
+}
+
+/* --- Neon Glow Pulse on Buttons --- */
+@keyframes neon-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(6,101,245,0.4), 0 0 20px rgba(6,101,245,0.2); }
+  50%       { box-shadow: 0 0 16px rgba(6,101,245,0.7), 0 0 40px rgba(6,101,245,0.35); }
+}
+.btn-orange {
+  animation: neon-pulse 3s ease-in-out infinite;
+}
+.btn-orange:hover {
+  animation: none;
+  box-shadow: 0 8px 32px rgba(208,73,0,0.45);
+}
+
+/* --- Ripple Click Effect --- */
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  transform: scale(0);
+  animation: ripple-expand 0.55s linear;
+  pointer-events: none;
+  z-index: 10;
+}
+@keyframes ripple-expand {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* --- Gradient Text Shine --- */
+@keyframes text-shine {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.hero-copy h1 em {
+  background: linear-gradient(90deg, #0056d6 0%, #00c6ff 30%, #f16a22 60%, #0056d6 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shine 4s linear infinite;
+}
+
+/* --- Floating Ambient Orbs (background decoration) --- */
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6,101,245,0.12), transparent 70%);
+  bottom: -80px;
+  left: -80px;
+  pointer-events: none;
+  animation: orb-drift 9s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* --- Count-up Number Highlight --- */
+.trust b {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.trust b.count-done {
+  color: #0056d6;
+  transform: scale(1.15);
+}
+
+/* --- FAQ Item Reveal --- */
+.faq-item summary {
+  position: relative;
+  transition: color 0.25s ease, padding-left 0.3s ease;
+}
+.faq-item[open] summary {
+  color: #0056d6;
+  padding-left: 6px;
+  border-left: 3px solid #0056d6;
+}
+.faq-item .faq-content {
+  animation: fade-in-down 0.35s ease;
+}
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Feature Card Icon Bounce --- */
+.feature-card:hover .icon {
+  animation: icon-bounce 0.5s cubic-bezier(0.36,0.07,0.19,0.97) both;
+}
+@keyframes icon-bounce {
+  0%,100% { transform: translateY(0); }
+  30%     { transform: translateY(-10px); }
+  60%     { transform: translateY(-4px); }
+}
+
+/* --- Topbar Ticker Glow --- */
+.topbar span {
+  position: relative;
+}
+.topbar span::after {
+  content: '';
+  position: absolute;
+  left: -8px; top: 50%;
+  transform: translateY(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80, 0 0 12px #4ade80;
+  animation: live-pulse 1.8s ease-in-out infinite;
+}
+@keyframes live-pulse {
+  0%,100% { opacity: 1; transform: translateY(-50%) scale(1); }
+  50%     { opacity: 0.4; transform: translateY(-50%) scale(1.6); }
+}
+
+/* --- Scroll Progress Bar --- */
+.scroll-progress-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  z-index: 9999;
+  background: transparent;
+}
+.scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0056d6, #00c6ff, #f16a22);
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
 }
