@@ -2347,13 +2347,11 @@ img {
 }
 
 img[loading="lazy"]:not(.is-loaded) {
-  opacity: 0;
-  filter: blur(10px);
+  /* Removed opacity:0 and filter:blur to fix mobile Safari/Chrome bugs where load event fails to fire */
 }
 
 img.is-loaded {
   opacity: 1;
-  filter: blur(0);
 }
 
 /* Link Underline Animation */
