@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fpt-telecom-v3';
+const CACHE_NAME = 'fpt-telecom-v4';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -52,8 +52,10 @@ self.addEventListener('fetch', (event) => {
   
   if (event.request.method !== 'GET') return;
   
-  // HTML - Network first, fallback to cache
-  if (event.request.headers.get('accept').includes('text/html')) {
+  // HTML, CSS, JS - Network first, fallback to cache
+  if (event.request.headers.get('accept').includes('text/html') || 
+      url.pathname.endsWith('.css') || 
+      url.pathname.endsWith('.js')) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {

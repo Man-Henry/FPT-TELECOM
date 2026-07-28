@@ -748,8 +748,13 @@ if (leadForm) {
       const h = Math.floor((diff % 86400000) / 3600000);
       const m = Math.floor((diff % 3600000) / 60000);
       const s = Math.floor((diff % 60000) / 1000);
-      const text = d > 0 ? `${d} ngày ${h}h ${m}p` : `${h}h ${m}p ${s}s`;
-      timer.textContent = text;
+      const hh = h.toString().padStart(2, '0');
+      const mm = m.toString().padStart(2, '0');
+      const ss = s.toString().padStart(2, '0');
+      const text = d > 0 
+        ? `${d} ngày ${hh}<span class="blink-colon">:</span>${mm}` 
+        : `${hh}<span class="blink-colon">:</span>${mm}<span class="blink-colon">:</span>${ss}`;
+      timer.innerHTML = text;
 
       // Announce cho screen reader mỗi 5 phút (300 ticks)
       tickCount++;

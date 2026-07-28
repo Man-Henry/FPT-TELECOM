@@ -1661,16 +1661,74 @@ form .btn {
   }
 }
 
+@keyframes blink-colon {
+  50% { opacity: 0; }
+}
+
+.blink-colon {
+  animation: blink-colon 1s linear infinite;
+  display: inline-block;
+  margin: 0 2px;
+}
+
 .form-social-proof {
   background: #f0fdf4;
   color: #166534;
   padding: 8px 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 13px;
-  margin-bottom: 20px;
+  margin-top: 16px;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* FAQ Styles */
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item summary {
+  padding: 20px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--navy);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 20px;
+  color: var(--orange);
+  transition: transform 0.3s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-content {
+  padding: 0 20px 20px;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .pulse-dot {
