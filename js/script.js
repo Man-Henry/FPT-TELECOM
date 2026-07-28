@@ -752,8 +752,8 @@ if (leadForm) {
       const mm = m.toString().padStart(2, '0');
       const ss = s.toString().padStart(2, '0');
       const text = d > 0 
-        ? `${d} ngày ${hh}<span class="blink-colon">:</span>${mm}` 
-        : `${hh}<span class="blink-colon">:</span>${mm}<span class="blink-colon">:</span>${ss}`;
+        ? `${d} ngày ${hh}:${mm}` 
+        : `${hh}:${mm}:${ss}`;
       timer.innerHTML = text;
 
       // Announce cho screen reader mỗi 5 phút (300 ticks)
