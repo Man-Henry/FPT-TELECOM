@@ -66,3 +66,4 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ## 5. Custom Rules
 - **Image Generation Workflow:** Mỗi khi tạo hình ảnh mới từ công cụ `generate_image`, do hạn chế của môi trường sandbox, PHẢI LUÔN LUÔN tự động cung cấp sẵn cho user câu lệnh copy tương ứng (ví dụ: PowerShell `Copy-Item`) trong phản hồi. Câu lệnh này giúp user copy trực tiếp các file ảnh từ thư mục hệ thống Artifacts (`C:\Users\ManHenry\.gemini\antigravity-ide\brain\...\`) vào thẳng thư mục chứa ảnh tĩnh của dự án (`assets/images/`), bao gồm cả việc đổi đuôi file (ví dụ sang `.webp`) nếu cần.
+- **Sitemap Updates:** Mỗi khi tạo một trang HTML mới (`.html`) trong dự án, bắt buộc phải tự động cập nhật file `sitemap.xml` để thêm đường dẫn URL của trang mới và cập nhật thẻ `<lastmod>` theo thời gian hiện tại.
