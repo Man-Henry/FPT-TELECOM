@@ -11,7 +11,7 @@ const ASSETS_TO_CACHE = [
   '/js/script.js',
   '/manifest.json',
   '/assets/images/logo.webp',
-  '/assets/images/fpt-internet-family-hero.webp',
+  '/assets/images/fptfamily.webp',
   '/assets/images/wifi6.webp',
   '/assets/images/modemwifi.webp',
   '/assets/images/boxtv.webp',
