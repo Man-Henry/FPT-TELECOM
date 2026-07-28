@@ -2346,10 +2346,6 @@ img {
   transition: opacity 0.5s ease, filter 0.5s ease;
 }
 
-img[loading="lazy"]:not(.is-loaded) {
-  /* Removed opacity:0 and filter:blur to fix mobile Safari/Chrome bugs where load event fails to fire */
-}
-
 img.is-loaded {
   opacity: 1;
 }
