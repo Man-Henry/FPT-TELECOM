@@ -2566,12 +2566,29 @@ nav a:hover::after {
 
 @media(max-width:760px) {
   .hero-visual.photo-visual {
-    height: 220px
+    height: 250px;
   }
-
   .hero-photo {
-    height: 220px;
-    object-position: 80% center
+    height: 250px;
+    object-position: 80% center;
+  }
+  .photo-visual .plan {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    border-radius: 12px;
+  }
+  .photo-visual .plan small {
+    font-size: 0.7rem;
+    margin-top: 1px;
+  }
+  .photo-visual .plan-one { top: 12px; left: 12px; }
+  .photo-visual .plan-two { bottom: 12px; left: 12px; }
+  .photo-visual .plan-three { top: 12px; right: 12px; }
+
+  .trust {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
   }
 }
 

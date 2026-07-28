@@ -1499,8 +1499,15 @@ document.querySelectorAll('.btn, .btn-orange, .outline-btn').forEach(btn => {
 
 // --- Count-up Animation for Trust Stats ---
 function animateCountUp(el) {
-  const target = el.textContent.replace(/[^0-9]/g, '');
-  const suffix = el.textContent.replace(/[0-9]/g, '');
+  const text = el.textContent.trim();
+  // Extract number part (with dots/commas) and suffix part
+  const match = text.match(/^([0-9.,]+)(.*)$/);
+  if (!match) return;
+  
+  const targetStr = match[1];
+  const suffix = match[2];
+  const target = targetStr.replace(/[^0-9]/g, '');
+  
   if (!target) return;
   const end = parseInt(target, 10);
   const duration = 1600;
