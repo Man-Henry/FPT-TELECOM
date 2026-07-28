@@ -159,6 +159,18 @@ body {
   z-index: 2
 }
 
+.hero-visual {
+  position: relative;
+  z-index: 1;
+  animation: float-hero 5s ease-in-out infinite;
+}
+
+@keyframes float-hero {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
 .eyebrow {
   color: var(--blue);
   font-size: 11px;
@@ -1644,7 +1656,15 @@ form .btn {
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 16px;
-  font-variant-numeric: tabular-nums;
+}
+
+#countdown-timer {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-block;
+  min-width: 75px; /* Ngăn chặn nhảy chữ */
+  text-align: left;
 }
 
 @keyframes pulse-light {
@@ -4257,41 +4277,7 @@ footer {
    PROFESSIONAL DYNAMIC INTERACTION EFFECTS
    ========================================================================== */
 
-/* 1. Custom Premium Cursor */
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--orange);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
-  mix-blend-mode: difference;
-}
 
-.custom-cursor.cursor-hover {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(249, 115, 22, 0.2);
-  border-color: transparent;
-}
-
-/* Hide default cursor on desktop when custom cursor is active */
-@media (min-width: 1024px) {
-  body.has-custom-cursor {
-    cursor: none;
-  }
-  body.has-custom-cursor a,
-  body.has-custom-cursor button,
-  body.has-custom-cursor .btn,
-  body.has-custom-cursor .faq-item summary {
-    cursor: none;
-  }
-}
 
 /* 2. Shine Hover Effect for Buttons */
 .btn {

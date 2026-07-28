@@ -66,30 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollProgressBar.style.width = scroll;
   });
 
-  // 2. Custom Premium Cursor
-  if (window.matchMedia("(min-width: 1024px)").matches) {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-    document.body.classList.add('has-custom-cursor');
-
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
-    // Add hover effect to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .btn, .faq-item summary, input, textarea');
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('cursor-hover');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('cursor-hover');
-      });
-    });
-  }
-
   // 3. Magnetic Button Effect
   const magneticButtons = document.querySelectorAll('.magnetic-btn, .btn');
   magneticButtons.forEach(btn => {
