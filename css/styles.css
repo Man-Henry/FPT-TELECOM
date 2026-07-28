@@ -4003,6 +4003,14 @@ body {
   background: var(--pale) !important;
 }
 
+@media (max-width: 992px) {
+  .contact {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    padding: 60px 24px !important;
+  }
+}
+
 /* 7. Flat Design Buttons (Unified Action Color) */
 .btn {
   box-shadow: none !important;
