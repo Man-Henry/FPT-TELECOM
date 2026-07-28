@@ -1209,6 +1209,13 @@ if (leadForm) {
     
     gsap.registerPlugin(ScrollTrigger);
 
+    // Prevent CSS & GSAP conflict: CSS transitions break GSAP animations, so we remove them from GSAP targets
+    const gsapTargets = document.querySelectorAll(".hero-copy > *, .hero-visual, .scroll-animate, .package, .triple, .offer-list > div, .testimonial-grid figure, .feature-card, .news-card");
+    gsapTargets.forEach(el => {
+      el.classList.remove("fade-up", "slide-left", "slide-right", "delay-100", "delay-200", "delay-300", "delay-400", "delay-500", "is-visible");
+      el.style.transition = "none"; // Ensure no leftover CSS transitions
+    });
+
     // 1. Hero Reveal (Stagger Fade-in Up)
     const heroTl = gsap.timeline();
     heroTl.from(".hero-copy > *", {

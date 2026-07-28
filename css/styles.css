@@ -2546,21 +2546,48 @@ nav a:hover::after {
 }
 
 @media(max-width:1050px) {
+  /* Fix Header Overflow on iPad */
+  .header {
+    padding: 0 20px;
+  }
+  .header nav {
+    gap: 15px;
+  }
+  .header nav a {
+    font-size: 14px;
+  }
+  .header-cta .btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  /* Fix Hero Overflow & Squish on iPad */
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 60px 20px 40px;
+    min-height: auto;
+  }
+  .hero h1 {
+    font-size: 40px;
+    letter-spacing: -1.5px;
+  }
+  
   .hero-visual.photo-visual {
-    height: 310px
+    height: 350px;
   }
-
   .hero-photo {
-    height: 310px;
-    object-position: 72% center
+    height: 350px;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    object-position: center;
   }
-
   .photo-visual .plan-one {
-    top: 10px
+    top: 10px;
   }
-
   .photo-visual .plan-two {
-    bottom: 12px
+    bottom: 12px;
   }
 }
 
