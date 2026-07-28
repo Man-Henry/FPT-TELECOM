@@ -46,6 +46,75 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+  
+  // ==========================================================================
+  // PROFESSIONAL DYNAMIC INTERACTION EFFECTS
+  // ==========================================================================
+  
+  // 1. Scroll Progress Bar
+  const scrollProgressContainer = document.createElement('div');
+  scrollProgressContainer.className = 'scroll-progress-container';
+  const scrollProgressBar = document.createElement('div');
+  scrollProgressBar.className = 'scroll-progress-bar';
+  scrollProgressContainer.appendChild(scrollProgressBar);
+  document.body.appendChild(scrollProgressContainer);
+
+  window.addEventListener('scroll', () => {
+    const totalScroll = document.documentElement.scrollTop;
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scroll = `${totalScroll / windowHeight * 100}%`;
+    scrollProgressBar.style.width = scroll;
+  });
+
+  // 2. Custom Premium Cursor
+  if (window.matchMedia("(min-width: 1024px)").matches) {
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
+    document.body.classList.add('has-custom-cursor');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    // Add hover effect to interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .btn, .faq-item summary, input, textarea');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('cursor-hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('cursor-hover');
+      });
+    });
+  }
+
+  // 3. Magnetic Button Effect
+  const magneticButtons = document.querySelectorAll('.magnetic-btn, .btn');
+  magneticButtons.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      // Limit the magnetic pull distance
+      const pullX = x * 0.3;
+      const pullY = y * 0.3;
+      
+      btn.style.transform = `translate(${pullX}px, ${pullY}px)`;
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = `translate(0px, 0px)`;
+      btn.style.transition = `transform 0.5s ease`; // Smooth reset
+    });
+    
+    btn.addEventListener('mouseenter', () => {
+      btn.style.transition = `none`; // Remove transition during follow
+    });
+  });
+
 });
 const tabs = document.querySelectorAll('.tab');
 const menuButton = document.querySelector('.menu-toggle');
