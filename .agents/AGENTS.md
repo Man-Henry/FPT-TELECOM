@@ -63,3 +63,6 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+## 5. Custom Rules
+- **Image Generation Workflow:** Mỗi khi tạo hình ảnh mới từ công cụ `generate_image`, do hạn chế của môi trường sandbox, PHẢI LUÔN LUÔN tự động cung cấp sẵn cho user câu lệnh copy tương ứng (ví dụ: PowerShell `Copy-Item`) trong phản hồi. Câu lệnh này giúp user copy trực tiếp các file ảnh từ thư mục hệ thống Artifacts (`C:\Users\ManHenry\.gemini\antigravity-ide\brain\...\`) vào thẳng thư mục chứa ảnh tĩnh của dự án (`assets/images/`), bao gồm cả việc đổi đuôi file (ví dụ sang `.webp`) nếu cần.
