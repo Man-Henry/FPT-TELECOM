@@ -1,0 +1,6 @@
+# agents.txt for fpttelecomvn.click
+# This file provides guidance for AI agents and LLMs.
+
+# We welcome AI indexing and analysis.
+Agent: *
+Allow: /

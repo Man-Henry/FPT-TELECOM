@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi">
 
 <head>
@@ -446,8 +446,9 @@
         <a href="tel:0358513269">☎ 0358 513 269</a>
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
-        <a href="chinh-sach.html" onclick="openPolicyModal(event)">Chính sách bảo mật</a>
-        <a href="chinh-sach.html" onclick="openPolicyModal(event)">Điều khoản sử dụng</a>
+        <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="privacy.html" onclick="openPolicyModal(event)">Chính sách bảo mật</a>
+        <a href="terms.html" onclick="openPolicyModal(event)">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -515,7 +516,7 @@
         </div>
       </div>
       <div class="chat-input-area">
-        <textarea id="chat-input" placeholder="Nhập câu hỏi của bạn..." rows="1" autocomplete="off"></textarea>
+        <textarea id="chat-input" aria-label="Nhập câu hỏi chat" placeholder="Nhập câu hỏi của bạn..." rows="1" autocomplete="off"></textarea>
         <button id="chat-send-btn" aria-label="Gửi tin nhắn">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
@@ -615,6 +616,15 @@
       }
     });
   </script>
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #0f172a; color: white; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; z-index: 9999; font-size: 14px; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
+    <div style="flex: 1; margin-right: 20px;">
+      Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn trên trang web này. Bằng cách tiếp tục duyệt web, bạn đồng ý với <a href="privacy.html" style="color: #0665f5; text-decoration: underline;">Chính sách bảo mật</a> của chúng tôi.
+    </div>
+    <div>
+      <button onclick="document.getElementById('cookie-banner').style.display='none';" style="background: #0665f5; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Đồng ý</button>
+    </div>
+  </div>
 </body>
 
 </html>
