@@ -1579,3 +1579,33 @@ document.querySelectorAll('.scroll-animate').forEach(el => {
   sectionObserver.observe(el);
 });
 
+// --- Support Form Toggle ---
+window.toggleSupportForm = function(btn) {
+  const form = btn.closest('form');
+  const supportField = form.querySelector('#support-field');
+  const supportTextarea = form.querySelector('#support-textarea');
+  const defaultRow = form.querySelector('.form-row');
+  const submitBtn = form.querySelector('#main-submit-btn');
+
+  if (supportField.style.display === 'none') {
+    supportField.style.display = 'block';
+    defaultRow.style.display = 'none';
+    
+    const selects = defaultRow.querySelectorAll('select');
+    selects.forEach(s => s.disabled = true);
+    
+    supportTextarea.required = true;
+    submitBtn.innerHTML = 'GỬI YÊU CẦU HỖ TRỢ <span>→</span>';
+    btn.textContent = 'Quay lại đăng ký dịch vụ';
+  } else {
+    supportField.style.display = 'none';
+    defaultRow.style.display = 'flex';
+    
+    const selects = defaultRow.querySelectorAll('select');
+    selects.forEach(s => s.disabled = false);
+    
+    supportTextarea.required = false;
+    submitBtn.innerHTML = 'ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY <span>→</span>';
+    btn.textContent = 'Nhập yêu cầu hỗ trợ';
+  }
+};

@@ -531,8 +531,13 @@
                 <option>Buổi sáng</option>
                 <option>Buổi chiều</option>
                 <option>Buổi tối</option>
-              </select></label></div><button class="btn btn-orange" type="submit">ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY
+              </select></label></div>
+          <div id="support-field" style="display:none; margin-bottom: 16px;">
+            <label>Yêu cầu hỗ trợ *<textarea id="support-textarea" rows="3" placeholder="Nhập yêu cầu hỗ trợ của bạn..." style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 1rem;"></textarea></label>
+          </div>
+          <button id="main-submit-btn" class="btn btn-orange" type="submit">ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY
             <span>→</span></button>
+          <button id="toggle-support-btn" class="btn" type="button" onclick="toggleSupportForm(this)" style="width: 100%; margin-top: 12px; background: transparent; color: var(--primary); border: 1px solid var(--primary);">Nhập yêu cầu hỗ trợ</button>
           <p class="microcopy">🔒 Thông tin của bạn được bảo mật an toàn tuyệt đối. Miễn phí khảo sát 100%.</p>
           <small class="form-note">Bằng cách đăng ký, bạn đồng ý với <a href="#" onclick="openPolicyModal(event)"
               style="text-decoration: underline; color: inherit;">chính sách bảo mật</a> của FPT VietNam.</small>
