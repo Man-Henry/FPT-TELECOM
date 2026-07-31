@@ -1,5 +1,4 @@
-/* Google Fonts Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* Font Inter: loaded via preload in HTML head for performance */
 
 @font-face {
   font-family: 'Inter Fallback';
@@ -15,7 +14,7 @@
   --navy: #071b42;
   --orange: #d04900;
   --ink: #13203a;
-  --muted: #566882;
+  --muted: #4a5c76;
   --line: #e6ebf3;
   --pale: #f4f8ff
 }
@@ -172,8 +171,8 @@ body {
 }
 
 .eyebrow {
-  color: var(--blue);
-  font-size: 11px;
+  color: #004ab8;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 1.6px;
   margin: 0 0 13px
@@ -234,7 +233,7 @@ body {
 }
 
 .trust span {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted)
 }
 
@@ -4523,8 +4522,8 @@ footer {
 }
 
 @keyframes shine {
-  0% { left: -100%; }
-  100% { left: 200%; }
+  0% { transform: translateX(-200%); }
+  100% { transform: translateX(300%); }
 }
 
 /* 3. Image Hover Floating & Shadow */
@@ -4563,8 +4562,8 @@ footer {
 }
 
 @keyframes target-highlight {
-  0% { background-color: rgba(249, 115, 22, 0.1); }
-  100% { background-color: transparent; }
+  0% { outline: 2px solid rgba(249, 115, 22, 0.4); outline-offset: 4px; }
+  100% { outline: 2px solid transparent; outline-offset: 4px; }
 }
 
 @media (max-width: 768px) {
@@ -4695,16 +4694,19 @@ footer {
   transform: scale(1.07);
 }
 
-/* --- Neon Glow Pulse on Buttons --- */
+/* --- Neon Glow Pulse on Buttons (composited: opacity only) --- */
 @keyframes neon-pulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(6,101,245,0.4), 0 0 20px rgba(6,101,245,0.2); }
-  50%       { box-shadow: 0 0 16px rgba(6,101,245,0.7), 0 0 40px rgba(6,101,245,0.35); }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.85; }
 }
 .btn-orange {
   animation: neon-pulse 3s ease-in-out infinite;
+  will-change: opacity;
+  box-shadow: 0 0 8px rgba(6,101,245,0.4), 0 0 20px rgba(6,101,245,0.2);
 }
 .btn-orange:hover {
   animation: none;
+  opacity: 1;
   box-shadow: 0 8px 32px rgba(208,73,0,0.45);
 }
 

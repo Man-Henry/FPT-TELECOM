@@ -965,7 +965,7 @@ if (leadForm) {
 
         const submitBtn = nameOverlay.querySelector('#chat-name-submit');
         const nameInput = nameOverlay.querySelector('#chat-name-input');
-        nameInput.focus();
+        requestAnimationFrame(() => nameInput.focus());
 
         const startChat = () => {
           let name = nameInput.value.trim();
@@ -1480,11 +1480,18 @@ if (leadForm) {
   }, { passive: true });
   // ---------------------------------------------------------
 
-  // Ensure scripts are fully loaded (fixes cross-browser defer execution order bugs)
+  // Ensure GSAP is available before initializing (defer load order fix)
+  function tryInitGSAP(attempts) {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      initPremiumAnimations();
+    } else if (attempts > 0) {
+      setTimeout(() => tryInitGSAP(attempts - 1), 200);
+    }
+  }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPremiumAnimations);
+    document.addEventListener('DOMContentLoaded', () => tryInitGSAP(15));
   } else {
-    initPremiumAnimations();
+    tryInitGSAP(15);
   }
 
 /* =======================================================

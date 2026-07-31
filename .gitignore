@@ -64,3 +64,13 @@ firebase-debug.log*
 
 # Backend / Cloudflare Worker (Contains System Prompts and Bot Logic)
 src/
+
+# Scratch scripts (local utilities, not for production)
+scratch/
+
+# Audit reports
+fpttelecomvn.click-audit/
+
+# Python cache
+__pycache__/
+*.pyc

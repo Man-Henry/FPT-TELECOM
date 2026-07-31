@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fpt-telecom-v4';
+const CACHE_NAME = 'fpt-telecom-v5';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',

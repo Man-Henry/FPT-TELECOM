@@ -2,20 +2,13 @@
 <html lang="vi">
 
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-KWWKQ7KK');</script>
+  <!-- Google Tag Manager — Deferred 3s to reduce FCP/TBT -->
+  <script>window.addEventListener('load',function(){setTimeout(function(){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)})(window,document,'script','dataLayer','GTM-KWWKQ7KK')},3000)});</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <meta name="google-site-verification" content="ny5LbeZipQj1T8M_QgDo9cG1VjXmvA6pe542v2utDvY" />
   <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="theme-color" content="#0665f5">
 
@@ -25,13 +18,13 @@
   <meta name="apple-mobile-web-app-title" content="FPT Telecom">
 
   <!-- Resource Hints (Tối ưu hóa tốc độ tải) -->
-  <link rel="preload" as="image" href="https://fpttelecomvn.click/assets/images/fptfamily.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/fptfamily.webp" fetchpriority="high">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-    rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/fptlogo.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/images/fptlogo.png">
   <link rel="shortcut icon" href="assets/images/fptlogo.png">
@@ -68,11 +61,8 @@
 
   <link rel="stylesheet" href="css/styles.css?v=14">
 
-  <!-- PWA & Mobile App enhancements -->
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0665f5">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
   <!-- Import map for Three.js 3D Map -->
   <script type="importmap">
