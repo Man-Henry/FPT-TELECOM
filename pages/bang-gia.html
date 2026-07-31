@@ -25,8 +25,7 @@
   <meta name="apple-mobile-web-app-title" content="FPT Telecom">
 
   <!-- Resource Hints (Tối ưu hóa tốc độ tải) -->
-  <link rel="preload" as="image" href="https://fpttelecomvn.click/assets/images/fptfamily.webp"
-    fetchpriority="high">
+  <link rel="preload" as="image" href="https://fpttelecomvn.click/assets/images/fptfamily.webp" fetchpriority="high">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -494,7 +493,8 @@
         <h2>Gói nào dành cho bạn?</h2>
       </div>
       <div class="compare-table-wrapper scroll-animate" style="overflow-x: auto; margin-top: 30px;">
-        <table class="compare-table" style="width: 100%; min-width: 600px; border-collapse: collapse; background: var(--canvas); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+        <table class="compare-table"
+          style="width: 100%; min-width: 600px; border-collapse: collapse; background: var(--canvas); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
           <thead>
             <tr style="background: var(--pale); border-bottom: 2px solid var(--blue);">
               <th style="padding: 16px; text-align: left; font-weight: 700; color: var(--ink);">Tính năng</th>
@@ -519,7 +519,8 @@
             <tr style="border-bottom: 1px solid var(--line);">
               <td style="padding: 16px; color: var(--muted); font-weight: 600;">Trang bị Modem</td>
               <td style="padding: 16px; text-align: center;">Wi-Fi 6</td>
-              <td style="padding: 16px; text-align: center; font-weight: 600; color: var(--blue);">Wi-Fi 6 (Ưu tiên game)</td>
+              <td style="padding: 16px; text-align: center; font-weight: 600; color: var(--blue);">Wi-Fi 6 (Ưu tiên
+                game)</td>
               <td style="padding: 16px; text-align: center;">Wi-Fi 6 Cao cấp</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--line);">
@@ -532,41 +533,91 @@
         </table>
       </div>
     </section>
-
-    <section class="contact section" id="contact">
-      <div class="contact-copy scroll-animate">
-        <h2>Bắt đầu kết nối</h2>
+    <section class="contact" id="contact">
+      <div class="contact-copy">
+        <p class="eyebrow">BẮT ĐẦU KẾT NỐI</p>
+        <h2>Đăng ký ngay.<br><em>Tư vấn hoàn toàn miễn phí.</em></h2>
         <p>Để lại thông tin, nhân viên FPT sẽ gọi lại trong ít phút để kiểm tra hạ tầng và báo ưu đãi tại khu vực của
           bạn. Hoặc liên hệ hotline 24/7:</p>
-        <div class="hotlines"><a href="tel:0383900321" class="btn outline-btn magnetic-btn">☎ 0383 900 321</a><a
-            href="tel:0358513269" class="btn outline-btn magnetic-btn">☎ 0358 513 269</a></div>
-        <!-- Removed redundant small note here -->
-        <div class="contact-mascot">
-          <svg viewBox="0 0 100 100" width="100" height="100" class="mascot-svg">
+        <a href="tel:0383900321" class="contact-phone">☎ 0383 900 321</a>
+        <a href="tel:0358513269" class="contact-phone" style="font-size: 16px; opacity: 0.85;">☎ 0358 513 269</a>
+
+        <div class="cute-mascot">
+          <svg width="140" height="140" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <style>
+              .mascot-float {
+                animation: floatMascot 3s ease-in-out infinite;
+              }
+
+              .mascot-eye {
+                animation: blinkMascot 4s infinite;
+              }
+
+              .mascot-arm-l {
+                animation: waveMascot 2.5s ease-in-out infinite;
+                transform-origin: 25px 65px;
+              }
+
+              @keyframes floatMascot {
+
+                0%,
+                100% {
+                  transform: translateY(0);
+                }
+
+                50% {
+                  transform: translateY(-8px);
+                }
+              }
+
+              @keyframes blinkMascot {
+
+                0%,
+                46%,
+                49%,
+                100% {
+                  transform: scaleY(1);
+                }
+
+                47.5% {
+                  transform: scaleY(0.1);
+                }
+              }
+
+              @keyframes waveMascot {
+
+                0%,
+                100% {
+                  transform: rotate(0deg);
+                }
+
+                50% {
+                  transform: rotate(25deg);
+                }
+              }
+            </style>
+            <!-- Shadow -->
+            <ellipse cx="50" cy="85" rx="25" ry="5" fill="#cbd8ef" />
             <g class="mascot-float">
-              <!-- Shadow -->
-              <ellipse cx="50" cy="90" rx="30" ry="5" fill="rgba(0,0,0,0.1)" class="mascot-shadow" />
-              <!-- Head/Body (Fox) -->
-              <path d="M 25 60 C 25 30, 75 30, 75 60 L 65 65 L 50 70 L 35 65 Z" fill="#ff6500" stroke="#ff6500"
-                stroke-linejoin="round" />
-              <!-- Ears -->
-              <path d="M 25 40 L 15 15 L 40 30 Z" fill="#ff6500" stroke="#ff6500" stroke-linejoin="round" />
-              <path d="M 75 40 L 85 15 L 60 30 Z" fill="#ff6500" stroke="#ff6500" stroke-linejoin="round" />
-              <path d="M 27 38 L 19 21 L 38 31 Z" fill="#fff" />
-              <path d="M 73 38 L 81 21 L 62 31 Z" fill="#fff" />
-              <!-- Face (White mask) -->
-              <path d="M 30 50 C 30 35, 70 35, 70 50 C 70 60, 50 65, 50 65 C 50 65, 30 60, 30 50 Z" fill="#ffffff" />
-              <!-- Eyes (Blinking) -->
-              <g class="mascot-eyes">
-                <circle cx="40" cy="48" r="4" fill="#333" />
-                <circle cx="60" cy="48" r="4" fill="#333" />
-                <circle cx="41" cy="46" r="1.5" fill="#fff" />
-                <circle cx="61" cy="46" r="1.5" fill="#fff" />
+              <!-- Antenna -->
+              <line x1="50" y1="20" x2="50" y2="8" stroke="#0665f5" stroke-width="3" stroke-linecap="round" />
+              <circle cx="50" cy="6" r="4.5" fill="#ff6500" />
+              <!-- Head -->
+              <rect x="22" y="20" width="56" height="42" rx="14" fill="#ffffff" stroke="#0665f5" stroke-width="3" />
+              <!-- Screen -->
+              <rect x="30" y="28" width="40" height="20" rx="5" fill="#13203a" />
+              <!-- Eyes -->
+              <g class="mascot-eye" transform-origin="38 38">
+                <circle cx="38" cy="38" r="3.5" fill="#00e5ff" />
               </g>
-              <!-- Nose -->
-              <circle cx="50" cy="54" r="3" fill="#333" />
-              <!-- Smile -->
-              <path d="M 46 58 Q 50 62 54 58" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" />
+              <g class="mascot-eye" transform-origin="62 38">
+                <circle cx="62" cy="38" r="3.5" fill="#00e5ff" />
+              </g>
+              <!-- Cheeks -->
+              <circle cx="30" cy="48" r="4" fill="#ff6500" opacity="0.25" />
+              <circle cx="70" cy="48" r="4" fill="#ff6500" opacity="0.25" />
+              <!-- Mouth -->
+              <path d="M 45 47 Q 50 51 55 47" fill="none" stroke="#0665f5" stroke-width="2" stroke-linecap="round" />
               <!-- Body/Base -->
               <path d="M 33 62 L 67 62 L 78 80 L 22 80 Z" fill="#0665f5" stroke="#0665f5" stroke-linejoin="round" />
               <!-- Details on base -->
@@ -613,13 +664,19 @@
                 <option>Buổi tối</option>
               </select></label></div>
           <div id="support-field" style="display:none; margin-bottom: 16px;">
-            <label>Yêu cầu hỗ trợ *<textarea name="Yêu cầu hỗ trợ" id="support-textarea" rows="3" placeholder="Nhập yêu cầu hỗ trợ của bạn..." style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 1rem;"></textarea></label>
+            <label>Yêu cầu hỗ trợ *<textarea name="Yêu cầu hỗ trợ" id="support-textarea" rows="3"
+                placeholder="Nhập yêu cầu hỗ trợ của bạn..."
+                style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 1rem;"></textarea></label>
           </div>
           <button id="main-submit-btn" class="btn btn-orange" type="submit">ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY
             <span>→</span></button>
-          <button id="toggle-support-btn" class="btn" type="button" onclick="toggleSupportForm(this)" style="width: 100%; margin-top: 12px; background: transparent; color: var(--primary); border: 1px solid var(--primary);">Nhập yêu cầu hỗ trợ</button>
+          <button id="toggle-support-btn" class="btn" type="button" onclick="toggleSupportForm(this)"
+            style="width: 100%; margin-top: 12px; background: transparent; color: var(--primary); border: 1px solid var(--primary);">Nhập
+            yêu cầu hỗ trợ</button>
           <p class="microcopy" style="margin-top: 10px; font-size: 0.85rem; line-height: 1.4;">
-            <span>🔒 Miễn phí khảo sát 100%. Thông tin được bảo mật tuyệt đối theo <a href="#" onclick="openPolicyModal(event)" style="text-decoration: underline; color: inherit;">chính sách</a> của FPT VietNam.</span>
+            <span>🔒 Miễn phí khảo sát 100%. Thông tin được bảo mật tuyệt đối theo <a href="#"
+                onclick="openPolicyModal(event)" style="text-decoration: underline; color: inherit;">chính sách</a> của
+              FPT VietNam.</span>
           </p>
           <p class="success" role="status"></p>
         </form>
@@ -739,7 +796,8 @@
         </div>
       </div>
       <div class="chat-input-area">
-        <textarea id="chat-input" aria-label="Nhập câu hỏi chat" placeholder="Nhập câu hỏi của bạn..." rows="1" autocomplete="off"></textarea>
+        <textarea id="chat-input" aria-label="Nhập câu hỏi chat" placeholder="Nhập câu hỏi của bạn..." rows="1"
+          autocomplete="off"></textarea>
         <button id="chat-send-btn" aria-label="Gửi tin nhắn">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
@@ -841,14 +899,20 @@
       }
     });
   </script>
-  
+
   <!-- Cookie Consent Banner -->
-  <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #0f172a; color: white; padding: 15px 24px; display: none; justify-content: space-between; align-items: center; z-index: 9999; font-size: 14px; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
+  <div id="cookie-banner"
+    style="position: fixed; bottom: 0; left: 0; right: 0; background: #0f172a; color: white; padding: 15px 24px; display: none; justify-content: space-between; align-items: center; z-index: 9999; font-size: 14px; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
     <div style="flex: 1; margin-right: 20px;">
-      Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn trên trang web này. Bằng cách tiếp tục duyệt web, bạn đồng ý với <a href="privacy.html" style="color: #0665f5; text-decoration: underline;">Chính sách bảo mật</a> của chúng tôi.
+      Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn trên trang web này. Bằng cách tiếp tục duyệt web, bạn
+      đồng ý với <a href="privacy.html" style="color: #0665f5; text-decoration: underline;">Chính sách bảo mật</a> của
+      chúng tôi.
     </div>
     <div>
-      <button onclick="localStorage.setItem('cookieConsent', 'true'); document.getElementById('cookie-banner').style.display='none';" style="background: #0665f5; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Đồng ý</button>
+      <button
+        onclick="localStorage.setItem('cookieConsent', 'true'); document.getElementById('cookie-banner').style.display='none';"
+        style="background: #0665f5; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Đồng
+        ý</button>
     </div>
   </div>
   <script>
@@ -859,5 +923,3 @@
 </body>
 
 </html>
-
-
