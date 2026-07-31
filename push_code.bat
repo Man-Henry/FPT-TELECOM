@@ -1,6 +1,6 @@
 @echo off
 echo Dang tao sitemap tu dong...
-node generate-sitemap.js
+node scratch\generate-sitemap.js
 echo Dang khoi tao git va them code moi...
 git init
 git add .
