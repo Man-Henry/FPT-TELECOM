@@ -67,4 +67,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ## 5. Custom Rules
 - **Image Generation Workflow:** Mỗi khi tạo hình ảnh mới từ công cụ `generate_image`, do hạn chế của môi trường sandbox, PHẢI LUÔN LUÔN tự động cung cấp sẵn cho user câu lệnh copy tương ứng (ví dụ: PowerShell `Copy-Item`) trong phản hồi. Câu lệnh này giúp user copy trực tiếp các file ảnh từ thư mục hệ thống Artifacts (`C:\Users\ManHenry\.gemini\antigravity-ide\brain\...\`) vào thẳng thư mục chứa ảnh tĩnh của dự án (`assets/images/`), bao gồm cả việc đổi đuôi file (ví dụ sang `.webp`) nếu cần.
 - **Sitemap Updates:** Mỗi khi tạo một trang HTML mới (`.html`) trong dự án, bắt buộc phải tự động cập nhật file `sitemap.xml` để thêm đường dẫn URL của trang mới và cập nhật thẻ `<lastmod>` theo thời gian hiện tại.
-- **News Page Updates:** Mỗi khi hoàn thành việc tạo một bài viết/trang HTML mới (ví dụ: trang khuyến mãi, tin tức), bắt buộc phải tự động tìm và cập nhật trang danh sách tin tức của dự án (ví dụ: `tin-tuc.html` hoặc `index.html` tuỳ ngữ cảnh) để chèn thêm liên kết (URL), tiêu đề và hình ảnh thu nhỏ (thumbnail) của bài viết mới vào danh sách.
+- **News Page Updates:** Mỗi khi hoàn thành việc tạo một bài viết/trang HTML mới (ví dụ: trang khuyến mãi, tin tức), bắt buộc phải tự động tìm và cập nhật:
+  1. Trang danh sách tin tức (`pages/news.html` hoặc tương đương).
+  2. Block tin tức trên trang chủ (`index.html`). 
+  Tại các trang này, phải chèn liên kết, tiêu đề và thumbnail của bài viết mới **lên vị trí đầu tiên (đẩy các bài viết cũ xuống dưới)**. Nếu có giới hạn số lượng hiển thị (ví dụ 3 bài trên trang chủ), tự động xóa bài viết cũ nhất ở dưới cùng để đảm bảo layout không bị vỡ.
