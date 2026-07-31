@@ -65,6 +65,14 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').catch(err => console.error('SW setup failed', err));
   });
+
+  // Xóa cache Service Worker để tải lại dữ liệu mới nhất khi người dùng chủ động refresh trang (F5)
+  const navEntry = performance.getEntriesByType("navigation")[0];
+  if (navEntry && navEntry.type === "reload" && 'caches' in window) {
+    caches.keys().then(names => {
+      names.forEach(name => caches.delete(name));
+    });
+  }
 }
 
 if (menuButton) {
@@ -936,7 +944,10 @@ if (leadForm) {
         return msgDiv;
       };
 
-      let sessionId = localStorage.getItem('chat_session_id');
+      // Xóa session cũ khi tải lại trang theo yêu cầu
+      localStorage.removeItem('chat_session_id');
+      localStorage.removeItem('chat_visitor_name');
+      let sessionId = null;
       const chatWidgetBody = document.querySelector('.chat-widget-body');
 
       function promptForNameAndStart(onComplete) {
