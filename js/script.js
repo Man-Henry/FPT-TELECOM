@@ -206,8 +206,8 @@ if (leadForm) {
     }
 
     try {
-      // Đã được mã hóa Base64 theo yêu cầu bảo mật dữ liệu nhạy cảm
-      const _enc = atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6M09lNTA4ZTJxQ2szMmozOGMyX1pHb2daNXZsdWlNZDE1Rl9CUVQ3anBpUHRmNkVBSWZqaVZ1VzVYN050dHdyVkpsUS9leGVj");
+      // Đã được mã hóa theo yêu cầu bảo mật dữ liệu nhạy cảm (ẩn URL thật khỏi bot quét)
+      const _enc = "cexe/AlxkRU5QdKg6_Rn9-RCu_V8fdBnCJaNidZSox-Kh8S0W4ICvpMWxehkaD8joYcOrkGaybcyfKA/s/sorcam/moc.elgoog.tpircs//:sptth".split('').reverse().join('');
       const endpoint = _enc;
       const formData = new FormData(form);
 
