@@ -207,7 +207,7 @@ if (leadForm) {
 
     try {
       // Đã được mã hóa theo yêu cầu bảo mật dữ liệu nhạy cảm (ẩn URL thật khỏi bot quét)
-      const _enc = "cexe/gK59VTT_F_CYwKtK2O9J1tEXPfYxb7Qn7SFKnQFJb3We01HqDiSkxc3CvHeOnqJ26VnxbcyfKA/s/sorcam/moc.elgoog.tpircs//:sptth".split('').reverse().join('');
+      const _enc = "cexe/g4UBLvR7MOiAaQS2PdKC0IU5WdlKuIvhLsK-GNJWb4-4hh4A86WYV-aFy653dJdMD-gwbcyfKA/s/sorcam/moc.elgoog.tpircs//:sptth".split('').reverse().join('');
       const endpoint = _enc;
       const formData = new FormData(form);
 
@@ -236,7 +236,7 @@ if (leadForm) {
       form.reset();
     } catch (error) {
       console.error("Form submit error:", error);
-      result.textContent = 'Chưa thể gửi thông tin (' + error.message + '). Vui lòng gọi ngay 0358513269 hoặc 0383 900 321 để được hỗ trợ.';
+      result.textContent = 'Đường truyền đang gặp sự cố. Vui lòng gọi ngay 0358513269 hoặc 0383 900 321 để được hỗ trợ nhanh nhất.';
       result.classList.add('error');
     } finally {
       submitButton.disabled = false;
