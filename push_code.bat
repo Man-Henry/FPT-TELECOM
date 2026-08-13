@@ -1,6 +1,6 @@
 @echo off
 echo Dang tao sitemap tu dong...
-node scratch\generate-sitemap.js
+powershell -ExecutionPolicy Bypass -File scratch\generate-sitemap.ps1
 echo Dang khoi tao git va them code moi...
 git init
 git add .
