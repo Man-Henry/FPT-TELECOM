@@ -89,25 +89,70 @@ if (navigation) {
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-if (!prefersReducedMotion && hasFinePointer) {
-  document.querySelectorAll('.tilt-3d').forEach(card => {
-    const strength = card.classList.contains('tilt-hero') ? 4 : 7;
-    card.addEventListener('pointermove', event => {
-      const bounds = card.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width - .5;
-      const y = (event.clientY - bounds.top) / bounds.height - .5;
-      card.style.setProperty('--tilt-x', `${-y * strength}deg`);
-      card.style.setProperty('--tilt-y', `${x * strength}deg`);
-      card.style.setProperty('--glow-x', `${(x + .5) * 100}%`);
-      card.style.setProperty('--glow-y', `${(y + .5) * 100}%`);
-      card.classList.add('is-tilting');
+if (!prefersReducedMotion) {
+  const tiltCards = document.querySelectorAll('.tilt-3d');
+  
+  if (hasFinePointer) {
+    tiltCards.forEach(card => {
+      const strength = card.classList.contains('tilt-hero') ? 4 : 7;
+      card.addEventListener('pointermove', event => {
+        const bounds = card.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - .5;
+        const y = (event.clientY - bounds.top) / bounds.height - .5;
+        card.style.setProperty('--tilt-x', `${-y * strength}deg`);
+        card.style.setProperty('--tilt-y', `${x * strength}deg`);
+        card.style.setProperty('--glow-x', `${(x + .5) * 100}%`);
+        card.style.setProperty('--glow-y', `${(y + .5) * 100}%`);
+        card.classList.add('is-tilting');
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+        card.classList.remove('is-tilting');
+      });
     });
-    card.addEventListener('pointerleave', () => {
-      card.style.setProperty('--tilt-x', '0deg');
-      card.style.setProperty('--tilt-y', '0deg');
-      card.classList.remove('is-tilting');
-    });
-  });
+  } else if (window.DeviceOrientationEvent) {
+    let initialBeta = null;
+    let initialGamma = null;
+    
+    window.addEventListener('deviceorientation', (event) => {
+      // Bỏ qua nếu không có dữ liệu (ví dụ: trình duyệt không cho phép)
+      if (event.beta === null || event.gamma === null) return;
+      
+      if (initialBeta === null) {
+        initialBeta = event.beta;
+        initialGamma = event.gamma;
+      }
+      
+      let beta = event.beta - initialBeta; 
+      let gamma = event.gamma - initialGamma; 
+      
+      // Giới hạn góc nghiêng để tránh hiệu ứng quá giật
+      beta = Math.max(-20, Math.min(20, beta));
+      gamma = Math.max(-20, Math.min(20, gamma));
+      
+      tiltCards.forEach(card => {
+        // Chỉ apply cho các card đang hiển thị trên viewport để tối ưu hiệu suất
+        const rect = card.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+          const strength = card.classList.contains('tilt-hero') ? 4 : 7;
+          const x = gamma / 20 * 0.5;
+          const y = beta / 20 * 0.5;
+          
+          card.style.setProperty('--tilt-x', `${-y * strength}deg`);
+          card.style.setProperty('--tilt-y', `${x * strength}deg`);
+          card.style.setProperty('--glow-x', `${(x + .5) * 100}%`);
+          card.style.setProperty('--glow-y', `${(y + .5) * 100}%`);
+          card.classList.add('is-tilting');
+        } else {
+          // Reset nếu nằm ngoài viewport
+          card.style.setProperty('--tilt-x', '0deg');
+          card.style.setProperty('--tilt-y', '0deg');
+          card.classList.remove('is-tilting');
+        }
+      });
+    }, true);
+  }
 }
 
 if (tabs) {
