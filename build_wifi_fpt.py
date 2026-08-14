@@ -1,4 +1,6 @@
-<!doctype html>
+import os
+
+html_content = """<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="utf-8">
@@ -75,9 +77,9 @@
         <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2;">Cáp Quang Siêu Tốc <br><span style="color: #ffcc00;">Giải Trí Đỉnh Cao</span></h1>
         <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9;">Tặng Modem WiFi 6 • Tặng Camera AI & Cloud • Lắp đặt trong 24h</p>
         <div class="trust" style="display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; flex-wrap: wrap;">
-          <div style="text-align: center;"><b style="display: block; font-size: 1.8rem; color: #ffcc00;">5.000.000+</b><span style="font-size: 0.9rem; opacity: 0.8;">Khách hàng tin chọn</span></div>
-          <div style="text-align: center;"><b style="display: block; font-size: 1.8rem; color: #ffcc00;">24h</b><span style="font-size: 0.9rem; opacity: 0.8;">Lắp đặt nhanh chóng</span></div>
-          <div style="text-align: center;"><b style="display: block; font-size: 1.8rem; color: #ffcc00;">24/7</b><span style="font-size: 0.9rem; opacity: 0.8;">Hỗ trợ tận tâm</span></div>
+          <div style="text-align: center;"><b style="display: block; font-size: 1.8rem; color: #ffcc00;">5M+</b><span style="font-size: 0.9rem; opacity: 0.8;">Khách hàng</span></div>
+          <div style="text-align: center;"><b style="display: block; font-size: 1.8rem; color: #ffcc00;">24h</b><span style="font-size: 0.9rem; opacity: 0.8;">Lắp đặt</span></div>
+          <div style="text-align: center;"><b style="display: block; font-size: 1.8rem; color: #ffcc00;">24/7</b><span style="font-size: 0.9rem; opacity: 0.8;">Hỗ trợ</span></div>
         </div>
         <div>
           <a href="#register" class="btn btn-orange" style="font-size: 1.1rem; padding: 14px 32px; box-shadow: 0 4px 15px rgba(255, 101, 0, 0.4);">Đăng Ký Tư Vấn Ngay</a>
@@ -368,7 +370,7 @@
 
       <!-- Contact Form -->
       <section id="register" style="margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto; background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
-        <h2 style="font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 8px;">Đăng Ký Tư Vấn Lắp Mạng FPT</h2>
+        <h2 style="font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 8px;">Đăng Ký Tư Vấn Cắp Quang FPT</h2>
         <p style="text-align: center; color: #64748b; margin-bottom: 30px;">Để lại thông tin, nhân viên FPT sẽ gọi lại tư vấn gói cước phù hợp nhất trong 5 phút.</p>
         <form id="contactForm" class="contact-form" action="#" method="POST">
           <input type="hidden" name="Nguồn" value="Trang WiFi FPT">
@@ -418,3 +420,9 @@
   </footer>
 </body>
 </html>
+"""
+
+with open("wifi-fpt/index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Generated wifi-fpt/index.html successfully!")
