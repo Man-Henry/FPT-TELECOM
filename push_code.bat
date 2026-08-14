@@ -1,6 +1,6 @@
 @echo off
 echo Dang tao sitemap tu dong...
-powershell -ExecutionPolicy Bypass -File scratch\generate-sitemap.ps1
+python scripts\generate_sitemaps.py
 echo Dang khoi tao git va them code moi...
 git init
 git add .
