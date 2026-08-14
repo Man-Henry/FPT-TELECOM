@@ -29,14 +29,20 @@ def fetch_fpt_news():
         title = a.get('title') or a.text.strip()
         
         img_src = ""
-        parent = a.find_parent('div')
-        if parent:
-            img = parent.find('img')
-            if img:
-                img_src = img.get('src') or img.get('data-src') or ""
+        curr = a.parent
+        for _ in range(3):
+            if curr:
+                img = curr.find('img')
+                if img:
+                    img_src = img.get('data-original') or img.get('src') or img.get('data-src') or ""
+                    break
+                curr = curr.parent
         
-        if not img_src:
-            img_src = "https://fpt.vn/assets/images/logo.webp"
+        if not img_src or "logo" in img_src:
+            img_src = "../assets/images/fptlogo.png"
+            
+        if not img_src.startswith('http') and img_src.startswith('/'):
+            img_src = 'https://fpt.vn' + img_src
             
         slug = href.split('/')[-1].replace('.html', '')
         
@@ -75,12 +81,12 @@ def create_local_page(article):
   <link rel="stylesheet" href="../../css/styles.min.css?v=24">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/fptlogo.png">
 </head>
-<body>
+<body style="background: #f8fafc;">
   <div class="topbar">
     <span>⚡ Ưu đãi tháng này: Tặng Voucher giảm giá &amp; miễn phí lắp đặt khi trả trước 6T/12T</span>
     <a href="tel:0383900321">Hotline: <b>0383 900 321</b></a>
   </div>
-  <header class="header">
+  <header class="header" style="background: #fff; box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
     <a class="logo logo-image" href="/FPT-TELECOM/">
       <img src="../../assets/images/logo.webp" alt="FPT Telecom" width="164" height="45">
       <span class="auth-badge">Đại lý ủy quyền FPT</span>
@@ -95,20 +101,43 @@ def create_local_page(article):
     <a class="btn btn-orange header-cta" href="/FPT-TELECOM/lien-he/">Đăng ký ngay <span>→</span></a>
   </header>
 
-  <main style="max-width: 800px; margin: 60px auto; padding: 0 24px; min-height: 60vh;">
-    <p style="color: var(--muted); font-size: 13px;">Đăng ngày: {date_str}</p>
-    <h1 style="color: var(--navy); margin-bottom: 24px;">{article['title']}</h1>
-    <img src="{article['image']}" alt="{article['title']}" style="width: 100%; border-radius: 12px; margin-bottom: 30px;">
-    
-    <div style="background: #f8fafc; padding: 30px; border-radius: 12px; text-align: center; border: 1px solid var(--line);">
-        <h3 style="margin-bottom: 15px;">Đọc toàn bộ bài viết này trên trang chính thức của FPT</h3>
-        <p style="color: var(--muted); margin-bottom: 24px;">Bạn sẽ được chuyển hướng đến trang tin tức của FPT để đọc nội dung chi tiết nhất.</p>
-        <a href="{article['link']}" class="btn btn-blue" target="_blank" rel="noopener noreferrer" style="width: auto; padding: 14px 30px;">Đọc ngay trên FPT.vn</a>
-    </div>
+  <main style="max-width: 900px; margin: 40px auto 80px; padding: 0 24px; min-height: 60vh;">
+    <nav style="font-size: 13px; color: #64748b; margin-bottom: 30px;">
+      <a href="/FPT-TELECOM/" style="color: var(--blue); text-decoration: none;">Trang chủ</a> &rsaquo; 
+      <a href="/FPT-TELECOM/tin-tuc/" style="color: var(--blue); text-decoration: none;">Tin tức</a> &rsaquo; 
+      <span>{article['title']}</span>
+    </nav>
+
+    <article style="background: #fff; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); overflow: hidden;">
+      <div style="padding: 40px 40px 20px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+          <span style="background: #f1f5f9; color: var(--navy); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Tin Tức FPT</span>
+          <span style="color: #94a3b8; font-size: 13px;">📅 Cập nhật: {date_str}</span>
+        </div>
+        <h1 style="color: var(--heading); font-size: 2.2rem; line-height: 1.3; margin-bottom: 30px; font-weight: 800;">{article['title']}</h1>
+      </div>
+      
+      <div style="width: 100%; aspect-ratio: 16/9; overflow: hidden;">
+        <img src="{article['image']}" alt="{article['title']}" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      
+      <div style="padding: 40px; border-bottom: 1px solid #f1f5f9;">
+        <p style="font-size: 1.1rem; color: #475569; line-height: 1.8; margin-bottom: 30px;">Đây là bài viết được tổng hợp từ chuyên trang tin tức chính thức của FPT Telecom. Để xem đầy đủ hình ảnh, video và các thông tin chi tiết nhất, quý khách vui lòng truy cập trực tiếp vào bài gốc.</p>
+        
+        <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px; border-radius: 16px; text-align: center; border: 1px solid #e2e8f0;">
+            <h3 style="margin-bottom: 15px; color: var(--navy); font-size: 1.25rem;">Tiếp tục đọc trên FPT.vn</h3>
+            <p style="color: #64748b; margin-bottom: 24px; font-size: 0.95rem;">Hệ thống sẽ chuyển hướng bạn đến trang bài viết gốc an toàn.</p>
+            <a href="{article['link']}" class="btn" target="_blank" rel="noopener noreferrer" style="background: var(--blue); color: #fff; padding: 14px 36px; border-radius: 8px; font-weight: 600; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(6, 101, 245, 0.3);">
+              <span>Đọc bài gốc ngay</span>
+              <span>→</span>
+            </a>
+        </div>
+      </div>
+    </article>
   </main>
 
-  <footer style="margin-top: 60px;">
-    <div class="footer-bottom" style="text-align: center; padding: 24px; font-size: 13px;">
+  <footer style="background: var(--navy); padding: 40px 20px 20px;">
+    <div class="footer-bottom" style="text-align: center; color: rgba(255,255,255,0.7); font-size: 13px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
       <p>© 2026 FPT Telecom - Đại lý ủy quyền | Vận hành bởi Trần Văn Mẫn</p>
     </div>
   </footer>
@@ -141,12 +170,26 @@ def update_tin_tuc_index(article):
           </article>\n'''
           
     if article['slug'] not in content:
-        parts = content.split('<div class="articles-grid">')
-        if len(parts) > 1:
-            content = parts[0] + '<div class="articles-grid">\n' + new_card + parts[1]
+        pattern = '<!-- AUTO_NEWS_MARKER -->'
+        
+        if pattern in content:
+            parts = content.split(pattern)
+            grid_content = parts[1].split('</section>')[0]
+            
+            # Count existing cards
+            cards = grid_content.split('</article>')
+            cards = [c for c in cards if '<article' in c]
+            
+            if len(cards) >= 6:
+                last_card = cards[-1] + '</article>'
+                content = content.replace(last_card, '')
+                
+            content = content.replace(pattern, pattern + '\n' + new_card)
             with open(tin_tuc_index, 'w', encoding='utf-8') as f:
                 f.write(content)
             print(f"Updated tin-tuc/index.html with {article['slug']}")
+        else:
+            print("AUTO_NEWS_MARKER not found in tin-tuc/index.html")
 
 def update_home_index(article):
     with open(index_file, 'r', encoding='utf-8') as f:

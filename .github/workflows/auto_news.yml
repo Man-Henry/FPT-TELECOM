@@ -2,10 +2,13 @@ name: Tự động lấy tin tức FPT
 
 on:
   schedule:
-    # Chạy mỗi ngày lúc 00:00 (theo chuẩn UTC)
-    - cron: '0 0 * * *'
+    # Chạy lúc 00:00 và 12:00 UTC (Tương đương 7h sáng và 7h tối giờ VN)
+    - cron: '0 0,12 * * *'
   workflow_dispatch:
     # Cho phép bấm nút chạy thủ công trên giao diện GitHub
+
+permissions:
+  contents: write
 
 jobs:
   fetch-news:

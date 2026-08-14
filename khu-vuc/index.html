@@ -102,6 +102,29 @@
     gtag('js', new Date());
     gtag('config', 'G-E8451LL5PD');
   </script>
+
+  <style>
+    /* Glassmorphism Map Wrapper */
+    .map3d-wrapper {
+        background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 24px; padding: 20px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.08); margin: 0 auto 40px; max-width: 900px;
+    }
+    .map3d-wrap { border-radius: 16px; overflow: hidden; }
+    
+    /* Elegant Region Chips */
+    .chips { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 30px; }
+    .chips a {
+        background: white; border-radius: 12px; padding: 16px 12px; text-align: center; font-weight: 600; color: var(--navy);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; transition: all 0.3s ease; text-decoration: none;
+        display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .chips a::before { content: "📍"; font-size: 1.5rem; opacity: 0.8; }
+    .chips a:hover {
+        transform: translateY(-4px); box-shadow: 0 10px 20px rgba(6, 101, 245, 0.15); border-color: var(--blue); color: var(--blue);
+    }
+  </style>
+
 </head>
 
 <body>
@@ -135,14 +158,18 @@
     <a class="btn btn-orange header-cta" href="/FPT-TELECOM/lien-he/">Đăng ký ngay <span>→</span></a>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" style="background: #f8fafc; padding-bottom: 60px;">
+
+    <!-- Hero Banner for Khu Vuc -->
+    <section style="background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: white; padding: 60px 24px; text-align: center; margin-bottom: 40px;">
+      <p class="eyebrow" style="color: #cbd8ef; letter-spacing: 2px;">VÙNG PHỦ SÓNG</p>
+      <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 20px;">Khám Phá Hạ Tầng FPT</h1>
+      <p style="max-width: 600px; margin: 0 auto; color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">Hệ thống trạm Core và trạm BTS siêu tốc phủ khắp 63 tỉnh thành phố.</p>
+    </section>
+
     <section class="map3d section" id="areas">
-      <div class="section-head scroll-animate">
-        <p class="eyebrow">PHỦ SÓNG TOÀN QUỐC</p>
-        <h1 style="font-size:inherit;margin:inherit;font-weight:inherit;line-height:inherit;">Khu Vực Lắp Đặt Internet FPT Toàn Quốc</h1>
-        <p>Hạ tầng cáp quang FPT phủ rộng khắp 63 tỉnh thành. Kiểm tra khả năng lắp đặt tại khu vực của bạn.</p>
-      </div>
-      <div class="map3d-wrap" id="map3d-container" aria-label="Bản đồ Việt Nam phủ sóng FPT">
+      
+      <div class="map3d-wrapper"><div class="map3d-wrap" id="map3d-container" aria-label="Bản đồ Việt Nam phủ sóng FPT">
         <canvas id="map3d-canvas"></canvas>
         <div class="map3d-overlay">
           <div class="map3d-legend">
@@ -156,6 +183,7 @@
             <button class="map-btn" id="map-reset" aria-label="Đặt lại vị trí">⌂ Đặt lại</button>
           </div>
         </div>
+      </div>
       </div>
       <div class="map3d-legend" style="margin-top:20px">
         <div class="chips" style="justify-content:center">
