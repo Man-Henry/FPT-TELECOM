@@ -76,6 +76,7 @@ __pycache__/
 *.pyc
 
 # Not related to website (Python generation scripts, data, docs)
-scripts/
 data/
 docs/
+scratch/
+tools/
