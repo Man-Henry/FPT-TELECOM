@@ -10,7 +10,7 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://fpttelecomvn.click/sitemap.xml
+Sitemap: https://fpttelecomvn.click/sitemap-index.xml
 
 # LLMs.txt for AI agents
 # https://fpttelecomvn.click/llms.txt

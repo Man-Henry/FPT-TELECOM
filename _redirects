@@ -2,3 +2,17 @@
 http://fpttelecomvn.click/* https://fpttelecomvn.click/:splat 301!
 http://www.fpttelecomvn.click/* https://fpttelecomvn.click/:splat 301!
 https://www.fpttelecomvn.click/* https://fpttelecomvn.click/:splat 301!
+
+# Redirect các trang cũ sang Clean URL
+/pages/news.html /tin-tuc/ 301
+/pages/bang-gia.html /bang-gia/ 301
+/pages/khu-vuc.html /khu-vuc/ 301
+/pages/lien-he.html /lien-he/ 301
+
+/pages/co-nen-bat-wifi-lien-tuc-24-7.html /tin-tuc/co-nen-bat-wifi-lien-tuc-24-7/ 301
+/pages/bang-gia-internet-fpt-thang-7-2026.html /tin-tuc/bang-gia-internet-fpt-thang-7-2026/ 301
+/pages/khuyen-mai-fpt-thang-7-2026.html /tin-tuc/khuyen-mai-fpt-thang-7-2026/ 301
+/pages/ngoai-hang-anh-2026-27-fpt-play.html /tin-tuc/ngoai-hang-anh-2026-27-fpt-play/ 301
+/pages/cong-ty-cua-musk-bat-dau-ban-internet-ve-tinh-tai-viet-nam.html /tin-tuc/cong-ty-cua-musk-bat-dau-ban-internet-ve-tinh-tai-viet-nam/ 301
+/pages/iphone-2028-5-thay-doi-dot-pha.html /tin-tuc/iphone-2028-5-thay-doi-dot-pha/ 301
+/pages/lich-thi-dau-asean-cup-2026.html /tin-tuc/lich-thi-dau-asean-cup-2026/ 301

@@ -1,13 +1,13 @@
-const CACHE_NAME = 'fpt-telecom-v5';
+const CACHE_NAME = 'fpt-telecom-v6';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/pages/bang-gia.html',
-  '/pages/khu-vuc.html',
-  '/pages/lien-he.html',
-  '/pages/news.html',
-  '/pages/chinh-sach.html',
-  '/css/styles.css',
+  '/bang-gia/',
+  '/khu-vuc/',
+  '/lien-he/',
+  '/tin-tuc/',
+  '/chinh-sach/',
+  '/css/styles.min.css',
   '/js/script.js',
   '/manifest.json',
   '/assets/images/logo.webp',
