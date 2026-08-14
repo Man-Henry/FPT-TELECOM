@@ -255,6 +255,70 @@
 
     gtag('config', 'G-E8451LL5PD');
   </script>
+
+  <style>
+    /* Premium Contact Form */
+    .contact-form-wrap {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        padding: 40px;
+        border: 1px solid #e2e8f0;
+    }
+    .contact-form-wrap input, .contact-form-wrap select, .contact-form-wrap textarea {
+        border-radius: 12px !important;
+        border: 1px solid #cbd5e1 !important;
+        padding: 14px 16px !important;
+        background: #f8fafc !important;
+        transition: all 0.3s ease !important;
+    }
+    .contact-form-wrap input:focus, .contact-form-wrap select:focus, .contact-form-wrap textarea:focus {
+        border-color: var(--primary) !important;
+        background: #ffffff !important;
+        box-shadow: 0 0 0 4px rgba(255, 101, 0, 0.1) !important;
+    }
+    
+    /* Elegant FAQ Accordion */
+    .faq-list {
+        display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto;
+    }
+    .faq-list details {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        border: 1px solid #e2e8f0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    .faq-list details[open] {
+        box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+        border-color: #cbd5e1;
+    }
+    .faq-list summary {
+        padding: 20px 24px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--navy);
+        cursor: pointer;
+        list-style: none;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+        content: "+";
+        font-size: 1.5rem;
+        color: var(--primary);
+        transition: transform 0.3s ease;
+    }
+    .faq-list details[open] summary::after { transform: rotate(45deg); }
+    .faq-list p {
+        padding: 0 24px 24px;
+        color: #475569;
+        line-height: 1.6;
+        margin: 0;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -287,8 +351,16 @@
     <a class="btn btn-orange header-cta" href="/FPT-TELECOM/lien-he/">Đăng ký ngay <span>→</span></a>
   </header>
 
-  <main id="main-content">
-    <h1 class="sr-only">Liên Hệ Đăng Ký Internet FPT Telecom</h1>
+  <main id="main-content" style="background: #f8fafc; padding-bottom: 60px;">
+
+    <!-- Hero Banner -->
+    <section style="background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: white; padding: 60px 24px; text-align: center; margin-bottom: 40px;">
+      <p class="eyebrow" style="color: #cbd8ef; letter-spacing: 2px;">CHÚNG TÔI LẮNG NGHE BẠN</p>
+      <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 20px;">Kết Nối Cùng FPT Telecom</h1>
+      <p style="max-width: 600px; margin: 0 auto; color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">Đội ngũ chuyên gia của chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7. Giải đáp mọi thắc mắc và tư vấn giải pháp mạng tốt nhất.</p>
+    </section>
+
+    
 
     <section class="faq section">
       <div class="section-head scroll-animate">
@@ -316,7 +388,7 @@
       </div>
     </section>
 
-    <section class="contact" id="contact">
+    <section class="contact section" id="contact" style="max-width: 1200px; margin: 0 auto; gap: 40px; padding: 40px 24px;">
       <div class="contact-copy">
         <p class="eyebrow">BẮT ĐẦU KẾT NỐI</p>
         <h2>Đăng ký ngay.<br><em>Tư vấn hoàn toàn miễn phí.</em></h2>
