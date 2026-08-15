@@ -717,26 +717,39 @@
         });
       }
 
-      // Hero Countdown (LocalStorage for true 24h)
+      // Hero Countdown (Synced with script.js via shared localStorage key)
       const timerElement = document.getElementById('hero-timer');
       if (timerElement) {
-        let endTime = localStorage.getItem('fpt_sale_endtime');
-        if (!endTime || new Date().getTime() > endTime) {
-          endTime = new Date().getTime() + (24 * 60 * 60 * 1000); 
-          localStorage.setItem('fpt_sale_endtime', endTime);
+        function getEndTime() {
+          let stored = localStorage.getItem('fpt_countdown_end');
+          const now = Date.now();
+          if (!stored || now > Number(stored)) {
+            const end = new Date();
+            const daysUntilSunday = end.getDay() === 0 ? 0 : 7 - end.getDay();
+            end.setDate(end.getDate() + daysUntilSunday);
+            end.setHours(23, 59, 59, 0);
+            if (end.getTime() <= now) end.setDate(end.getDate() + 7);
+            stored = end.getTime();
+            localStorage.setItem('fpt_countdown_end', stored);
+          }
+          return Number(stored);
         }
-        
+
+        const endTime = getEndTime();
+
         function updateTimer() {
-          const diff = endTime - new Date().getTime();
+          const diff = endTime - Date.now();
           if (diff <= 0) {
+            localStorage.removeItem('fpt_countdown_end');
             timerElement.innerText = "00:00:00";
             return;
           }
-          const h = Math.floor(diff / (1000 * 60 * 60));
-          const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          const s = Math.floor((diff % (1000 * 60)) / 1000);
-          
-          timerElement.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+          const d = Math.floor(diff / 86400000);
+          const h = Math.floor((diff % 86400000) / 3600000);
+          const m = Math.floor((diff % 3600000) / 60000);
+          const s = Math.floor((diff % 60000) / 1000);
+          const dd = d > 0 ? `${d} ngày ` : '';
+          timerElement.innerText = `${dd}${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
         }
         setInterval(updateTimer, 1000);
         updateTimer();

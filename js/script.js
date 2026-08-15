@@ -1679,16 +1679,35 @@ function startPromoCountdown() {
   const countdownEls = document.querySelectorAll('.countdown-time');
   if (countdownEls.length === 0) return;
 
+  // Shared localStorage key — synced with index.html hero timer
+  function getEndTime() {
+    let stored = localStorage.getItem('fpt_countdown_end');
+    const now = Date.now();
+    if (!stored || now > Number(stored)) {
+      const end = new Date();
+      const daysUntilSunday = end.getDay() === 0 ? 0 : 7 - end.getDay();
+      end.setDate(end.getDate() + daysUntilSunday);
+      end.setHours(23, 59, 59, 0);
+      if (end.getTime() <= now) end.setDate(end.getDate() + 7);
+      stored = end.getTime();
+      localStorage.setItem('fpt_countdown_end', stored);
+    }
+    return Number(stored);
+  }
+
+  const endTime = getEndTime();
+
   function update() {
-    const now = new Date();
-    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
-    let diff = endOfMonth - now;
-    if (diff < 0) diff = 0;
+    let diff = endTime - Date.now();
+    if (diff <= 0) {
+      localStorage.removeItem('fpt_countdown_end');
+      diff = 0;
+    }
     
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins = Math.floor((diff / 1000 / 60) % 60);
-    const secs = Math.floor((diff / 1000) % 60);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
     
     const daysStr = String(days).padStart(2, '0');
     const hoursStr = String(hours).padStart(2, '0');
