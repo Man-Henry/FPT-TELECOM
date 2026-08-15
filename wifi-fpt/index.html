@@ -69,9 +69,11 @@
 
   <main style="padding-top: 80px;">
     
-    <section style="background: linear-gradient(135deg, #0665f5 0%, #0044b3 100%); color: #fff; padding: 60px 24px; text-align: center;">
-      <div style="max-width: 800px; margin: 0 auto;">
-        <span style="background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; display: inline-block;">INTERNET FPT TOÀN QUỐC</span>
+    <section style="background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: white; padding: 60px 24px; text-align: center; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('../assets/images/fptfamily.webp') center/cover; opacity: 0.1; mix-blend-mode: overlay;"></div>
+      <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 2;">
+        <div class="countdown-timer" style="background: rgba(255,255,255,0.2); color: white; margin-bottom: 20px;">⏰ Ưu đãi kết thúc sau: <span class="countdown-time" style="color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">Đang tính...</span></div>
+        <p class="eyebrow" style="color: #e0f2fe; letter-spacing: 2px;">INTERNET FPT TOÀN QUỐC</p>
         <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2;">Cáp Quang Siêu Tốc <br><span style="color: #ffcc00;">Giải Trí Đỉnh Cao</span></h1>
         <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9;">Tặng Modem WiFi 6 • Tặng Camera AI & Cloud • Lắp đặt trong 24h</p>
         <div class="trust" style="display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; flex-wrap: wrap;">
@@ -363,24 +365,67 @@
       <section id="register" style="margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto; background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
         <h2 style="font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 8px;">Đăng Ký Tư Vấn Cắp Quang FPT</h2>
         <p style="text-align: center; color: #64748b; margin-bottom: 30px;">Để lại thông tin, nhân viên FPT sẽ gọi lại tư vấn gói cước phù hợp nhất trong 5 phút.</p>
-        <form id="contactForm" class="contact-form" action="#" method="POST">
-          <input type="hidden" name="Nguồn" value="Trang WiFi FPT">
-          <div class="form-group" style="margin-bottom: 16px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #334155;">Họ và tên *</label>
-            <input type="text" name="Họ tên" required placeholder="Nhập họ tên của bạn" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit;">
+        <form id="leadForm">
+          
+          <div aria-hidden="true" style="position:absolute;left:-9999px">
+            <label>Không điền ô này<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
           </div>
-          <div class="form-group" style="margin-bottom: 16px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #334155;">Số điện thoại liên hệ *</label>
-            <input type="tel" name="Số điện thoại" required pattern="[0-9]{10}" placeholder="Nhập số điện thoại" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit;">
+          <label>Họ và tên *<input required name="Họ Và Tên" placeholder="Nhập họ tên của bạn"></label>
+          <label>Số điện thoại *<input required name="Số điện thoại" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+ ]{9,}" placeholder="Nhập số điện thoại"></label>
+          <label>Địa chỉ lắp đặt *<input required name="Địa chỉ" placeholder="Số nhà, phường/xã, quận/huyện"></label>
+          <div class="form-row">
+            <label>Gói cước quan tâm<select name="Gói cước" required>
+                <option value="" disabled selected>Chọn dịch vụ quan tâm</option>
+                <option value="GIGA / SKY">Internet GIGA / SKY</option>
+                <option value="F-GAME">Internet F-GAME</option>
+                <option value="COMBO VIP">COMBO VIP (Net + TV)</option>
+                <option value="META">Internet META</option>
+                <option value="Camera">Camera / Combo Camera</option>
+                <option value="Box TV">FPT Play Box TV</option>
+                <option value="Chưa rõ">Chưa rõ - Cần tư vấn thêm</option>
+              </select></label>
+            <label>Thời gian liên hệ<select name="Thời gian liên hệ" required>
+                <option>Gọi ngay</option>
+                <option>Buổi sáng</option>
+                <option>Buổi chiều</option>
+                <option>Buổi tối</option>
+              </select></label>
           </div>
-          <div class="form-group" style="margin-bottom: 24px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #334155;">Khu vực cần lắp đặt</label>
-            <input type="text" name="Địa chỉ" placeholder="Quận/Huyện, Tỉnh/Thành phố" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit;">
+          <div id="support-field" style="display:none; margin-bottom: 16px;">
+            <label>Yêu cầu hỗ trợ *<textarea name="Yêu cầu hỗ trợ" id="support-textarea" rows="3" placeholder="Nhập yêu cầu hỗ trợ của bạn..." style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 1rem;"></textarea></label>
           </div>
-          <button type="submit" class="btn btn-orange" style="width: 100%; padding: 16px; font-size: 1.1rem; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 101, 0, 0.3);">GỬI YÊU CẦU TƯ VẤN</button>
-          <p style="text-align: center; font-size: 0.85rem; color: #94a3b8; margin-top: 16px;">Cam kết bảo mật thông tin tuyệt đối.</p>
+          <button id="main-submit-btn" class="btn btn-orange" type="submit">ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY <span>→</span></button>
+          <button id="toggle-support-btn" class="btn" type="button" onclick="toggleSupportForm(this)" style="width: 100%; margin-top: 12px; background: transparent; color: var(--primary); border: 1px solid var(--primary);">Nhập yêu cầu hỗ trợ</button>
+          <p class="microcopy" style="margin-top: 10px; font-size: 0.85rem; line-height: 1.4;">
+            <span>🔒 Miễn phí khảo sát 100%. Thông tin được bảo mật tuyệt đối theo <a href="#" onclick="openPolicyModal(event)" style="text-decoration: underline; color: inherit;">chính sách</a> của FPT Telecom.</span>
+          </p>
+          <p class="success" role="status"></p>
         </form>
       </section>
+
+      <!-- Internal SEO Links -->
+      <div style="margin-top: 60px;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--navy); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Dịch Vụ Nổi Bật</h3>
+        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;">
+          <a href="/FPT-TELECOM/lap-wifi/" style="text-decoration: none;"><span>Lắp WiFi FPT</span></a>
+          <a href="/FPT-TELECOM/dang-ky-wifi/" style="text-decoration: none;"><span>Hướng Dẫn Đăng Ký</span></a>
+          <a href="/FPT-TELECOM/khuyen-mai/" style="text-decoration: none;"><span>Khuyến Mãi Tháng Này</span></a>
+          <a href="/FPT-TELECOM/truyen-hinh/" style="text-decoration: none;"><span>Truyền Hình FPT</span></a>
+          <a href="/FPT-TELECOM/camera/" style="text-decoration: none;"><span>Lắp đặt Camera FPT</span></a>
+        </div>
+        
+        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--navy); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Tìm Kiếm Theo Khu Vực</h3>
+        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/" style="text-decoration: none;"><span>Hồ Chí Minh</span></a>
+          <a href="/FPT-TELECOM/khu-vuc/ha-noi/" style="text-decoration: none;"><span>Hà Nội</span></a>
+          <a href="/FPT-TELECOM/khu-vuc/dong-nai/" style="text-decoration: none;"><span>Đồng Nai</span></a>
+          <a href="/FPT-TELECOM/khu-vuc/binh-duong/" style="text-decoration: none;"><span>Bình Dương</span></a>
+          <a href="/FPT-TELECOM/khu-vuc/da-nang/" style="text-decoration: none;"><span>Đà Nẵng</span></a>
+          <a href="/FPT-TELECOM/khu-vuc/vung-tau/" style="text-decoration: none;"><span>Bà Rịa - Vũng Tàu</span></a>
+          <a href="/FPT-TELECOM/khu-vuc/hai-phong/" style="text-decoration: none;"><span>Hải Phòng</span></a>
+          <a href="/FPT-TELECOM/khu-vuc/can-tho/" style="text-decoration: none;"><span>Cần Thơ</span></a>
+        </div>
+      </div>
 
     </div>
   </main>

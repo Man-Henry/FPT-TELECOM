@@ -1665,3 +1665,30 @@ window.toggleSupportForm = function(btn) {
     btn.textContent = 'Nhập yêu cầu hỗ trợ';
   }
 };
+
+function startPromoCountdown() {
+  const countdownEls = document.querySelectorAll('.countdown-time');
+  if (countdownEls.length === 0) return;
+
+  function update() {
+    const now = new Date();
+    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+    let diff = endOfMonth - now;
+    if (diff < 0) diff = 0;
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / 1000 / 60) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+    
+    const timeString = ${days} ngày ::;
+    
+    countdownEls.forEach(el => {
+      el.textContent = timeString;
+    });
+  }
+  
+  update();
+  setInterval(update, 1000);
+}
+document.addEventListener('DOMContentLoaded', startPromoCountdown);

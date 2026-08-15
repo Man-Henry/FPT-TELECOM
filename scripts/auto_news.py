@@ -83,12 +83,12 @@ def create_local_page(article):
   <link rel="stylesheet" href="../../css/styles.min.css?v=26">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/fptlogo.png">
 </head>
-<body style="background: #f8fafc;">
+<body>
   <div class="topbar">
     <span>⚡ Ưu đãi tháng này: Tặng Voucher giảm giá &amp; miễn phí lắp đặt khi trả trước 6T/12T</span>
     <a href="tel:0383900321">Hotline: <b>0383 900 321</b></a>
   </div>
-  <header class="header" style="background: #fff; box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
+  <header class="header">
     <a class="logo logo-image" href="/FPT-TELECOM/">
       <img src="../../assets/images/logo.webp" alt="FPT Telecom" width="164" height="45">
       <span class="auth-badge">Đại lý ủy quyền FPT</span>
@@ -103,41 +103,54 @@ def create_local_page(article):
     <a class="btn btn-orange header-cta" href="/FPT-TELECOM/lien-he/">Đăng ký ngay <span>→</span></a>
   </header>
 
-  <main style="max-width: 900px; margin: 40px auto 80px; padding: 0 24px; min-height: 60vh;">
-    <nav style="font-size: 13px; color: #64748b; margin-bottom: 30px;">
-      <a href="/FPT-TELECOM/" style="color: var(--blue); text-decoration: none;">Trang chủ</a> &rsaquo; 
-      <a href="/FPT-TELECOM/tin-tuc/" style="color: var(--blue); text-decoration: none;">Tin tức</a> &rsaquo; 
-      <span>{article['title']}</span>
-    </nav>
+  <main style="min-height: 70vh; background: #f8fafc; padding-bottom: 80px;">
+    
+    <!-- Hero Banner -->
+    <section style="background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: white; padding: 60px 24px; text-align: center; margin-bottom: 50px;">
+      <div class="countdown-timer">⏰ Ưu đãi kết thúc sau: <span class="countdown-time">Đang tính...</span></div>
+      <p class="eyebrow" style="color: #cbd8ef; letter-spacing: 2px;">TIN TỨC & SỰ KIỆN</p>
+      <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.4;">{article['title']}</h1>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+        <span style="background: rgba(255,255,255,0.2); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Tin Tức FPT</span>
+        <span style="color: #cbd8ef; font-size: 13px;">📅 {date_str}</span>
+      </div>
+    </section>
 
-    <article style="background: #fff; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); overflow: hidden;">
-      <div style="padding: 40px 40px 20px;">
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-          <span style="background: #f1f5f9; color: var(--navy); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Tin Tức FPT</span>
-          <span style="color: #94a3b8; font-size: 13px;">📅 Cập nhật: {date_str}</span>
+    <div style="max-width: 900px; margin: -60px auto 0; padding: 0 20px; position: relative; z-index: 10;">
+      
+      <!-- Article Card -->
+      <article style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); margin-bottom: 50px;">
+        <div style="width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative;">
+          <img src="{article['image']}" alt="{article['title']}" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
-        <h1 style="color: var(--heading); font-size: 2.2rem; line-height: 1.3; margin-bottom: 30px; font-weight: 800;">{article['title']}</h1>
-      </div>
-      
-      <div style="width: 100%; aspect-ratio: 16/9; overflow: hidden;">
-        <img src="{article['image']}" alt="{article['title']}" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
-      
-      <div style="padding: 40px; border-bottom: 1px solid #f1f5f9;">
-        <p style="font-size: 1.1rem; color: #475569; line-height: 1.8; margin-bottom: 30px;">Đây là bài viết được tổng hợp từ chuyên trang tin tức chính thức của FPT Telecom. Để xem đầy đủ hình ảnh, video và các thông tin chi tiết nhất, quý khách vui lòng truy cập trực tiếp vào bài gốc.</p>
         
-        <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px; border-radius: 16px; text-align: center; border: 1px solid #e2e8f0;">
-            <h3 style="margin-bottom: 15px; color: var(--navy); font-size: 1.25rem;">Tiếp tục đọc trên FPT.vn</h3>
-            <p style="color: #64748b; margin-bottom: 24px; font-size: 0.95rem;">Hệ thống sẽ chuyển hướng bạn đến trang bài viết gốc an toàn.</p>
-            <a href="{article['link']}" class="btn" target="_blank" rel="noopener noreferrer" style="background: var(--blue); color: #fff; padding: 14px 36px; border-radius: 8px; font-weight: 600; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(6, 101, 245, 0.3);">
-              <span>Đọc bài gốc ngay</span>
-              <span>→</span>
-            </a>
+        <div style="padding: 40px;">
+          <p style="font-size: 1.15rem; color: var(--text); line-height: 1.8; margin-bottom: 30px;">Đây là bài viết được tổng hợp từ chuyên trang tin tức chính thức của FPT Telecom. Để xem đầy đủ hình ảnh, video và các thông tin chi tiết nhất, quý khách vui lòng truy cập trực tiếp vào bài gốc.</p>
+          
+          <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px; border-radius: 16px; text-align: center; border: 1px solid #e2e8f0;">
+              <h3 style="margin-bottom: 15px; color: var(--navy); font-size: 1.3rem;">Tiếp tục đọc trên FPT.vn</h3>
+              <p style="color: #64748b; margin-bottom: 24px; font-size: 1rem;">Hệ thống sẽ chuyển hướng bạn đến trang bài viết gốc an toàn.</p>
+              <a href="{article['link']}" class="btn" target="_blank" rel="noopener noreferrer" style="background: var(--blue); color: #fff; padding: 14px 36px; border-radius: 8px; font-weight: 600; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(6, 101, 245, 0.3);">
+                <span>Đọc bài gốc ngay</span>
+                <span>→</span>
+              </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Internal SEO Links -->
+      <div style="margin-top: 60px;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--navy); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Dịch Vụ Nổi Bật</h3>
+        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;">
+          <a href="/FPT-TELECOM/lap-wifi/" style="text-decoration: none;"><span>Lắp WiFi FPT</span></a>
+          <a href="/FPT-TELECOM/wifi-fpt/" style="text-decoration: none;"><span>Cáp quang FPT</span></a>
+          <a href="/FPT-TELECOM/khuyen-mai/" style="text-decoration: none;"><span>Khuyến Mãi Tháng Này</span></a>
+          <a href="/FPT-TELECOM/truyen-hinh/" style="text-decoration: none;"><span>Truyền Hình FPT</span></a>
         </div>
       </div>
-    </article>
+      
+    </div>
   </main>
-
   <footer style="background: var(--navy); padding: 40px 20px 20px;">
     <div class="footer-bottom" style="text-align: center; color: rgba(255,255,255,0.7); font-size: 13px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
       <p>© 2026 FPT Telecom - Đại lý ủy quyền | Vận hành bởi Trần Văn Mẫn</p>
