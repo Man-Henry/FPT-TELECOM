@@ -1681,10 +1681,18 @@ function startPromoCountdown() {
     const mins = Math.floor((diff / 1000 / 60) % 60);
     const secs = Math.floor((diff / 1000) % 60);
     
-    const timeString = ${days} ngày ::;
+    const daysStr = String(days).padStart(2, '0');
+    const hoursStr = String(hours).padStart(2, '0');
+    const minsStr = String(mins).padStart(2, '0');
+    const secsStr = String(secs).padStart(2, '0');
+    
+    const timeString = `<span class="cd-box">${daysStr}</span><span class="cd-label">Ngày</span> 
+                        <span class="cd-box">${hoursStr}</span><span class="cd-label">Giờ</span> 
+                        <span class="cd-box">${minsStr}</span><span class="cd-label">Phút</span> 
+                        <span class="cd-box">${secsStr}</span><span class="cd-label">Giây</span>`;
     
     countdownEls.forEach(el => {
-      el.textContent = timeString;
+      el.innerHTML = timeString;
     });
   }
   
