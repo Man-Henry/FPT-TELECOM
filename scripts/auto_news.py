@@ -78,7 +78,7 @@ def create_local_page(article):
   <link rel="canonical" href="https://fpttelecomvn.click/tin-tuc/{article['slug']}/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/styles.min.css?v=24">
+  <link rel="stylesheet" href="../../css/styles.min.css?v=26">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/fptlogo.png">
 </head>
 <body style="background: #f8fafc;">
