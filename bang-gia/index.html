@@ -107,76 +107,86 @@
   </script>
 
   <style>
-    /* Custom Styling for Premium Feel */
+    /* Soft UI & Clean Design System */
     .tabs {
-        display: flex; justify-content: center; gap: 15px; margin: 60px auto 40px; padding: 6px; 
-        background: white; border-radius: 50px; width: fit-content; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        display: flex; justify-content: center; gap: 10px; margin: -30px auto 50px; padding: 8px; 
+        background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        border-radius: 50px; width: fit-content; box-shadow: 0 10px 25px rgba(0,0,0,0.05); position: relative; z-index: 10;
+        border: 1px solid rgba(255,255,255,0.5);
     }
     .tab {
-        padding: 12px 30px; border-radius: 50px; border: none; background: transparent; 
-        color: #64748b; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.3s ease;
+        padding: 14px 36px; border-radius: 50px; border: none; background: transparent; 
+        color: #475569; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .tab.active {
-        background: var(--blue); color: white; box-shadow: 0 4px 12px rgba(6, 101, 245, 0.3);
+        background: var(--blue); color: white; box-shadow: 0 8px 20px rgba(6, 101, 245, 0.35); transform: translateY(-2px);
     }
     .package-grid {
-        padding-top: 20px;
+        padding-top: 10px; padding-bottom: 40px; display: grid; gap: 30px;
     }
     .package {
-        border-radius: 20px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; background: white;
+        border-radius: 24px; border: 1px solid #f1f5f9; background: white;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.04); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex; flex-direction: column; overflow: hidden; position: relative;
     }
     .package:hover {
-        transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); border-color: #e2e8f0;
     }
     .package.recommended {
-        border: 2px solid var(--blue); transform: scale(1.05); box-shadow: 0 15px 40px rgba(6,101,245,0.15);
+        border: 2px solid var(--blue); transform: scale(1.05); box-shadow: 0 20px 50px rgba(6, 101, 245, 0.15); z-index: 2;
     }
     .package.recommended:hover {
-        transform: scale(1.05) translateY(-8px);
+        transform: scale(1.05) translateY(-10px); box-shadow: 0 35px 70px rgba(6, 101, 245, 0.25);
     }
     .ribbon {
-        background: linear-gradient(135deg, #f97316, #ef4444); padding: 6px 20px; font-weight: bold; border-radius: 0 0 10px 10px;
+        background: linear-gradient(135deg, #f97316 0%, #ef4444 100%); color: white;
+        text-align: center; padding: 8px 0; font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
+        letter-spacing: 1.5px; width: 100%; top: 0; left: 0; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
     }
-    .triple {
-        background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #f1f5f9;
+    .package-content { padding: 30px 24px; text-align: center; flex: 1; display: flex; flex-direction: column; }
+    
+    /* Comparison Table Horizontal Scroll */
+    .table-container {
+        overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; background: white; margin: 0 auto 60px; max-width: 1000px;
     }
-  </style>
-
-
-  <style>
-    /* Custom Styling for Premium Feel */
-    .tabs {
-        display: flex; justify-content: center; gap: 15px; margin: 60px auto 40px; padding: 6px; 
-        background: white; border-radius: 50px; width: fit-content; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    .comparison-table { width: 100%; min-width: 600px; border-collapse: collapse; }
+    .comparison-table th { background: #f8fafc; padding: 20px; color: var(--navy); font-weight: 700; border-bottom: 2px solid #e2e8f0; }
+    .comparison-table td { padding: 18px 20px; border-bottom: 1px solid #f1f5f9; color: #475569; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr:hover td { background: #f8fafc; }
+    .highlight-col { background: rgba(6, 101, 245, 0.03); border-left: 2px solid rgba(6, 101, 245, 0.1); border-right: 2px solid rgba(6, 101, 245, 0.1); }
+    
+    /* Toast Animation */
+    @keyframes slideInUp {
+        0% { transform: translateY(100%); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
     }
-    .tab {
-        padding: 12px 30px; border-radius: 50px; border: none; background: transparent; 
-        color: #64748b; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.3s ease;
+    @keyframes slideOutDown {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(100%); opacity: 0; }
     }
-    .tab.active {
-        background: var(--blue); color: white; box-shadow: 0 4px 12px rgba(6, 101, 245, 0.3);
+    .toast-sale {
+        position: fixed; bottom: 30px; left: 30px; background: white; border-left: 4px solid #10b981;
+        padding: 16px 24px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        display: flex; align-items: center; gap: 12px; z-index: 1000;
+        animation: slideInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        transform: translateY(100%); opacity: 0;
     }
-    .package-grid {
-        padding-top: 20px;
+    .toast-sale.hide { animation: slideOutDown 0.5s ease-in forwards; }
+    
+    /* Product Grid Card */
+    .ap-card {
+        background: #ffffff; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; text-align: center;
+        transition: all 0.4s ease; border: 1px solid #f1f5f9; box-shadow: 0 10px 25px rgba(0,0,0,0.03);
     }
-    .package {
-        border-radius: 20px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; background: white;
+    .ap-card:hover {
+        transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: #e2e8f0;
     }
-    .package:hover {
-        transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-    }
-    .package.recommended {
-        border: 2px solid var(--blue); transform: scale(1.05); box-shadow: 0 15px 40px rgba(6,101,245,0.15);
-    }
-    .package.recommended:hover {
-        transform: scale(1.05) translateY(-8px);
-    }
-    .ribbon {
-        background: linear-gradient(135deg, #f97316, #ef4444); padding: 6px 20px; font-weight: bold; border-radius: 0 0 10px 10px;
-    }
-    .triple {
-        background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #f1f5f9;
-    }
+    .ap-card img { max-height: 180px; object-fit: contain; margin-bottom: 20px; transition: transform 0.4s ease; }
+    .ap-card:hover img { transform: scale(1.05); }
+    .ap-title { color: var(--navy); font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+    .ap-price { font-size: 1.5rem; font-weight: 800; color: #ea580c; margin-bottom: 24px; }
   </style>
 
   </head>
@@ -214,10 +224,10 @@
   <main id="main-content" style="background: #f8fafc;">
 
     <!-- Hero Banner for Pricing -->
-    <section style="background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: white; padding: 60px 24px; text-align: center; margin-bottom: -30px; position: relative; z-index: 1;">
-      <p class="eyebrow" style="color: #cbd8ef; letter-spacing: 2px;">GÓI CƯỚC LINH HOẠT</p>
-      <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 20px;">Bảng Giá Cước Internet FPT 2026</h1>
-      <p style="max-width: 600px; margin: 0 auto; color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">Chọn tốc độ phù hợp với bạn. Tất cả gói cước đều đi kèm modem WiFi 6 hiện đại và hỗ trợ kỹ thuật 24/7.</p>
+    <section style="background: linear-gradient(135deg, var(--navy) 0%, #1e40af 100%); color: white; padding: 100px 24px 100px; text-align: center; margin-bottom: -30px; position: relative; z-index: 1;">
+      <p class="eyebrow" style="color: #93c5fd; letter-spacing: 3px; font-weight: 700;">GÓI CƯỚC LINH HOẠT</p>
+      <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 24px; text-shadow: 0 4px 12px rgba(0,0,0,0.15); line-height: 1.2;">Bảng Giá Cước<br><span style="color: #60a5fa;">Internet FPT 2026</span></h1>
+      <p style="max-width: 650px; margin: 0 auto; color: #f1f5f9; font-size: 1.2rem; line-height: 1.7;">Chọn tốc độ phù hợp với bạn. Tất cả gói cước đều đi kèm modem WiFi 6 hiện đại, hỗ trợ kỹ thuật 24/7 và lắp đặt siêu tốc.</p>
     </section>
 
 
@@ -228,52 +238,72 @@
           aria-selected="false" tabindex="-1">Khu vực Phường / Thành phố</button></div>
       <div class="package-grid">
         <article class="package tilt-3d scroll-animate">
-          <p class="package-tag">PHỔ BIẾN</p>
-          <h3>GIGA <span>/ SKY</span></h3><img class="package-device" src="../assets/images/wifi6.webp"
-            alt="Modem WiFi 6 FPT" width="300" height="92" loading="lazy" decoding="async">
-          <div class="price"><b data-rural="195.000" data-urban="220.000">195.000</b><small>đ / tháng</small></div>
-          <p class="speed">1Gbps <span>/ 300Mbps</span></p>
-          <ul>
-            <li>Phù hợp gia đình nhỏ, sinh viên</li>
-            <li>Modem WiFi 6 thế hệ mới</li>
-            <li>Hỗ trợ kỹ thuật 24/7</li>
-          </ul><a href="#contact" class="outline-btn">Đăng ký gói này</a>
+          <div class="package-content">
+            <p class="package-tag">PHỔ BIẾN</p>
+            <h3>GIGA <span>/ SKY</span></h3>
+            <img class="package-device" src="../assets/images/wifi6.webp" alt="Modem WiFi 6 FPT" width="300" height="92" loading="lazy" decoding="async">
+            <div class="price"><b data-rural="195.000" data-urban="220.000">195.000</b><small>đ / tháng</small></div>
+            <p class="speed">1Gbps <span>/ 300Mbps</span></p>
+            <ul style="text-align: left; margin: 20px 0; color: #475569; font-size: 0.95rem;">
+              <li style="margin-bottom: 8px;">✓ Phù hợp gia đình nhỏ, sinh viên</li>
+              <li style="margin-bottom: 8px;">✓ Modem WiFi 6 thế hệ mới</li>
+              <li style="margin-bottom: 8px;">✓ Hỗ trợ kỹ thuật 24/7</li>
+            </ul>
+            <div style="flex-grow: 1;"></div>
+            <a href="#contact" class="outline-btn" style="width: 100%; border: 2px solid #e2e8f0; color: #475569; padding: 12px; border-radius: 12px; font-weight: 700;">Đăng ký gói này</a>
+          </div>
         </article>
+
         <article class="package tilt-3d scroll-animate">
-          <p class="package-tag">GAME THỦ</p>
-          <h3>F-GAME</h3><img class="package-device" src="../assets/images/modemwifi.webp" alt="Thiết bị modem WiFi FPT"
-            width="300" height="92" loading="lazy" decoding="async">
-          <div class="price"><b data-rural="225.000" data-urban="250.000">225.000</b><small>đ / tháng</small></div>
-          <p class="speed">1Gbps <span>/ 300Mbps</span></p>
-          <ul>
-            <li>Ưu tiên kết nối chơi game</li>
-            <li>Modem WiFi 6 thế hệ mới</li>
-            <li>Tối ưu ping, giảm độ trễ</li>
-          </ul><a href="#contact" class="outline-btn">Đăng ký gói này</a>
+          <div class="package-content">
+            <p class="package-tag">GAME THỦ</p>
+            <h3>F-GAME</h3>
+            <img class="package-device" src="../assets/images/modemwifi.webp" alt="Thiết bị modem WiFi FPT" width="300" height="92" loading="lazy" decoding="async">
+            <div class="price"><b data-rural="225.000" data-urban="250.000">225.000</b><small>đ / tháng</small></div>
+            <p class="speed">1Gbps <span>/ 300Mbps</span></p>
+            <ul style="text-align: left; margin: 20px 0; color: #475569; font-size: 0.95rem;">
+              <li style="margin-bottom: 8px;">✓ Ưu tiên kết nối chơi game</li>
+              <li style="margin-bottom: 8px;">✓ Modem WiFi 6 thế hệ mới</li>
+              <li style="margin-bottom: 8px;">✓ Tối ưu ping, giảm độ trễ</li>
+            </ul>
+            <div style="flex-grow: 1;"></div>
+            <a href="#contact" class="outline-btn" style="width: 100%; border: 2px solid #e2e8f0; color: #475569; padding: 12px; border-radius: 12px; font-weight: 700;">Đăng ký gói này</a>
+          </div>
         </article>
-        <article class="package recommended tilt-3d scroll-animate"><span class="ribbon">ĐƯỢC CHỌN NHIỀU</span>
-          <p class="package-tag">GIẢI TRÍ TOÀN DIỆN</p>
-          <h3>COMBO VIP</h3><img class="package-device" src="../assets/images/boxtv.webp"
-            alt="FPT Play Box và điều khiển" width="300" height="92" loading="lazy" decoding="async">
-          <div class="price"><b data-rural="215.000" data-urban="240.000">215.000</b><small>đ / tháng</small></div>
-          <p class="speed">Internet + <span>FPT Play</span></p>
-          <ul>
-            <li>Truyền hình FPT Play đa nội dung</li>
-            <li>Modem WiFi 6 + Box TV</li>
-            <li>Phù hợp gia đình đa thế hệ</li>
-          </ul><a href="#contact" class="btn btn-blue">Đăng ký gói này <span>→</span></a>
+
+        <article class="package recommended tilt-3d scroll-animate">
+          <div class="ribbon">⭐ Được Khuyên Dùng</div>
+          <div class="package-content">
+            <p class="package-tag" style="color: var(--blue);">GIẢI TRÍ TOÀN DIỆN</p>
+            <h3>COMBO VIP</h3>
+            <img class="package-device" src="../assets/images/boxtv.webp" alt="FPT Play Box và điều khiển" width="300" height="92" loading="lazy" decoding="async">
+            <div class="price"><b data-rural="215.000" data-urban="240.000">215.000</b><small>đ / tháng</small></div>
+            <p class="speed">Internet + <span>FPT Play</span></p>
+            <ul style="text-align: left; margin: 20px 0; color: #475569; font-size: 0.95rem;">
+              <li style="margin-bottom: 8px; color: var(--navy); font-weight: 600;">✓ Truyền hình FPT Play đa nội dung</li>
+              <li style="margin-bottom: 8px;">✓ Modem WiFi 6 + Box TV điều khiển giọng nói</li>
+              <li style="margin-bottom: 8px;">✓ Phù hợp gia đình đa thế hệ</li>
+            </ul>
+            <div style="flex-grow: 1;"></div>
+            <a href="#contact" class="btn btn-blue" style="width: 100%; padding: 14px; border-radius: 12px; font-weight: 700; box-shadow: 0 4px 15px rgba(6,101,245,0.3);">Đăng ký gói này <span>→</span></a>
+          </div>
         </article>
+
         <article class="package tilt-3d scroll-animate">
-          <p class="package-tag">CHUYÊN NGHIỆP</p>
-          <h3>META</h3><img class="package-device" src="../assets/images/modemmeta.webp"
-            alt="Modem WiFi 6 FPT cao cấp META" width="300" height="92" loading="lazy" decoding="async">
-          <div class="price"><b data-rural="300.000" data-urban="330.000">300.000</b><small>đ / tháng</small></div>
-          <p class="speed">1Gbps <span>/ 1Gbps</span></p>
-          <ul>
-            <li>Băng thông đối xứng 2 chiều</li>
-            <li>WiFi 6 cao cấp</li>
-            <li>Designer, doanh nghiệp nhỏ</li>
-          </ul><a href="#contact" class="outline-btn">Đăng ký gói này</a>
+          <div class="package-content">
+            <p class="package-tag">CHUYÊN NGHIỆP</p>
+            <h3>META</h3>
+            <img class="package-device" src="../assets/images/modemmeta.webp" alt="Modem WiFi 6 FPT cao cấp META" width="300" height="92" loading="lazy" decoding="async">
+            <div class="price"><b data-rural="300.000" data-urban="330.000">300.000</b><small>đ / tháng</small></div>
+            <p class="speed">1Gbps <span>/ 1Gbps</span></p>
+            <ul style="text-align: left; margin: 20px 0; color: #475569; font-size: 0.95rem;">
+              <li style="margin-bottom: 8px;">✓ Băng thông đối xứng 2 chiều</li>
+              <li style="margin-bottom: 8px;">✓ WiFi 6 cao cấp</li>
+              <li style="margin-bottom: 8px;">✓ Designer, doanh nghiệp nhỏ</li>
+            </ul>
+            <div style="flex-grow: 1;"></div>
+            <a href="#contact" class="outline-btn" style="width: 100%; border: 2px solid #e2e8f0; color: #475569; padding: 12px; border-radius: 12px; font-weight: 700;">Đăng ký gói này</a>
+          </div>
         </article>
       </div>
       <div class="triple tilt-3d scroll-animate">
@@ -331,42 +361,40 @@
     </section>
     <section class="comparison section">
       
-      <div class="compare-table-wrapper scroll-animate" style="overflow-x: auto; margin-top: 30px;">
-        <table class="compare-table"
-          style="width: 100%; min-width: 600px; border-collapse: collapse; background: var(--canvas); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+      <div class="table-container scroll-animate" style="margin-top: 30px;">
+        <table class="comparison-table">
           <thead>
-            <tr style="background: var(--pale); border-bottom: 2px solid var(--blue);">
-              <th style="padding: 16px; text-align: left; font-weight: 700; color: var(--ink);">Tính năng</th>
-              <th style="padding: 16px; text-align: center; font-weight: 700; color: var(--ink);">GIGA / SKY</th>
-              <th style="padding: 16px; text-align: center; font-weight: 700; color: var(--blue);">F-GAME</th>
-              <th style="padding: 16px; text-align: center; font-weight: 700; color: var(--ink);">META</th>
+            <tr>
+              <th>Tính năng</th>
+              <th>GIGA / SKY</th>
+              <th class="highlight-col" style="color: var(--blue);">F-GAME</th>
+              <th>META</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom: 1px solid var(--line);">
-              <td style="padding: 16px; color: var(--muted); font-weight: 600;">Tốc độ Download</td>
-              <td style="padding: 16px; text-align: center; font-weight: 600;">1Gbps</td>
-              <td style="padding: 16px; text-align: center; font-weight: 600; color: var(--blue);">1Gbps</td>
-              <td style="padding: 16px; text-align: center; font-weight: 600;">1Gbps</td>
+            <tr>
+              <td style="font-weight: 600;">Tốc độ Download</td>
+              <td style="text-align: center; font-weight: 600;">1Gbps</td>
+              <td class="highlight-col" style="text-align: center; font-weight: 600; color: var(--blue);">1Gbps</td>
+              <td style="text-align: center; font-weight: 600;">1Gbps</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--line);">
-              <td style="padding: 16px; color: var(--muted); font-weight: 600;">Tốc độ Upload</td>
-              <td style="padding: 16px; text-align: center;">300Mbps</td>
-              <td style="padding: 16px; text-align: center;">300Mbps</td>
-              <td style="padding: 16px; text-align: center;">1Gbps</td>
+            <tr>
+              <td style="font-weight: 600;">Tốc độ Upload</td>
+              <td style="text-align: center;">300Mbps</td>
+              <td class="highlight-col" style="text-align: center; color: var(--navy); font-weight: 600;">300Mbps</td>
+              <td style="text-align: center;">1Gbps</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--line);">
-              <td style="padding: 16px; color: var(--muted); font-weight: 600;">Trang bị Modem</td>
-              <td style="padding: 16px; text-align: center;">Wi-Fi 6</td>
-              <td style="padding: 16px; text-align: center; font-weight: 600; color: var(--blue);">Wi-Fi 6 (Ưu tiên
-                game)</td>
-              <td style="padding: 16px; text-align: center;">Wi-Fi 6 Cao cấp</td>
+            <tr>
+              <td style="font-weight: 600;">Trang bị Modem</td>
+              <td style="text-align: center;">Wi-Fi 6</td>
+              <td class="highlight-col" style="text-align: center; font-weight: 600; color: var(--blue);">Wi-Fi 6 (Ưu tiên game)</td>
+              <td style="text-align: center;">Wi-Fi 6 Cao cấp</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--line);">
-              <td style="padding: 16px; color: var(--muted); font-weight: 600;">Phù hợp cho</td>
-              <td style="padding: 16px; text-align: center;">Gia đình, Sinh viên</td>
-              <td style="padding: 16px; text-align: center;">Game thủ, Livestream</td>
-              <td style="padding: 16px; text-align: center;">Doanh nghiệp nhỏ</td>
+            <tr>
+              <td style="font-weight: 600;">Phù hợp cho</td>
+              <td style="text-align: center;">Gia đình, Sinh viên</td>
+              <td class="highlight-col" style="text-align: center; font-weight: 600; color: var(--blue);">Game thủ, Livestream</td>
+              <td style="text-align: center;">Doanh nghiệp nhỏ</td>
             </tr>
           </tbody>
         </table>
@@ -381,64 +409,52 @@
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">
         
-        <article class="scroll-animate" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
-          <div style="height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d7804dc19c_AP%20AX1500C%20%281%29.jpg" alt="Access Point AX1500C" style="max-height: 100%; max-width: 100%; object-fit: contain;">
-          </div>
-          <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 12px;">Access Point AX1500C</h3>
-          <div style="font-size: 1.5rem; font-weight: bold; color: #ff6500; margin-bottom: 20px;">600.000đ</div>
+        <article class="ap-card scroll-animate">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d7804dc19c_AP%20AX1500C%20%281%29.jpg" alt="Access Point AX1500C">
+          <h3 class="ap-title">Access Point AX1500C</h3>
+          <div class="ap-price">600.000đ</div>
           <div style="flex-grow: 1;"></div>
-          <a href="#contact" class="btn" style="width: 100%; border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 8px;">Đăng ký mua</a>
+          <a href="#contact" class="btn" style="width: 100%; border: 2px solid var(--primary); color: var(--primary); padding: 12px; border-radius: 12px; font-weight: 700;">Đăng ký mua</a>
         </article>
         
-        <article class="scroll-animate" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
-          <div style="height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d76254300f_AP%20AX3000C%20%281%29.jpg" alt="Access Point AX3000C" style="max-height: 100%; max-width: 100%; object-fit: contain;">
-          </div>
-          <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 12px;">Access Point AX3000C</h3>
-          <div style="font-size: 1.5rem; font-weight: bold; color: #ff6500; margin-bottom: 20px;">880.000đ</div>
+        <article class="ap-card scroll-animate">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d76254300f_AP%20AX3000C%20%281%29.jpg" alt="Access Point AX3000C">
+          <h3 class="ap-title">Access Point AX3000C</h3>
+          <div class="ap-price">880.000đ</div>
           <div style="flex-grow: 1;"></div>
-          <a href="#contact" class="btn" style="width: 100%; border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 8px;">Đăng ký mua</a>
+          <a href="#contact" class="btn" style="width: 100%; border: 2px solid var(--primary); color: var(--primary); padding: 12px; border-radius: 12px; font-weight: 700;">Đăng ký mua</a>
         </article>
         
-        <article class="scroll-animate" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
-          <div style="height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d451dc5139_AP%20AX3000CV2%20%282%29.jpg" alt="Access Point AX3000CV2" style="max-height: 100%; max-width: 100%; object-fit: contain;">
-          </div>
-          <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 12px;">Access Point AX3000CV2</h3>
-          <div style="font-size: 1.5rem; font-weight: bold; color: #ff6500; margin-bottom: 20px;">880.000đ</div>
+        <article class="ap-card scroll-animate">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d451dc5139_AP%20AX3000CV2%20%282%29.jpg" alt="Access Point AX3000CV2">
+          <h3 class="ap-title">Access Point AX3000CV2</h3>
+          <div class="ap-price">880.000đ</div>
           <div style="flex-grow: 1;"></div>
-          <a href="#contact" class="btn" style="width: 100%; border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 8px;">Đăng ký mua</a>
+          <a href="#contact" class="btn" style="width: 100%; border: 2px solid var(--primary); color: var(--primary); padding: 12px; border-radius: 12px; font-weight: 700;">Đăng ký mua</a>
         </article>
         
-        <article class="scroll-animate" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
-          <div style="height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d71cceab4e_AP%20AX3000AZ%20%281%29.jpg" alt="Access Point AX3000AZ" style="max-height: 100%; max-width: 100%; object-fit: contain;">
-          </div>
-          <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 12px;">Access Point AX3000AZ</h3>
-          <div style="font-size: 1.5rem; font-weight: bold; color: #ff6500; margin-bottom: 20px;">860.000đ</div>
+        <article class="ap-card scroll-animate">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d71cceab4e_AP%20AX3000AZ%20%281%29.jpg" alt="Access Point AX3000AZ">
+          <h3 class="ap-title">Access Point AX3000AZ</h3>
+          <div class="ap-price">860.000đ</div>
           <div style="flex-grow: 1;"></div>
-          <a href="#contact" class="btn" style="width: 100%; border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 8px;">Đăng ký mua</a>
+          <a href="#contact" class="btn" style="width: 100%; border: 2px solid var(--primary); color: var(--primary); padding: 12px; border-radius: 12px; font-weight: 700;">Đăng ký mua</a>
         </article>
         
-        <article class="scroll-animate" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
-          <div style="height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d77b75ae03_AP%20AC1200C%20%281%29.jpg" alt="Access Point AC1200C" style="max-height: 100%; max-width: 100%; object-fit: contain;">
-          </div>
-          <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 12px;">Access Point AC1200C</h3>
-          <div style="font-size: 1.5rem; font-weight: bold; color: #ff6500; margin-bottom: 20px;">450.000đ</div>
+        <article class="ap-card scroll-animate">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d77b75ae03_AP%20AC1200C%20%281%29.jpg" alt="Access Point AC1200C">
+          <h3 class="ap-title">Access Point AC1200C</h3>
+          <div class="ap-price">450.000đ</div>
           <div style="flex-grow: 1;"></div>
-          <a href="#contact" class="btn" style="width: 100%; border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 8px;">Đăng ký mua</a>
+          <a href="#contact" class="btn" style="width: 100%; border: 2px solid var(--primary); color: var(--primary); padding: 12px; border-radius: 12px; font-weight: 700;">Đăng ký mua</a>
         </article>
         
-        <article class="scroll-animate" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
-          <div style="height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d797deff9e_AP%20AC1200T%20%281%29.jpg" alt="Access Point AC1200T" style="max-height: 100%; max-width: 100%; object-fit: contain;">
-          </div>
-          <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 12px;">Access Point AC1200T</h3>
-          <div style="font-size: 1.5rem; font-weight: bold; color: #ff6500; margin-bottom: 20px;">640.000đ</div>
+        <article class="ap-card scroll-animate">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d797deff9e_AP%20AC1200T%20%281%29.jpg" alt="Access Point AC1200T">
+          <h3 class="ap-title">Access Point AC1200T</h3>
+          <div class="ap-price">640.000đ</div>
           <div style="flex-grow: 1;"></div>
-          <a href="#contact" class="btn" style="width: 100%; border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 8px;">Đăng ký mua</a>
+          <a href="#contact" class="btn" style="width: 100%; border: 2px solid var(--primary); color: var(--primary); padding: 12px; border-radius: 12px; font-weight: 700;">Đăng ký mua</a>
         </article>
       </div>
       <div style="text-align: center; margin-top: 30px;">
@@ -639,8 +655,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -717,44 +733,7 @@
     </div>
   </div>
 
-  <div class="policy-modal-overlay" id="policy-modal" onclick="if(event.target===this) closePolicyModal()">
-    <div class="policy-modal-content">
-      <button class="policy-close-btn" onclick="closePolicyModal()" aria-label="Đóng">×</button>
-      <div class="policy-modal-body">
-        <h2
-          style="margin-top:0; color:#141b6a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">
-          Chính Sách Bảo Mật & Điều Khoản Sử Dụng</h2>
-        <p>Quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa FPT Telecom và khách hàng.</p>
-
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🛡️ I. Chính sách bảo mật dữ liệu</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Dữ liệu bắt buộc:</strong> Họ tên, số điện thoại, email, địa chỉ lắp
-            đặt khi đăng ký.</li>
-          <li style="margin-bottom:8px;"><strong>Mục đích sử dụng:</strong> Xác nhận dịch vụ, chăm sóc khách hàng, hỗ
-            trợ kỹ thuật và giải quyết sự cố.</li>
-          <li style="margin-bottom:8px;"><strong>Cam kết bảo mật:</strong> Tuyệt đối không chia sẻ, bán dữ liệu cho bên
-            thứ ba. Hệ thống Anti DDoS ngăn chặn rò rỉ dữ liệu. Khách hàng có toàn quyền yêu cầu xóa/sửa thông tin.</li>
-        </ul>
-
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">⚖️ II. Điều khoản sử dụng</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Trách nhiệm:</strong> Khách hàng tự chịu trách nhiệm về tính chính xác
-            của thông tin và bảo mật tài khoản cá nhân.</li>
-          <li style="margin-bottom:8px;"><strong>Sử dụng hợp pháp:</strong> Cam kết không sử dụng hạ tầng mạng vào các
-            hoạt động vi phạm pháp luật.</li>
-          <li style="margin-bottom:8px;"><strong>Giới hạn trách nhiệm:</strong> Khách hàng chấp nhận rủi ro từ các sự cố
-            bất khả kháng như thiên tai, hỏa hoạn, chập điện.</li>
-        </ul>
-
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🔄 III. Sửa đổi & Cập nhật</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li>FPT Telecom có quyền sửa đổi, bổ sung chính sách bất kỳ lúc nào. Việc tiếp tục sử dụng dịch vụ đồng nghĩa
-            với việc bạn đồng ý với các thay đổi đó.</li>
-        </ul>
-        <div style="margin-top:30px; padding-top:15px; border-top:1px dashed #cbd5e1; font-size:13px; color:#64748b;">
-          <em>Cập nhật lần cuối: Tháng 7/2026. Mọi thắc mắc vui lòng gọi Hotline 0358 513 269</em>
-        </div>
-      </div>
+  
     </div>
   </div>
 
@@ -765,7 +744,38 @@
     integrity="sha512-OzvjY+ajO2+czO5JRVqV82zi/zGj1HkGv1WvQeBkWaA3E2K+N0g0kS5j0H4kGz1+j8w9a2u6g9a7j+v3v+X7w=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="../js/script.js?v=26"></script>
-
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Toast Notification Logic
+      const toasts = [
+        "Khách hàng Nguyễn Văn A (Q.7) vừa đăng ký gói GIGA",
+        "Khách hàng Trần Thị B (Q.Tân Bình) vừa đăng ký gói COMBO VIP",
+        "Khách hàng Lê Văn C (Q.1) vừa đăng ký gói META",
+        "Khách hàng Phạm D (Thủ Đức) vừa đăng ký gói F-GAME"
+      ];
+      
+      const toastEl = document.createElement('div');
+      toastEl.className = 'toast-sale';
+      toastEl.innerHTML = `
+        <span style="font-size: 20px;">🎉</span>
+        <span id="toast-msg" style="font-size: 14px; color: #334155; font-weight: 500;"></span>
+      `;
+      document.body.appendChild(toastEl);
+      
+      setInterval(() => {
+        const msg = toasts[Math.floor(Math.random() * toasts.length)];
+        document.getElementById('toast-msg').textContent = msg;
+        
+        toastEl.classList.remove('hide');
+        toastEl.style.display = 'flex';
+        
+        setTimeout(() => {
+          toastEl.classList.add('hide');
+        }, 4000);
+      }, 12000);
+    });
+  </script>
   <script>
     const cwvData = { LCP: 0, CLS: 0, FCP: 0, INP: 0 };
 

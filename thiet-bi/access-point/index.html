@@ -11,7 +11,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/styles.min.css?v=26">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/fptlogo.png">
-  </head>
+  <style>
+    /* Custom CSS cho Access Point E-commerce Page */
+    
+    /* Intro & Filter Tabs */
+    .page-intro { text-align: center; margin-bottom: 40px; }
+    .page-title { color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+    .page-subtitle { color: #64748b; font-size: 1.1rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+    
+    .category-tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .tab-pill { padding: 10px 24px; border-radius: 9999px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; border: 1px solid #e2e8f0; background: white; color: #475569; text-decoration: none; }
+    .tab-pill:hover { border-color: #94a3b8; }
+    .tab-pill.active { background: #1e3a8a; color: white; border-color: #1e3a8a; }
+
+    /* Product Grid */
+    .product-grid { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 80rem; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 640px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1280px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    /* Product Card */
+    .product-card { background: white; border-radius: 1rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 10px rgba(0,0,0,0.03); display: flex; flex-direction: column; position: relative; border-top: 4px solid #2563eb; transition: transform 0.3s, box-shadow 0.3s; height: 100%; overflow: hidden; }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    
+    /* Product Image */
+    .product-img-wrap { height: 224px; display: flex; align-items: center; justify-content: center; padding: 16px; overflow: hidden; }
+    .product-img-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; transition: transform 0.3s ease; }
+    .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+    /* Badges */
+    .badge-hot { position: absolute; top: 12px; left: 12px; background: #ef4444; color: white; font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 9999px; text-transform: uppercase; z-index: 2; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4); }
+
+    /* Product Body */
+    .product-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+    .product-title { color: #1e3a8a; font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; text-align: center; }
+    
+    /* Quick Specs */
+    .quick-specs { list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 0.9rem; color: #64748b; }
+    .quick-specs li { display: flex; align-items: center; margin-bottom: 8px; }
+    .quick-specs li svg { width: 16px; height: 16px; color: #22c55e; margin-right: 8px; flex-shrink: 0; }
+    
+    /* Price & CTA */
+    .product-price { color: #f97316; font-size: 1.5rem; font-weight: 800; text-align: center; margin-top: auto; margin-bottom: 16px; }
+    .btn-buy { display: block; width: 100%; padding: 14px; background: #f97316; color: white; text-align: center; border-radius: 0.75rem; font-weight: 700; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .btn-buy:hover { background: #ea580c; }
+
+    /* Middle CTA Banner */
+    .cta-banner { max-width: 80rem; margin: 60px auto; padding: 0 16px; }
+    .cta-inner { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); border-radius: 1.5rem; padding: 40px; display: flex; flex-direction: column; align-items: center; text-align: center; color: white; box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2); }
+    @media (min-width: 768px) { .cta-inner { flex-direction: row; justify-content: space-between; text-align: left; padding: 50px 60px; } }
+    .cta-text h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+    .cta-text p { font-size: 1.1rem; color: #e2e8f0; max-width: 600px; line-height: 1.6; }
+    .btn-consult { display: inline-block; padding: 16px 32px; background: white; color: #1e3a8a; border-radius: 9999px; font-weight: 700; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin-top: 24px; white-space: nowrap; }
+    @media (min-width: 768px) { .btn-consult { margin-top: 0; margin-left: 30px; } }
+    .btn-consult:hover { background: #f8fafc; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+  </style>
+</head>
 <body style="background: #f8fafc;">
   <div class="topbar">
     <span>⚡ Ưu đãi tháng này: Tặng Voucher giảm giá &amp; miễn phí lắp đặt khi trả trước 6T/12T</span>
@@ -32,79 +87,134 @@
     <a class="btn btn-orange header-cta" href="/FPT-TELECOM/lien-he/">Đăng ký ngay <span>→</span></a>
   </header>
 
-  <main style="max-width: 1200px; margin: 100px auto 60px; padding: 0 24px; min-height: 60vh;">
-    <div style="text-align: center; margin-bottom: 50px;">
-      <h1 style="color: var(--navy); font-size: 2.5rem; margin-bottom: 16px;">Bộ Phát WiFi (Access Point) FPT</h1>
-      <p style="color: var(--muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Giải pháp mở rộng vùng phủ sóng hoàn hảo cho căn hộ nhiều tầng, biệt thự, văn phòng, quán cafe. Tốc độ ổn định, không góc chết với công nghệ Wi-Fi 6 hiện đại.</p>
+  <main>
+    <div class="page-intro">
+      <h1 class="page-title">Bộ Phát WiFi (Access Point) FPT</h1>
+      <p class="page-subtitle">Giải pháp phủ sóng WiFi toàn diện không góc chết cho căn hộ, biệt thự và văn phòng.</p>
+      
+      <div class="category-tabs">
+        <a href="#" class="tab-pill active">Tất Cả</a>
+        <a href="#" class="tab-pill">Bán Chạy</a>
+        <a href="#" class="tab-pill">Dành Cho Gia Đình</a>
+        <a href="#" class="tab-pill">Doanh Nghiệp</a>
+      </div>
     </div>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
-      
-      <article style="background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); display: flex; flex-direction: column; text-align: center; position: relative; overflow: hidden; border-top: 4px solid var(--primary);">
-        <div style="height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
-          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d7804dc19c_AP%20AX1500C%20%281%29.jpg" alt="Access Point AX1500C" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+    <div class="product-grid">
+      <!-- Product Card 1 -->
+      <article class="product-card">
+        <span class="badge-hot">🔥 BÁN CHẠY</span>
+        <div class="product-img-wrap">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d7804dc19c_AP%20AX1500C%20%281%29.jpg" alt="Access Point AX1500C" loading="lazy">
         </div>
-        <h3 style="color: var(--primary); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px;">Access Point AX1500C</h3>
-        <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 20px;">Thiết bị mở rộng sóng chính hãng FPT</p>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #ff6500; margin-bottom: 24px;">600.000đ</div>
-        <div style="flex-grow: 1;"></div>
-        <a href="/FPT-TELECOM/lien-he/" class="btn btn-orange" style="width: 100%; padding: 14px; border-radius: 8px; font-weight: 600; text-transform: uppercase;">Mua ngay <span>→</span></a>
-      </article>
-      
-      <article style="background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); display: flex; flex-direction: column; text-align: center; position: relative; overflow: hidden; border-top: 4px solid var(--primary);">
-        <div style="height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
-          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d76254300f_AP%20AX3000C%20%281%29.jpg" alt="Access Point AX3000C" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+        <div class="product-body">
+          <h3 class="product-title">Access Point AX1500C</h3>
+          <ul class="quick-specs">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Chuẩn WiFi 6</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Tốc độ 1500Mbps</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Chịu tải 30 thiết bị</li>
+          </ul>
+          <div class="product-price">600.000đ</div>
+          <a href="/FPT-TELECOM/lien-he/" class="btn-buy">Mua Ngay →</a>
         </div>
-        <h3 style="color: var(--primary); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px;">Access Point AX3000C</h3>
-        <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 20px;">Thiết bị mở rộng sóng chính hãng FPT</p>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #ff6500; margin-bottom: 24px;">880.000đ</div>
-        <div style="flex-grow: 1;"></div>
-        <a href="/FPT-TELECOM/lien-he/" class="btn btn-orange" style="width: 100%; padding: 14px; border-radius: 8px; font-weight: 600; text-transform: uppercase;">Mua ngay <span>→</span></a>
       </article>
-      
-      <article style="background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); display: flex; flex-direction: column; text-align: center; position: relative; overflow: hidden; border-top: 4px solid var(--primary);">
-        <div style="height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
-          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d451dc5139_AP%20AX3000CV2%20%282%29.jpg" alt="Access Point AX3000CV2" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+
+      <!-- Product Card 2 -->
+      <article class="product-card">
+        <span class="badge-hot">🔥 BÁN CHẠY</span>
+        <div class="product-img-wrap">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d76254300f_AP%20AX3000C%20%281%29.jpg" alt="Access Point AX3000C" loading="lazy">
         </div>
-        <h3 style="color: var(--primary); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px;">Access Point AX3000CV2</h3>
-        <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 20px;">Thiết bị mở rộng sóng chính hãng FPT</p>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #ff6500; margin-bottom: 24px;">880.000đ</div>
-        <div style="flex-grow: 1;"></div>
-        <a href="/FPT-TELECOM/lien-he/" class="btn btn-orange" style="width: 100%; padding: 14px; border-radius: 8px; font-weight: 600; text-transform: uppercase;">Mua ngay <span>→</span></a>
-      </article>
-      
-      <article style="background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); display: flex; flex-direction: column; text-align: center; position: relative; overflow: hidden; border-top: 4px solid var(--primary);">
-        <div style="height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
-          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d71cceab4e_AP%20AX3000AZ%20%281%29.jpg" alt="Access Point AX3000AZ" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+        <div class="product-body">
+          <h3 class="product-title">Access Point AX3000C</h3>
+          <ul class="quick-specs">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Chuẩn WiFi 6</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Tốc độ 3000Mbps</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Chịu tải 50 thiết bị</li>
+          </ul>
+          <div class="product-price">880.000đ</div>
+          <a href="/FPT-TELECOM/lien-he/" class="btn-buy">Mua Ngay →</a>
         </div>
-        <h3 style="color: var(--primary); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px;">Access Point AX3000AZ</h3>
-        <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 20px;">Thiết bị mở rộng sóng chính hãng FPT</p>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #ff6500; margin-bottom: 24px;">860.000đ</div>
-        <div style="flex-grow: 1;"></div>
-        <a href="/FPT-TELECOM/lien-he/" class="btn btn-orange" style="width: 100%; padding: 14px; border-radius: 8px; font-weight: 600; text-transform: uppercase;">Mua ngay <span>→</span></a>
       </article>
-      
-      <article style="background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); display: flex; flex-direction: column; text-align: center; position: relative; overflow: hidden; border-top: 4px solid var(--primary);">
-        <div style="height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
-          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d77b75ae03_AP%20AC1200C%20%281%29.jpg" alt="Access Point AC1200C" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+
+      <!-- Product Card 3 -->
+      <article class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d451dc5139_AP%20AX3000CV2%20%282%29.jpg" alt="Access Point AX3000CV2" loading="lazy">
         </div>
-        <h3 style="color: var(--primary); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px;">Access Point AC1200C</h3>
-        <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 20px;">Thiết bị mở rộng sóng chính hãng FPT</p>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #ff6500; margin-bottom: 24px;">450.000đ</div>
-        <div style="flex-grow: 1;"></div>
-        <a href="/FPT-TELECOM/lien-he/" class="btn btn-orange" style="width: 100%; padding: 14px; border-radius: 8px; font-weight: 600; text-transform: uppercase;">Mua ngay <span>→</span></a>
-      </article>
-      
-      <article style="background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); display: flex; flex-direction: column; text-align: center; position: relative; overflow: hidden; border-top: 4px solid var(--primary);">
-        <div style="height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
-          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d797deff9e_AP%20AC1200T%20%281%29.jpg" alt="Access Point AC1200T" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+        <div class="product-body">
+          <h3 class="product-title">Access Point AX3000CV2</h3>
+          <ul class="quick-specs">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Chuẩn WiFi 6</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Băng tần kép mạnh mẽ</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Hỗ trợ Easy Mesh</li>
+          </ul>
+          <div class="product-price">880.000đ</div>
+          <a href="/FPT-TELECOM/lien-he/" class="btn-buy">Mua Ngay →</a>
         </div>
-        <h3 style="color: var(--primary); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px;">Access Point AC1200T</h3>
-        <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 20px;">Thiết bị mở rộng sóng chính hãng FPT</p>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #ff6500; margin-bottom: 24px;">640.000đ</div>
-        <div style="flex-grow: 1;"></div>
-        <a href="/FPT-TELECOM/lien-he/" class="btn btn-orange" style="width: 100%; padding: 14px; border-radius: 8px; font-weight: 600; text-transform: uppercase;">Mua ngay <span>→</span></a>
       </article>
+
+      <!-- Product Card 4 -->
+      <article class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d71cceab4e_AP%20AX3000AZ%20%281%29.jpg" alt="Access Point AX3000AZ" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Access Point AX3000AZ</h3>
+          <ul class="quick-specs">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Dành cho doanh nghiệp</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Tốc độ 3000Mbps</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Khả năng xuyên tường tốt</li>
+          </ul>
+          <div class="product-price">860.000đ</div>
+          <a href="/FPT-TELECOM/lien-he/" class="btn-buy">Mua Ngay →</a>
+        </div>
+      </article>
+
+      <!-- Product Card 5 -->
+      <article class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d77b75ae03_AP%20AC1200C%20%281%29.jpg" alt="Access Point AC1200C" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Access Point AC1200C</h3>
+          <ul class="quick-specs">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Chuẩn WiFi 5 (AC)</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Tốc độ 1200Mbps</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Tiết kiệm chi phí</li>
+          </ul>
+          <div class="product-price">450.000đ</div>
+          <a href="/FPT-TELECOM/lien-he/" class="btn-buy">Mua Ngay →</a>
+        </div>
+      </article>
+
+      <!-- Product Card 6 -->
+      <article class="product-card">
+        <div class="product-img-wrap">
+          <img src="https://hi-static.fpt.vn/sys/shop/prod/2025-11-19/691d797deff9e_AP%20AC1200T%20%281%29.jpg" alt="Access Point AC1200T" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Access Point AC1200T</h3>
+          <ul class="quick-specs">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Thiết kế ăng ten ngoài</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Phủ sóng rộng hơn</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> Bền bỉ với thời gian</li>
+          </ul>
+          <div class="product-price">640.000đ</div>
+          <a href="/FPT-TELECOM/lien-he/" class="btn-buy">Mua Ngay →</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Middle CTA Banner -->
+    <div class="cta-banner">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h3>Chưa biết chọn thiết bị nào phù hợp?</h3>
+          <p>Để chuyên gia FPT khảo sát và tư vấn miễn phí giải pháp Mesh WiFi cho nhà bạn.</p>
+        </div>
+        <a href="/FPT-TELECOM/lien-he/" class="btn-consult">Nhận Tư Vấn Miễn Phí</a>
+      </div>
     </div>
   </main>
 
@@ -129,8 +239,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">

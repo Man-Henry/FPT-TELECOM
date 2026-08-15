@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8">
@@ -42,6 +42,61 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
+    
+    /* Template Layout */
+    .page-header { text-align: center; margin-bottom: 40px; padding: 40px 20px 0; }
+    .page-title { font-size: 2.5rem; color: #1e3a8a; font-weight: 800; margin-bottom: 16px; }
+    .page-badge { display: inline-block; background: #e2e8f0; color: #475569; padding: 6px 16px; border-radius: 9999px; font-size: 0.95rem; font-weight: 500; border: 1px solid #cbd5e1; }
+    
+    .template-container { max-width: 1152px; margin: 0 auto; padding: 0 20px 80px; display: grid; gap: 32px; }
+    @media (min-width: 992px) { .template-container { grid-template-columns: repeat(12, 1fr); } }
+
+    /* TOC (Sidebar) */
+    .toc-col { grid-column: span 12; }
+    @media (min-width: 992px) { .toc-col { grid-column: span 3; } }
+    
+    .toc-wrapper { position: sticky; top: 100px; }
+    .toc-title { font-size: 1.1rem; font-weight: 700; color: #334155; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .toc-list { list-style: none; padding: 0; margin: 0; }
+    .toc-link {
+      display: block; padding: 10px 16px; color: #64748b; text-decoration: none; font-size: 1rem;
+      border-left: 2px solid transparent; transition: all 0.2s ease;
+    }
+    .toc-link:hover { color: #3b82f6; border-left-color: #cbd5e1; background: rgba(241, 245, 249, 0.5); }
+    .toc-link.active { color: #2563eb; border-left-color: #2563eb; font-weight: 600; background: #eff6ff; }
+    
+    /* Mobile TOC (Accordion) */
+    .mobile-toc { display: block; background: white; border-radius: 16px; padding: 16px; border: 1px solid #e2e8f0; margin-bottom: 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .mobile-toc summary { font-weight: 700; color: #1e3a8a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
+    .mobile-toc summary::-webkit-details-marker { display: none; }
+    @media (min-width: 992px) { .mobile-toc { display: none; } }
+    .desktop-toc { display: none; }
+    @media (min-width: 992px) { .desktop-toc { display: block; } }
+
+    /* Main Content */
+    .content-col { grid-column: span 12; }
+    @media (min-width: 992px) { .content-col { grid-column: span 9; } }
+    
+    .content-card {
+      background: white; border-radius: 24px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;
+    }
+    @media (min-width: 992px) { .content-card { padding: 48px; } }
+    
+    .prose p { font-size: 1.125rem; color: #475569; line-height: 2; margin-bottom: 24px; }
+    .prose h2 { font-size: 1.75rem; color: #1e3a8a; font-weight: 700; margin-top: 48px; margin-bottom: 20px; padding-top: 80px; margin-top: -60px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; }
+    .prose h2:first-child { margin-top: 0; padding-top: 0; }
+    
+    .prose ul { list-style: none; padding-left: 0; margin-bottom: 24px; }
+    .prose ul li { position: relative; padding-left: 32px; font-size: 1.125rem; color: #475569; line-height: 1.8; margin-bottom: 12px; }
+    .prose ul li::before {
+      content: '✓'; position: absolute; left: 0; top: 2px; color: #fff; background: #22c55e;
+      width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
@@ -75,34 +130,68 @@
   </header>
 
   
-  <main style="min-height: 70vh; background: #f8fafc; padding: 60px 24px;">
-    
-    <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-      <h1 style="color: var(--navy); font-size: 2.2rem; margin-bottom: 20px; text-align: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px;">Chính sách bảo mật (Privacy Policy)</h1>
-        <p style="color: var(--text); line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem;"><em>Cập nhật lần cuối: Tháng 7/2026</em></p>
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1 class="page-title">Chính Sách & Điều Khoản</h1>
+    <span class="page-badge">🕒 Cập nhật lần cuối: Tháng 7/2026</span>
+  </header>
 
-        <h2 style="color: var(--blue); font-size: 1.5rem; margin-top: 40px; margin-bottom: 15px;">1. Thu thập dữ liệu và Cookies</h2>
-        <p style="color: var(--text); line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem;">Trang web này sử dụng cookies và các công nghệ theo dõi (tracking technologies) tương tự để nâng cao trải nghiệm của bạn, phân tích lưu lượng truy cập và cá nhân hóa nội dung. Khi bạn truy cập trang web, chúng tôi có thể thu thập các thông tin ẩn danh như địa chỉ IP, loại trình duyệt, thời gian truy cập thông qua Google Analytics hoặc các đối tác phân tích dữ liệu.</p>
+  <main class="template-container" id="main-content">
+    
+    <!-- Left Column: TOC -->
+    <div class="toc-col">
+      <div class="toc-wrapper">
+        <!-- Mobile TOC (Accordion) -->
+        <details class="mobile-toc">
+          <summary>Mục lục nội dung</summary>
+          <ul class="toc-list" style="margin-top: 12px;">
+            <li><a href="#sec-1" class="toc-link">1. Thu thập dữ liệu và Cookies</a></li>
+            <li><a href="#sec-2" class="toc-link">2. Mục đích sử dụng dữ liệu</a></li>
+            <li><a href="#sec-3" class="toc-link">3. Quyền của người dùng</a></li>
+            <li><a href="#sec-4" class="toc-link">4. Chia sẻ dữ liệu</a></li>
+            <li><a href="#sec-5" class="toc-link">5. Liên hệ</a></li>
+          </ul>
+        </details>
         
-        <h2 style="color: var(--blue); font-size: 1.5rem; margin-top: 40px; margin-bottom: 15px;">2. Mục đích sử dụng dữ liệu</h2>
-        <p style="color: var(--text); line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem;">Chúng tôi thu thập dữ liệu cá nhân (khi bạn tự nguyện cung cấp qua biểu mẫu liên hệ) và dữ liệu cookies (tự động) nhằm:</p>
-        <ul style="color: var(--text); line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem; padding-left: 20px;">
-            <li style="margin-bottom: 8px;">Cung cấp và duy trì dịch vụ, xử lý yêu cầu đăng ký lắp đặt mạng.</li>
-            <li style="margin-bottom: 8px;">Theo dõi và phân tích việc sử dụng trang web (Analytics) để cải thiện giao diện và hiệu suất.</li>
-            <li style="margin-bottom: 8px;">Đảm bảo tuân thủ các quy định về quyền riêng tư (bao gồm GDPR và CCPA đối với khách hàng thuộc các khu vực tương ứng).</li>
+        <!-- Desktop TOC -->
+        <div class="desktop-toc">
+          <h3 class="toc-title">Mục lục nội dung</h3>
+          <ul class="toc-list" id="toc-menu">
+            <li><a href="#sec-1" class="toc-link">1. Thu thập dữ liệu và Cookies</a></li>
+            <li><a href="#sec-2" class="toc-link">2. Mục đích sử dụng dữ liệu</a></li>
+            <li><a href="#sec-3" class="toc-link">3. Quyền của người dùng</a></li>
+            <li><a href="#sec-4" class="toc-link">4. Chia sẻ dữ liệu</a></li>
+            <li><a href="#sec-5" class="toc-link">5. Liên hệ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Content -->
+    <div class="content-col">
+      <div class="content-card prose">
+        <h2 id="sec-1">1. Thu thập dữ liệu và Cookies</h2>
+        <p>Trang web này sử dụng cookies và các công nghệ theo dõi (tracking technologies) tương tự để nâng cao trải nghiệm của bạn, phân tích lưu lượng truy cập và cá nhân hóa nội dung. Khi bạn truy cập trang web, chúng tôi có thể thu thập các thông tin ẩn danh như địa chỉ IP, loại trình duyệt, thời gian truy cập thông qua Google Analytics hoặc các đối tác phân tích dữ liệu.</p>
+        
+        <h2 id="sec-2">2. Mục đích sử dụng dữ liệu</h2>
+        <p>Chúng tôi thu thập dữ liệu cá nhân (khi bạn tự nguyện cung cấp qua biểu mẫu liên hệ) và dữ liệu cookies (tự động) nhằm:</p>
+        <ul>
+            <li>Cung cấp và duy trì dịch vụ, xử lý yêu cầu đăng ký lắp đặt mạng.</li>
+            <li>Theo dõi và phân tích việc sử dụng trang web (Analytics) để cải thiện giao diện và hiệu suất.</li>
+            <li>Đảm bảo tuân thủ các quy định về quyền riêng tư (bao gồm GDPR và CCPA đối với khách hàng thuộc các khu vực tương ứng).</li>
         </ul>
 
-        <h2 style="color: var(--blue); font-size: 1.5rem; margin-top: 40px; margin-bottom: 15px;">3. Quyền của người dùng</h2>
-        <p style="color: var(--text); line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem;">Bạn có quyền chấp nhận hoặc từ chối cookies (ngoại trừ các cookies thiết yếu) thông qua biểu ngữ chấp thuận cookie (Cookie Consent Banner) hoặc cài đặt trình duyệt. Bạn cũng có quyền yêu cầu truy cập, chỉnh sửa hoặc xóa dữ liệu cá nhân của mình bất kỳ lúc nào.</p>
+        <h2 id="sec-3">3. Quyền của người dùng</h2>
+        <p>Bạn có quyền chấp nhận hoặc từ chối cookies (ngoại trừ các cookies thiết yếu) thông qua biểu ngữ chấp thuận cookie (Cookie Consent Banner) hoặc cài đặt trình duyệt. Bạn cũng có quyền yêu cầu truy cập, chỉnh sửa hoặc xóa dữ liệu cá nhân của mình bất kỳ lúc nào.</p>
 
-        <h2 style="color: var(--blue); font-size: 1.5rem; margin-top: 40px; margin-bottom: 15px;">4. Chia sẻ dữ liệu</h2>
-        <p style="color: var(--text); line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem;">Chúng tôi tuyệt đối không bán hoặc cho thuê thông tin cá nhân của bạn. Dữ liệu chỉ được chia sẻ với các bên thứ ba cung cấp dịch vụ tin cậy (như đơn vị lưu trữ, phân tích dữ liệu) với điều kiện họ cam kết bảo mật thông tin.</p>
+        <h2 id="sec-4">4. Chia sẻ dữ liệu</h2>
+        <p>Chúng tôi tuyệt đối không bán hoặc cho thuê thông tin cá nhân của bạn. Dữ liệu chỉ được chia sẻ với các bên thứ ba cung cấp dịch vụ tin cậy (như đơn vị lưu trữ, phân tích dữ liệu) với điều kiện họ cam kết bảo mật thông tin.</p>
 
-        <h2 style="color: var(--blue); font-size: 1.5rem; margin-top: 40px; margin-bottom: 15px;">5. Liên hệ</h2>
-        <p style="color: var(--text); line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem;">Nếu bạn có bất kỳ câu hỏi nào về Chính sách bảo mật này, vui lòng liên hệ Hotline: 0358 513 269 hoặc truy cập trang <a href="/FPT-TELECOM/lien-he/">Liên hệ</a>.</p>
-    
+        <h2 id="sec-5">5. Liên hệ</h2>
+        <p>Nếu bạn có bất kỳ câu hỏi nào về Chính sách bảo mật này, vui lòng liên hệ Hotline: 0358 513 269 hoặc truy cập trang <a href="/FPT-TELECOM/lien-he/" style="color: #2563eb; text-decoration: underline; font-weight: 500;">Liên hệ</a>.</p>
+      </div>
     </div>
-    
+
   </main>
 
     <footer class="footer">
@@ -126,8 +215,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -194,33 +283,13 @@
     </div>
   </div>
 
-  <div class="policy-modal-overlay" id="policy-modal" onclick="if(event.target===this) closePolicyModal()">
-    <div class="policy-modal-content">
-      <button class="policy-close-btn" onclick="closePolicyModal()" aria-label="Đóng">×</button>
-      <div class="policy-modal-body">
-        <h2 style="margin-top:0; color:#141b6a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">Chính Sách Bảo Mật & Điều Khoản Sử Dụng</h2>
-        <p>Quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa FPT Telecom và khách hàng.</p>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🛡️ I. Chính sách bảo mật dữ liệu</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Dữ liệu bắt buộc:</strong> Họ tên, số điện thoại, email, địa chỉ lắp đặt khi đăng ký.</li>
-          <li style="margin-bottom:8px;"><strong>Mục đích sử dụng:</strong> Xác nhận dịch vụ, chăm sóc khách hàng, hỗ trợ kỹ thuật.</li>
-          <li style="margin-bottom:8px;"><strong>Cam kết bảo mật:</strong> Tuyệt đối không chia sẻ, bán dữ liệu cho bên thứ ba.</li>
-        </ul>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">⚖️ II. Điều khoản sử dụng</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Trách nhiệm:</strong> Khách hàng tự chịu trách nhiệm về tính chính xác của thông tin.</li>
-          <li style="margin-bottom:8px;"><strong>Sử dụng hợp pháp:</strong> Cam kết không sử dụng hạ tầng mạng vào các hoạt động vi phạm pháp luật.</li>
-        </ul>
-        <div style="margin-top:30px; padding-top:15px; border-top:1px dashed #cbd5e1; font-size:13px; color:#64748b;">
-          <em>Cập nhật lần cuối: Tháng 7/2026. Mọi thắc mắc vui lòng gọi Hotline 0358 513 269</em>
-        </div>
-      </div>
+  
     </div>
   </div>
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-OzvjY+ajO2+czO5JRVqV82zi/zGj1HkGv1WvQeBkWaA3E2K+N0g0kS5j0H4kGz1+j8w9a2u6g9a7j+v3v+X7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="js/script.js?v=26"></script>
+  <script defer src="../js/script.js?v=26"></script>
 
   <script>
     const cwvData = { LCP: 0, CLS: 0, FCP: 0, INP: 0 };
@@ -283,6 +352,32 @@
 
       document.querySelectorAll('.scroll-animate').forEach(el => {
         observer.observe(el);
+      });
+
+      // TOC Intersection Observer
+      const sections = document.querySelectorAll('.prose h2');
+      const navLinks = document.querySelectorAll('.toc-link');
+
+      const tocObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + entry.target.id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, {
+        rootMargin: "-20% 0px -70% 0px", // Trigger when the header is somewhat near the top
+        threshold: 0
+      });
+
+      sections.forEach(sec => {
+        if(sec.id) {
+          tocObserver.observe(sec);
+        }
       });
     });
   </script>

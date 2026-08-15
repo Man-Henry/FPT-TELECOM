@@ -49,7 +49,142 @@
         }
     ]
 }
-  </script>
+  <style>
+    body { background-color: #f8fafc; }
+    
+    /* Cinematic Hero */
+    .hero-cinematic {
+      background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
+      color: white;
+      padding-top: 80px;
+      padding-bottom: 12rem; /* pb-48 for overlapping */
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-cinematic::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('../assets/images/fptfamily.webp') center/cover;
+      opacity: 0.1;
+      mix-blend-mode: overlay;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* TV Placeholder */
+    .tv-placeholder {
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 12px;
+      border: 8px solid #1e293b;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .tv-placeholder::after {
+      content: '';
+      position: absolute;
+      bottom: -15px; left: 50%;
+      transform: translateX(-50%);
+      width: 100px; height: 15px;
+      background: #1e293b;
+      border-radius: 0 0 10px 10px;
+    }
+
+    /* Feature Cards */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 1200px;
+      margin: -8rem auto 80px; /* -mt-32 to overlap hero */
+      padding: 0 24px;
+      position: relative;
+      z-index: 20;
+    }
+    @media (min-width: 768px) {
+      .features-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    
+    .feature-card {
+      background-color: #0f172a;
+      color: white;
+      border-radius: 1.5rem;
+      padding: 32px 24px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid #1e293b;
+    }
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 35px 60px -15px rgba(0,0,0,0.4);
+    }
+    .feature-card.highlight {
+      border: 2px solid #f97316;
+      position: relative;
+    }
+    
+    /* Highlight Badge */
+    .badge-exclusive {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: #f97316;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .feature-icon { margin-bottom: 20px; }
+    .feature-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 16px; color: white; }
+    .feature-desc { color: #94a3b8; font-size: 1rem; line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
+    .feature-label { background: #1e293b; color: #cbd5e1; font-size: 0.85rem; font-weight: 700; padding: 6px 16px; border-radius: 9999px; }
+    .feature-card.highlight .feature-label { background: #ffedd5; color: #ea580c; }
+
+    /* Middle CTA */
+    .cta-middle {
+      background: linear-gradient(to right, #fff7ed, #ffffff);
+      border: 2px solid #fed7aa;
+      border-radius: 1.5rem;
+      padding: 48px 32px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    }
+    .cta-middle-title { font-size: 2rem; color: #1e293b; font-weight: 800; margin-bottom: 32px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    
+    .btn-solid-orange { background: #ea580c; color: white; padding: 14px 32px; border-radius: 9999px; font-weight: 700; font-size: 1.1rem; text-decoration: none; transition: background 0.2s; border: none; cursor: pointer; }
+    .btn-solid-orange:hover { background: #c2410c; }
+    .btn-outline-orange { background: white; color: #ea580c; border: 2px solid #ea580c; padding: 12px 32px; border-radius: 9999px; font-weight: 700; font-size: 1.1rem; text-decoration: none; transition: all 0.2s; }
+    .btn-outline-orange:hover { background: #fff7ed; }
+  </style>
   </head>
 <body>
 
@@ -83,82 +218,111 @@
   </header>
 
   
-  <main style="min-height: 70vh; background: #f8fafc; padding-bottom: 80px;">
+  <main>
     
-    <!-- Hero Banner -->
-    <section style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 60px 24px; text-align: center; margin-bottom: 50px; position: relative; overflow: hidden;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('../assets/images/fptfamily.webp') center/cover; opacity: 0.15; mix-blend-mode: overlay;"></div>
-      <div style="position: relative; z-index: 2;">
-        <div class="countdown-timer" style="background: rgba(255,255,255,0.2); color: white;">⏰ Ưu đãi kết thúc sau: <span class="countdown-time" style="color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">Đang tính...</span></div>
-        <p class="eyebrow" style="color: #ffedd5; letter-spacing: 2px;">NỀN TẢNG GIẢI TRÍ SỐ 1</p>
-        <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Truyền Hình FPT Play</h1>
-        <p style="max-width: 600px; margin: 0 auto; color: #ffedd5; font-size: 1.1rem; line-height: 1.6;">Trải nghiệm giải trí không giới hạn với hơn 200 kênh truyền hình, bản quyền Thể Thao đỉnh cao và kho phim 4K siêu nét. Tặng kèm FPT Play Box.</p>
+    <!-- Hero Banner Premium -->
+    <section class="hero-cinematic">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p style="color: #ffedd5; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase;">Nền Tảng Giải Trí Số 1 Việt Nam</p>
+          <h1 style="font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px; text-shadow: 0 4px 8px rgba(0,0,0,0.2);">Giải Trí <br><span style="color: #fff;">Không Giới Hạn</span></h1>
+          <p style="color: #ffedd5; font-size: 1.15rem; line-height: 1.6; margin-bottom: 32px; max-width: 450px;">Khám phá kho tàng giải trí bất tận với hơn 200 kênh truyền hình, thể thao đỉnh cao và kho phim điện ảnh 4K sắc nét.</p>
+          <a href="/FPT-TELECOM/lien-he/" class="btn-solid-orange" style="display: inline-block; box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.5); font-size: 1.1rem;">Đăng Ký Khảo Sát <span>→</span></a>
+        </div>
+        <div class="hero-visual">
+          <div class="tv-placeholder">
+            <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <div style="position:absolute; bottom:20px; left:20px; right:20px; height:4px; background:rgba(255,255,255,0.1); border-radius:2px;">
+               <div style="width:30%; height:100%; background:#ea580c; border-radius:2px;"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <div style="max-width: 1200px; margin: -60px auto 0; padding: 0 20px; position: relative; z-index: 10;">
+    <!-- Core Features Grid -->
+    <div class="features-grid">
       
-      <!-- Features Grid -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px;">
-        
-        <!-- Feature 1 -->
-        <div style="background: white; border-radius: 20px; padding: 35px 25px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.06); transition: transform 0.3s ease;">
-          <div style="width: 70px; height: 70px; background: #ffedd5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px; color: #ea580c;">📺</div>
-          <h3 style="font-size: 1.4rem; color: var(--navy); margin-bottom: 15px;">200+ Kênh Đặc Sắc</h3>
-          <p style="color: var(--text); font-size: 1rem; line-height: 1.6;">Tận hưởng gần 200 kênh truyền hình trong nước và quốc tế, đa dạng nội dung từ phim truyện, giải trí, thời sự đến thiếu nhi.</p>
+      <!-- Feature 1: HBO -->
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+            <line x1="7" y1="2" x2="7" y2="22"></line>
+            <line x1="17" y1="2" x2="17" y2="22"></line>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <line x1="2" y1="7" x2="7" y2="7"></line>
+            <line x1="2" y1="17" x2="7" y2="17"></line>
+            <line x1="17" y1="17" x2="22" y2="17"></line>
+            <line x1="17" y1="7" x2="22" y2="7"></line>
+          </svg>
         </div>
-
-        <!-- Feature 2 -->
-        <div style="background: white; border-radius: 20px; padding: 35px 25px; text-align: center; box-shadow: 0 15px 30px rgba(234, 88, 12, 0.15); transition: transform 0.3s ease; border: 2px solid #ea580c; position: relative;">
-          <div style="position: absolute; top: 12px; right: -30px; background: #ea580c; color: white; padding: 4px 30px; font-size: 0.8rem; font-weight: bold; transform: rotate(45deg);">ĐỘC QUYỀN</div>
-          <div style="width: 70px; height: 70px; background: #ffedd5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;">⚽</div>
-          <h3 style="font-size: 1.4rem; color: var(--navy); margin-bottom: 15px;">Thể Thao Đỉnh Cao</h3>
-          <p style="color: var(--text); font-size: 1rem; line-height: 1.6;">Sở hữu trọn vẹn bản quyền phát sóng các giải đấu hàng đầu: Cúp C1 Châu Âu (UEFA Champions League), V-League, AFC...</p>
-        </div>
-
-        <!-- Feature 3 -->
-        <div style="background: white; border-radius: 20px; padding: 35px 25px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.06); transition: transform 0.3s ease;">
-          <div style="width: 70px; height: 70px; background: #ffedd5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;">🎮</div>
-          <h3 style="font-size: 1.4rem; color: var(--navy); margin-bottom: 15px;">Công Nghệ Tương Tác</h3>
-          <p style="color: var(--text); font-size: 1rem; line-height: 1.6;">Trải nghiệm độ phân giải 4K siêu nét. Tính năng xem lại thông minh, điều khiển bằng giọng nói và giám sát trẻ em dễ dàng.</p>
-        </div>
-        
-      </div>
-      
-      <!-- CTA Section -->
-      <div style="background: linear-gradient(to right, #ffedd5, #fff); border-radius: 20px; padding: 40px; text-align: center; margin-bottom: 60px; border: 1px solid #fdba74;">
-        <h2 style="font-size: 1.8rem; color: var(--navy); margin-bottom: 15px;">Đăng ký Combo Internet + Truyền hình ngay!</h2>
-        <p style="color: var(--text); margin-bottom: 25px; font-size: 1.1rem;">Tiết kiệm hơn 30% chi phí hàng tháng. Tặng ngay đầu thu FPT Play Box điều khiển giọng nói.</p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-          <a href="/FPT-TELECOM/lien-he/" class="btn btn-orange" style="font-size: 1.1rem; padding: 14px 32px; font-weight: bold;">Đăng Ký Khảo Sát</a>
-          <a href="/FPT-TELECOM/bang-gia/" class="btn" style="font-size: 1.1rem; padding: 14px 32px; background: white; color: #ea580c; border: 2px solid #ea580c; border-radius: 30px; font-weight: bold;">Xem Bảng Giá</a>
-        </div>
+        <h3 class="feature-title">Phim Điện Ảnh & HBO</h3>
+        <p class="feature-desc">Thưởng thức hàng ngàn giờ phim bom tấn Hollywood, series độc quyền HBO Go và các siêu phẩm Châu Á sớm nhất.</p>
+        <span class="feature-label">Hơn 10.000+ giờ phim</span>
       </div>
 
-      <!-- Internal SEO Links -->
-      <div style="margin-top: 60px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--navy); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Dịch Vụ Nổi Bật</h3>
-        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;">
-          <a href="/FPT-TELECOM/lap-wifi/" style="text-decoration: none;"><span>Lắp WiFi FPT</span></a>
-          <a href="/FPT-TELECOM/wifi-fpt/" style="text-decoration: none;"><span>Cáp quang FPT</span></a>
-          <a href="/FPT-TELECOM/dang-ky-wifi/" style="text-decoration: none;"><span>Hướng Dẫn Đăng Ký</span></a>
-          <a href="/FPT-TELECOM/khuyen-mai/" style="text-decoration: none;"><span>Khuyến Mãi Mới Nhất</span></a>
-          <a href="/FPT-TELECOM/camera/" style="text-decoration: none;"><span>Lắp đặt Camera FPT</span></a>
+      <!-- Feature 2: Sports -->
+      <div class="feature-card highlight">
+        <span class="badge-exclusive">ĐỘC QUYỀN</span>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20"></path>
+            <path d="M2 12h20"></path>
+          </svg>
         </div>
-        
-        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--navy); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Tìm Kiếm Theo Khu Vực</h3>
-        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/" style="text-decoration: none;"><span>Hồ Chí Minh</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/ha-noi/" style="text-decoration: none;"><span>Hà Nội</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/dong-nai/" style="text-decoration: none;"><span>Đồng Nai</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/binh-duong/" style="text-decoration: none;"><span>Bình Dương</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/da-nang/" style="text-decoration: none;"><span>Đà Nẵng</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/vung-tau/" style="text-decoration: none;"><span>Bà Rịa - Vũng Tàu</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/hai-phong/" style="text-decoration: none;"><span>Hải Phòng</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/can-tho/" style="text-decoration: none;"><span>Cần Thơ</span></a>
+        <h3 class="feature-title" style="color: #f97316;">Trực Tiếp Thể Thao</h3>
+        <p class="feature-desc">Sống trọn đam mê với Ngoại hạng Anh, UEFA Champions League, AFC và vô vàn giải đấu thể thao đối kháng hấp dẫn.</p>
+        <span class="feature-label">Trực tiếp & Độc quyền</span>
+      </div>
+
+      <!-- Feature 3: Smart Box -->
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+          </svg>
         </div>
+        <h3 class="feature-title">Trang Bị Smart Box AI</h3>
+        <p class="feature-desc">Biến mọi chiếc TV thường thành TV thông minh. Trải nghiệm ra lệnh bằng giọng nói tiếng Việt chuẩn xác và tiện lợi.</p>
+        <span class="feature-label">Miễn phí thiết bị</span>
+      </div>
+
+    </div>
+    
+    <!-- Middle CTA -->
+    <div class="cta-middle">
+      <h2 class="cta-middle-title">Tiết kiệm hơn 30% khi đăng ký Combo Internet + Truyền hình</h2>
+      <div class="cta-buttons">
+        <a href="/FPT-TELECOM/lien-he/" class="btn-solid-orange">Đăng Ký Khảo Sát</a>
+        <a href="/FPT-TELECOM/bang-gia/" class="btn-outline-orange">Xem Bảng Giá</a>
+      </div>
+    </div>
+
+    <!-- SEO Tags -->
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px 60px;">
+      <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Dịch Vụ Nổi Bật</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px;">
+        <a href="/FPT-TELECOM/lap-wifi/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Lắp WiFi FPT</a>
+        <a href="/FPT-TELECOM/wifi-fpt/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Cáp quang FPT</a>
+        <a href="/FPT-TELECOM/dang-ky-wifi/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Hướng Dẫn Đăng Ký</a>
+        <a href="/FPT-TELECOM/khuyen-mai/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Khuyến Mãi Mới Nhất</a>
+        <a href="/FPT-TELECOM/camera/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Lắp đặt Camera FPT</a>
       </div>
       
+      <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Tìm Kiếm Theo Khu Vực</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Hồ Chí Minh</a>
+        <a href="/FPT-TELECOM/khu-vuc/ha-noi/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Hà Nội</a>
+        <a href="/FPT-TELECOM/khu-vuc/dong-nai/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Đồng Nai</a>
+        <a href="/FPT-TELECOM/khu-vuc/binh-duong/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Bình Dương</a>
+        <a href="/FPT-TELECOM/khu-vuc/da-nang/" style="padding: 8px 16px; background: #e2e8f0; color: #475569; border-radius: 9999px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Đà Nẵng</a>
+      </div>
     </div>
   </main>
 
@@ -183,8 +347,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -251,33 +415,13 @@
     </div>
   </div>
 
-  <div class="policy-modal-overlay" id="policy-modal" onclick="if(event.target===this) closePolicyModal()">
-    <div class="policy-modal-content">
-      <button class="policy-close-btn" onclick="closePolicyModal()" aria-label="Đóng">×</button>
-      <div class="policy-modal-body">
-        <h2 style="margin-top:0; color:#141b6a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">Chính Sách Bảo Mật & Điều Khoản Sử Dụng</h2>
-        <p>Quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa FPT Telecom và khách hàng.</p>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🛡️ I. Chính sách bảo mật dữ liệu</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Dữ liệu bắt buộc:</strong> Họ tên, số điện thoại, email, địa chỉ lắp đặt khi đăng ký.</li>
-          <li style="margin-bottom:8px;"><strong>Mục đích sử dụng:</strong> Xác nhận dịch vụ, chăm sóc khách hàng, hỗ trợ kỹ thuật.</li>
-          <li style="margin-bottom:8px;"><strong>Cam kết bảo mật:</strong> Tuyệt đối không chia sẻ, bán dữ liệu cho bên thứ ba.</li>
-        </ul>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">⚖️ II. Điều khoản sử dụng</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Trách nhiệm:</strong> Khách hàng tự chịu trách nhiệm về tính chính xác của thông tin.</li>
-          <li style="margin-bottom:8px;"><strong>Sử dụng hợp pháp:</strong> Cam kết không sử dụng hạ tầng mạng vào các hoạt động vi phạm pháp luật.</li>
-        </ul>
-        <div style="margin-top:30px; padding-top:15px; border-top:1px dashed #cbd5e1; font-size:13px; color:#64748b;">
-          <em>Cập nhật lần cuối: Tháng 7/2026. Mọi thắc mắc vui lòng gọi Hotline 0358 513 269</em>
-        </div>
-      </div>
+  
     </div>
   </div>
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-OzvjY+ajO2+czO5JRVqV82zi/zGj1HkGv1WvQeBkWaA3E2K+N0g0kS5j0H4kGz1+j8w9a2u6g9a7j+v3v+X7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="js/script.js?v=26"></script>
+  <script defer src="../js/script.js?v=26"></script>
 
   <script>
     const cwvData = { LCP: 0, CLS: 0, FCP: 0, INP: 0 };

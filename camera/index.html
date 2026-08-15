@@ -12,6 +12,119 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.min.css?v=26">
+  
+  <style>
+    /* Minimalist Blog Style CSS */
+    :root {
+      --primary-color: #0665f5;
+      --text-main: #334155;
+      --bg-gray: #f8fafc;
+    }
+    
+    body {
+      color: var(--text-main);
+      background-color: #ffffff;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-top: 20px;
+    }
+    @media (min-width: 992px) {
+      .main-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 60px;
+        align-items: center;
+      }
+    }
+
+    .typography-blog {
+      font-size: 1.125rem;
+      line-height: 1.85;
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 20px;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .feature-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--bg-gray);
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      background: #ffffff;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      background: rgba(6, 101, 245, 0.1);
+      color: var(--primary-color);
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .feature-title { font-weight: 700; color: #1e293b; margin-bottom: 6px; font-size: 1.1rem; }
+    .feature-desc { font-size: 0.95rem; color: #475569; line-height: 1.6; }
+
+    .camera-hero-img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      animation: floatImg 4s ease-in-out infinite;
+    }
+    
+    @keyframes floatImg {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-lg {
+      padding: 16px 32px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    .btn-primary-filled {
+      background: #ea580c; color: white; border: none; box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3);
+    }
+    .btn-primary-filled:hover { background: #c2410c; transform: translateY(-2px); }
+    
+    .btn-secondary-outline {
+      background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color);
+    }
+    .btn-secondary-outline:hover { background: rgba(6, 101, 245, 0.05); }
+
+    .tag-pill {
+      display: inline-flex; align-items: center; padding: 10px 24px;
+      background: #f1f5f9; color: #475569; font-weight: 600; font-size: 0.95rem;
+      border-radius: 9999px; border: 1px solid #e2e8f0; text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .tag-pill:hover {
+      background: #ffffff; color: var(--primary-color); border-color: var(--primary-color);
+      box-shadow: 0 4px 12px rgba(6, 101, 245, 0.1);
+    }
+  </style>
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/fptlogo.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/fptlogo.png">
 
@@ -72,43 +185,101 @@
     <a class="btn btn-orange header-cta" href="/FPT-TELECOM/lien-he/">Đăng ký ngay <span>→</span></a>
   </header>
 
-  <main style="padding: 100px 24px 60px; max-width: 1200px; margin: 0 auto; min-height: 70vh;">
+  <main style="padding: 100px 24px 80px; max-width: 1200px; margin: 0 auto; min-height: 70vh;">
     <nav class="breadcrumb" style="margin-bottom: 24px; font-size: 14px;">
       <a href="/FPT-TELECOM/">Trang chủ</a> &rsaquo; <span>Camera FPT</span>
     </nav>
 
-    <h1 style="color: var(--primary); font-size: 2.5rem; margin-bottom: 16px;">Hệ Thống FPT Camera Giám Sát</h1>
-    
-    <div style="font-size: 1.1rem; line-height: 1.8; color: var(--text); max-width: 900px;">
-      <p style="margin-bottom: 20px;">Lắp đặt FPT Camera giám sát an ninh tiên tiến, tích hợp AI thông minh và lưu trữ Cloud an toàn tuyệt đối. Phù hợp cho hộ gia đình, cửa hàng.</p>
-      <p>FPT Camera là giải pháp an ninh toàn diện và đồng bộ từ thiết bị đến nền tảng lưu trữ Cloud (điện toán đám mây):</p><ul><li style='margin-bottom:10px;'>Hình ảnh Full HD 1080p sắc nét, hiển thị màu trong điều kiện thiếu sáng.</li><li style='margin-bottom:10px;'>Lưu trữ Cloud ngay tại Data Center Việt Nam (Tier III) đảm bảo an toàn, không sợ mất dữ liệu khi bị hỏng hay mất thiết bị.</li><li style='margin-bottom:10px;'>Tính năng AI nhận diện có người, phân biệt chuyển động của xe cộ, động vật để giảm cảnh báo giả.</li></ul>
+    <div class="main-grid">
+      <!-- Cột Trái: Nội dung -->
+      <div class="content-left">
+        <h1 style="color: var(--primary-color); font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2;">
+          Hệ Thống FPT Camera Giám Sát An Ninh Tiên Tiến
+        </h1>
+        
+        <div class="typography-blog">
+          <p style="margin-bottom: 16px;">
+            Lắp đặt FPT Camera để bảo vệ toàn diện cho gia đình và doanh nghiệp của bạn. Tận hưởng công nghệ nhận diện AI thông minh, xóa bỏ những cảnh báo chuyển động giả, và hệ thống lưu trữ điện toán đám mây tuyệt đối an toàn.
+          </p>
+          <p>
+            Giải pháp đồng bộ từ thiết bị phần cứng đến phần mềm quản lý, mang lại 3 ưu điểm vượt trội:
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            </div>
+            <div>
+              <div class="feature-title">Hình Ảnh Full HD Sắc Nét</div>
+              <div class="feature-desc">Độ phân giải 1080p, hiển thị màu sắc rõ nét ngay cả trong điều kiện thiếu sáng hoặc ban đêm nhờ cảm biến Sony.</div>
+            </div>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+            </div>
+            <div>
+              <div class="feature-title">Lưu Trữ Cloud An Toàn</div>
+              <div class="feature-desc">Dữ liệu lưu tại Data Center chuẩn Tier III của FPT. Tuyệt đối không lo mất dữ liệu ngay cả khi hỏng hoặc mất thiết bị camera.</div>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path></svg>
+            </div>
+            <div>
+              <div class="feature-title">Trí Tuệ Nhân Tạo (AI)</div>
+              <div class="feature-desc">Phân biệt chuẩn xác giữa chuyển động của con người, xe cộ hay vật nuôi để hạn chế cảnh báo rác trên điện thoại.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-group">
+          <a href="/FPT-TELECOM/lien-he/" class="btn-lg btn-primary-filled">Đăng Ký Tư Vấn Ngay</a>
+          <a href="/FPT-TELECOM/bang-gia/" class="btn-lg btn-secondary-outline">Xem Bảng Giá Khuyến Mãi</a>
+        </div>
+      </div>
+
+      <!-- Cột Phải: Hình ảnh -->
+      <div class="content-right" style="padding: 20px;">
+        <img src="../assets/images/cameraplay4.webp" alt="Hình ảnh Camera FPT" class="camera-hero-img" loading="lazy">
+      </div>
     </div>
-    
-    <div style="margin-top: 50px;">
-      <a href="/FPT-TELECOM/lien-he/" class="btn btn-primary" style="font-size: 1.2rem; padding: 16px 32px;">Đăng Ký Tư Vấn Ngay</a>
-      <a href="/FPT-TELECOM/bang-gia/" class="outline-btn" style="font-size: 1.2rem; padding: 16px 32px; display: inline-block; margin-left: 16px; border: 2px solid var(--blue);">Xem Bảng Giá</a>
-    </div>
-  
-    <section class="internal-links-container" style="margin-top: 80px;">
+
+    <!-- Internal Links SEO Section -->
+    <section style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #e2e8f0;">
+      <h3 style="font-size: 1.5rem; margin-bottom: 24px; color: #1e293b; font-weight: 700;">Khám Phá Dịch Vụ Khác</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px;">
+        <a href="/FPT-TELECOM/lap-wifi/" class="tag-pill">Lắp WiFi</a>
+        <a href="/FPT-TELECOM/wifi-fpt/" class="tag-pill">WiFi FPT</a>
+        <a href="/FPT-TELECOM/dang-ky-wifi/" class="tag-pill">Đăng Ký WiFi</a>
+        <a href="/FPT-TELECOM/khuyen-mai/" class="tag-pill">Khuyến Mãi</a>
+        <a href="/FPT-TELECOM/truyen-hinh/" class="tag-pill">Truyền Hình</a>
+        <a href="/FPT-TELECOM/camera/" class="tag-pill">Camera FPT</a>
+      </div>
+
+      <h3 style="font-size: 1.5rem; margin-bottom: 24px; color: #1e293b; font-weight: 700;">Khu Vực Phục Vụ Nhanh</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px;">
+        <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/" class="tag-pill">Lắp mạng TP. Hồ Chí Minh</a>
+        <a href="/FPT-TELECOM/khu-vuc/dong-nai/" class="tag-pill">Lắp mạng Đồng Nai</a>
+        <a href="/FPT-TELECOM/khu-vuc/vung-tau/" class="tag-pill">Lắp mạng Bà Rịa - Vũng Tàu</a>
+        <a href="/FPT-TELECOM/khu-vuc/binh-duong/" class="tag-pill">Lắp mạng Bình Dương</a>
+        <a href="/FPT-TELECOM/khu-vuc/ha-noi/" class="tag-pill">Lắp mạng Hà Nội</a>
+        <a href="/FPT-TELECOM/khu-vuc/da-nang/" class="tag-pill">Lắp mạng Đà Nẵng</a>
+        <a href="/FPT-TELECOM/khu-vuc/hai-phong/" class="tag-pill">Lắp mạng Hải Phòng</a>
+        <a href="/FPT-TELECOM/khu-vuc/can-tho/" class="tag-pill">Lắp mạng Cần Thơ</a>
+      </div>
       
-    <section class="internal-links" style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #eaeaea;">
-      <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Dịch Vụ Của FPT Telecom</h3>
-      <p style="margin-bottom: 16px; color: var(--text);">Khám phá thêm các dịch vụ viễn thông hàng đầu:</p>
-      <div><a href="/FPT-TELECOM/lap-wifi/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Lắp WiFi</a><a href="/FPT-TELECOM/wifi-fpt/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">WiFi FPT</a><a href="/FPT-TELECOM/dang-ky-wifi/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Đăng Ký WiFi</a><a href="/FPT-TELECOM/khuyen-mai/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Khuyến Mãi</a><a href="/FPT-TELECOM/truyen-hinh/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Truyền Hình</a><a href="/FPT-TELECOM/camera/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Camera FPT</a></div>
-    </section>
-
-    <section class="internal-links" style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #eaeaea;">
-      <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Khu Vực Phục Vụ</h3>
-      <p style="margin-bottom: 16px; color: var(--text);">Đăng ký lắp đặt Internet FPT tại các Tỉnh/Thành phố:</p>
-      <div><a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Lắp mạng TP. Hồ Chí Minh</a><a href="/FPT-TELECOM/khu-vuc/dong-nai/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Lắp mạng Đồng Nai</a><a href="/FPT-TELECOM/khu-vuc/vung-tau/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Lắp mạng Bà Rịa - Vũng Tàu</a><a href="/FPT-TELECOM/khu-vuc/binh-duong/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Lắp mạng Bình Dương</a><a href="/FPT-TELECOM/khu-vuc/ha-noi/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Lắp mạng Hà Nội</a><a href="/FPT-TELECOM/khu-vuc/da-nang/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Lắp mạng Đà Nẵng</a><a href="/FPT-TELECOM/khu-vuc/hai-phong/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Lắp mạng Hải Phòng</a><a href="/FPT-TELECOM/khu-vuc/can-tho/" style="display:inline-block; margin: 8px 16px 8px 0; padding: 8px 16px; background: var(--bg-light); border-radius: 20px; color: var(--text); font-weight: 500; text-decoration: none; border: 1px solid #eaeaea;">Lắp mạng Cần Thơ</a></div>
-    </section>
-
-      <section style="margin-top: 40px; padding-top: 40px; border-top: 1px solid #eaeaea;">
-        <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Thông Tin Hữu Ích</h3>
-        <a href="/FPT-TELECOM/bang-gia/" style="display:inline-block; margin: 8px 16px 8px 0; font-weight: 600; color: var(--blue);">Bảng Giá Cáp Quang</a>
-        <a href="/FPT-TELECOM/khuyen-mai/" style="display:inline-block; margin: 8px 16px 8px 0; font-weight: 600; color: var(--blue);">Khuyến Mãi Mới Nhất</a>
-        <a href="/FPT-TELECOM/tin-tuc/" style="display:inline-block; margin: 8px 16px 8px 0; font-weight: 600; color: var(--blue);">Tin Tức & Hướng Dẫn</a>
-      </section>
+      <h3 style="font-size: 1.5rem; margin-bottom: 24px; color: #1e293b; font-weight: 700;">Thông Tin Hữu Ích</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <a href="/FPT-TELECOM/bang-gia/" class="tag-pill" style="background: rgba(6,101,245,0.05); color: var(--primary-color);">Bảng Giá Cáp Quang</a>
+        <a href="/FPT-TELECOM/khuyen-mai/" class="tag-pill" style="background: rgba(6,101,245,0.05); color: var(--primary-color);">Khuyến Mãi Mới Nhất</a>
+        <a href="/FPT-TELECOM/tin-tuc/" class="tag-pill" style="background: rgba(6,101,245,0.05); color: var(--primary-color);">Tin Tức & Hướng Dẫn</a>
+      </div>
     </section>
 
   </main>
@@ -134,8 +305,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">

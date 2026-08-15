@@ -12,6 +12,90 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.min.css?v=26">
+  
+  <style>
+    /* Trustworthy & Overlapping UI Style */
+    body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
+    
+    .hero-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: white; 
+      padding: 60px 24px 140px; /* Padding bottom siêu lớn để làm Overlapping */
+      text-align: center;
+    }
+    
+    .overlap-card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      margin: -100px auto 50px;
+      max-width: 1200px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .process-grid {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) { .process-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .process-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .step-card {
+      text-align: center; padding: 20px; transition: transform 0.3s;
+    }
+    .step-card:hover { transform: translateY(-5px); }
+    
+    .step-icon-wrap {
+      width: 80px; height: 80px; 
+      border-radius: 50%; 
+      background: #eef2ff; 
+      display: flex; align-items: center; justify-content: center; 
+      margin: 0 auto 20px;
+      position: relative;
+    }
+    .step-number {
+      position: absolute;
+      top: -5px; right: -5px;
+      width: 28px; height: 28px;
+      background: var(--navy);
+      color: white;
+      border-radius: 50%;
+      font-weight: 800; font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      border: 3px solid white;
+    }
+    
+    .step-title { font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .step-desc { color: #475569; line-height: 1.6; font-size: 0.95rem; }
+
+    .cta-box {
+      background: linear-gradient(to right, #f8fafc, #ffffff);
+      border-radius: 24px; padding: 40px; text-align: center; margin-bottom: 60px;
+      border: 1px solid #e2e8f0;
+      max-width: 1200px; margin: 0 auto 60px;
+    }
+    .cta-box h2 { font-size: 2rem; color: var(--navy); margin-bottom: 16px; font-weight: 800; }
+    .cta-box p { color: #475569; margin-bottom: 30px; font-size: 1.125rem; }
+    
+    .btn-lg { padding: 16px 32px; font-size: 1.1rem; border-radius: 99px; font-weight: 700; transition: all 0.3s ease; display: inline-block; }
+    .btn-orange-lg { background: #ea580c; color: white; border: none; box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); }
+    .btn-orange-lg:hover { background: #c2410c; transform: translateY(-2px); }
+    .btn-outline-lg { background: white; color: var(--primary); border: 2px solid var(--primary); }
+    .btn-outline-lg:hover { background: #f1f5f9; transform: translateY(-2px); }
+
+    .tag-pill {
+      display: inline-flex; align-items: center; padding: 10px 24px;
+      background: white; color: #475569; font-weight: 600; font-size: 0.95rem;
+      border-radius: 9999px; border: 1px solid #e2e8f0; text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .tag-pill:hover {
+      background: #f8fafc; color: var(--primary); border-color: var(--primary);
+    }
+  </style>
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/fptlogo.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/fptlogo.png">
 
@@ -86,81 +170,88 @@
   <main style="min-height: 70vh; background: #f8fafc; padding-bottom: 80px;">
     
     <!-- Hero Banner -->
-    <section style="background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: white; padding: 60px 24px; text-align: center; margin-bottom: 50px;">
+    <section class="hero-banner">
       <div class="countdown-timer">⏰ Ưu đãi kết thúc sau: <span class="countdown-time">Đang tính...</span></div>
       <p class="eyebrow" style="color: #cbd8ef; letter-spacing: 2px;">THỦ TỤC NHANH GỌN</p>
       <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 20px;">Đăng Ký Lắp Đặt WiFi FPT</h1>
       <p style="max-width: 600px; margin: 0 auto; color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">Quy trình siêu tốc. Lắp đặt trong 24h. Chỉ cần chụp ảnh CMND/CCCD. Hỗ trợ làm hợp đồng điện tử tại nhà miễn phí.</p>
     </section>
 
-    <div style="max-width: 1200px; margin: -80px auto 0; padding: 0 20px; position: relative; z-index: 10;">
-      <!-- Main Content Cards -->
-      <div style="background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); margin-bottom: 50px;">
-        <h2 style="text-align: center; color: var(--navy); margin-bottom: 40px; font-size: 2rem;">Quy trình 4 bước đơn giản</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px;">
-          
-          <div style="text-align: center; padding: 20px;">
-            <div style="width: 60px; height: 60px; border-radius: 50%; background: #eef2ff; color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; margin: 0 auto 20px;">1</div>
-            <h3 style="font-size: 1.2rem; color: var(--navy); margin-bottom: 10px;">Liên hệ tư vấn</h3>
-            <p style="color: var(--text); font-size: 0.95rem;">Gọi hotline hoặc điền form đăng ký trên website để yêu cầu khảo sát.</p>
-          </div>
-          
-          <div style="text-align: center; padding: 20px;">
-            <div style="width: 60px; height: 60px; border-radius: 50%; background: #eef2ff; color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; margin: 0 auto 20px;">2</div>
-            <h3 style="font-size: 1.2rem; color: var(--navy); margin-bottom: 10px;">Chốt gói cước</h3>
-            <p style="color: var(--text); font-size: 0.95rem;">Nhân viên kiểm tra hạ tầng và tư vấn gói cước phù hợp nhất với nhu cầu.</p>
-          </div>
-          
-          <div style="text-align: center; padding: 20px;">
-            <div style="width: 60px; height: 60px; border-radius: 50%; background: #eef2ff; color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; margin: 0 auto 20px;">3</div>
-            <h3 style="font-size: 1.2rem; color: var(--navy); margin-bottom: 10px;">Ký hợp đồng</h3>
-            <p style="color: var(--text); font-size: 0.95rem;">Chỉ cần CMND/CCCD. Hợp đồng điện tử ký duyệt nhanh chóng qua điện thoại.</p>
-          </div>
-          
-          <div style="text-align: center; padding: 20px;">
-            <div style="width: 60px; height: 60px; border-radius: 50%; background: #eef2ff; color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; margin: 0 auto 20px;">4</div>
-            <h3 style="font-size: 1.2rem; color: var(--navy); margin-bottom: 10px;">Lắp đặt ngay</h3>
-            <p style="color: var(--text); font-size: 0.95rem;">Kỹ thuật viên triển khai kéo cáp và cài đặt WiFi 6 ngay trong vòng 24H.</p>
-          </div>
-          
-        </div>
-      </div>
+    <!-- Main Content Cards (Overlapping) -->
+    <div class="overlap-card">
+      <h2 style="text-align: center; color: var(--navy); margin-bottom: 50px; font-size: 2.2rem; font-weight: 800;">Quy trình 4 bước đơn giản</h2>
       
-      <!-- CTA Section -->
-      <div style="background: linear-gradient(to right, #eef2ff, #f8fafc); border-radius: 20px; padding: 40px; text-align: center; margin-bottom: 60px; border: 1px solid #e2e8f0;">
-        <h2 style="font-size: 1.8rem; color: var(--navy); margin-bottom: 15px;">Sẵn sàng trải nghiệm Internet mượt mà?</h2>
-        <p style="color: var(--text); margin-bottom: 25px; font-size: 1.1rem;">Nhận ưu đãi giảm giá và tặng thêm tháng cước khi thanh toán trả trước.</p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-          <a href="/FPT-TELECOM/lien-he/" class="btn btn-orange" style="font-size: 1.1rem; padding: 14px 32px; font-weight: bold;">Đăng ký ngay</a>
-          <a href="/FPT-TELECOM/bang-gia/" class="btn" style="font-size: 1.1rem; padding: 14px 32px; background: white; color: var(--blue); border: 2px solid var(--blue); border-radius: 30px; font-weight: bold;">Xem Bảng Giá</a>
+      <div class="process-grid">
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <div class="step-number">1</div>
+          </div>
+          <h3 class="step-title">Liên hệ tư vấn</h3>
+          <p class="step-desc">Gọi hotline hoặc điền form đăng ký trên website để yêu cầu khảo sát.</p>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary)"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <div class="step-number">2</div>
+          </div>
+          <h3 class="step-title">Chốt gói cước</h3>
+          <p class="step-desc">Nhân viên kiểm tra hạ tầng và tư vấn gói cước phù hợp nhất với nhu cầu.</p>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <div class="step-number">3</div>
+          </div>
+          <h3 class="step-title">Ký hợp đồng</h3>
+          <p class="step-desc">Chỉ cần CMND/CCCD. Hợp đồng điện tử ký duyệt nhanh chóng qua điện thoại.</p>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary)"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="step-number">4</div>
+          </div>
+          <h3 class="step-title">Lắp đặt ngay</h3>
+          <p class="step-desc">Kỹ thuật viên triển khai kéo cáp và cài đặt WiFi ngay trong vòng 24H.</p>
         </div>
       </div>
+    </div>
+    
+    <!-- CTA Section -->
+    <div class="cta-box">
+      <h2>Sẵn sàng trải nghiệm Internet siêu tốc?</h2>
+      <p>Nhận ưu đãi giảm giá và tặng thêm tháng cước khi thanh toán trả trước.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="/FPT-TELECOM/lien-he/" class="btn-lg btn-orange-lg">Đăng Ký Ngay</a>
+        <a href="/FPT-TELECOM/bang-gia/" class="btn-lg btn-outline-lg">Xem Bảng Giá</a>
+      </div>
+    </div>
 
-      <!-- Internal SEO Links -->
-      <div style="margin-top: 60px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--navy); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Dịch Vụ Nổi Bật</h3>
-        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;">
-          <a href="/FPT-TELECOM/lap-wifi/" style="text-decoration: none;"><span>Lắp WiFi FPT</span></a>
-          <a href="/FPT-TELECOM/wifi-fpt/" style="text-decoration: none;"><span>Cáp quang FPT</span></a>
-          <a href="/FPT-TELECOM/khuyen-mai/" style="text-decoration: none;"><span>Khuyến Mãi Tháng Này</span></a>
-          <a href="/FPT-TELECOM/truyen-hinh/" style="text-decoration: none;"><span>Truyền Hình FPT</span></a>
-          <a href="/FPT-TELECOM/camera/" style="text-decoration: none;"><span>Lắp đặt Camera FPT</span></a>
-        </div>
-        
-        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--navy); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Lắp Đặt Theo Khu Vực</h3>
-        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/" style="text-decoration: none;"><span>Hồ Chí Minh</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/ha-noi/" style="text-decoration: none;"><span>Hà Nội</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/dong-nai/" style="text-decoration: none;"><span>Đồng Nai</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/binh-duong/" style="text-decoration: none;"><span>Bình Dương</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/da-nang/" style="text-decoration: none;"><span>Đà Nẵng</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/vung-tau/" style="text-decoration: none;"><span>Bà Rịa - Vũng Tàu</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/hai-phong/" style="text-decoration: none;"><span>Hải Phòng</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/can-tho/" style="text-decoration: none;"><span>Cần Thơ</span></a>
-        </div>
+    <!-- Internal SEO Links -->
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: var(--navy); font-weight: 700;">Dịch Vụ Nổi Bật</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px;">
+        <a href="/FPT-TELECOM/lap-wifi/" class="tag-pill">Lắp WiFi FPT</a>
+        <a href="/FPT-TELECOM/wifi-fpt/" class="tag-pill">Cáp quang FPT</a>
+        <a href="/FPT-TELECOM/khuyen-mai/" class="tag-pill">Khuyến Mãi Tháng Này</a>
+        <a href="/FPT-TELECOM/truyen-hinh/" class="tag-pill">Truyền Hình FPT</a>
+        <a href="/FPT-TELECOM/camera/" class="tag-pill">Lắp đặt Camera FPT</a>
       </div>
       
+      <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: var(--navy); font-weight: 700;">Lắp Đặt Theo Khu Vực</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/" class="tag-pill">Hồ Chí Minh</a>
+        <a href="/FPT-TELECOM/khu-vuc/ha-noi/" class="tag-pill">Hà Nội</a>
+        <a href="/FPT-TELECOM/khu-vuc/dong-nai/" class="tag-pill">Đồng Nai</a>
+        <a href="/FPT-TELECOM/khu-vuc/binh-duong/" class="tag-pill">Bình Dương</a>
+        <a href="/FPT-TELECOM/khu-vuc/da-nang/" class="tag-pill">Đà Nẵng</a>
+        <a href="/FPT-TELECOM/khu-vuc/vung-tau/" class="tag-pill">Bà Rịa - Vũng Tàu</a>
+        <a href="/FPT-TELECOM/khu-vuc/hai-phong/" class="tag-pill">Hải Phòng</a>
+        <a href="/FPT-TELECOM/khu-vuc/can-tho/" class="tag-pill">Cần Thơ</a>
+      </div>
     </div>
   </main>
 
@@ -185,8 +276,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -253,33 +344,13 @@
     </div>
   </div>
 
-  <div class="policy-modal-overlay" id="policy-modal" onclick="if(event.target===this) closePolicyModal()">
-    <div class="policy-modal-content">
-      <button class="policy-close-btn" onclick="closePolicyModal()" aria-label="Đóng">×</button>
-      <div class="policy-modal-body">
-        <h2 style="margin-top:0; color:#141b6a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">Chính Sách Bảo Mật & Điều Khoản Sử Dụng</h2>
-        <p>Quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa FPT Telecom và khách hàng.</p>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🛡️ I. Chính sách bảo mật dữ liệu</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Dữ liệu bắt buộc:</strong> Họ tên, số điện thoại, email, địa chỉ lắp đặt khi đăng ký.</li>
-          <li style="margin-bottom:8px;"><strong>Mục đích sử dụng:</strong> Xác nhận dịch vụ, chăm sóc khách hàng, hỗ trợ kỹ thuật.</li>
-          <li style="margin-bottom:8px;"><strong>Cam kết bảo mật:</strong> Tuyệt đối không chia sẻ, bán dữ liệu cho bên thứ ba.</li>
-        </ul>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">⚖️ II. Điều khoản sử dụng</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Trách nhiệm:</strong> Khách hàng tự chịu trách nhiệm về tính chính xác của thông tin.</li>
-          <li style="margin-bottom:8px;"><strong>Sử dụng hợp pháp:</strong> Cam kết không sử dụng hạ tầng mạng vào các hoạt động vi phạm pháp luật.</li>
-        </ul>
-        <div style="margin-top:30px; padding-top:15px; border-top:1px dashed #cbd5e1; font-size:13px; color:#64748b;">
-          <em>Cập nhật lần cuối: Tháng 7/2026. Mọi thắc mắc vui lòng gọi Hotline 0358 513 269</em>
-        </div>
-      </div>
+  
     </div>
   </div>
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-OzvjY+ajO2+czO5JRVqV82zi/zGj1HkGv1WvQeBkWaA3E2K+N0g0kS5j0H4kGz1+j8w9a2u6g9a7j+v3v+X7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="js/script.js?v=26"></script>
+  <script defer src="../js/script.js?v=26"></script>
 
   <script>
     const cwvData = { LCP: 0, CLS: 0, FCP: 0, INP: 0 };

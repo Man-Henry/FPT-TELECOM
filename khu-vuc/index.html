@@ -103,24 +103,149 @@
   </script>
 
   <style>
+    /* High-tech & Glassmorphism UI Style */
+    body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
+    
+    .hero-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: white; 
+      padding: 60px 24px 140px; /* Padding bottom siêu lớn để làm Overlapping */
+      text-align: center;
+    }
+
+    .search-box {
+      max-width: 600px;
+      margin: 30px auto 0;
+      position: relative;
+      display: flex;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    
+    .search-box input {
+      flex: 1;
+      padding: 16px 24px;
+      font-size: 1.1rem;
+      border: none;
+      outline: none;
+      color: var(--navy);
+    }
+    
+    .search-box button {
+      background: #00D4AA;
+      color: var(--navy);
+      font-weight: 700;
+      border: none;
+      padding: 0 32px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-box button:hover { background: #00b390; }
+
     /* Glassmorphism Map Wrapper */
     .map3d-wrapper {
-        background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 24px; padding: 20px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.08); margin: 0 auto 40px; max-width: 1200px; width: 100%; box-sizing: border-box;
+        background: rgba(255, 255, 255, 0.7); 
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.5); 
+        border-radius: 24px; 
+        padding: 16px;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        margin: -100px auto 60px; 
+        max-width: 1200px; 
+        width: calc(100% - 40px);
+        position: relative;
+        z-index: 10;
+        box-sizing: border-box;
     }
-    .map3d-wrap { border-radius: 16px; overflow: hidden; width: 100% !important; min-width: 100% !important; display: block; }
     
-    /* Elegant Region Chips */
-    .chips { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 30px; width: 100%; }
-    .chips a {
-        background: white; border-radius: 12px; padding: 16px 12px; text-align: center; font-weight: 600; color: var(--navy);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; transition: all 0.3s ease; text-decoration: none;
-        display: flex; flex-direction: column; align-items: center; gap: 8px;
+    .map3d-wrap { 
+        border-radius: 16px; 
+        overflow: hidden; 
+        width: 100%;
+        aspect-ratio: 16/9; /* Tỷ lệ 16:9 chuẩn */
+        position: relative;
+        background: #f1f5f9 url('../assets/images/fptfamily.webp') center/cover no-repeat; /* Fallback Image */
     }
-    .chips a::before { content: "📍"; font-size: 1.5rem; opacity: 0.8; }
+
+    /* Đảm bảo canvas phủ toàn bộ wrap */
+    #map3d-canvas {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: transparent; /* Để thấy fallback nếu canvas chưa vẽ */
+    }
+    
+    .map3d-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none; /* Không block sự kiện xoay chuột của map */
+        display: flex;
+        justify-content: space-between;
+        padding: 24px;
+        box-sizing: border-box;
+    }
+
+    .map3d-legend {
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        pointer-events: auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        align-self: flex-start;
+    }
+    .legend-item { display: flex; align-items: center; font-size: 0.95rem; font-weight: 600; color: var(--navy); }
+    .legend-dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 10px; display: inline-block; }
+
+    .map3d-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        pointer-events: auto;
+        align-self: flex-start;
+    }
+    .map-btn {
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.4);
+        border-radius: 8px;
+        padding: 10px 16px;
+        font-weight: 600; color: var(--navy);
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: all 0.2s;
+    }
+    .map-btn:hover { background: white; transform: translateY(-2px); }
+
+    /* Elegant Region Chips Grid */
+    .chips { 
+      display: grid; 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 16px; 
+      width: 100%; 
+    }
+    @media (min-width: 768px) { .chips { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .chips { grid-template-columns: repeat(4, 1fr); } }
+    
+    .chips a {
+        background: white; border-radius: 16px; padding: 20px 16px; text-align: center; font-weight: 700; color: var(--navy);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; transition: all 0.3s ease; text-decoration: none;
+        display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 1.1rem;
+    }
+    .chips a::before { content: "📍"; font-size: 1.8rem; opacity: 0.9; }
     .chips a:hover {
         transform: translateY(-4px); box-shadow: 0 10px 20px rgba(6, 101, 245, 0.15); border-color: var(--blue); color: var(--blue);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .map3d-overlay { padding: 12px; flex-direction: column; align-items: flex-end; gap: 12px; }
+        .map3d-legend { flex-direction: row; flex-wrap: wrap; align-self: stretch; justify-content: center; padding: 10px; }
     }
   </style>
 
@@ -160,34 +285,50 @@
   <main id="main-content" style="background: #f8fafc; padding-bottom: 60px;">
 
     <!-- Hero Banner for Khu Vuc -->
-    <section style="background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: white; padding: 60px 24px; text-align: center; margin-bottom: 40px;">
-      <p class="eyebrow" style="color: #cbd8ef; letter-spacing: 2px;">VÙNG PHỦ SÓNG</p>
-      <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 20px;">Khám Phá Hạ Tầng FPT</h1>
-      <p style="max-width: 600px; margin: 0 auto; color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">Hệ thống trạm Core và trạm BTS siêu tốc phủ khắp 63 tỉnh thành phố.</p>
+    <section class="hero-banner">
+      <p class="eyebrow" style="color: #cbd8ef; letter-spacing: 2px; font-weight: 600;">VÙNG PHỦ SÓNG CÁP QUANG</p>
+      <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 20px;">Khám Phá Hạ Tầng Mạng Toàn Quốc</h1>
+      <p style="max-width: 650px; margin: 0 auto; color: #e2e8f0; font-size: 1.15rem; line-height: 1.6;">Hệ thống trạm Core và trạm BTS siêu tốc phủ khắp 63 tỉnh thành phố. Dễ dàng kiểm tra khả năng cung cấp dịch vụ tại khu vực của bạn.</p>
+      
+      <!-- Thanh Tìm Kiếm -->
+      <div class="search-box">
+        <input type="text" placeholder="Nhập địa chỉ nhà bạn..." aria-label="Tìm kiếm địa chỉ">
+        <button type="button">Kiểm tra hạ tầng</button>
+      </div>
     </section>
 
+    <!-- Map & Regions Section -->
     <section class="map3d section" id="areas">
-      
-      <div class="map3d-wrapper"><div class="map3d-wrap" id="map3d-container" aria-label="Bản đồ Việt Nam phủ sóng FPT">
-        <canvas id="map3d-canvas"></canvas>
-        <div class="map3d-overlay">
-          <div class="map3d-legend">
-            <div class="legend-item"><span class="legend-dot" style="background:#00D4AA"></span>Trạm lõi (Core)</div>
-            <div class="legend-item"><span class="legend-dot" style="background:#FFB800"></span>Trạm BTS</div>
-            <div class="legend-item"><span class="legend-dot" style="background:#6366F1"></span>Cáp quang (Fiber)</div>
-            <div class="legend-item"><span class="legend-dot" style="background:#06B6D4"></span>Bản đồ phủ sóng</div>
-          </div>
-          <div class="map3d-controls">
-            <button class="map-btn" id="map-rotate" aria-label="Tự động quay">⟳ Dừng quay</button>
-            <button class="map-btn" id="map-reset" aria-label="Đặt lại vị trí">⌂ Đặt lại</button>
+      <!-- Bản đồ Glassmorphism -->
+      <div class="map3d-wrapper">
+        <div class="map3d-wrap" id="map3d-container" aria-label="Bản đồ Việt Nam phủ sóng FPT">
+          <canvas id="map3d-canvas"></canvas>
+          <div class="map3d-overlay">
+            <div class="map3d-legend">
+              <div class="legend-item"><span class="legend-dot" style="background:#00D4AA"></span>Trạm lõi (Core)</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#FFB800"></span>Trạm BTS</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#6366F1"></span>Cáp quang (Fiber)</div>
+            </div>
+            <div class="map3d-controls">
+              <button class="map-btn" id="map-rotate" aria-label="Tự động quay">⟳ Dừng quay</button>
+              <button class="map-btn" id="map-reset" aria-label="Đặt lại vị trí">⌂ Đặt lại</button>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-      <div class="map3d-legend" style="margin-top:20px">
-        <div class="chips" style="justify-content:center">
-          <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/">TP. Hồ Chí Minh</a><a href="/FPT-TELECOM/khu-vuc/binh-duong/">Bình Dương</a><a href="/FPT-TELECOM/khu-vuc/dong-nai/">Đồng Nai</a><a href="/FPT-TELECOM/khu-vuc/vung-tau/">Vũng Tàu</a>
-          <a href="/FPT-TELECOM/khu-vuc/ha-noi/">Hà Nội</a><a href="/FPT-TELECOM/khu-vuc/da-nang/">Đà Nẵng</a><a href="/FPT-TELECOM/khu-vuc/can-tho/">Cần Thơ</a><a href="/FPT-TELECOM/khu-vuc/hai-phong/">Hải Phòng</a>
+      
+      <!-- Danh sách Tỉnh Thành -->
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <h3 style="font-size: 1.5rem; color: var(--navy); font-weight: 700; margin-bottom: 24px;">Các khu vực trọng điểm</h3>
+        <div class="chips">
+          <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/">Hồ Chí Minh</a>
+          <a href="/FPT-TELECOM/khu-vuc/ha-noi/">Hà Nội</a>
+          <a href="/FPT-TELECOM/khu-vuc/da-nang/">Đà Nẵng</a>
+          <a href="/FPT-TELECOM/khu-vuc/can-tho/">Cần Thơ</a>
+          <a href="/FPT-TELECOM/khu-vuc/binh-duong/">Bình Dương</a>
+          <a href="/FPT-TELECOM/khu-vuc/dong-nai/">Đồng Nai</a>
+          <a href="/FPT-TELECOM/khu-vuc/hai-phong/">Hải Phòng</a>
+          <a href="/FPT-TELECOM/khu-vuc/vung-tau/">Bà Rịa - Vũng Tàu</a>
         </div>
       </div>
     </section>
@@ -223,8 +364,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -291,27 +432,7 @@
     </div>
   </div>
 
-  <div class="policy-modal-overlay" id="policy-modal" onclick="if(event.target===this) closePolicyModal()">
-    <div class="policy-modal-content">
-      <button class="policy-close-btn" onclick="closePolicyModal()" aria-label="Đóng">×</button>
-      <div class="policy-modal-body">
-        <h2 style="margin-top:0; color:#141b6a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">Chính Sách Bảo Mật & Điều Khoản Sử Dụng</h2>
-        <p>Quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa FPT Telecom và khách hàng.</p>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🛡️ I. Chính sách bảo mật dữ liệu</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Dữ liệu bắt buộc:</strong> Họ tên, số điện thoại, email, địa chỉ lắp đặt khi đăng ký.</li>
-          <li style="margin-bottom:8px;"><strong>Mục đích sử dụng:</strong> Xác nhận dịch vụ, chăm sóc khách hàng, hỗ trợ kỹ thuật.</li>
-          <li style="margin-bottom:8px;"><strong>Cam kết bảo mật:</strong> Tuyệt đối không chia sẻ, bán dữ liệu cho bên thứ ba.</li>
-        </ul>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">⚖️ II. Điều khoản sử dụng</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Trách nhiệm:</strong> Khách hàng tự chịu trách nhiệm về tính chính xác của thông tin.</li>
-          <li style="margin-bottom:8px;"><strong>Sử dụng hợp pháp:</strong> Cam kết không sử dụng hạ tầng mạng vào các hoạt động vi phạm pháp luật.</li>
-        </ul>
-        <div style="margin-top:30px; padding-top:15px; border-top:1px dashed #cbd5e1; font-size:13px; color:#64748b;">
-          <em>Cập nhật lần cuối: Tháng 7/2026. Mọi thắc mắc vui lòng gọi Hotline 0358 513 269</em>
-        </div>
-      </div>
+  
     </div>
   </div>
 

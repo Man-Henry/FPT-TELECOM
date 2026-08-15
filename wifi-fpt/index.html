@@ -16,36 +16,71 @@
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/fptlogo.png">
 
   <style>
-    /* Specific styles for the landing page */
-    .pkg-group { margin-bottom: 60px; }
-    .pkg-group-title { font-size: 2rem; color: var(--primary); margin-bottom: 10px; text-align: center; font-weight: 800; }
-    .pkg-group-desc { text-align: center; color: #64748b; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    /* Sticky In-page Menu */
+    .sticky-menu { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 12px 24px; display: flex; justify-content: center; gap: 8px; overflow-x: auto; white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; }
+    .sticky-menu::-webkit-scrollbar { display: none; }
+    .menu-pill { padding: 8px 20px; border-radius: 9999px; font-weight: 600; font-size: 0.95rem; color: #475569; background: #f1f5f9; text-decoration: none; transition: all 0.2s; border: 1px solid transparent; }
+    .menu-pill:hover, .menu-pill.active { background: #1e3a8a; color: white; }
+
+    /* Pricing Sections */
+    .pkg-group { margin-bottom: 80px; scroll-margin-top: 80px; }
+    .pkg-group-title { font-size: 2rem; color: #1e3a8a; margin-bottom: 12px; text-align: center; font-weight: 800; }
+    .pkg-group-desc { text-align: center; color: #64748b; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; }
     
-    .pkg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-    .pkg-card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border-top: 4px solid var(--primary); display: flex; flex-direction: column; transition: transform 0.3s ease; position: relative; overflow: hidden; }
-    .pkg-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
-    .pkg-card.highlight { border-top-color: #ff6500; }
-    .pkg-badge { background: #ff6500; color: #fff; font-size: 0.8rem; font-weight: bold; padding: 4px 12px; border-radius: 12px; display: inline-block; margin-bottom: 12px; align-self: flex-start; }
-    .pkg-name { font-size: 1.5rem; color: var(--primary); margin-bottom: 4px; font-weight: 700; }
-    .pkg-speed { font-size: 0.95rem; color: #10b981; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+    /* Pricing Grid */
+    .pkg-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 768px) { .pkg-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1280px) { .pkg-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    /* Pricing Card (Normal) */
+    .pkg-card { background: #fff; border-radius: 1rem; padding: 32px 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid #2563eb; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
+    .pkg-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+    
+    .pkg-name { font-size: 1.5rem; color: #1e293b; margin-bottom: 4px; font-weight: 800; }
+    .pkg-speed { font-size: 1rem; color: #10b981; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
     .pkg-speed::before { content: '⚡'; }
-    .pkg-price { font-size: 2rem; font-weight: 800; color: #ff6500; margin-bottom: 24px; line-height: 1; }
-    .pkg-price small { font-size: 1rem; color: #64748b; font-weight: 500; }
-    .pkg-features { list-style: none; padding: 0; margin: 0 0 24px 0; flex-grow: 1; color: #475569; font-size: 0.95rem; }
-    .pkg-features li { margin-bottom: 12px; position: relative; padding-left: 24px; line-height: 1.4; }
-    .pkg-features li::before { content: '✓'; position: absolute; left: 0; top: 0; color: #10b981; font-weight: bold; }
-    .pkg-btn { text-align: center; padding: 12px; border-radius: 8px; font-weight: 600; text-decoration: none; display: block; border: 1px solid var(--primary); color: var(--primary); transition: all 0.2s; }
-    .pkg-btn:hover { background: var(--primary); color: #fff; }
-    .pkg-card.highlight .pkg-btn { background: #ff6500; color: #fff; border-color: #ff6500; }
-    .pkg-card.highlight .pkg-btn:hover { background: #e65a00; }
+    .pkg-price { font-size: 2.5rem; font-weight: 800; color: #f97316; margin-bottom: 24px; line-height: 1; }
+    .pkg-price small { font-size: 1rem; color: #64748b; font-weight: 500; margin-left: 4px; }
     
-    .mini-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
-    .mini-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
-    .mini-card-info h4 { margin: 0 0 4px 0; color: var(--primary); font-size: 1.1rem; }
+    .pkg-features { list-style: none; padding: 0; margin: 0 0 32px 0; flex-grow: 1; color: #475569; font-size: 0.95rem; }
+    .pkg-features li { margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.5; }
+    .pkg-features li::before { content: '✔️'; color: #10b981; margin-right: 8px; flex-shrink: 0; }
+    
+    .pkg-btn { text-align: center; padding: 14px; border-radius: 0.75rem; font-weight: 700; text-decoration: none; display: block; border: 2px solid #2563eb; color: #2563eb; transition: all 0.2s; }
+    .pkg-btn:hover { background: #2563eb; color: #fff; }
+
+    /* Highlighted Card (Chim Mồi) */
+    .pkg-card.highlight { border-top-color: #f97316; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); transform: scale(1.03); z-index: 10; }
+    .pkg-card.highlight:hover { transform: scale(1.03) translateY(-4px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
+    .pkg-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #f97316; color: #fff; font-size: 0.85rem; font-weight: 800; padding: 6px 16px; border-radius: 9999px; white-space: nowrap; box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.4); }
+    .pkg-card.highlight .pkg-btn { background: #f97316; color: #fff; border-color: #f97316; }
+    .pkg-card.highlight .pkg-btn:hover { background: #ea580c; border-color: #ea580c; }
+
+    /* Add-ons Section */
+    .addons-section { background: #f8fafc; border-radius: 1.5rem; padding: 40px; margin-bottom: 80px; }
+    .addons-title { text-align: center; color: #1e3a8a; font-size: 1.8rem; font-weight: 800; margin-bottom: 32px; }
+    .mini-card-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 640px) { .mini-card-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .mini-card-grid { grid-template-columns: repeat(3, 1fr); } }
+    .mini-card { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; transition: transform 0.2s; }
+    .mini-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .mini-card-info h4 { margin: 0 0 4px 0; color: #1e293b; font-size: 1.05rem; font-weight: 700; }
     .mini-card-info p { margin: 0; color: #64748b; font-size: 0.85rem; }
-    .mini-card-price { font-weight: 700; color: #ff6500; font-size: 1.2rem; }
+    .mini-card-price { font-weight: 800; color: #f97316; font-size: 1.25rem; white-space: nowrap; margin-left: 16px; }
+
+    /* Form Đăng ký */
+    .lead-form-section { max-width: 42rem; margin: 0 auto 80px; }
+    .lead-form-card { background: white; border-radius: 1.5rem; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); }
+    .lead-form-title { text-align: center; color: #1e3a8a; font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+    .lead-form-desc { text-align: center; color: #64748b; margin-bottom: 32px; }
+    .form-group { margin-bottom: 20px; }
+    .form-input { width: 100%; padding: 14px 16px; border-radius: 0.75rem; border: 1px solid #cbd5e1; font-size: 1rem; outline: none; transition: border-color 0.2s; box-sizing: border-box; font-family: inherit; }
+    .form-input:focus { border-color: #2563eb; }
+    .btn-submit { width: 100%; padding: 16px; background: #f97316; color: white; border: none; border-radius: 0.75rem; font-size: 1.1rem; font-weight: 800; cursor: pointer; transition: background 0.2s; text-transform: uppercase; }
+    .btn-submit:hover { background: #ea580c; }
+    .form-microcopy { text-align: center; font-size: 0.85rem; color: #94a3b8; margin-top: 16px; display: flex; justify-content: center; align-items: center; gap: 6px; }
   </style>
-  </head>
+</head>
 <body>
   <div class="topbar">
     <span>⚡ Ưu đãi tháng này: Tặng Voucher giảm giá &amp; miễn phí lắp đặt khi trả trước 6T/12T</span>
@@ -86,10 +121,17 @@
         </div>
       </div>
     </section>
+    <div class="sticky-menu">
+      <a href="#canhan" class="menu-pill active">Cá nhân</a>
+      <a href="#combotv" class="menu-pill">Combo TV</a>
+      <a href="#gamethu" class="menu-pill">Game Thủ</a>
+      <a href="#doanhnghiep" class="menu-pill">Doanh Nghiệp</a>
+      <a href="#camera" class="menu-pill">Camera</a>
+    </div>
 
     <div style="max-width: 1200px; margin: 0 auto; padding: 60px 24px;">
 
-      <section class="pkg-group">
+      <section id="canhan" class="pkg-group">
         <h2 class="pkg-group-title">Gói Internet Cá Nhân & Gia Đình</h2>
         <p class="pkg-group-desc">Kết nối mượt mà cho mọi thành viên. Phù hợp lướt web, học tập và xem phim.</p>
         <div class="pkg-grid">
@@ -143,7 +185,7 @@
         </div>
       </section>
 
-      <section class="pkg-group">
+      <section id="combotv" class="pkg-group">
         <h2 class="pkg-group-title">Combo Internet + Truyền hình FPT Play</h2>
         <p class="pkg-group-desc">Trọn vẹn thế giới giải trí trong một. Bao gồm Ngoại hạng Anh, thể thao không giới hạn, kho phim chiếu rạp.</p>
         <div class="pkg-grid">
@@ -187,10 +229,10 @@
         </div>
       </section>
 
-      <section class="pkg-group">
+      <section id="gamethu" class="pkg-group">
         <h2 class="pkg-group-title">Gói Dành Riêng Cho Game Thủ</h2>
         <p class="pkg-group-desc">Tối ưu Ping, giảm Lag. Cân mọi tựa game AAA và eSports.</p>
-        <div class="pkg-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
+        <div class="pkg-grid">
           <div class="pkg-card highlight">
             <div class="pkg-badge">GAMER CHOICE</div>
             <div class="pkg-name">Internet F-Game</div>
@@ -229,51 +271,7 @@
         </div>
       </section>
 
-      <section class="pkg-group">
-        <h2 class="pkg-group-title">Bảo Mật An Toàn & Camera Giám Sát</h2>
-        <p class="pkg-group-desc">Giám sát nhà cửa 24/7 và bảo vệ gia đình khỏi các rủi ro trên không gian mạng.</p>
-        <div class="pkg-grid">
-          <div class="pkg-card">
-            <div class="pkg-badge" style="background:#10b981;">BẢO MẬT F-SAFE</div>
-            <div class="pkg-name">FPT An Tâm</div>
-            <div class="pkg-speed">300 Mbps</div>
-            <div class="pkg-price">195.000đ<small>/tháng</small></div>
-            <ul class="pkg-features">
-              <li>Modem Wi-Fi 6 mới nhất</li>
-              <li>Tính năng bảo mật F-Safe</li>
-              <li>Chặn website độc hại/lừa đảo</li>
-            </ul>
-            <a href="#register" class="pkg-btn">Chọn gói này</a>
-          </div>
-          <div class="pkg-card">
-            <div class="pkg-badge" style="background:#10b981;">F-SAFE + TV</div>
-            <div class="pkg-name">Combo An Tâm</div>
-            <div class="pkg-speed">300 Mbps</div>
-            <div class="pkg-price">245.000đ<small>/tháng</small></div>
-            <ul class="pkg-features">
-              <li>Wi-Fi 6 + FPT Play Box</li>
-              <li>Bảo mật F-Safe toàn diện</li>
-              <li>Quản lý thời gian & nội dung của trẻ em</li>
-            </ul>
-            <a href="#register" class="pkg-btn">Chọn gói này</a>
-          </div>
-          <div class="pkg-card highlight">
-            <div class="pkg-badge">CAMERA AI</div>
-            <div class="pkg-name">Sky An Tâm 7</div>
-            <div class="pkg-speed">1 Gbps (IQ4S / Play4)</div>
-            <div class="pkg-price">245.000đ<small>/tháng</small></div>
-            <ul class="pkg-features">
-              <li>Tốc độ cao 1 Gbps</li>
-              <li>Hỗ trợ 2-5 Camera IQ4S/Play4</li>
-              <li>Cloud lưu trữ 7 ngày (chỉ 50k/th)</li>
-              <li>Không giới hạn số lượng camera</li>
-            </ul>
-            <a href="#register" class="pkg-btn">Chọn gói này</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="pkg-group">
+      <section id="doanhnghiep" class="pkg-group">
         <h2 class="pkg-group-title">Doanh Nghiệp & Wi-Fi 7 Siêu Tốc</h2>
         <p class="pkg-group-desc">Hạ tầng mạnh mẽ, ổn định tuyệt đối dành cho doanh nghiệp và công nghệ Wi-Fi 7 tiên tiến nhất.</p>
         <div class="pkg-grid">
@@ -314,8 +312,8 @@
         </div>
       </section>
 
-      <section class="pkg-group" style="background: #f8fafc; padding: 40px; border-radius: 16px;">
-        <h3 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 24px; text-align: center;">Dịch Vụ Nâng Cấp & Thiết Bị Mua Thêm</h3>
+      <section class="addons-section">
+        <h3 class="addons-title">Dịch Vụ Nâng Cấp & Thiết Bị Mua Thêm</h3>
         <div class="mini-card-grid">
           <div class="mini-card">
             <div class="mini-card-info">
@@ -362,45 +360,60 @@
         </div>
       </section>
 
-      <section id="register" style="margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto; background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
-        <h2 style="font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 8px;">Đăng Ký Tư Vấn Cắp Quang FPT</h2>
-        <p style="text-align: center; color: #64748b; margin-bottom: 30px;">Để lại thông tin, nhân viên FPT sẽ gọi lại tư vấn gói cước phù hợp nhất trong 5 phút.</p>
-        <form id="leadForm">
-          
-          <div aria-hidden="true" style="position:absolute;left:-9999px">
-            <label>Không điền ô này<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-          </div>
-          <label>Họ và tên *<input required name="Họ Và Tên" placeholder="Nhập họ tên của bạn"></label>
-          <label>Số điện thoại *<input required name="Số điện thoại" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+ ]{9,}" placeholder="Nhập số điện thoại"></label>
-          <label>Địa chỉ lắp đặt *<input required name="Địa chỉ" placeholder="Số nhà, phường/xã, quận/huyện"></label>
-          <div class="form-row">
-            <label>Gói cước quan tâm<select name="Gói cước" required>
-                <option value="" disabled selected>Chọn dịch vụ quan tâm</option>
-                <option value="GIGA / SKY">Internet GIGA / SKY</option>
-                <option value="F-GAME">Internet F-GAME</option>
-                <option value="COMBO VIP">COMBO VIP (Net + TV)</option>
-                <option value="META">Internet META</option>
-                <option value="Camera">Camera / Combo Camera</option>
-                <option value="Box TV">FPT Play Box TV</option>
-                <option value="Chưa rõ">Chưa rõ - Cần tư vấn thêm</option>
-              </select></label>
-            <label>Thời gian liên hệ<select name="Thời gian liên hệ" required>
-                <option>Gọi ngay</option>
-                <option>Buổi sáng</option>
-                <option>Buổi chiều</option>
-                <option>Buổi tối</option>
-              </select></label>
-          </div>
-          <div id="support-field" style="display:none; margin-bottom: 16px;">
-            <label>Yêu cầu hỗ trợ *<textarea name="Yêu cầu hỗ trợ" id="support-textarea" rows="3" placeholder="Nhập yêu cầu hỗ trợ của bạn..." style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 1rem;"></textarea></label>
-          </div>
-          <button id="main-submit-btn" class="btn btn-orange" type="submit">ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY <span>→</span></button>
-          <button id="toggle-support-btn" class="btn" type="button" onclick="toggleSupportForm(this)" style="width: 100%; margin-top: 12px; background: transparent; color: var(--primary); border: 1px solid var(--primary);">Nhập yêu cầu hỗ trợ</button>
-          <p class="microcopy" style="margin-top: 10px; font-size: 0.85rem; line-height: 1.4;">
-            <span>🔒 Miễn phí khảo sát 100%. Thông tin được bảo mật tuyệt đối theo <a href="#" onclick="openPolicyModal(event)" style="text-decoration: underline; color: inherit;">chính sách</a> của FPT Telecom.</span>
-          </p>
-          <p class="success" role="status"></p>
-        </form>
+      <section id="register" class="lead-form-section">
+        <div class="lead-form-card">
+          <h2 class="lead-form-title">Đăng Ký Tư Vấn Cắp Quang FPT</h2>
+          <p class="lead-form-desc">Để lại thông tin, nhân viên FPT sẽ gọi lại tư vấn gói cước phù hợp nhất trong 5 phút.</p>
+          <form id="leadForm">
+            
+            <div aria-hidden="true" style="position:absolute;left:-9999px">
+              <label>Không điền ô này<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+            </div>
+            
+            <div class="form-group">
+              <input class="form-input" required name="Họ Và Tên" placeholder="Họ và tên *">
+            </div>
+            
+            <div class="form-group">
+              <input class="form-input" required name="Số điện thoại" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+ ]{9,}" placeholder="Số điện thoại *">
+            </div>
+            
+            <div class="form-group">
+              <input class="form-input" required name="Địa chỉ" placeholder="Địa chỉ lắp đặt * (Số nhà, phường/xã, quận/huyện)">
+            </div>
+            
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <select class="form-input" name="Gói cước" required>
+                  <option value="" disabled selected>Chọn dịch vụ quan tâm</option>
+                  <option value="GIGA / SKY">Internet GIGA / SKY</option>
+                  <option value="F-GAME">Internet F-GAME</option>
+                  <option value="COMBO VIP">COMBO VIP (Net + TV)</option>
+                  <option value="META">Internet META</option>
+                  <option value="Camera">Camera / Combo Camera</option>
+                  <option value="Box TV">FPT Play Box TV</option>
+                  <option value="Chưa rõ">Chưa rõ - Cần tư vấn thêm</option>
+              </select>
+              <select class="form-input" name="Thời gian liên hệ" required>
+                  <option>Gọi ngay</option>
+                  <option>Buổi sáng</option>
+                  <option>Buổi chiều</option>
+                  <option>Buổi tối</option>
+              </select>
+            </div>
+
+            <div id="support-field" class="form-group" style="display:none;">
+              <textarea name="Yêu cầu hỗ trợ" id="support-textarea" class="form-input" rows="3" placeholder="Nhập yêu cầu hỗ trợ của bạn..."></textarea>
+            </div>
+            
+            <button id="main-submit-btn" class="btn-submit" type="submit">ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY</button>
+            <button id="toggle-support-btn" type="button" onclick="toggleSupportForm(this)" style="width: 100%; margin-top: 16px; background: transparent; color: #2563eb; border: 1px solid #2563eb; padding: 12px; border-radius: 0.75rem; font-weight: 600; cursor: pointer;">Nhập yêu cầu hỗ trợ</button>
+            
+            <p class="form-microcopy">
+              🔒 Miễn phí khảo sát 100%. Thông tin được bảo mật tuyệt đối theo <a href="#" onclick="openPolicyModal(event)" style="text-decoration: underline; color: inherit;">chính sách</a>.
+            </p>
+            <p class="success" role="status"></p>
+          </form>
+        </div>
       </section>
 
       <!-- Internal SEO Links -->
@@ -451,8 +464,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -462,5 +475,6 @@
       </div>
     </div>
   </footer>
+  <script defer src="../js/script.js?v=26"></script>
 </body>
 </html>

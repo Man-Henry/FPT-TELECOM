@@ -69,12 +69,126 @@
   <meta name="twitter:description" content="Liên hệ FPT Telecom để nhận tư vấn lắp đặt Internet miễn phí.">
   <meta name="twitter:image" content="https://fpttelecomvn.click/assets/images/avata.webp">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.min.css?v=26">
 
   <link rel="manifest" href="manifest.json">
+  
+  <style>
+    /* Contact Page - Modern Trustworthy UI */
+    body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
+    
+    .hero-banner-contact {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      color: white; 
+      padding: 50px 24px; 
+      text-align: center;
+    }
+
+    .eyebrow-contact {
+      color: #93c5fd; letter-spacing: 3px; font-weight: 700; font-size: 0.9rem; margin-bottom: 12px;
+    }
+
+    .h1-contact {
+      font-size: 2.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px;
+    }
+
+    /* FAQ Details/Summary Styles */
+    .faq-container { max-width: 800px; margin: 0 auto 60px; padding: 0 20px; }
+    details.faq-item {
+      background: white; border-radius: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: all 0.3s ease;
+    }
+    details.faq-item[open] { border-color: #3b82f6; box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1); }
+    
+    summary.faq-summary {
+      padding: 20px; font-weight: 600; font-size: 1.1rem; color: #1e293b; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; list-style: none;
+    }
+    summary.faq-summary::-webkit-details-marker { display: none; }
+    summary.faq-summary::after {
+      content: '+'; font-size: 1.5rem; font-weight: 400; color: #64748b; transition: transform 0.3s ease;
+    }
+    details.faq-item[open] summary.faq-summary::after { transform: rotate(45deg); color: #3b82f6; }
+    .faq-content { padding: 0 20px 20px; color: #475569; line-height: 1.6; }
+
+    /* Contact Grid */
+    .contact-grid {
+      max-width: 1200px; margin: 0 auto 80px; padding: 0 20px;
+      display: grid; gap: 48px;
+    }
+    @media (min-width: 992px) { .contact-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+    /* Info Column */
+    .contact-info-block { margin-bottom: 40px; }
+    .info-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .info-icon {
+      width: 48px; height: 48px; background: #eff6ff; color: #2563eb; 
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    
+    /* Mascot Animation */
+    .mascot-container { display: flex; align-items: flex-end; gap: 20px; position: relative; margin-top: 40px; }
+    @keyframes floating { 0% { transform: translateY(0); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0); } }
+    .mascot-svg { width: 120px; height: auto; animation: floating 4s ease-in-out infinite; }
+    
+    .chat-bubble {
+      background: white; padding: 16px 20px; border-radius: 20px 20px 20px 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;
+      color: #334155; font-weight: 500; position: relative; max-width: 250px;
+    }
+    .chat-bubble::before {
+      content: ''; position: absolute; bottom: 0; left: -10px; width: 20px; height: 20px;
+      background: white; clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    }
+
+    /* Form Column */
+    .lead-form-card {
+      background: white; border-radius: 24px; padding: 40px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid #e2e8f0;
+      position: relative; overflow: hidden;
+    }
+    .social-proof-bar {
+      background: #eff6ff; color: #1e3a8a; padding: 10px; text-align: center; font-weight: 600;
+      border-radius: 12px; margin-bottom: 24px; display: flex; justify-content: center; align-items: center; gap: 8px;
+    }
+
+    /* Form Inputs */
+    .form-group { margin-bottom: 20px; text-align: left; }
+    .form-label { display: block; font-weight: 600; color: #334155; margin-bottom: 8px; font-size: 0.95rem; }
+    .form-input {
+      width: 100%; padding: 14px 16px; background: #f8fafc; border: 1px solid #e2e8f0;
+      border-radius: 12px; font-size: 1rem; color: #1e293b; transition: all 0.2s ease; outline: none;
+    }
+    .form-input:focus {
+      background: white; border-color: #f97316; box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+    }
+
+    /* Radio Choice Chips */
+    .radio-chips-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .radio-chip-label { cursor: pointer; display: block; }
+    .radio-chip-label input { display: none; }
+    .radio-chip-content {
+      display: flex; flex-direction: column; align-items: center; padding: 12px;
+      background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px;
+      color: #64748b; font-weight: 600; transition: all 0.2s; text-align: center;
+    }
+    .radio-chip-label input:checked + .radio-chip-content {
+      background: #fff7ed; border-color: #f97316; color: #ea580c;
+    }
+
+    .btn-submit-orange {
+      width: 100%; background: #f97316; color: white; padding: 16px; border: none;
+      border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.3); transition: all 0.3s;
+      margin-top: 10px;
+    }
+    .btn-submit-orange:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 15px 20px -3px rgba(249, 115, 22, 0.4); }
+
+    .microcopy { display: flex; align-items: center; justify-content: center; gap: 6px; color: #94a3b8; font-size: 0.85rem; margin-top: 16px; }
+    
+    .seo-block { max-width: 1200px; margin: 0 auto 60px; padding: 40px; background: white; border-radius: 20px; color: #475569; font-size: 0.95rem; line-height: 1.6; }
+  </style>
   <meta name="theme-color" content="#0665f5">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -352,207 +466,154 @@
 
   <main id="main-content" style="background: #f8fafc; padding-bottom: 60px;">
 
-    <!-- Hero Banner -->
-    <section style="background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: white; padding: 60px 24px; text-align: center; margin-bottom: 40px;">
-      <p class="eyebrow" style="color: #cbd8ef; letter-spacing: 2px;">CHÚNG TÔI LẮNG NGHE BẠN</p>
-      <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 20px;">Kết Nối Cùng FPT Telecom</h1>
-      <p style="max-width: 600px; margin: 0 auto; color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">Đội ngũ chuyên gia của chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7. Giải đáp mọi thắc mắc và tư vấn giải pháp mạng tốt nhất.</p>
+    <!-- Hero Banner (Compact) -->
+    <section class="hero-banner-contact">
+      <p class="eyebrow-contact">CHÚNG TÔI LẮNG NGHE BẠN</p>
+      <h1 class="h1-contact">Kết Nối Cùng Chúng Tôi</h1>
+      <p style="max-width: 600px; margin: 0 auto; color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">Đội ngũ chuyên gia luôn sẵn sàng hỗ trợ bạn 24/7. Giải đáp mọi thắc mắc và tư vấn giải pháp mạng tốt nhất.</p>
     </section>
 
-    
-
-    <section class="faq section">
-      <div class="section-head scroll-animate">
-        <div class="countdown-timer">⏰ Ưu đãi kết thúc sau: <span class="countdown-time">Đang tính...</span></div>
-<p class="eyebrow">GIẢI ĐÁP NHANH</p>
-        <h2>Câu hỏi thường gặp</h2>
-      </div>
-      <div class="faq-list">
-        <details>
-          <summary>Phí lắp đặt Internet FPT là bao nhiêu?</summary>
-          <p>Khách hàng mới được miễn phí lắp đặt trong các chương trình ưu đãi hiện hành. Nhân viên tư vấn sẽ xác nhận
-            chính sách tại khu vực của bạn.</p>
-        </details>
-        <details>
-          <summary>Thời gian lắp đặt mất bao lâu?</summary>
-          <p>Thông thường FPT hoàn tất lắp đặt trong vòng 24 giờ sau khi khảo sát điều kiện đường truyền.</p>
-        </details>
-        <details>
-          <summary>Thủ tục đăng ký cần những gì?</summary>
-          <p>Bạn chỉ cần CCCD/CMND và địa chỉ lắp đặt chính xác. Đội ngũ tư vấn sẽ hỗ trợ mọi thủ tục còn lại.</p>
-        </details>
-        <details>
-          <summary>Nhà nhiều tầng có dùng được không?</summary>
-          <p>Có. Kỹ thuật viên sẽ tư vấn vị trí đặt modem hoặc giải pháp mesh WiFi phù hợp với diện tích nhà bạn.</p>
-        </details>
-      </div>
+    <!-- FAQ Section -->
+    <section class="faq-container">
+      <h2 style="font-size: 2rem; color: #1e293b; margin-bottom: 24px; text-align: center; font-weight: 800; margin-top: 40px;">Câu hỏi thường gặp</h2>
+      <details class="faq-item" open>
+        <summary class="faq-summary">Phí lắp đặt Internet FPT là bao nhiêu?</summary>
+        <div class="faq-content">Khách hàng mới được miễn phí lắp đặt trong các chương trình ưu đãi hiện hành khi đóng trước 6 hoặc 12 tháng. Nhân viên tư vấn sẽ xác nhận chính sách chính xác tại khu vực của bạn.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-summary">Thời gian lắp đặt mất bao lâu?</summary>
+        <div class="faq-content">Thông thường FPT hoàn tất lắp đặt trong vòng 24 giờ kể từ lúc làm hợp đồng sau khi khảo sát điều kiện đường truyền.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-summary">Thủ tục đăng ký cần những gì?</summary>
+        <div class="faq-content">Bạn chỉ cần CCCD/CMND bản gốc (để chụp ảnh) và địa chỉ lắp đặt chính xác. Đội ngũ tư vấn sẽ hỗ trợ mọi thủ tục ký hợp đồng điện tử tiện lợi.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-summary">Làm sao để báo hỏng sự cố mạng?</summary>
+        <div class="faq-content">Bạn có thể gọi số tổng đài 19006600 nhánh số 2 hoặc sử dụng ứng dụng Hi FPT trên điện thoại để báo hỏng nhanh nhất.</div>
+      </details>
     </section>
 
-    <section class="contact section" id="contact" style="max-width: 1200px; margin: 0 auto; gap: 40px; padding: 40px 24px;">
-      <div class="contact-copy">
-        <p class="eyebrow">BẮT ĐẦU KẾT NỐI</p>
-        <h2>Đăng ký ngay.<br><em>Tư vấn hoàn toàn miễn phí.</em></h2>
-        <p>Để lại thông tin, nhân viên FPT sẽ gọi lại trong ít phút để kiểm tra hạ tầng và báo ưu đãi tại khu vực của
-          bạn. Hoặc liên hệ hotline 24/7:</p>
-        <a href="tel:0383900321" class="contact-phone">☎ 0383 900 321</a>
-        <a href="tel:0358513269" class="contact-phone" style="font-size: 16px; opacity: 0.85;">☎ 0358 513 269</a>
+    <!-- Contact & Lead Form Grid -->
+    <div class="contact-grid">
+      
+      <!-- Left Column: Info & Mascot -->
+      <div>
+        <h2 style="font-size: 2.2rem; font-weight: 800; color: #1e3a8a; line-height: 1.2; margin-bottom: 24px;">Đăng ký ngay.<br>Tư vấn hoàn toàn miễn phí.</h2>
+        <p style="color: #475569; font-size: 1.1rem; line-height: 1.6; margin-bottom: 32px;">Để lại thông tin bên cạnh, chuyên viên FPT sẽ gọi lại trong vòng 5 phút để kiểm tra hạ tầng và báo ưu đãi độc quyền. Hoặc kết nối qua các kênh:</p>
+        
+        <div class="contact-info-block">
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+            </div>
+            <div>
+              <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 4px;">Hotline Tư Vấn Đăng Ký (24/7)</p>
+              <a href="tel:0383900321" style="font-size: 1.4rem; font-weight: 700; color: #2563eb; display: block;">0383 900 321</a>
+              <a href="tel:0358513269" style="font-size: 1.2rem; font-weight: 600; color: #2563eb;">0358 513 269</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+            </div>
+            <div>
+              <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 4px;">Văn phòng làm việc</p>
+              <p style="font-size: 1.05rem; color: #334155; font-weight: 500;">Tòa nhà FPT, Khu chế xuất Tân Thuận, Phường Tân Thuận Đông, Quận 7, TP.HCM</p>
+            </div>
+          </div>
+        </div>
 
-        <div class="cute-mascot">
-          <svg width="140" height="140" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <style>
-              .mascot-float {
-                animation: floatMascot 3s ease-in-out infinite;
-              }
-
-              .mascot-eye {
-                animation: blinkMascot 4s infinite;
-              }
-
-              .mascot-arm-l {
-                animation: waveMascot 2.5s ease-in-out infinite;
-                transform-origin: 25px 65px;
-              }
-
-              @keyframes floatMascot {
-
-                0%,
-                100% {
-                  transform: translateY(0);
-                }
-
-                50% {
-                  transform: translateY(-8px);
-                }
-              }
-
-              @keyframes blinkMascot {
-
-                0%,
-                46%,
-                49%,
-                100% {
-                  transform: scaleY(1);
-                }
-
-                47.5% {
-                  transform: scaleY(0.1);
-                }
-              }
-
-              @keyframes waveMascot {
-
-                0%,
-                100% {
-                  transform: rotate(0deg);
-                }
-
-                50% {
-                  transform: rotate(25deg);
-                }
-              }
-            </style>
-            
+        <div class="mascot-container">
+          <svg class="mascot-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="50" cy="85" rx="25" ry="5" fill="#cbd8ef" />
             <g class="mascot-float">
-              
-              <line x1="50" y1="20" x2="50" y2="8" stroke="#0665f5" stroke-width="3" stroke-linecap="round" />
-              <circle cx="50" cy="6" r="4.5" fill="#ff6500" />
-              
-              <rect x="22" y="20" width="56" height="42" rx="14" fill="#ffffff" stroke="#0665f5" stroke-width="3" />
-              
-              <rect x="30" y="28" width="40" height="20" rx="5" fill="#13203a" />
-              
-              <g class="mascot-eye" transform-origin="38 38">
-                <circle cx="38" cy="38" r="3.5" fill="#00e5ff" />
-              </g>
-              <g class="mascot-eye" transform-origin="62 38">
-                <circle cx="62" cy="38" r="3.5" fill="#00e5ff" />
-              </g>
-              
-              <circle cx="30" cy="48" r="4" fill="#ff6500" opacity="0.25" />
-              <circle cx="70" cy="48" r="4" fill="#ff6500" opacity="0.25" />
-              
-              <path d="M 45 47 Q 50 51 55 47" fill="none" stroke="#0665f5" stroke-width="2" stroke-linecap="round" />
-              
-              <path d="M 33 62 L 67 62 L 78 80 L 22 80 Z" fill="#0665f5" stroke="#0665f5" stroke-linejoin="round" />
-              
+              <!-- Antenna -->
+              <line x1="50" y1="20" x2="50" y2="8" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+              <circle cx="50" cy="6" r="4.5" fill="#f97316" />
+              <!-- Body -->
+              <rect x="22" y="20" width="56" height="42" rx="14" fill="#ffffff" stroke="#2563eb" stroke-width="3" />
+              <!-- Screen -->
+              <rect x="30" y="28" width="40" height="20" rx="5" fill="#1e293b" />
+              <!-- Eyes -->
+              <circle cx="38" cy="38" r="3.5" fill="#00e5ff" />
+              <circle cx="62" cy="38" r="3.5" fill="#00e5ff" />
+              <!-- Cheeks -->
+              <circle cx="30" cy="48" r="4" fill="#f97316" opacity="0.25" />
+              <circle cx="70" cy="48" r="4" fill="#f97316" opacity="0.25" />
+              <!-- Smile -->
+              <path d="M 45 47 Q 50 51 55 47" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" />
+              <!-- Base -->
+              <path d="M 33 62 L 67 62 L 78 80 L 22 80 Z" fill="#2563eb" stroke="#2563eb" stroke-linejoin="round" />
               <rect x="40" y="68" width="20" height="4" rx="2" fill="#ffffff" opacity="0.8" />
-              
-              <g class="mascot-arm-l">
-                <path d="M 22 65 Q 8 68 15 80" fill="none" stroke="#ff6500" stroke-width="4" stroke-linecap="round" />
-              </g>
-              <path d="M 78 65 Q 92 68 85 80" fill="none" stroke="#ff6500" stroke-width="4" stroke-linecap="round" />
+              <!-- Arms -->
+              <path d="M 22 65 Q 8 68 15 80" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round" />
+              <path d="M 78 65 Q 92 68 85 80" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round" />
             </g>
           </svg>
-          <div class="mascot-chat">Em là <b>Trợ lý AI FPT</b>.<br>Đăng ký ở form bên cạnh, hoặc có thắc mắc gì cứ chat
-            với em qua hộp thoại góc dưới màn hình nhé! 👇</div>
+          <div class="chat-bubble">
+            Em là Trợ lý AI. Có thắc mắc gì cứ điền form hoặc chat với em qua nút Zalo bên dưới nhé!
+          </div>
         </div>
       </div>
-      <div class="contact-form-wrap">
-        <div class="form-social-proof">
-          <span class="pulse-dot"></span> Hơn <strong id="social-proof-count">142</strong> khách hàng đã đăng ký trong
-          tuần qua
-        </div>
-        <form id="leadForm">
-          
-          <div aria-hidden="true" style="position:absolute;left:-9999px">
-            <label>Không điền ô này<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-          </div>
-          <label>Họ và tên *<input required name="Họ Và Tên" placeholder="Nhập họ tên của bạn"></label><label>Số điện
-            thoại
-            *<input required name="Số điện thoại" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+ ]{9,}"
-              placeholder="Nhập số điện thoại"></label><label>Địa chỉ lắp đặt *<input required name="Địa chỉ"
-              placeholder="Số nhà, phường/xã, quận/huyện"></label>
-          <div class="form-row"><label>Gói cước quan tâm<select name="Gói cước" required>
-                <option value="" disabled selected>Chọn dịch vụ quan tâm</option>
-                <option value="GIGA / SKY">Internet GIGA / SKY</option>
-                <option value="F-GAME">Internet F-GAME</option>
-                <option value="COMBO VIP">COMBO VIP (Net + TV)</option>
-                <option value="META">Internet META</option>
-                <option value="Camera">Camera / Combo Camera</option>
-                <option value="Box TV">FPT Play Box TV</option>
-                <option value="Chưa rõ">Chưa rõ - Cần tư vấn thêm</option>
-              </select></label><label>Thời gian liên hệ<select name="Thời gian liên hệ" required>
-                <option>Gọi ngay</option>
-                <option>Buổi sáng</option>
-                <option>Buổi chiều</option>
-                <option>Buổi tối</option>
-              </select></label></div>
-          <div id="support-field" style="display:none; margin-bottom: 16px;">
-            <label>Yêu cầu hỗ trợ *<textarea name="Yêu cầu hỗ trợ" id="support-textarea" rows="3" placeholder="Nhập yêu cầu hỗ trợ của bạn..." style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 1rem;"></textarea></label>
-          </div>
-          <button id="main-submit-btn" class="btn btn-orange" type="submit">ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY
-            <span>→</span></button>
-          <button id="toggle-support-btn" class="btn" type="button" onclick="toggleSupportForm(this)" style="width: 100%; margin-top: 12px; background: transparent; color: var(--primary); border: 1px solid var(--primary);">Nhập yêu cầu hỗ trợ</button>
-          <p class="microcopy" style="margin-top: 10px; font-size: 0.85rem; line-height: 1.4;">
-            <span>🔒 Miễn phí khảo sát 100%. Thông tin được bảo mật tuyệt đối theo <a href="#" onclick="openPolicyModal(event)" style="text-decoration: underline; color: inherit;">chính sách</a> của FPT VietNam.</span>
-          </p>
-          <p class="success" role="status"></p>
-        </form>
-      </div>
-    </section>
 
-    <section class="seo-content section" style="padding: 60px 24px; max-width: 1200px; margin: 0 auto;">
-      <div
-        style="background: var(--surface); padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-        <h2 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--primary);">Lắp đặt Internet FPT - Cáp quang siêu
-          tốc, Công nghệ vượt trội</h2>
-        <p style="margin-bottom: 12px; line-height: 1.6;">FPT Telecom là nhà cung cấp dịch vụ viễn thông hàng đầu tại
-          Việt Nam, mang đến giải pháp kết nối cáp quang siêu tốc và ổn định cho hàng triệu hộ gia đình và doanh nghiệp.
-          Với sứ mệnh tiên phong công nghệ, mạng lưới internet FPT liên tục được nâng cấp với các tiêu chuẩn Wi-Fi 6
-          hiện đại nhất, cho phép nhiều thiết bị truy cập cùng lúc mà không lo giật lag hay độ trễ cao.</p>
-        <p style="margin-bottom: 12px; line-height: 1.6;">Khách hàng khi đăng ký <strong>lắp đặt internet FPT</strong>
-          không chỉ được trải nghiệm tốc độ băng thông không giới hạn từ các gói cước GIGA, SKY, META mà còn nhận ngay
-          thiết bị modem chuẩn mới, ưu đãi miễn phí hoàn toàn chi phí lắp đặt khi tham gia trả trước 6 hoặc 12 tháng.
-          Hơn thế nữa, dịch vụ Truyền hình FPT Play đi kèm mang đến kho giải trí khổng lồ với hàng trăm kênh truyền hình
-          trong nước và quốc tế, các giải thể thao độc quyền đỉnh cao và hàng ngàn bộ phim bom tấn, đáp ứng mọi nhu cầu
-          giải trí của các thành viên trong gia đình.</p>
-        <p style="line-height: 1.6;">Đội ngũ kỹ thuật viên chuyên nghiệp của FPT Telecom cam kết khảo sát và triển khai
-          nhanh chóng trong 24-48 giờ, hỗ trợ bảo trì trọn đời tận nhà và tổng đài chăm sóc khách hàng giải đáp thắc mắc
-          24/7. Hãy liên hệ đường dây nóng hoặc đăng ký trực tuyến ngay hôm nay để nhận báo giá khuyến mãi mới nhất và
-          tận hưởng không gian mạng an toàn, mượt mà cùng hệ sinh thái công nghệ FPT.</p>
+      <!-- Right Column: Lead Form -->
+      <div>
+        <div class="lead-form-card">
+          <div class="social-proof-bar">
+            🔥 Hơn 142 khách hàng đã đăng ký trong tuần qua
+          </div>
+          <form id="leadForm">
+            <div class="form-group">
+              <label class="form-label">Họ và tên *</label>
+              <input type="text" class="form-input" required placeholder="Ví dụ: Nguyễn Văn A">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Số điện thoại *</label>
+              <input type="tel" class="form-input" required placeholder="09xxxxxxxxx">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Địa chỉ lắp đặt *</label>
+              <input type="text" class="form-input" required placeholder="Số nhà, đường, phường/xã, quận/huyện...">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Gói cước quan tâm</label>
+              <div class="radio-chips-container">
+                <label class="radio-chip-label">
+                  <input type="radio" name="goicuoc" value="Internet" checked>
+                  <span class="radio-chip-content">Internet Tốc Độ Cao</span>
+                </label>
+                <label class="radio-chip-label">
+                  <input type="radio" name="goicuoc" value="Combo">
+                  <span class="radio-chip-content">Combo Internet + TV</span>
+                </label>
+                <label class="radio-chip-label">
+                  <input type="radio" name="goicuoc" value="Camera">
+                  <span class="radio-chip-content">Lắp đặt Camera AI</span>
+                </label>
+                <label class="radio-chip-label">
+                  <input type="radio" name="goicuoc" value="Unknown">
+                  <span class="radio-chip-content">Cần tư vấn thêm</span>
+                </label>
+              </div>
+            </div>
+            <button type="submit" class="btn-submit-orange">ĐĂNG KÝ TƯ VẤN NGAY</button>
+            <div class="microcopy">
+              <span>🔒 Thông tin của bạn được bảo mật tuyệt đối</span>
+            </div>
+          </form>
+        </div>
       </div>
-    </section>
+
+    </div>
+
+    <!-- SEO Content Block -->
+    <div class="seo-block">
+      <h2 style="font-size: 1.5rem; margin-bottom: 16px; color: #1e3a8a; font-weight: 700;">Trung tâm chăm sóc khách hàng FPT Telecom</h2>
+      <p style="margin-bottom: 12px;">FPT Telecom cam kết mang đến dịch vụ chăm sóc khách hàng chuyên nghiệp, tận tâm và hỗ trợ 24/7. Dù bạn cần đăng ký lắp đặt mới đường truyền Internet cáp quang tốc độ cao, hay cần hỗ trợ kỹ thuật về Truyền hình, Camera, đội ngũ chuyên gia của chúng tôi luôn sẵn sàng lắng nghe.</p>
+      <p>Hệ thống tổng đài và các kênh chat trực tuyến (Zalo, Facebook) được vận hành liên tục đảm bảo mọi thắc mắc của bạn được giải quyết nhanh nhất. Khách hàng đăng ký trực tuyến qua Form sẽ được ưu tiên liên hệ trong vòng 5 phút để nhận các ưu đãi độc quyền hấp dẫn nhất.</p>
+    </div>
+
   </main>
       <footer class="footer">
     <div class="footer-main">
@@ -575,8 +636,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -652,44 +713,7 @@
     </div>
   </div>
 
-  <div class="policy-modal-overlay" id="policy-modal" onclick="if(event.target===this) closePolicyModal()">
-    <div class="policy-modal-content">
-      <button class="policy-close-btn" onclick="closePolicyModal()" aria-label="Đóng">×</button>
-      <div class="policy-modal-body">
-        <h2
-          style="margin-top:0; color:#141b6a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">
-          Chính Sách Bảo Mật & Điều Khoản Sử Dụng</h2>
-        <p>Quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa FPT Telecom và khách hàng.</p>
-
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🛡️ I. Chính sách bảo mật dữ liệu</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Dữ liệu bắt buộc:</strong> Họ tên, số điện thoại, email, địa chỉ lắp
-            đặt khi đăng ký.</li>
-          <li style="margin-bottom:8px;"><strong>Mục đích sử dụng:</strong> Xác nhận dịch vụ, chăm sóc khách hàng, hỗ
-            trợ kỹ thuật và giải quyết sự cố.</li>
-          <li style="margin-bottom:8px;"><strong>Cam kết bảo mật:</strong> Tuyệt đối không chia sẻ, bán dữ liệu cho bên
-            thứ ba. Hệ thống Anti DDoS ngăn chặn rò rỉ dữ liệu. Khách hàng có toàn quyền yêu cầu xóa/sửa thông tin.</li>
-        </ul>
-
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">⚖️ II. Điều khoản sử dụng</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Trách nhiệm:</strong> Khách hàng tự chịu trách nhiệm về tính chính xác
-            của thông tin và bảo mật tài khoản cá nhân.</li>
-          <li style="margin-bottom:8px;"><strong>Sử dụng hợp pháp:</strong> Cam kết không sử dụng hạ tầng mạng vào các
-            hoạt động vi phạm pháp luật.</li>
-          <li style="margin-bottom:8px;"><strong>Giới hạn trách nhiệm:</strong> Khách hàng chấp nhận rủi ro từ các sự cố
-            bất khả kháng như thiên tai, hỏa hoạn, chập điện.</li>
-        </ul>
-
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🔄 III. Sửa đổi & Cập nhật</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li>FPT Telecom có quyền sửa đổi, bổ sung chính sách bất kỳ lúc nào. Việc tiếp tục sử dụng dịch vụ đồng nghĩa
-            với việc bạn đồng ý với các thay đổi đó.</li>
-        </ul>
-        <div style="margin-top:30px; padding-top:15px; border-top:1px dashed #cbd5e1; font-size:13px; color:#64748b;">
-          <em>Cập nhật lần cuối: Tháng 7/2026. Mọi thắc mắc vui lòng gọi Hotline 0358 513 269</em>
-        </div>
-      </div>
+  
     </div>
   </div>
 

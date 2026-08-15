@@ -4,7 +4,6 @@
   "description": "FPT Telecom - Static SEO Website Builder",
   "private": true,
   "scripts": {
-    "build": "node scripts/build.js",
-    "validate": "node scripts/validate.js"
+    "build": "python scripts/build.py"
   }
 }

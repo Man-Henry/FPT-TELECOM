@@ -28,10 +28,10 @@
   <meta name="google-site-verification" content="ny5LbeZipQj1T8M_QgDo9cG1VjXmvA6pe542v2utDvY" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="theme-color" content="#0665f5">
+  <meta name="theme-color" content="#f8fafc">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="FPT Telecom">
 
   <link rel="preload" as="image" href="https://fpttelecomvn.click/assets/images/fptfamily.webp" fetchpriority="high">
@@ -67,24 +67,58 @@
   <meta name="twitter:description" content="Khuyến mãi lắp đặt Internet FPT miễn phí, tặng Modem WiFi 6.">
   <meta name="twitter:image" content="https://fpttelecomvn.click/assets/images/avata.webp">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.min.css?v=26">
-
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0665f5">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0f172a', /* slate-900 */
+            secondary: '#2563eb', /* blue-600 */
+            accent: '#f97316', /* orange-500 */
+            surface: '#f8fafc', /* slate-50 */
+          },
+          animation: {
+            'bounce-slow': 'bounce 3s infinite',
+            'float': 'float 4s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
       }
     }
   </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; overflow-x: hidden; }
+    /* Scroll Animation Utility */
+    .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    /* Sticky Header Transition */
+    header { transition: all 0.3s ease; }
+    header.scrolled { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); }
+    /* Glassmorphism Badges */
+    .glass-badge { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+    /* Details Accordion */
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    /* Floating Toast */
+    .toast-notification { position: fixed; bottom: 20px; left: -100%; background: white; border-left: 4px solid #f97316; padding: 12px 16px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 12px; z-index: 50; transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .toast-notification.show { left: 20px; }
+  </style>
+
+  <link rel="manifest" href="manifest.json">
 
   <script type="application/ld+json">
   [
@@ -116,37 +150,8 @@
             "contactType": "customer service",
             "areaServed": "VN",
             "availableLanguage": "Vietnamese"
-          },
-          {
-            "@type": "ContactPoint",
-            "telephone": "+84383900321",
-            "contactType": "sales",
-            "areaServed": "VN",
-            "availableLanguage": "Vietnamese"
           }
-        ],
-        "sameAs": [
-          "https://zalo.me/0358513269",
-          "https://zalo.me/0383900321"
         ]
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "@id": "https://fpttelecomvn.click/#localbusiness",
-        "name": "FPT Telecom",
-        "image": "https://fpttelecomvn.click/assets/images/fptfamily.webp",
-        "description": "Dịch vụ lắp đặt Internet FPT toàn quốc. Miễn phí lắp đặt, tặng thiết bị WiFi 6.",
-        "telephone": ["+84358513269", "+84383900321"],
-        "url": "https://fpttelecomvn.click/",
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "07:00",
-          "closes": "22:00"
-        },
-        "areaServed": "VN",
-        "priceRange": "195.000đ - 330.000đ/tháng"
       }
   ]
   </script>
@@ -159,503 +164,580 @@
     gtag('js', new Date());
     gtag('config', 'G-E8451LL5PD');
   </script>
-  </head>
+</head>
 
-<body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWWKQ7KK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
-  
-  <div class="topbar">
-    <span>⚡ Ưu đãi tháng này: Tặng Voucher giảm giá &amp; miễn phí lắp đặt khi trả trước 6T/12T</span>
-    <a href="tel:0383900321">Hotline: <b>0383 900 321</b></a>
+<body class="text-slate-800 antialiased">
+  <!-- Topbar -->
+  <div class="bg-slate-900 text-white text-sm py-2 px-4 hidden md:flex justify-between items-center z-50 relative">
+    <div class="flex items-center gap-2">
+      <span class="text-yellow-400">⚡</span>
+      <span>Khuyến mãi: Miễn phí lắp đặt & Tặng Modem WiFi 6 khi trả trước 6 tháng.</span>
+    </div>
+    <div class="font-semibold">
+      Hotline tư vấn 24/7: <a href="tel:0383900321" class="text-orange-500 hover:text-orange-400 transition">0383 900 321</a>
+    </div>
   </div>
-  
-  <header class="header" id="home">
-    <a class="logo logo-image" href="/FPT-TELECOM/" aria-label="FPT Telecom">
-      <img src="assets/images/logo.webp" alt="FPT Telecom" width="164" height="45">
-      <span class="auth-badge">Đại lý ủy quyền FPT</span>
-    </a>
-    <button class="menu-toggle" aria-label="Mở menu" aria-expanded="false">
-      <span aria-hidden="true">☰</span>
-      <span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Menu</span>
-    </button>
-    <nav role="navigation" aria-label="Menu chính">
-      <a href="/FPT-TELECOM/" class="active">Trang chủ</a>
-      <a href="/FPT-TELECOM/bang-gia/">Bảng giá</a>
-      <a href="/FPT-TELECOM/khu-vuc/">Khu vực</a>
-      <a href="/FPT-TELECOM/tin-tuc/">Tin tức</a>
-      <a href="/FPT-TELECOM/lien-he/">Liên hệ</a>
-    </nav>
-    <a class="btn btn-orange header-cta" href="/FPT-TELECOM/lien-he/">Đăng ký ngay <span>→</span></a>
-  </header>
 
-  <main id="main-content">
-
-    <section class="hero tilt-hero">
-      <div class="hero-copy">
-        <div class="countdown-timer">⏰ Ưu đãi kết thúc sau: <span class="countdown-time">Đang tính...</span></div>
-<p class="eyebrow">INTERNET FPT • TOÀN QUỐC</p>
-        <h1>Lắp Mạng FPT Tốc Độ Cao <br><em>Tặng Ngay WiFi 6</em></h1>
-        <p class="lead">Miễn phí lắp đặt 100% – Trang bị Modem WiFi 6 thế hệ mới – Hỗ trợ kỹ thuật 24/7. Trải nghiệm Internet mượt mà <strong>không giới hạn</strong>.</p>
-        <div class="hero-actions">
-          <a class="btn btn-orange" href="/FPT-TELECOM/lien-he/">Đăng Ký Tư Vấn Miễn Phí</a>
-          <a class="call-link" href="#pricing">Xem Bảng Giá</a>
-        </div>
-        <div class="trust">
-          <div><b>5.000.000+</b><span>Khách hàng tin chọn</span></div>
-          <div><b>24h</b><span>Lắp đặt nhanh chóng</span></div>
-          <div><b>24/7</b><span>Hỗ trợ tận tâm</span></div>
-        </div>
-      </div>
-      <div class="hero-visual photo-visual is-tilting">
-        <img class="hero-photo" src="assets/images/fptfamily.webp" alt="Gia đình sử dụng Internet FPT">
-        <div class="scan-line"></div>
-        <div class="plan plan-one">300Mbps <small>Tốc độ cực mượt</small></div>
-        <div class="plan plan-two">WiFi 6 <small>Công nghệ đột phá</small></div>
-        <div class="plan plan-three">FPT Play <small>Giải trí đỉnh cao</small></div>
-      </div>
-    </section>
-
-    <section class="features section" style="padding: 60px 24px;">
-      <div class="section-head scroll-animate" style="text-align: center; margin-bottom: 40px;">
-        <p class="eyebrow">ƯU ĐIỂM VƯỢT TRỘI</p>
-        <h2>Vì sao chọn Internet FPT?</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">
-        <div class="scroll-animate" style="background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; height: 100%;">
-          <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 12px;">Công nghệ WiFi 6</h3>
-          <p style="color: #475569;">Phủ sóng rộng hơn, tốc độ nhanh gấp 4 lần so với công nghệ cũ. Đáp ứng nhu cầu truy cập nhiều thiết bị cùng lúc.</p>
-        </div>
-        <div class="scroll-animate" style="background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; height: 100%; transition-delay: 0.1s;">
-          <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 12px;">Đường truyền quang siêu tốc</h3>
-          <p style="color: #475569;">Cáp quang FTTH hiện đại giúp đường truyền ổn định, không bị ảnh hưởng bởi thời tiết.</p>
-        </div>
-        <div class="scroll-animate" style="background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; height: 100%; transition-delay: 0.2s;">
-          <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 12px;">Hỗ trợ kỹ thuật 24/7</h3>
-          <p style="color: #475569;">Đội ngũ kỹ thuật viên chuyên nghiệp luôn sẵn sàng hỗ trợ, xử lý sự cố nhanh chóng trong 24h.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="pricing section" id="pricing" style="padding: 60px 24px; background: #f8fafc;">
-      <div class="section-head scroll-animate" style="text-align: center; margin-bottom: 40px;">
-        <p class="eyebrow">BẢNG GIÁ DỊCH VỤ</p>
-        <h2>Gói cước ưu đãi tháng này</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">
-        
-        <div class="scroll-animate" style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 4px solid var(--primary); display: flex; flex-direction: column; height: 100%;">
-          <h3 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 8px;">Gói GIGA</h3>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 16px;">Phù hợp gia đình nhỏ (1-3 người)</p>
-          <div style="font-size: 2rem; font-weight: bold; color: #ff6500; margin-bottom: 24px;">Từ 195.000đ<span style="font-size: 1rem; color: #64748b; font-weight: normal;">/tháng</span></div>
-          <ul style="list-style: none; padding: 0; margin-bottom: 24px; color: #475569; flex-grow: 1;">
-            <li style="margin-bottom: 12px;">✓ Tốc độ Download/Upload: <strong>300Mbps</strong></li>
-            <li style="margin-bottom: 12px;">✓ Trang bị Modem WiFi 6 đời mới</li>
-            <li style="margin-bottom: 12px; color: #ff6500; font-weight: 600;">✓ Tặng Voucher giảm giá (khi trả trước 6/12T)</li>
-          </ul>
-          <a href="#contact" class="btn" style="width: 100%; text-align: center; border: 1px solid var(--primary); color: var(--primary); padding: 12px; border-radius: 8px; font-weight: 600;">Đăng ký GIGA</a>
-        </div>
-
-        <div class="scroll-animate" style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(6, 101, 245, 0.15); border-top: 4px solid #ff6500; transform: scale(1.02); z-index: 1; display: flex; flex-direction: column; height: 100%; transition-delay: 0.1s;">
-          <div style="background: #ff6500; color: #fff; font-size: 0.8rem; font-weight: bold; padding: 4px 12px; border-radius: 12px; display: inline-block; margin-bottom: 12px;">BÁN CHẠY NHẤT</div>
-          <h3 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 8px;">Gói SKY</h3>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 16px;">Phù hợp gia đình tiêu chuẩn (3-5 người)</p>
-          <div style="font-size: 2rem; font-weight: bold; color: #ff6500; margin-bottom: 24px;">Từ 235.000đ<span style="font-size: 1rem; color: #64748b; font-weight: normal;">/tháng</span></div>
-          <ul style="list-style: none; padding: 0; margin-bottom: 24px; color: #475569; flex-grow: 1;">
-            <li style="margin-bottom: 12px;">✓ Tốc độ Download: <strong>Không giới hạn (1Gbps)</strong></li>
-            <li style="margin-bottom: 12px;">✓ Tốc độ Upload: <strong>300Mbps</strong></li>
-            <li style="margin-bottom: 12px;">✓ Trang bị Modem WiFi 6 đời mới</li>
-            <li style="margin-bottom: 12px; color: #ff6500; font-weight: 600;">✓ Tặng Voucher giảm giá (khi trả trước 6/12T)</li>
-          </ul>
-          <a href="#contact" class="btn btn-orange" style="width: 100%; text-align: center; padding: 12px; border-radius: 8px; font-weight: 600;">Đăng ký SKY</a>
-        </div>
-
-        <div class="scroll-animate" style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 4px solid var(--primary); display: flex; flex-direction: column; height: 100%; transition-delay: 0.2s;">
-          <h3 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 8px;">Gói COMBO (Internet + TV)</h3>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 16px;">Giải trí đỉnh cao cho cả gia đình</p>
-          <div style="font-size: 2rem; font-weight: bold; color: #ff6500; margin-bottom: 24px;">Từ 255.000đ<span style="font-size: 1rem; color: #64748b; font-weight: normal;">/tháng</span></div>
-          <ul style="list-style: none; padding: 0; margin-bottom: 24px; color: #475569; flex-grow: 1;">
-            <li style="margin-bottom: 12px;">✓ Internet Cáp Quang siêu tốc</li>
-            <li style="margin-bottom: 12px;">✓ Gần 200 kênh Truyền hình đặc sắc</li>
-            <li style="margin-bottom: 12px;">✓ Trang bị <strong>Modem WiFi 6 + FPT Play Box</strong></li>
-            <li style="margin-bottom: 12px; color: #ff6500; font-weight: 600;">✓ Tặng Voucher giảm giá (khi trả trước 6/12T)</li>
-          </ul>
-          <a href="#contact" class="btn" style="width: 100%; text-align: center; border: 1px solid var(--primary); color: var(--primary); padding: 12px; border-radius: 8px; font-weight: 600;">Đăng ký COMBO</a>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="/FPT-TELECOM/bang-gia/" style="color: var(--primary); font-weight: 600; text-decoration: underline;">Xem chi tiết tất cả các gói cước & khu vực</a>
-      </div>
-    </section>
-
-    <section class="faq section">
-      <div class="section-head scroll-animate">
-        <p class="eyebrow">GIẢI ĐÁP NHANH</p>
-        <h2>Câu hỏi thường gặp</h2>
-      </div>
-      <div class="faq-list">
-        <details>
-          <summary>Phí lắp đặt Internet FPT là bao nhiêu?</summary>
-          <p>Khách hàng mới được miễn phí lắp đặt trong các chương trình ưu đãi hiện hành. Nhân viên tư vấn sẽ xác nhận chính sách tại khu vực của bạn.</p>
-        </details>
-        <details>
-          <summary>Thời gian lắp đặt mất bao lâu?</summary>
-          <p>Thông thường FPT hoàn tất lắp đặt trong vòng 24 giờ sau khi khảo sát điều kiện đường truyền.</p>
-        </details>
-        <details>
-          <summary>Thủ tục đăng ký cần những gì?</summary>
-          <p>Bạn chỉ cần CCCD/CMND và địa chỉ lắp đặt chính xác. Đội ngũ tư vấn sẽ hỗ trợ mọi thủ tục còn lại.</p>
-        </details>
-        <details>
-          <summary>Nhà nhiều tầng có dùng được không?</summary>
-          <p>Có. Kỹ thuật viên sẽ tư vấn vị trí đặt modem hoặc giải pháp mesh WiFi phù hợp với diện tích nhà bạn.</p>
-        </details>
-      </div>
-    </section>
-
-    <section class="news section" id="news" style="padding: 60px 24px;">
-      <div class="section-head scroll-animate" style="text-align: center; margin-bottom: 40px;">
-        <p class="eyebrow">CẬP NHẬT MỚI NHẤT</p>
-        <h2>Tin tức & Khuyến mãi</h2>
-      </div>
-      <div class="news-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">
-        <article class="news-card" style="background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-          <div class="news-img" style="margin-bottom: 16px;">
-            <a href="/FPT-TELECOM/tin-tuc/ky-thuat-vien-fpt-telecom-dung-cam-lao-xuong-song-cuu-song-be-trai-duoi-nuoc-tai-hai-phong-14999/">
-              <img src="https://s3-api.fpt.vn/fptvn-storage/2026-08-07/1786089902_333.png" alt="Kỹ thuật viên FPT Telecom dũng cảm lao xuống sông cứu sống bé trai đuối nước tại Hải Phòng" loading="lazy" style="width: 100%; border-radius: 8px; aspect-ratio: 16/9; object-fit: cover;">
-            </a>
-          </div>
-          <div class="news-content" style="flex-grow: 1; display: flex; flex-direction: column;">
-            <p class="news-date" style="color: #64748b; font-size: 0.85rem; margin-bottom: 8px;">15/08/2026</p>
-            <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 12px; flex-grow: 1;"><a href="/FPT-TELECOM/tin-tuc/ky-thuat-vien-fpt-telecom-dung-cam-lao-xuong-song-cuu-song-be-trai-duoi-nuoc-tai-hai-phong-14999/" style="color: inherit; text-decoration: none;">Kỹ thuật viên FPT Telecom dũng cảm lao xuống sông cứu sống bé trai đuối nước tại Hải Phòng</a></h3>
-            <p style="color: #475569; font-size: 0.9rem; margin-bottom: 16px;">Đọc bài viết chi tiết tại trang chính thức của FPT.vn...</p>
-            <a href="/FPT-TELECOM/tin-tuc/ky-thuat-vien-fpt-telecom-dung-cam-lao-xuong-song-cuu-song-be-trai-duoi-nuoc-tai-hai-phong-14999/" style="color: #ff6500; font-weight: 600; font-size: 0.9rem; text-decoration: none;">Đọc tiếp →</a>
-          </div>
-        </article>
-
-        <article class="news-card" style="background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-          <div class="news-img" style="margin-bottom: 16px;">
-            <a href="/FPT-TELECOM/tin-tuc/fpt-cong-bo-40-khach-hang-may-man-trung-xe-dien-15007/">
-              <img src="https://s3-api.fpt.vn/fptvn-storage/2026-08-10/1786331943_a1.jpg" alt="FPT công bố 40 khách hàng may mắn trúng xe điện" loading="lazy" style="width: 100%; border-radius: 8px; aspect-ratio: 16/9; object-fit: cover;">
-            </a>
-          </div>
-          <div class="news-content" style="flex-grow: 1; display: flex; flex-direction: column;">
-            <p class="news-date" style="color: #64748b; font-size: 0.85rem; margin-bottom: 8px;">15/08/2026</p>
-            <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 12px; flex-grow: 1;"><a href="/FPT-TELECOM/tin-tuc/fpt-cong-bo-40-khach-hang-may-man-trung-xe-dien-15007/" style="color: inherit; text-decoration: none;">FPT công bố 40 khách hàng may mắn trúng xe điện</a></h3>
-            <p style="color: #475569; font-size: 0.9rem; margin-bottom: 16px;">Đọc bài viết chi tiết tại trang chính thức của FPT.vn...</p>
-            <a href="/FPT-TELECOM/tin-tuc/fpt-cong-bo-40-khach-hang-may-man-trung-xe-dien-15007/" style="color: #ff6500; font-weight: 600; font-size: 0.9rem; text-decoration: none;">Đọc tiếp →</a>
-          </div>
-        </article>
-
-        <article class="news-card" style="background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-          <div class="news-img" style="margin-bottom: 16px;">
-            <a href="/FPT-TELECOM/tin-tuc/uu-dai-den-100000-dong-khi-thanh-toan-tren-hi-fpt-15012/">
-              <img src="https://s3-api.fpt.vn/fptvn-storage/2026-08-11/1786420549_fptvn1100x660.png" alt="ƯU ĐÃI ĐẾN 100.000 ĐỒNG KHI THANH TOÁN TRÊN Hi FPT" loading="lazy" style="width: 100%; border-radius: 8px; aspect-ratio: 16/9; object-fit: cover;">
-            </a>
-          </div>
-          <div class="news-content" style="flex-grow: 1; display: flex; flex-direction: column;">
-            <p class="news-date" style="color: #64748b; font-size: 0.85rem; margin-bottom: 8px;">15/08/2026</p>
-            <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 12px; flex-grow: 1;"><a href="/FPT-TELECOM/tin-tuc/uu-dai-den-100000-dong-khi-thanh-toan-tren-hi-fpt-15012/" style="color: inherit; text-decoration: none;">ƯU ĐÃI ĐẾN 100.000 ĐỒNG KHI THANH TOÁN TRÊN Hi FPT</a></h3>
-            <p style="color: #475569; font-size: 0.9rem; margin-bottom: 16px;">Đọc bài viết chi tiết tại trang chính thức của FPT.vn...</p>
-            <a href="/FPT-TELECOM/tin-tuc/uu-dai-den-100000-dong-khi-thanh-toan-tren-hi-fpt-15012/" style="color: #ff6500; font-weight: 600; font-size: 0.9rem; text-decoration: none;">Đọc tiếp →</a>
-          </div>
-        </article>
-
-        
-
-        
-
-        
-
-      </div>
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="/FPT-TELECOM/tin-tuc/" class="btn" style="border: 1px solid var(--primary); color: var(--primary); padding: 10px 24px; border-radius: 8px;">Xem tất cả tin tức</a>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="contact-copy">
-        <p class="eyebrow">BẮT ĐẦU KẾT NỐI</p>
-        <h2>Đăng ký ngay.<br><em>Tư vấn hoàn toàn miễn phí.</em></h2>
-        <p>Để lại thông tin, nhân viên FPT sẽ gọi lại trong ít phút để kiểm tra hạ tầng và báo ưu đãi tại khu vực của bạn. Hoặc liên hệ hotline 24/7:</p>
-        <a href="tel:0383900321" class="contact-phone">☎ 0383 900 321</a>
-        <a href="tel:0358513269" class="contact-phone" style="font-size: 16px; opacity: 0.85;">☎ 0358 513 269</a>
-
-        <div class="cute-mascot">
-          <svg width="140" height="140" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <style>
-              .mascot-float { animation: floatMascot 3s ease-in-out infinite; }
-              .mascot-eye { animation: blinkMascot 4s infinite; }
-              .mascot-arm-l { animation: waveMascot 2.5s ease-in-out infinite; transform-origin: 25px 65px; }
-              @keyframes floatMascot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-              @keyframes blinkMascot { 0%, 46%, 49%, 100% { transform: scaleY(1); } 47.5% { transform: scaleY(0.1); } }
-              @keyframes waveMascot { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(25deg); } }
-            </style>
-            
-            <ellipse cx="50" cy="85" rx="25" ry="5" fill="#cbd8ef" />
-            <g class="mascot-float">
-              
-              <line x1="50" y1="20" x2="50" y2="8" stroke="#0665f5" stroke-width="3" stroke-linecap="round" />
-              <circle cx="50" cy="6" r="4.5" fill="#ff6500" />
-              
-              <rect x="22" y="20" width="56" height="42" rx="14" fill="#ffffff" stroke="#0665f5" stroke-width="3" />
-              
-              <rect x="30" y="28" width="40" height="20" rx="5" fill="#13203a" />
-              
-              <g class="mascot-eye" transform-origin="38 38"><circle cx="38" cy="38" r="3.5" fill="#00e5ff" /></g>
-              <g class="mascot-eye" transform-origin="62 38"><circle cx="62" cy="38" r="3.5" fill="#00e5ff" /></g>
-              
-              <circle cx="30" cy="48" r="4" fill="#ff6500" opacity="0.25" />
-              <circle cx="70" cy="48" r="4" fill="#ff6500" opacity="0.25" />
-              
-              <path d="M 45 47 Q 50 51 55 47" fill="none" stroke="#0665f5" stroke-width="2" stroke-linecap="round" />
-              
-              <path d="M 33 62 L 67 62 L 78 80 L 22 80 Z" fill="#0665f5" stroke="#0665f5" stroke-linejoin="round" />
-              
-              <rect x="40" y="68" width="20" height="4" rx="2" fill="#ffffff" opacity="0.8" />
-              
-              <g class="mascot-arm-l"><path d="M 22 65 Q 8 68 15 80" fill="none" stroke="#ff6500" stroke-width="4" stroke-linecap="round" /></g>
-              <path d="M 78 65 Q 92 68 85 80" fill="none" stroke="#ff6500" stroke-width="4" stroke-linecap="round" />
-            </g>
-          </svg>
-          <div class="mascot-chat">Em là <b>Trợ lý AI FPT</b>.<br>Đăng ký ở form bên cạnh, hoặc có thắc mắc gì cứ chat với em qua hộp thoại góc dưới màn hình nhé! 👇</div>
-        </div>
-      </div>
-      <div class="contact-form-wrap">
-        <div class="form-social-proof">
-          <span class="pulse-dot"></span> Hơn <strong id="social-proof-count">142</strong> khách hàng đã đăng ký trong tuần qua
-        </div>
-        <form id="leadForm">
-          
-          <div aria-hidden="true" style="position:absolute;left:-9999px">
-            <label>Không điền ô này<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-          </div>
-          <label>Họ và tên *<input required name="Họ Và Tên" placeholder="Nhập họ tên của bạn"></label>
-          <label>Số điện thoại *<input required name="Số điện thoại" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+ ]{9,}" placeholder="Nhập số điện thoại"></label>
-          <label>Địa chỉ lắp đặt *<input required name="Địa chỉ" placeholder="Số nhà, phường/xã, quận/huyện"></label>
-          <div class="form-row">
-            <label>Gói cước quan tâm<select name="Gói cước" required>
-                <option value="" disabled selected>Chọn dịch vụ quan tâm</option>
-                <option value="GIGA / SKY">Internet GIGA / SKY</option>
-                <option value="F-GAME">Internet F-GAME</option>
-                <option value="COMBO VIP">COMBO VIP (Net + TV)</option>
-                <option value="META">Internet META</option>
-                <option value="Camera">Camera / Combo Camera</option>
-                <option value="Box TV">FPT Play Box TV</option>
-                <option value="Chưa rõ">Chưa rõ - Cần tư vấn thêm</option>
-              </select></label>
-            <label>Thời gian liên hệ<select name="Thời gian liên hệ" required>
-                <option>Gọi ngay</option>
-                <option>Buổi sáng</option>
-                <option>Buổi chiều</option>
-                <option>Buổi tối</option>
-              </select></label>
-          </div>
-          <div id="support-field" style="display:none; margin-bottom: 16px;">
-            <label>Yêu cầu hỗ trợ *<textarea name="Yêu cầu hỗ trợ" id="support-textarea" rows="3" placeholder="Nhập yêu cầu hỗ trợ của bạn..." style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 1rem;"></textarea></label>
-          </div>
-          <button id="main-submit-btn" class="btn btn-orange" type="submit">ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY <span>→</span></button>
-          <button id="toggle-support-btn" class="btn" type="button" onclick="toggleSupportForm(this)" style="width: 100%; margin-top: 12px; background: transparent; color: var(--primary); border: 1px solid var(--primary);">Nhập yêu cầu hỗ trợ</button>
-          <p class="microcopy" style="margin-top: 10px; font-size: 0.85rem; line-height: 1.4;">
-            <span>🔒 Miễn phí khảo sát 100%. Thông tin được bảo mật tuyệt đối theo <a href="#" onclick="openPolicyModal(event)" style="text-decoration: underline; color: inherit;">chính sách</a> của FPT Telecom.</span>
-          </p>
-          <p class="success" role="status"></p>
-        </form>
-      </div>
-    </section>
-
-    <section class="seo-content section" style="padding: 60px 24px; max-width: 1200px; margin: 0 auto;">
-      <div style="background: var(--surface); padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-        <h2 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--primary);">Đăng Ký Lắp Đặt Mạng Cáp Quang Internet FPT</h2>
-        <p style="margin-bottom: 12px; line-height: 1.6;"><strong>FPT Telecom</strong> là một trong những nhà cung cấp dịch vụ viễn thông, internet và truyền hình hàng đầu tại Việt Nam. Với nền tảng công nghệ cáp quang FTTH hiện đại và thiết bị <strong>Modem WiFi 6</strong> thế hệ mới, chúng tôi tự hào mang đến cho khách hàng trải nghiệm internet mượt mà, tốc độ siêu nhanh và độ ổn định cao nhất.</p>
-        <p style="margin-bottom: 12px; line-height: 1.6;">Dịch vụ <strong>lắp mạng FPT</strong> cung cấp đa dạng các gói cước từ GIGA, SKY đến META, đáp ứng mọi nhu cầu sử dụng từ cá nhân, hộ gia đình đến các doanh nghiệp quy mô lớn. Đặc biệt, khách hàng đăng ký mới sẽ nhận được vô vàn ưu đãi hấp dẫn như: miễn phí hòa mạng 100%, trang bị thiết bị modem cao cấp, tặng thêm tháng cước sử dụng khi tham gia trả trước.</p>
-        <p style="margin-bottom: 12px; line-height: 1.6;">Bên cạnh dịch vụ internet, hệ sinh thái FPT còn nổi bật với dịch vụ Truyền hình FPT Play đa nền tảng, cung cấp hàng trăm kênh giải trí đặc sắc và bản quyền phát sóng độc quyền các giải thể thao đỉnh cao (UEFA Champions League, V-League...).</p>
-        <p style="line-height: 1.6;">Thủ tục đăng ký cực kỳ đơn giản, chỉ cần CMND/CCCD. Đội ngũ nhân viên tư vấn nhiệt tình, sẵn sàng hỗ trợ khảo sát hạ tầng và ký hợp đồng tại nhà. Đội ngũ kỹ thuật viên chuyên nghiệp cam kết triển khai lắp đặt nhanh chóng trong vòng 24 - 48 giờ. Liên hệ ngay Hotline <strong>0383.900.321</strong> hoặc <strong>0358.513.269</strong> để được tư vấn và nhận báo giá chi tiết nhất!</p>
-      </div>
-    </section>
-  </main>
-
-    <footer class="footer">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <a class="logo logo-image" href="/FPT-TELECOM/">
-          <img src="assets/images/logo.webp" alt="FPT Telecom" width="164" height="45" loading="lazy" decoding="async">
+  <!-- Sticky Header -->
+  <header id="main-header" class="sticky top-0 z-40 bg-white/90 backdrop-blur-md w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <a href="/FPT-TELECOM/" class="flex-shrink-0 flex items-center gap-2">
+          <img src="assets/images/logo.webp" alt="FPT Telecom Logo" class="h-10 w-auto">
+          <span class="hidden lg:block text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Đại lý uỷ quyền</span>
         </a>
-        <p>Giải pháp viễn thông và công nghệ hàng đầu Việt Nam.</p>
-        <nav class="footer-nav" aria-label="Liên kết trang">
-          <a href="/FPT-TELECOM/bang-gia/">Bảng giá</a>
-          <a href="/FPT-TELECOM/khuyen-mai/">Ưu đãi</a>
-          <a href="/FPT-TELECOM/khu-vuc/">Khu vực</a>
-          <a href="/FPT-TELECOM/tin-tuc/">Tin tức</a>
-          <a href="/FPT-TELECOM/lien-he/">Liên hệ</a>
+        
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="/FPT-TELECOM/" class="text-blue-600 font-semibold">Trang chủ</a>
+          <a href="/FPT-TELECOM/bang-gia/" class="text-slate-600 hover:text-blue-600 font-medium transition">Bảng giá</a>
+          <a href="/FPT-TELECOM/khu-vuc/" class="text-slate-600 hover:text-blue-600 font-medium transition">Khu vực</a>
+          <a href="/FPT-TELECOM/tin-tuc/" class="text-slate-600 hover:text-blue-600 font-medium transition">Tin tức</a>
         </nav>
-      </div>
-      
-      <div class="footer-links" style="display: flex; flex-direction: row; gap: 24px; align-items: center; flex-wrap: wrap;">
-        <a href="tel:0358513269">☎ 0358 513 269</a>
-        <a href="tel:0383900321">☎ 0383 900 321</a>
-        <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
-        <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+
+        <!-- CTA & Mobile Toggle -->
+        <div class="flex items-center gap-4">
+          <a href="/FPT-TELECOM/lien-he/" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-bold rounded-full text-white bg-orange-500 hover:bg-orange-600 shadow-lg shadow-orange-500/30 transition-all">
+            Đăng Ký Ngay
+          </a>
+          <button id="mobile-menu-btn" aria-label="Toggle Mobile Menu" class="md:hidden p-2 text-slate-600">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
-    <div class="footer-copyright">
-      <div class="footer-copyright-inner">
-        <span>© 2026 FPT Telecom - Thông tin & đăng ký dịch vụ. All rights reserved.</span>
-        <span>Bản quyền thuộc về Trần Văn Mẫn - ManHenry.</span>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg">
+      <div class="px-4 pt-2 pb-6 space-y-1">
+        <a href="/FPT-TELECOM/" class="block px-3 py-3 rounded-md text-base font-semibold text-blue-600 bg-blue-50">Trang chủ</a>
+        <a href="/FPT-TELECOM/bang-gia/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Bảng giá</a>
+        <a href="/FPT-TELECOM/khu-vuc/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Khu vực</a>
+        <a href="/FPT-TELECOM/tin-tuc/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Tin tức</a>
+        <a href="/FPT-TELECOM/lien-he/" class="block px-3 py-3 mt-4 text-center rounded-full text-base font-bold text-white bg-orange-500">Đăng Ký Ngay</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+        <!-- Content -->
+        <div class="lg:col-span-6 text-center lg:text-left mb-12 lg:mb-0 fade-in-up">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 text-red-700 font-semibold text-sm mb-6">
+            <span class="animate-pulse w-2 h-2 rounded-full bg-red-600"></span>
+            Ưu đãi kết thúc sau: <span id="hero-timer">23:59:59</span>
+          </div>
+          <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl lg:leading-tight mb-6">
+            Lắp Mạng Tốc Độ Cao <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Tặng Ngay WiFi 6</span>
+          </h1>
+          <p class="mt-3 text-base text-slate-600 sm:mt-5 sm:text-lg sm:max-w-xl mx-auto lg:mx-0 mb-8">
+            Trải nghiệm Internet mượt mà không giới hạn. Tặng Modem WiFi 6 thế hệ mới, miễn phí lắp đặt 100% cho khách hàng đăng ký hôm nay.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+            <a href="#register" class="inline-flex justify-center items-center px-8 py-3.5 border border-transparent text-base font-bold rounded-full text-white bg-orange-500 hover:bg-orange-600 shadow-xl shadow-orange-500/30 transition-all hover:-translate-y-1">
+              Đăng Ký Tư Vấn
+            </a>
+            <a href="#pricing" class="inline-flex justify-center items-center px-8 py-3.5 border-2 border-blue-600 text-base font-bold rounded-full text-blue-600 bg-white hover:bg-blue-50 transition-all hover:-translate-y-1">
+              Xem Bảng Giá
+            </a>
+          </div>
+          
+          <!-- Trust Indicators -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-4 text-sm text-slate-600">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span class="font-semibold text-slate-800">5M+</span> Khách hàng
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span class="font-semibold text-slate-800">24h</span> Lắp đặt
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+              <span class="font-semibold text-slate-800">24/7</span> Hỗ trợ
+            </div>
+          </div>
+        </div>
+        
+        <!-- Visual with Floating Badges -->
+        <div class="lg:col-span-6 relative mt-10 lg:mt-0 fade-in-up" style="transition-delay: 200ms;">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+            <img src="assets/images/fptfamily.webp" alt="Gia đình sử dụng Internet FPT" class="w-full h-auto object-cover aspect-[4/3]">
+            <div class="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent"></div>
+          </div>
+          
+          <!-- Badges -->
+          <div class="glass-badge absolute -top-6 -left-6 px-4 py-2 rounded-2xl animate-float" style="animation-delay: 0s;">
+            <div class="text-xs text-slate-500 font-semibold">Tốc độ</div>
+            <div class="text-xl font-black text-blue-700">300Mbps</div>
+          </div>
+          <div class="glass-badge absolute top-1/2 -right-8 px-4 py-2 rounded-2xl animate-float" style="animation-delay: 1s;">
+            <div class="text-xs text-slate-500 font-semibold">Công nghệ mới</div>
+            <div class="text-xl font-black text-orange-600">WiFi 6</div>
+          </div>
+          <div class="glass-badge absolute -bottom-6 left-10 px-4 py-2 rounded-2xl animate-float" style="animation-delay: 2s;">
+            <div class="text-xs text-slate-500 font-semibold">Giải trí đỉnh cao</div>
+            <div class="text-xl font-black text-green-600">FPT Play</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Background Decor -->
+    <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 opacity-30 z-0 pointer-events-none">
+      <svg width="600" height="600" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#2563eb" d="M47.7,-57.2C59.5,-47.3,65.3,-29.4,67.6,-11.7C69.8,6.1,68.5,23.6,59.3,37.1C50.1,50.6,33,60.1,14.6,64.3C-3.8,68.4,-23.5,67.2,-39.4,58.2C-55.3,49.2,-67.4,32.3,-71.3,13.6C-75.1,-5.2,-70.7,-25.9,-58.5,-39.6C-46.3,-53.4,-26.4,-60.2,-7.5,-61.8C11.3,-63.3,22.7,-59.6,47.7,-57.2Z" transform="translate(100 100) scale(1.1)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase fade-in-up">Ưu điểm vượt trội</h2>
+      <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl fade-in-up">Vì sao chọn Internet FPT?</p>
+      
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="bg-white rounded-2xl p-8 shadow-lg shadow-slate-200/50 hover:-translate-y-2 transition-transform duration-300 fade-in-up">
+          <div class="w-14 h-14 mx-auto bg-blue-50 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.906 14.142 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Trang bị WiFi 6</h3>
+          <p class="text-slate-600 leading-relaxed">Phủ sóng rộng hơn, tốc độ truyền tải nhanh gấp 4 lần. Phù hợp cho nhà tầng, căn hộ rộng và nhiều thiết bị truy cập.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-lg shadow-slate-200/50 hover:-translate-y-2 transition-transform duration-300 fade-in-up" style="transition-delay: 100ms;">
+          <div class="w-14 h-14 mx-auto bg-blue-50 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Tốc độ Siêu Tốc</h3>
+          <p class="text-slate-600 leading-relaxed">Băng thông cáp quang FTTH ổn định tuyệt đối. Thoải mái chơi game, xem phim 4K, livestream không lo giật lag.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-lg shadow-slate-200/50 hover:-translate-y-2 transition-transform duration-300 fade-in-up" style="transition-delay: 200ms;">
+          <div class="w-14 h-14 mx-auto bg-blue-50 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Hỗ trợ 24/7</h3>
+          <p class="text-slate-600 leading-relaxed">Đội ngũ kỹ thuật viên chuyên nghiệp, tận tâm. Hỗ trợ xử lý sự cố tại nhà siêu tốc trong vòng 24 giờ.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section (Decoy Effect) -->
+  <section id="pricing" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 fade-in-up">
+        <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Bảng giá cước</h2>
+        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl">Gói Cước Khuyên Dùng Tháng Này</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+        
+        <!-- Standard Plan: GIGA -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200 fade-in-up">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Internet GIGA</h3>
+          <div class="text-slate-500 text-sm mb-6">Phù hợp cá nhân, ở trọ</div>
+          <div class="flex items-baseline text-4xl font-extrabold text-slate-900 mb-2">
+            195.000<span class="text-lg font-medium text-slate-500 ml-1">đ/tháng</span>
+          </div>
+          <p class="text-slate-500 text-sm mb-8">Tốc độ Download 150Mbps</p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span class="text-slate-600">Trang bị Modem chuẩn</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span class="text-slate-600">Lướt web, Facebook, Tiktok</span>
+            </li>
+          </ul>
+          <a href="#register" class="block w-full py-3 px-4 border border-blue-600 rounded-full text-center font-bold text-blue-600 hover:bg-blue-50 transition">Đăng ký ngay</a>
+        </div>
+
+        <!-- Highlight Plan: SKY (Decoy Effect) -->
+        <div class="bg-white rounded-3xl p-8 border-2 border-orange-500 shadow-2xl transform md:scale-105 relative z-10 fade-in-up" style="transition-delay: 100ms;">
+          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <span class="bg-orange-500 text-white text-xs font-bold uppercase tracking-wider py-1 px-4 rounded-full">Bán chạy nhất</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 mb-2">Internet SKY</h3>
+          <div class="text-slate-500 text-sm mb-6">Hoàn hảo cho gia đình, game thủ</div>
+          <div class="flex items-baseline text-4xl font-extrabold text-blue-600 mb-2">
+            230.000<span class="text-lg font-medium text-slate-500 ml-1">đ/tháng</span>
+          </div>
+          <p class="text-slate-500 text-sm mb-8">Tốc độ Download 1 Gbps (Không giới hạn)</p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-orange-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span class="text-slate-800 font-semibold">Tặng Modem WiFi 6 trị giá 1.5tr</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-orange-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span class="text-slate-600">Tối ưu Ping chơi game</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-orange-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span class="text-slate-600">Kết nối cùng lúc >20 thiết bị</span>
+            </li>
+          </ul>
+          <a href="#register" class="block w-full py-3 px-4 bg-orange-500 rounded-full text-center font-bold text-white hover:bg-orange-600 shadow-lg shadow-orange-500/30 transition hover:-translate-y-1">Đăng ký SKY ngay</a>
+        </div>
+
+        <!-- Standard Plan: COMBO -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200 fade-in-up" style="transition-delay: 200ms;">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Combo SKY + TV</h3>
+          <div class="text-slate-500 text-sm mb-6">Giải trí trọn vẹn gia đình</div>
+          <div class="flex items-baseline text-4xl font-extrabold text-slate-900 mb-2">
+            270.000<span class="text-lg font-medium text-slate-500 ml-1">đ/tháng</span>
+          </div>
+          <p class="text-slate-500 text-sm mb-8">Internet 1Gbps + Truyền hình FPT</p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span class="text-slate-600">Kèm đầu thu Smart Box AI</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span class="text-slate-600">Gần 200 kênh & Phim chiếu rạp</span>
+            </li>
+          </ul>
+          <a href="#register" class="block w-full py-3 px-4 border border-blue-600 rounded-full text-center font-bold text-blue-600 hover:bg-blue-50 transition">Đăng ký Combo</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead Gen & Contact Section -->
+  <section id="register" class="py-20 bg-slate-50 relative overflow-hidden">
+    <!-- SVG Mascot Decor -->
+    <div class="absolute left-10 top-20 hidden lg:block animate-float opacity-80">
+      <div class="bg-white px-4 py-2 rounded-2xl rounded-bl-none shadow-md text-sm font-semibold text-blue-600 mb-2">
+        Nhập số điện thoại, mình gọi lại liền nha! 🚀
+      </div>
+      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+        <circle cx="12" cy="5" r="2"></circle>
+        <path d="M12 7v4"></path>
+        <line x1="8" y1="16" x2="8" y2="16"></line>
+        <line x1="16" y1="16" x2="16" y2="16"></line>
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+        
+        <div class="mb-12 lg:mb-0 text-center lg:text-left pl-0 lg:pl-32 fade-in-up">
+          <h2 class="text-4xl font-extrabold text-slate-900 mb-4">Đăng Ký Khảo Sát<br><span class="text-blue-600">Nhận Tư Vấn Tận Nơi</span></h2>
+          <p class="text-lg text-slate-600 mb-8">Điền form bên cạnh hoặc gọi ngay Hotline để nhận báo giá chi tiết, khuyến mãi lắp đặt khu vực của bạn.</p>
+          <div class="inline-flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-200">
+            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            </div>
+            <div>
+              <div class="text-sm text-slate-500 font-medium">Hotline tư vấn 24/7</div>
+              <a href="tel:0383900321" class="text-2xl font-bold text-slate-900">0383 900 321</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="fade-in-up" style="transition-delay: 100ms;">
+          <div class="bg-white rounded-3xl p-8 shadow-2xl relative">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-orange-100 text-orange-700 text-sm font-semibold px-4 py-1.5 rounded-full whitespace-nowrap border border-orange-200">
+              🔥 Hơn 142 khách hàng đã đăng ký tuần qua
+            </div>
+            
+            <form id="leadForm" class="space-y-5 mt-4">
+              <!-- Bẫy Honeypot ẩn (Bot tự động điền sẽ bị JS chặn) -->
+              <input type="text" name="website" tabindex="-1" style="display:none" autocomplete="off">
+              <div>
+                <input type="text" name="fullname" placeholder="Họ và tên *" required pattern="^[^<>%$\/]+$" title="Không chứa ký tự đặc biệt" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors placeholder-slate-400 font-medium">
+              </div>
+              <div>
+                <input type="tel" name="phone" placeholder="Số điện thoại di động *" required pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" title="Vui lòng nhập đúng số điện thoại Việt Nam" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors placeholder-slate-400 font-medium">
+              </div>
+              <div>
+                <input type="text" name="address" placeholder="Địa chỉ lắp đặt (Quận/Huyện, Tỉnh/TP) *" required pattern="^[^<>%$\/]+$" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors placeholder-slate-400 font-medium">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Dịch vụ quan tâm:</label>
+                <div class="grid grid-cols-2 gap-3">
+                  <label class="relative flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                    <input type="radio" name="service" value="Internet" class="w-4 h-4 text-orange-600 border-slate-300 focus:ring-orange-500" checked>
+                    <span class="ml-2 text-sm font-medium text-slate-700">Internet WiFi</span>
+                  </label>
+                  <label class="relative flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                    <input type="radio" name="service" value="Combo" class="w-4 h-4 text-orange-600 border-slate-300 focus:ring-orange-500">
+                    <span class="ml-2 text-sm font-medium text-slate-700">Combo (WiFi+TV)</span>
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="w-full bg-orange-500 text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-colors hover:-translate-y-0.5">
+                Gửi Yêu Cầu Tư Vấn
+              </button>
+              <p class="text-xs text-center text-slate-500 mt-4 flex items-center justify-center gap-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                Thông tin được bảo mật tuyệt đối 100%.
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ & News Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- FAQ -->
+      <div class="max-w-3xl mx-auto mb-20 fade-in-up">
+        <h2 class="text-3xl font-extrabold text-center text-slate-900 mb-10">Câu hỏi thường gặp</h2>
+        <div class="space-y-4">
+          <details class="group bg-slate-50 rounded-2xl open:bg-white open:ring-1 open:ring-slate-200 open:shadow-lg transition-all duration-200">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-slate-900 text-lg">
+              <span>Lắp mạng FPT có mất phí không?</span>
+              <span class="transition group-open:rotate-180">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+              </span>
+            </summary>
+            <div class="text-slate-600 mt-3 px-5 pb-5 leading-relaxed">
+              Hoàn toàn miễn phí lắp đặt khi bạn thanh toán trả trước 6 hoặc 12 tháng. Ngoài ra, bạn còn được tặng thêm 1-2 tháng cước và trang bị Modem WiFi 6 hiện đại.
+            </div>
+          </details>
+          <details class="group bg-slate-50 rounded-2xl open:bg-white open:ring-1 open:ring-slate-200 open:shadow-lg transition-all duration-200">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-slate-900 text-lg">
+              <span>Thời gian triển khai lắp đặt là bao lâu?</span>
+              <span class="transition group-open:rotate-180">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+              </span>
+            </summary>
+            <div class="text-slate-600 mt-3 px-5 pb-5 leading-relaxed">
+              Ngay sau khi hoàn tất thủ tục đăng ký, nhân viên kỹ thuật FPT sẽ tiến hành khảo sát và lắp đặt trong vòng 24 đến 48 giờ (trong điều kiện thời tiết bình thường).
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- News -->
+      <div class="fade-in-up">
+        <h2 class="text-2xl font-bold text-slate-900 mb-8 border-b pb-4">Tin tức & Khuyến mãi</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <a href="/FPT-TELECOM/tin-tuc/" class="group block">
+            <div class="aspect-video bg-slate-200 rounded-2xl overflow-hidden mb-4">
+              <img src="assets/images/fptfamily.webp" alt="Khuyến mãi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="text-sm text-slate-500 mb-2">15 Tháng 8, 2026</div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Tặng ngay Modem WiFi 6 và 2 tháng cước khi đăng ký mới</h3>
+          </a>
+          <a href="/FPT-TELECOM/tin-tuc/" class="group block hidden sm:block">
+            <div class="aspect-video bg-slate-200 rounded-2xl overflow-hidden mb-4 relative">
+              <div class="absolute inset-0 bg-slate-300 flex items-center justify-center text-slate-500">
+                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+            </div>
+            <div class="text-sm text-slate-500 mb-2">12 Tháng 8, 2026</div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Ngoại hạng Anh mùa giải mới trở lại bùng nổ trên FPT Play</h3>
+          </a>
+          <a href="/FPT-TELECOM/tin-tuc/" class="group block hidden lg:block">
+            <div class="aspect-video bg-slate-200 rounded-2xl overflow-hidden mb-4 relative">
+               <div class="absolute inset-0 bg-slate-300 flex items-center justify-center text-slate-500">
+                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+               </div>
+            </div>
+            <div class="text-sm text-slate-500 mb-2">10 Tháng 8, 2026</div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Giải pháp Camera an ninh thông minh tích hợp AI cho gia đình</h3>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-12 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 border-b border-slate-800 pb-8">
+      
+      <div class="md:col-span-1">
+        <img src="assets/images/logo.webp" alt="FPT Telecom" class="h-8 mb-4 brightness-0 invert opacity-80">
+        <p class="mb-4 text-slate-500">Nhà cung cấp dịch vụ viễn thông và công nghệ hàng đầu Việt Nam.</p>
+        <p>Giấy phép ĐKKD số: 0101778163</p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Sản phẩm & Dịch vụ</h4>
+        <ul class="space-y-2">
+          <li><a href="/FPT-TELECOM/wifi-fpt/" class="hover:text-white transition">Cáp quang FPT (Cá nhân)</a></li>
+          <li><a href="/FPT-TELECOM/wifi-fpt/" class="hover:text-white transition">Internet Doanh Nghiệp</a></li>
+          <li><a href="/FPT-TELECOM/truyen-hinh/" class="hover:text-white transition">Truyền hình FPT Play</a></li>
+          <li><a href="/FPT-TELECOM/camera/" class="hover:text-white transition">FPT Camera AI</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Hỗ trợ khách hàng</h4>
+        <ul class="space-y-2">
+          <li><a href="/FPT-TELECOM/dang-ky-wifi/" class="hover:text-white transition">Hướng dẫn đăng ký</a></li>
+          <li><a href="/FPT-TELECOM/khuyen-mai/" class="hover:text-white transition">Khuyến mãi mới</a></li>
+          <li><a href="/FPT-TELECOM/lien-he/" class="hover:text-white transition">Liên hệ tư vấn</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Liên hệ</h4>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> <a href="tel:0383900321" class="hover:text-white">0383 900 321</a></li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> <a href="tel:0358513269" class="hover:text-white">0358 513 269</a></li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg> <a href="https://zalo.me/0383900321" target="_blank" rel="noopener noreferrer" class="hover:text-white">Zalo tư vấn</a></li>
+        </ul>
+      </div>
+
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div>© 2026 FPT Telecom. All rights reserved. Bản quyền thuộc về Trần Văn Mẫn.</div>
+      <div class="space-x-4">
+        <a href="pages/privacy.html" class="hover:text-white transition">Chính sách bảo mật</a>
+        <a href="pages/terms.html" class="hover:text-white transition">Điều khoản sử dụng</a>
       </div>
     </div>
   </footer>
 
-  <div class="floating-actions" aria-label="Liên hệ nhanh">
-    <a href="tel:0383900321" class="floating-call" aria-label="Gọi hotline">☎ <span>Gọi ngay</span></a>
-    <button class="chat-toggle-btn" id="chat-toggle" aria-label="Mở chat">
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chat-icon">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-      </svg>
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon" style="display:none">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
+  <!-- Floating Elements -->
+  <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+    <a href="tel:0383900321" class="w-14 h-14 bg-red-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-red-500/40 hover:-translate-y-1 transition animate-bounce">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.4-1.1-.6-2.3-.6-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1zM19 12h2a9 9 0 0 0-9-9v2c3.9 0 7.1 3.1 7.1 7zM15 12h2c0-2.8-2.2-5-5-5v2c1.7 0 3 1.3 3 3z"></path></svg>
+    </a>
+    <a href="https://zalo.me/0383900321" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-500/40 hover:-translate-y-1 transition font-bold text-xl">
+      Z
+    </a>
   </div>
 
-  <div class="toast-notification" id="social-proof-toast">
-    <div class="toast-icon">⚡</div>
-    <div class="toast-text">
-      <b id="toast-name">Anh Khang (Q.7)</b>
-      <span id="toast-action">vừa đăng ký gói COMBO VIP</span>
-    </div>
-  </div>
-
-  <div class="chat-widget" id="chat-widget">
-    <div class="chat-widget-header">
-      <div class="chat-widget-brand">
-        <div class="chat-widget-logo">
-          <img src="assets/images/logo.webp" alt="FPT Telecom" width="28" height="28" style="object-fit: contain; background: #fff; border-radius: 50%; padding: 2px;">
-        </div>
-        <span>FPT Telecom</span>
-        <span class="chat-online-dot"></span>
-      </div>
-      <div class="chat-widget-controls">
-        <button type="button" aria-label="Chuyển sang Live Chat" title="Chat trực tiếp với nhân viên" class="chat-ctrl-btn" onclick="switchToLiveChat()">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="vertical-align: middle;">
-            <path d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9z"></path>
-          </svg>
-        </button>
-        <button type="button" id="chat-minimize" aria-label="Thu nhỏ" class="chat-ctrl-btn">−</button>
-      </div>
-    </div>
-    <div class="chat-widget-body">
-      <div id="chat-messages" class="chat-messages">
-        <div class="chat-msg bot-msg">
-          <div class="msg-bubble">Chào bạn! Mình là Trợ lý ảo FPT Telecom. Mình có thể tư vấn gói cước, hỗ trợ kỹ thuật hoặc giải đáp các thắc mắc về dịch vụ. Bạn cần mình giúp gì ạ?</div>
-        </div>
-      </div>
-      <div class="chat-input-area">
-        <textarea id="chat-input" aria-label="Nhập câu hỏi chat" placeholder="Nhập câu hỏi của bạn..." rows="1" autocomplete="off"></textarea>
-        <button id="chat-send-btn" aria-label="Gửi tin nhắn">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="policy-modal-overlay" id="policy-modal" onclick="if(event.target===this) closePolicyModal()">
-    <div class="policy-modal-content">
-      <button class="policy-close-btn" onclick="closePolicyModal()" aria-label="Đóng">×</button>
-      <div class="policy-modal-body">
-        <h2 style="margin-top:0; color:#141b6a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">Chính Sách Bảo Mật & Điều Khoản Sử Dụng</h2>
-        <p>Quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa FPT Telecom và khách hàng.</p>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🛡️ I. Chính sách bảo mật dữ liệu</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Dữ liệu bắt buộc:</strong> Họ tên, số điện thoại, email, địa chỉ lắp đặt khi đăng ký.</li>
-          <li style="margin-bottom:8px;"><strong>Mục đích sử dụng:</strong> Xác nhận dịch vụ, chăm sóc khách hàng, hỗ trợ kỹ thuật.</li>
-          <li style="margin-bottom:8px;"><strong>Cam kết bảo mật:</strong> Tuyệt đối không chia sẻ, bán dữ liệu cho bên thứ ba.</li>
-        </ul>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">⚖️ II. Điều khoản sử dụng</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Trách nhiệm:</strong> Khách hàng tự chịu trách nhiệm về tính chính xác của thông tin.</li>
-          <li style="margin-bottom:8px;"><strong>Sử dụng hợp pháp:</strong> Cam kết không sử dụng hạ tầng mạng vào các hoạt động vi phạm pháp luật.</li>
-        </ul>
-        <div style="margin-top:30px; padding-top:15px; border-top:1px dashed #cbd5e1; font-size:13px; color:#64748b;">
-          <em>Cập nhật lần cuối: Tháng 7/2026. Mọi thắc mắc vui lòng gọi Hotline 0358 513 269</em>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-OzvjY+ajO2+czO5JRVqV82zi/zGj1HkGv1WvQeBkWaA3E2K+N0g0kS5j0H4kGz1+j8w9a2u6g9a7j+v3v+X7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="js/script.js?v=26"></script>
-
-  <script>
-    const cwvData = { LCP: 0, CLS: 0, FCP: 0, INP: 0 };
-    new PerformanceObserver(list => {
-      const entries = list.getEntries();
-      cwvData.LCP = entries[entries.length - 1].startTime;
-    }).observe({ type: 'largest-contentful-paint', buffered: true });
-    new PerformanceObserver(list => {
-      for (const entry of list.getEntries()) {
-        if (!entry.hadRecentInput) cwvData.CLS += entry.value;
-      }
-    }).observe({ type: 'layout-shift', buffered: true });
-    new PerformanceObserver(list => {
-      const fcp = list.getEntriesByName('first-contentful-paint')[0];
-      if (fcp) cwvData.FCP = fcp.startTime;
-    }).observe({ type: 'paint', buffered: true });
-    new PerformanceObserver(list => {
-      for (const entry of list.getEntries()) {
-        if (entry.duration > cwvData.INP) cwvData.INP = entry.duration;
-      }
-    }).observe({ type: 'event', buffered: true, durationThreshold: 40 });
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden' && typeof gtag === 'function') {
-        for (const [name, value] of Object.entries(cwvData)) {
-          if (value > 0) {
-            gtag('event', name, {
-              value: Math.round(name === 'CLS' ? value * 1000 : value),
-              event_category: 'Web Vitals',
-              non_interaction: true
-            });
-          }
-        }
-      }
-    });
-  </script>
-
-  <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #0f172a; color: white; padding: 15px 24px; display: none; justify-content: space-between; align-items: center; z-index: 9999; font-size: 14px; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
-    <div style="flex: 1; margin-right: 20px;">
-      Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn trên trang web này. Bằng cách tiếp tục duyệt web, bạn đồng ý với <a href="#" onclick="openPolicyModal(event)" style="color: #0665f5; text-decoration: underline;">Chính sách bảo mật</a> của chúng tôi.
-    </div>
+  <!-- Virtual Toast Notification -->
+  <div id="virtual-toast" class="toast-notification">
+    <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-lg">⚡</div>
     <div>
-      <button onclick="localStorage.setItem('cookieConsent', 'true'); document.getElementById('cookie-banner').style.display='none';" style="background: #0665f5; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Đồng ý</button>
+      <div class="font-bold text-slate-800 text-sm"><span id="toast-name">Anh Khang (Q.7)</span></div>
+      <div class="text-xs text-slate-500">vừa đăng ký gói <span id="toast-plan" class="font-semibold text-slate-700">SKY</span></div>
     </div>
   </div>
+
   <script>
-    if (!localStorage.getItem('cookieConsent')) {
-      document.getElementById('cookie-banner').style.display = 'flex';
-    }
-  </script>
-  <script>
+    // Intersection Observer for scroll animations (fade-in-up)
     document.addEventListener("DOMContentLoaded", function() {
-      // Intersection Observer for scroll animations
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // Run once
           }
         });
       }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-      document.querySelectorAll('.scroll-animate').forEach(el => {
+      document.querySelectorAll('.fade-in-up').forEach(el => {
         observer.observe(el);
       });
+
+      // Sticky Header
+      const header = document.getElementById('main-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }, { passive: true });
+
+      // Mobile Menu Toggle
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // Hero Countdown (LocalStorage for true 24h)
+      const timerElement = document.getElementById('hero-timer');
+      if (timerElement) {
+        let endTime = localStorage.getItem('fpt_sale_endtime');
+        if (!endTime || new Date().getTime() > endTime) {
+          endTime = new Date().getTime() + (24 * 60 * 60 * 1000); 
+          localStorage.setItem('fpt_sale_endtime', endTime);
+        }
+        
+        function updateTimer() {
+          const diff = endTime - new Date().getTime();
+          if (diff <= 0) {
+            timerElement.innerText = "00:00:00";
+            return;
+          }
+          const h = Math.floor(diff / (1000 * 60 * 60));
+          const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const s = Math.floor((diff % (1000 * 60)) / 1000);
+          
+          timerElement.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+      }
+
+      // Virtual Toast Notification (Social Proof)
+      const toast = document.getElementById('virtual-toast');
+      const toastName = document.getElementById('toast-name');
+      const toastPlan = document.getElementById('toast-plan');
+      
+      if (toast && toastName && toastPlan) {
+        const names = ["Anh Khang (Q.7)", "Chị Linh (Bình Thạnh)", "Anh Huy (Gò Vấp)", "Chị Thuỷ (Q.3)", "Anh Phong (Thủ Đức)"];
+        const plans = ["SKY", "GIGA", "COMBO", "SKY", "COMBO VIP"];
+        
+        function showToast() {
+          const randomName = names[Math.floor(Math.random() * names.length)];
+          const randomPlan = plans[Math.floor(Math.random() * plans.length)];
+          
+          toastName.innerText = randomName;
+          toastPlan.innerText = randomPlan;
+          
+          toast.classList.add('show');
+          
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 4000); // hide after 4s
+        }
+        
+        // Initial delay then trigger randomly between 15-30s
+        setTimeout(() => {
+          showToast();
+          setInterval(showToast, 20000 + Math.random() * 10000);
+        }, 5000);
+      }
+
+      // Form Security & Anti-Spam (Honeypot)
+      const leadForm = document.getElementById('leadForm');
+      if (leadForm) {
+        leadForm.addEventListener('submit', function(e) {
+          const honeypot = this.querySelector('input[name="website"]');
+          if (honeypot && honeypot.value !== "") {
+            e.preventDefault();
+            console.warn("Spam Bot Detected!");
+            return false;
+          }
+          // Form will submit normally or handled by other JS
+        });
+      }
     });
   </script>
 </body>

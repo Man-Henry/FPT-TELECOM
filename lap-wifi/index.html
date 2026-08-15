@@ -12,6 +12,96 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.min.css?v=26">
+  
+  <style>
+    /* Tech-focused, Clean UI Style */
+    body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
+    
+    .hero-banner {
+      background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+      color: white; 
+      padding: 60px 24px 160px; /* pb-32 tương đương */
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: url('../assets/images/fptfamily.webp') center/cover;
+      opacity: 0.1; mix-blend-mode: overlay; pointer-events: none;
+    }
+
+    .countdown-glass {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 24px;
+      border-radius: 99px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      position: relative; z-index: 2;
+    }
+
+    .h1-tech {
+      font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: relative; z-index: 2;
+    }
+
+    .features-grid {
+      display: grid; gap: 30px; margin: -100px auto 80px; max-width: 1200px; padding: 0 20px;
+      position: relative; z-index: 10;
+    }
+    @media (min-width: 768px) { .features-grid { grid-template-columns: repeat(3, 1fr); align-items: stretch; } }
+
+    .feature-card {
+      background: white; border-radius: 16px; padding: 40px 24px; text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex; flex-direction: column;
+    }
+    .feature-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+    
+    .feature-highlight {
+      border: 2px solid #3b82f6;
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+      position: relative;
+    }
+    .feature-highlight::after {
+        content: "Khuyên dùng"; position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+        background: #3b82f6; color: white; padding: 4px 16px; border-radius: 99px; font-size: 0.8rem; font-weight: 700;
+    }
+    .feature-highlight:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(59, 130, 246, 0.25); }
+
+    .icon-wrapper {
+      width: 72px; height: 72px; background: #eff6ff; border-radius: 50%; 
+      display: flex; align-items: center; justify-content: center; 
+      margin: 0 auto 24px; color: #3b82f6;
+    }
+
+    .cta-section {
+      background: linear-gradient(to right, #eff6ff, #ffffff);
+      border-radius: 24px; padding: 60px 40px; text-align: center; margin-bottom: 60px;
+      border: 1px solid #e2e8f0; max-width: 1200px; margin: 0 auto 80px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+
+    .btn-promo { padding: 14px 32px; font-size: 1.1rem; border-radius: 99px; font-weight: 700; transition: all 0.3s ease; display: inline-block; }
+    .btn-orange-solid { background: #ea580c; color: white; border: none; box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); }
+    .btn-orange-solid:hover { background: #c2410c; transform: translateY(-2px); color: white; }
+    .btn-outline-blue { background: white; color: #2563eb; border: 2px solid #2563eb; }
+    .btn-outline-blue:hover { background: #eff6ff; transform: translateY(-2px); }
+
+    .chip-seo {
+      display: inline-flex; align-items: center; padding: 12px 24px;
+      background: white; color: #475569; font-weight: 600; font-size: 0.95rem;
+      border-radius: 9999px; border: 1px solid #e2e8f0; text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .chip-seo:hover { background: #f8fafc; color: #2563eb; border-color: #2563eb; }
+  </style>
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/fptlogo.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/fptlogo.png">
 
@@ -86,78 +176,81 @@
   <main style="min-height: 70vh; background: #f8fafc; padding-bottom: 80px;">
     
     <!-- Hero Banner -->
-    <section style="background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%); color: white; padding: 60px 24px; text-align: center; margin-bottom: 50px; position: relative; overflow: hidden;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('../assets/images/fptfamily.webp') center/cover; opacity: 0.1; mix-blend-mode: overlay;"></div>
-      <div style="position: relative; z-index: 2;">
-        <div class="countdown-timer" style="background: rgba(255,255,255,0.2); color: white;">⏰ Ưu đãi kết thúc sau: <span class="countdown-time" style="color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">Đang tính...</span></div>
-        <p class="eyebrow" style="color: #e0f2fe; letter-spacing: 2px;">GIẢI PHÁP KẾT NỐI TOÀN DIỆN</p>
-        <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Lắp WiFi FPT Tốc Độ Cao</h1>
-        <p style="max-width: 600px; margin: 0 auto; color: #e0f2fe; font-size: 1.1rem; line-height: 1.6;">Đường truyền cáp quang mạnh mẽ, ổn định. Tặng miễn phí Modem WiFi 6 kép tiên tiến nhất. Hỗ trợ lắp đặt siêu tốc trong 24h.</p>
+    <section class="hero-banner">
+      <div class="countdown-glass">⏰ Ưu đãi kết thúc sau: <span id="countdown-time">Đang tính...</span></div>
+      <p class="eyebrow" style="color: #e0f2fe; letter-spacing: 2px; position: relative; z-index: 2; font-weight: 600;">GIẢI PHÁP KẾT NỐI TOÀN DIỆN</p>
+      <h1 class="h1-tech">Lắp WiFi FPT Tốc Độ Cao</h1>
+      <p style="max-width: 650px; margin: 0 auto; color: #e0f2fe; font-size: 1.15rem; line-height: 1.6; position: relative; z-index: 2;">Đường truyền cáp quang siêu mạnh mẽ, ổn định. Tặng miễn phí Modem WiFi 6 kép tiên tiến nhất. Hỗ trợ lắp đặt siêu tốc trong 24h.</p>
+    </section>
+
+    <!-- Features Grid -->
+    <div class="features-grid">
+      
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.499 4.499 0 0 0-1.757 4.306 4.499 4.499 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+          </svg>
+        </div>
+        <h3 style="font-size: 1.4rem; color: #1e293b; margin-bottom: 15px; font-weight: 700;">Tốc độ cực đỉnh</h3>
+        <p style="color: #64748b; font-size: 1.05rem; line-height: 1.6;">Băng thông không giới hạn lên tới 1Gbps (1000Mbps), thoải mái chơi game, xem phim 4K, livestream mượt mà.</p>
+      </div>
+
+      <!-- Feature 2: Highlight -->
+      <div class="feature-card feature-highlight">
+        <div class="icon-wrapper" style="background: #3b82f6; color: white;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z" />
+          </svg>
+        </div>
+        <h3 style="font-size: 1.4rem; color: #1e293b; margin-bottom: 15px; font-weight: 700;">Modem WiFi 6</h3>
+        <p style="color: #64748b; font-size: 1.05rem; line-height: 1.6;">Trang bị chuẩn WiFi 6 mới nhất giúp tăng vùng phủ sóng, giảm độ trễ và hỗ trợ hàng chục thiết bị kết nối cùng lúc.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z" />
+          </svg>
+        </div>
+        <h3 style="font-size: 1.4rem; color: #1e293b; margin-bottom: 15px; font-weight: 700;">Hỗ trợ 24/7</h3>
+        <p style="color: #64748b; font-size: 1.05rem; line-height: 1.6;">Khảo sát và ký hợp đồng tại nhà. Đội ngũ kỹ thuật túc trực 24/7, cam kết xử lý sự cố trong vòng 2 tiếng.</p>
+      </div>
+      
+    </div>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2 style="font-size: 2rem; color: #1e293b; margin-bottom: 16px; font-weight: 800;">Nâng cấp trải nghiệm Internet ngay hôm nay</h2>
+      <p style="color: #475569; margin-bottom: 32px; font-size: 1.15rem;">Tặng miễn phí 100% phí lắp đặt và trang bị modem WiFi 6 khi thanh toán trước 6 tháng.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="/FPT-TELECOM/lien-he/" class="btn-promo btn-orange-solid">Đăng Ký Tư Vấn</a>
+        <a href="/FPT-TELECOM/bang-gia/" class="btn-promo btn-outline-blue">Xem Bảng Giá</a>
       </div>
     </section>
 
-    <div style="max-width: 1200px; margin: -60px auto 0; padding: 0 20px; position: relative; z-index: 10;">
-      
-      <!-- Features Grid -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px;">
-        
-        <!-- Feature 1 -->
-        <div style="background: white; border-radius: 20px; padding: 35px 25px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.06); transition: transform 0.3s ease;">
-          <div style="width: 70px; height: 70px; background: #e0f2fe; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;">🚀</div>
-          <h3 style="font-size: 1.4rem; color: var(--navy); margin-bottom: 15px;">Tốc độ cực đỉnh</h3>
-          <p style="color: var(--text); font-size: 1rem; line-height: 1.6;">Băng thông không giới hạn lên tới 1Gbps (1000Mbps), thoải mái chơi game, xem phim 4K, livestream không giật lag.</p>
-        </div>
-
-        <!-- Feature 2 -->
-        <div style="background: white; border-radius: 20px; padding: 35px 25px; text-align: center; box-shadow: 0 15px 30px rgba(14, 165, 233, 0.15); transition: transform 0.3s ease; border: 2px solid #3b82f6;">
-          <div style="width: 70px; height: 70px; background: #eff6ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;">📡</div>
-          <h3 style="font-size: 1.4rem; color: var(--navy); margin-bottom: 15px;">Modem WiFi 6</h3>
-          <p style="color: var(--text); font-size: 1rem; line-height: 1.6;">Trang bị chuẩn WiFi 6 mới nhất giúp tăng vùng phủ sóng, giảm độ trễ và hỗ trợ nhiều thiết bị kết nối cùng lúc.</p>
-        </div>
-
-        <!-- Feature 3 -->
-        <div style="background: white; border-radius: 20px; padding: 35px 25px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.06); transition: transform 0.3s ease;">
-          <div style="width: 70px; height: 70px; background: #e0f2fe; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;">🛠️</div>
-          <h3 style="font-size: 1.4rem; color: var(--navy); margin-bottom: 15px;">Hỗ trợ 24/7</h3>
-          <p style="color: var(--text); font-size: 1rem; line-height: 1.6;">Khảo sát và ký hợp đồng tại nhà. Đội ngũ kỹ thuật túc trực 24/7, cam kết xử lý sự cố trong vòng 2 tiếng.</p>
-        </div>
-        
+    <!-- SEO Links (Chips) -->
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center;">
+      <h3 style="font-size: 1.2rem; color: #64748b; margin-bottom: 20px; font-weight: 600;">DỊCH VỤ NỔI BẬT & KHU VỰC</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 30px;">
+        <a href="/FPT-TELECOM/wifi-fpt/" class="chip-seo">Cáp quang FPT</a>
+        <a href="/FPT-TELECOM/dang-ky-wifi/" class="chip-seo">Hướng Dẫn Đăng Ký</a>
+        <a href="/FPT-TELECOM/khuyen-mai/" class="chip-seo">Khuyến Mãi Tháng Này</a>
+        <a href="/FPT-TELECOM/truyen-hinh/" class="chip-seo">Truyền Hình FPT</a>
+        <a href="/FPT-TELECOM/camera/" class="chip-seo">Lắp đặt Camera FPT</a>
       </div>
-      
-      <!-- CTA Section -->
-      <div style="background: linear-gradient(to right, #eff6ff, #f8fafc); border-radius: 20px; padding: 40px; text-align: center; margin-bottom: 60px; border: 1px solid #e2e8f0;">
-        <h2 style="font-size: 1.8rem; color: var(--navy); margin-bottom: 15px;">Nâng cấp trải nghiệm Internet ngay hôm nay</h2>
-        <p style="color: var(--text); margin-bottom: 25px; font-size: 1.1rem;">Tặng miễn phí 100% phí lắp đặt và trang bị modem khi thanh toán trước 6 tháng.</p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-          <a href="/FPT-TELECOM/lien-he/" class="btn btn-orange" style="font-size: 1.1rem; padding: 14px 32px; font-weight: bold;">Đăng Ký Tư Vấn</a>
-          <a href="/FPT-TELECOM/bang-gia/" class="btn" style="font-size: 1.1rem; padding: 14px 32px; background: white; color: #3b82f6; border: 2px solid #3b82f6; border-radius: 30px; font-weight: bold;">Xem Bảng Giá</a>
-        </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+        <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/" class="chip-seo">Hồ Chí Minh</a>
+        <a href="/FPT-TELECOM/khu-vuc/ha-noi/" class="chip-seo">Hà Nội</a>
+        <a href="/FPT-TELECOM/khu-vuc/dong-nai/" class="chip-seo">Đồng Nai</a>
+        <a href="/FPT-TELECOM/khu-vuc/binh-duong/" class="chip-seo">Bình Dương</a>
+        <a href="/FPT-TELECOM/khu-vuc/da-nang/" class="chip-seo">Đà Nẵng</a>
+        <a href="/FPT-TELECOM/khu-vuc/vung-tau/" class="chip-seo">Bà Rịa - Vũng Tàu</a>
+        <a href="/FPT-TELECOM/khu-vuc/hai-phong/" class="chip-seo">Hải Phòng</a>
+        <a href="/FPT-TELECOM/khu-vuc/can-tho/" class="chip-seo">Cần Thơ</a>
       </div>
-
-      <!-- Internal SEO Links -->
-      <div style="margin-top: 60px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--navy); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Dịch Vụ Nổi Bật</h3>
-        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;">
-          <a href="/FPT-TELECOM/wifi-fpt/" style="text-decoration: none;"><span>Cáp quang FPT</span></a>
-          <a href="/FPT-TELECOM/dang-ky-wifi/" style="text-decoration: none;"><span>Hướng Dẫn Đăng Ký</span></a>
-          <a href="/FPT-TELECOM/khuyen-mai/" style="text-decoration: none;"><span>Khuyến Mãi Tháng Này</span></a>
-          <a href="/FPT-TELECOM/truyen-hinh/" style="text-decoration: none;"><span>Truyền Hình FPT</span></a>
-          <a href="/FPT-TELECOM/camera/" style="text-decoration: none;"><span>Lắp đặt Camera FPT</span></a>
-        </div>
-        
-        <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--navy); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Tìm Kiếm Theo Khu Vực</h3>
-        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <a href="/FPT-TELECOM/khu-vuc/tp-ho-chi-minh/" style="text-decoration: none;"><span>Hồ Chí Minh</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/ha-noi/" style="text-decoration: none;"><span>Hà Nội</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/dong-nai/" style="text-decoration: none;"><span>Đồng Nai</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/binh-duong/" style="text-decoration: none;"><span>Bình Dương</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/da-nang/" style="text-decoration: none;"><span>Đà Nẵng</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/vung-tau/" style="text-decoration: none;"><span>Bà Rịa - Vũng Tàu</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/hai-phong/" style="text-decoration: none;"><span>Hải Phòng</span></a>
-          <a href="/FPT-TELECOM/khu-vuc/can-tho/" style="text-decoration: none;"><span>Cần Thơ</span></a>
-        </div>
-      </div>
-      
     </div>
   </main>
 
@@ -182,8 +275,8 @@
         <a href="tel:0383900321">☎ 0383 900 321</a>
         <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
         <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
-        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+        <a href="../pages/privacy.html">Chính sách bảo mật</a>
+        <a href="../pages/terms.html">Điều khoản sử dụng</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -250,33 +343,13 @@
     </div>
   </div>
 
-  <div class="policy-modal-overlay" id="policy-modal" onclick="if(event.target===this) closePolicyModal()">
-    <div class="policy-modal-content">
-      <button class="policy-close-btn" onclick="closePolicyModal()" aria-label="Đóng">×</button>
-      <div class="policy-modal-body">
-        <h2 style="margin-top:0; color:#141b6a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">Chính Sách Bảo Mật & Điều Khoản Sử Dụng</h2>
-        <p>Quy định rõ quyền lợi, trách nhiệm và cách thức xử lý dữ liệu cá nhân giữa FPT Telecom và khách hàng.</p>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">🛡️ I. Chính sách bảo mật dữ liệu</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Dữ liệu bắt buộc:</strong> Họ tên, số điện thoại, email, địa chỉ lắp đặt khi đăng ký.</li>
-          <li style="margin-bottom:8px;"><strong>Mục đích sử dụng:</strong> Xác nhận dịch vụ, chăm sóc khách hàng, hỗ trợ kỹ thuật.</li>
-          <li style="margin-bottom:8px;"><strong>Cam kết bảo mật:</strong> Tuyệt đối không chia sẻ, bán dữ liệu cho bên thứ ba.</li>
-        </ul>
-        <h3 style="color:#0f172a; margin-top:25px; font-size:18px;">⚖️ II. Điều khoản sử dụng</h3>
-        <ul style="padding-left:20px; color:#475569; line-height:1.6; margin-bottom:15px;">
-          <li style="margin-bottom:8px;"><strong>Trách nhiệm:</strong> Khách hàng tự chịu trách nhiệm về tính chính xác của thông tin.</li>
-          <li style="margin-bottom:8px;"><strong>Sử dụng hợp pháp:</strong> Cam kết không sử dụng hạ tầng mạng vào các hoạt động vi phạm pháp luật.</li>
-        </ul>
-        <div style="margin-top:30px; padding-top:15px; border-top:1px dashed #cbd5e1; font-size:13px; color:#64748b;">
-          <em>Cập nhật lần cuối: Tháng 7/2026. Mọi thắc mắc vui lòng gọi Hotline 0358 513 269</em>
-        </div>
-      </div>
+  
     </div>
   </div>
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-OzvjY+ajO2+czO5JRVqV82zi/zGj1HkGv1WvQeBkWaA3E2K+N0g0kS5j0H4kGz1+j8w9a2u6g9a7j+v3v+X7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="js/script.js?v=26"></script>
+  <script defer src="../js/script.js?v=26"></script>
 
   <script>
     const cwvData = { LCP: 0, CLS: 0, FCP: 0, INP: 0 };
