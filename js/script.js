@@ -787,27 +787,36 @@ if (leadForm) {
     });
   }
 
-  // 5. Countdown timer — end of week (Sunday 23:59:59)
+  // 5. Countdown timer — persistent 7-day cycle via localStorage
   const timer = document.getElementById('countdown-timer');
   const announce = document.getElementById('countdown-announce');
   if (timer) {
-    function getNextSundayEnd() {
-      const now = new Date();
-      const end = new Date(now);
-      const daysUntilSunday = now.getDay() === 0 ? 0 : 7 - now.getDay();
-      end.setDate(now.getDate() + daysUntilSunday);
-      end.setHours(23, 59, 59, 0);
-      if (end <= now) end.setDate(end.getDate() + 7);
-      return end;
+    function getEndTime() {
+      let stored = localStorage.getItem('fpt_countdown_end');
+      const now = Date.now();
+      if (!stored || now > Number(stored)) {
+        // Set new end: next Sunday 23:59:59
+        const end = new Date();
+        const daysUntilSunday = end.getDay() === 0 ? 0 : 7 - end.getDay();
+        end.setDate(end.getDate() + daysUntilSunday);
+        end.setHours(23, 59, 59, 0);
+        if (end.getTime() <= now) end.setDate(end.getDate() + 7);
+        stored = end.getTime();
+        localStorage.setItem('fpt_countdown_end', stored);
+      }
+      return Number(stored);
     }
 
-    let endOfWeek = getNextSundayEnd();
+    const endTime = getEndTime();
     let tickCount = 0;
 
     function updateCountdown() {
-      const now = new Date();
-      let diff = endOfWeek - now;
-      if (diff <= 0) { endOfWeek = getNextSundayEnd(); diff = endOfWeek - now; }
+      let diff = endTime - Date.now();
+      if (diff <= 0) {
+        localStorage.removeItem('fpt_countdown_end');
+        timer.innerHTML = '<span class="t-unit">00</span>:<span class="t-unit">00</span>:<span class="t-unit">00</span>';
+        return;
+      }
       const d = Math.floor(diff / 86400000);
       const h = Math.floor((diff % 86400000) / 3600000);
       const m = Math.floor((diff % 3600000) / 60000);
