@@ -151,9 +151,36 @@ def create_local_page(article):
       
     </div>
   </main>
-  <footer style="background: var(--navy); padding: 40px 20px 20px;">
-    <div class="footer-bottom" style="text-align: center; color: rgba(255,255,255,0.7); font-size: 13px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-      <p>© 2026 FPT Telecom - Đại lý ủy quyền | Vận hành bởi Trần Văn Mẫn</p>
+      <footer class="footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="logo logo-image" href="/FPT-TELECOM/">
+          <img src="../../assets/images/logo.webp" alt="FPT Telecom" width="164" height="45" loading="lazy" decoding="async">
+        </a>
+        <p>Giải pháp viễn thông và công nghệ hàng đầu Việt Nam.</p>
+        <nav class="footer-nav" aria-label="Liên kết trang">
+          <a href="/FPT-TELECOM/bang-gia/">Bảng giá</a>
+          <a href="/FPT-TELECOM/khuyen-mai/">Ưu đãi</a>
+          <a href="/FPT-TELECOM/khu-vuc/">Khu vực</a>
+          <a href="/FPT-TELECOM/tin-tuc/">Tin tức</a>
+          <a href="/FPT-TELECOM/lien-he/">Liên hệ</a>
+        </nav>
+      </div>
+      
+      <div class="footer-links" style="display: flex; flex-direction: row; gap: 24px; align-items: center; flex-wrap: wrap;">
+        <a href="tel:0358513269">☎ 0358 513 269</a>
+        <a href="tel:0383900321">☎ 0383 900 321</a>
+        <a href="https://zalo.me/0358513269" target="_blank" rel="noopener noreferrer">Zalo tư vấn</a>
+        <a href="https://www.facebook.com/FptTelecom/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="/FPT-TELECOM/pages/privacy.html">Chính sách bảo mật</a>
+        <a href="/FPT-TELECOM/pages/terms.html">Điều khoản sử dụng</a>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="footer-copyright-inner">
+        <span>© 2026 FPT Telecom - Thông tin & đăng ký dịch vụ. All rights reserved.</span>
+        <span>Bản quyền thuộc về Trần Văn Mẫn - ManHenry.</span>
+      </div>
     </div>
   </footer>
 </body>
