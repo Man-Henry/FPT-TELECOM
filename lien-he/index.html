@@ -519,7 +519,7 @@
     <!-- FAQ Section -->
     <section class="faq-container">
       <h2 style="font-size: 2rem; color: #1e293b; margin-bottom: 24px; text-align: center; font-weight: 800; margin-top: 40px;">Câu hỏi thường gặp</h2>
-      <details class="faq-item" open>
+      <details class="faq-item">
         <summary class="faq-summary">Chi phí lắp mạng Wifi Internet FPT tại TPHCM, Hà Nội và các tỉnh thành khác là bao nhiêu?</summary>
         <div class="faq-content">Chi phí lắp mạng wifi FPT ban đầu thường là 299.000 VNĐ cho phí hòa mạng và lắp đặt (áp dụng cho TPHCM, Hà Nội, Đà Nẵng và các tỉnh thành khác). Phí này đã bao gồm việc lắp đặt modem wifi và kích hoạt dịch vụ, một số gói còn được trang bị thêm Access Point Wifi 6 giúp mở rộng sóng wifi hiệu quả. (Mức phí có thể thay đổi tùy theo chương trình khuyến mãi hiện hành).</div>
       </details>
@@ -627,22 +627,31 @@
               <label class="form-label">Gói cước quan tâm</label>
               <div class="radio-chips-container">
                 <label class="radio-chip-label">
-                  <input type="radio" name="goicuoc" value="Internet" checked>
+                  <input type="radio" name="Gói cước quan tâm" value="Internet" checked>
                   <span class="radio-chip-content">Internet Tốc Độ Cao</span>
                 </label>
                 <label class="radio-chip-label">
-                  <input type="radio" name="goicuoc" value="Combo">
+                  <input type="radio" name="Gói cước quan tâm" value="Combo">
                   <span class="radio-chip-content">Combo Internet + TV</span>
                 </label>
                 <label class="radio-chip-label">
-                  <input type="radio" name="goicuoc" value="Camera">
+                  <input type="radio" name="Gói cước quan tâm" value="Camera">
                   <span class="radio-chip-content">Lắp đặt Camera AI</span>
                 </label>
                 <label class="radio-chip-label">
-                  <input type="radio" name="goicuoc" value="Unknown">
+                  <input type="radio" name="Gói cước quan tâm" value="Unknown">
                   <span class="radio-chip-content">Cần tư vấn thêm</span>
                 </label>
               </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Thời gian liên hệ</label>
+              <select class="form-input" name="Thời gian liên hệ" required>
+                <option value="Gọi ngay">Gọi ngay</option>
+                <option value="Buổi sáng">Buổi sáng</option>
+                <option value="Buổi chiều">Buổi chiều</option>
+                <option value="Buổi tối">Buổi tối</option>
+              </select>
             </div>
             <button type="submit" class="btn-submit-orange">ĐĂNG KÝ TƯ VẤN NGAY</button>
             <div class="microcopy">

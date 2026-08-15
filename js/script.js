@@ -274,7 +274,7 @@ if (leadForm) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         'event': 'form_submit',
-        'package_name': new FormData(form).get('Gói cước'),
+        'package_name': new FormData(form).get('Gói cước') || new FormData(form).get('Gói cước quan tâm'),
         'time_preference': new FormData(form).get('Thời gian liên hệ')
       });
 
