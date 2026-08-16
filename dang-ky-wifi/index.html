@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="utf-8">
@@ -338,20 +338,25 @@
       </div>
     </div>
   </footer>
-
   <div class="floating-actions" aria-label="Liên hệ nhanh">
+
     <a href="tel:0383900321" class="floating-call" aria-label="Gọi hotline">☎ <span>Gọi ngay</span></a>
     <button class="chat-toggle-btn" id="chat-toggle" aria-label="Mở chat">
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chat-icon">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="chat-icon">
+        <path
+          d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+        </path>
       </svg>
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon" style="display:none">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="close-icon" style="display:none">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
   </div>
 
+  <!-- CRO: Social Proof Toast -->
   <div class="toast-notification" id="social-proof-toast">
     <div class="toast-icon">⚡</div>
     <div class="toast-text">
@@ -360,19 +365,24 @@
     </div>
   </div>
 
+  <!-- Custom Chat Widget -->
   <div class="chat-widget" id="chat-widget">
     <div class="chat-widget-header">
       <div class="chat-widget-brand">
         <div class="chat-widget-logo">
-          <img src="assets/images/logo.webp" alt="FPT Telecom" width="28" height="28" style="object-fit: contain; background: #fff; border-radius: 50%; padding: 2px;">
+          <img src="../assets/images/logo.webp" alt="FPT Telecom" width="28" height="28"
+            style="object-fit: contain; background: #fff; border-radius: 50%; padding: 2px;">
         </div>
         <span>FPT Telecom</span>
         <span class="chat-online-dot"></span>
       </div>
       <div class="chat-widget-controls">
-        <button type="button" aria-label="Chuyển sang Live Chat" title="Chat trực tiếp với nhân viên" class="chat-ctrl-btn" onclick="switchToLiveChat()">
+        <button type="button" aria-label="Chuyển sang Live Chat" title="Chat trực tiếp với nhân viên"
+          class="chat-ctrl-btn" onclick="switchToLiveChat()">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="vertical-align: middle;">
-            <path d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9z"></path>
+            <path
+              d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9z">
+            </path>
           </svg>
         </button>
         <button type="button" id="chat-minimize" aria-label="Thu nhỏ" class="chat-ctrl-btn">−</button>
@@ -381,11 +391,13 @@
     <div class="chat-widget-body">
       <div id="chat-messages" class="chat-messages">
         <div class="chat-msg bot-msg">
-          <div class="msg-bubble">Chào bạn! Mình là Trợ lý ảo FPT Telecom. Mình có thể tư vấn gói cước, hỗ trợ kỹ thuật hoặc giải đáp các thắc mắc về dịch vụ. Bạn cần mình giúp gì ạ?</div>
+          <div class="msg-bubble">Chào bạn! Mình là Trợ lý ảo FPT Telecom. Mình có thể tư vấn gói cước, hỗ trợ kỹ thuật
+            hoặc giải đáp các thắc mắc về dịch vụ. Bạn cần mình giúp gì ạ?</div>
         </div>
       </div>
       <div class="chat-input-area">
-        <textarea id="chat-input" aria-label="Nhập câu hỏi chat" placeholder="Nhập câu hỏi của bạn..." rows="1" autocomplete="off"></textarea>
+        <textarea id="chat-input" aria-label="Nhập câu hỏi chat" placeholder="Nhập câu hỏi của bạn..." rows="1"
+          autocomplete="off"></textarea>
         <button id="chat-send-btn" aria-label="Gửi tin nhắn">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
@@ -395,11 +407,7 @@
     </div>
   </div>
 
-  
-    </div>
-  </div>
-
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-OzvjY+ajO2+czO5JRVqV82zi/zGj1HkGv1WvQeBkWaA3E2K+N0g0kS5j0H4kGz1+j8w9a2u6g9a7j+v3v+X7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="../js/script.js?v=26"></script>
 
@@ -485,3 +493,5 @@
   </script>
 </body>
 </html>
+
+
