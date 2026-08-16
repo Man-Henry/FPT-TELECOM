@@ -523,34 +523,7 @@
     </div>
   </div>
 
-  <script>
-    (function() {
-      const toggle = document.getElementById('chat-toggle');
-      const widget = document.getElementById('chat-widget');
-      const minimize = document.getElementById('chat-minimize');
-      const iconOpen = document.getElementById('chat-icon-open');
-      const iconClose = document.getElementById('chat-icon-close');
-      let isOpen = false;
-      function openChat() {
-        if(!widget) return;
-        widget.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
-        widget.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
-        if(iconOpen) iconOpen.classList.add('hidden');
-        if(iconClose) iconClose.classList.remove('hidden');
-        isOpen = true;
-      }
-      function closeChat() {
-        if(!widget) return;
-        widget.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
-        widget.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
-        if(iconOpen) iconOpen.classList.remove('hidden');
-        if(iconClose) iconClose.classList.add('hidden');
-        isOpen = false;
-      }
-      if (toggle) toggle.addEventListener('click', function() { isOpen ? closeChat() : openChat(); });
-      if (minimize) minimize.addEventListener('click', closeChat);
-    })();
-  </script>
+
 
   <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #0f172a; color: white; padding: 15px 24px; display: none; justify-content: space-between; align-items: center; z-index: 9999; font-size: 14px; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
     <div style="flex: 1; margin-right: 20px;">

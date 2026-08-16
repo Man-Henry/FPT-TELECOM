@@ -1728,3 +1728,381 @@ function startPromoCountdown() {
   setInterval(update, 1000);
 }
 document.addEventListener('DOMContentLoaded', startPromoCountdown);
+/* =========================================================
+   CHAT WIDGET LOGIC (AI + Live Chat)
+   ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const chatToggle = document.getElementById('chat-toggle');
+  const chatWidget = document.getElementById('chat-widget');
+  const chatMinimize = document.getElementById('chat-minimize');
+  const iconOpen = document.getElementById('chat-icon-open');
+  const iconClose = document.getElementById('chat-icon-close');
+  
+  if (chatToggle && chatWidget) {
+    const scriptSrc = document.querySelector('script[src*="script.js"]')?.getAttribute('src') || '';
+    const assetBase = scriptSrc.split('js/script.js')[0];
+
+    // Tailwind Chat Toggle Logic
+    let isChatOpen = false;
+    const openChat = () => {
+        chatWidget.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+        chatWidget.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+        if (iconOpen) iconOpen.classList.add('hidden');
+        if (iconClose) iconClose.classList.remove('hidden');
+        isChatOpen = true;
+    };
+    const closeChat = () => {
+        chatWidget.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+        chatWidget.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+        if (iconOpen) iconOpen.classList.remove('hidden');
+        if (iconClose) iconClose.classList.add('hidden');
+        isChatOpen = false;
+    };
+
+    const popupAudio = new Audio(assetBase + 'assets/music/thongbao.mp3');
+    popupAudio.preload = 'auto';
+
+    let audioUnlocked = false;
+    const initAudio = () => {
+      if (audioUnlocked) return;
+      popupAudio.muted = true; // Chạy nền im lặng để trình duyệt dễ dàng chấp nhận
+      const playPromise = popupAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          popupAudio.pause();
+          popupAudio.currentTime = 0;
+          popupAudio.muted = false; // Trả lại âm thanh bình thường
+          audioUnlocked = true;
+          ['click', 'touchstart', 'keydown'].forEach(evt =>
+            document.removeEventListener(evt, initAudio)
+          );
+        }).catch(() => {
+          popupAudio.muted = false;
+        });
+      }
+    };
+
+    ['click', 'touchstart', 'keydown'].forEach(evt =>
+      document.addEventListener(evt, initAudio)
+    );
+
+    const playDing = () => {
+      try {
+        popupAudio.currentTime = 0;
+        const playPromise = popupAudio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((err) => console.warn("Trình duyệt chặn phát âm thanh tự động:", err));
+        }
+      } catch (e) { }
+    };
+
+    let userInteractedWithChat = false;
+    let hasPlayedSound = false;
+
+    const toggleChat = (isAutoOpen = false) => {
+      if (isChatOpen) {
+          closeChat();
+      } else {
+          openChat();
+          if (isAutoOpen && !hasPlayedSound) {
+            playDing();
+            hasPlayedSound = true;
+          }
+      }
+    };
+
+    chatToggle.addEventListener('click', () => {
+      userInteractedWithChat = true;
+      hasPlayedSound = true; // Hủy âm thanh nếu user tự bấm
+      toggleChat(false);
+    });
+
+    // Auto open popup after 10 seconds
+    setTimeout(() => {
+      if (!isChatOpen && !userInteractedWithChat) {
+        toggleChat(true);
+      }
+    }, 10000);
+    
+    if (chatMinimize) {
+      chatMinimize.addEventListener('click', () => {
+        closeChat();
+      });
+    }
+
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const chatSendBtn = document.getElementById('chat-send-btn');
+    const chatHistory = []; // Lưu ngữ cảnh trò chuyện
+
+    if (chatInput && chatSendBtn && chatMessages) {
+      const appendMessage = (text, sender) => {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = sender === 'bot' 
+          ? 'flex items-start gap-3 w-full chat-msg bot-msg' 
+          : 'flex justify-end w-full chat-msg user-msg';
+          
+        const bubble = document.createElement('div');
+        bubble.className = sender === 'bot'
+          ? 'bg-white border border-slate-100 rounded-2xl rounded-tl-sm px-4 py-2.5 shadow-sm text-slate-700 text-sm leading-relaxed max-w-[85%] relative'
+          : 'bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-2.5 shadow-sm text-sm leading-relaxed max-w-[85%] relative';
+        
+        const parts = text.split(/(\*\*.*?\*\*|\n)/g);
+        parts.forEach(part => {
+          if (!part) return;
+          if (part === '\n') {
+            bubble.appendChild(document.createElement('br'));
+          } else if (part.startsWith('**') && part.endsWith('**') && part.length >= 4) {
+            const b = document.createElement('b');
+            b.textContent = part.slice(2, -2);
+            bubble.appendChild(b);
+          } else {
+            bubble.appendChild(document.createTextNode(part));
+          }
+        });
+
+        if (sender === 'bot') {
+            msgDiv.innerHTML = `<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0">🤖</div>`;
+        }
+        msgDiv.appendChild(bubble);
+        chatMessages.appendChild(msgDiv);
+        requestAnimationFrame(() => {
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+        return msgDiv;
+      };
+
+      // Xóa session cũ khi tải lại trang theo yêu cầu
+      localStorage.removeItem('chat_session_id');
+      localStorage.removeItem('chat_visitor_name');
+      let sessionId = null;
+      // Trong UI mới, không có chat-widget-body, ta append đè lên div p-4 
+      const chatWidgetBody = chatMessages.parentElement;
+
+      function promptForNameAndStart(onComplete) {
+        const nameOverlay = document.createElement('div');
+        nameOverlay.id = 'chat-name-overlay';
+        nameOverlay.className = 'absolute inset-0 bg-white/95 backdrop-blur-sm z-10 flex flex-col justify-center items-center p-6 text-center';
+        nameOverlay.innerHTML = `
+        <img src="${assetBase}assets/images/logo.png" alt="FPT Logo" class="w-14 h-14 object-contain mb-4 bg-white rounded-full p-1 shadow-md">
+        <h3 class="text-slate-800 font-bold mb-2">Chào bạn! 👋</h3>
+        <p class="text-slate-500 text-sm mb-5">Vui lòng để lại tên để nhân viên dễ xưng hô và hỗ trợ bạn tốt nhất</p>
+        <input type="text" id="chat-name-input" placeholder="Họ và tên..." class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 mb-4 text-sm transition-all text-slate-800">
+        <button id="chat-name-submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors text-sm shadow-sm">Bắt đầu chat</button>
+      `;
+        chatWidgetBody.style.position = 'relative'; // Ensure relative parent for absolute overlay
+        chatWidgetBody.appendChild(nameOverlay);
+
+        const submitBtn = nameOverlay.querySelector('#chat-name-submit');
+        const nameInput = nameOverlay.querySelector('#chat-name-input');
+        requestAnimationFrame(() => nameInput.focus());
+
+        const startChat = () => {
+          let name = nameInput.value.trim();
+          if (!name) name = "Khách";
+
+          localStorage.setItem('chat_visitor_name', name);
+
+          // Lọc dấu tiếng Việt và ký tự đặc biệt để làm ID an toàn
+          const safeName = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9]/g, '');
+          const randomStr = (window.crypto.getRandomValues(new Uint32Array(1))[0]).toString(36).substring(0, 6);
+          sessionId = (safeName || 'Khach') + '_' + randomStr;
+          localStorage.setItem('chat_session_id', sessionId);
+          nameOverlay.remove();
+          if (onComplete) onComplete();
+        };
+
+        submitBtn.onclick = startChat;
+        nameInput.onkeydown = (e) => { if (e.key === 'Enter') startChat(); };
+      }
+
+      if (!sessionId) {
+        promptForNameAndStart();
+      }
+      let chatMode = 'ai'; // Mặc định là chat với AI
+      let pollInterval;
+      let pollTimerMs = 2500;
+      let isClosed = false;
+      let lastOwnerMsgId = 0;
+
+      const API_ENDPOINT = atob('aHR0cHM6Ly9tYW4tY2hhdGJvdC50dm0xOTYyNC53b3JrZXJzLmRldi9hcGkvY2hhdA==');
+      const POLL_ENDPOINT = API_ENDPOINT.replace('/api/chat', '/api/poll');
+      const CLOSE_ENDPOINT = API_ENDPOINT.replace('/api/chat', '/api/close');
+
+      function showClosedNotice(reason) {
+        const notice = document.createElement("div");
+        notice.className = "flex justify-center w-full chat-msg bot-msg mt-2";
+
+        let msgText = "Phiên chat đã tự động đóng do không hoạt động sau 5 phút.";
+        if (reason === "session_closed") msgText = "Phiên chat với nhân viên đã kết thúc.";
+
+        notice.innerHTML = `<div class="bg-amber-50 border border-amber-200 text-amber-700 px-4 py-2 text-xs italic rounded-lg text-center w-full">${msgText}</div>`;
+        chatMessages.appendChild(notice);
+
+        const btnDiv = document.createElement("div");
+        btnDiv.className = "flex justify-center w-full chat-msg bot-msg mt-3 mb-2";
+
+        const btn = document.createElement("button");
+        btn.textContent = "💬 Bắt đầu chat với AI";
+        btn.className = "bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition";
+
+        btn.onclick = () => {
+          localStorage.removeItem('chat_session_id');
+          promptForNameAndStart(() => {
+            lastOwnerMsgId = 0;
+            isClosed = false;
+            chatMode = 'ai';
+            chatHistory.length = 0;
+
+            notice.remove();
+            btnDiv.remove();
+
+            chatInput.disabled = false;
+            chatSendBtn.disabled = false;
+            chatInput.placeholder = "Nhập câu hỏi của bạn...";
+
+            appendMessage("Chào bạn! 👋 Mình là trợ lý ảo FPT Telecom. Bạn cần tư vấn gì ạ?", "bot");
+          });
+        };
+
+        btnDiv.appendChild(btn);
+        chatMessages.appendChild(btnDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        chatInput.disabled = true;
+        chatSendBtn.disabled = true;
+        chatInput.placeholder = "Phiên đã đóng. Bấm nút trên để chat mới.";
+      }
+
+      const pollMessages = async () => {
+        if (chatMode !== 'live' || isClosed) return;
+        try {
+          const res = await fetch(`${POLL_ENDPOINT}?session=${sessionId}&after=${lastOwnerMsgId}`);
+          if (!res.ok) return;
+          const data = await res.json();
+
+          if (data.closed) {
+            isClosed = true;
+            if (pollInterval) clearInterval(pollInterval);
+            showClosedNotice(data.reason);
+            return;
+          }
+
+          if (data.messages && data.messages.length > 0) {
+            for (const m of data.messages) {
+              appendMessage(m.text, 'bot');
+              chatHistory.push({ role: "model", text: m.text });
+              lastOwnerMsgId = Math.max(lastOwnerMsgId, m.id);
+            }
+          }
+        } catch (err) {
+          console.error("Polling error:", err);
+        }
+      };
+
+      function startLiveChatPolling() {
+        if (pollInterval) clearInterval(pollInterval);
+        pollInterval = setInterval(pollMessages, pollTimerMs);
+      }
+
+      // Chuyển sang chế độ kết nối nhân viên
+      window.switchToLiveChat = async function () {
+        if (chatMode === 'live' || isClosed) return;
+        chatMode = 'live';
+        appendMessage('✅ Đã gửi yêu cầu kết nối trực tiếp với nhân viên hỗ trợ (Tiểu Mẫn FPT). Bạn vui lòng chờ trong giây lát nhé!', 'bot');
+
+        try {
+          await fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              text: "Khách hàng vừa nhấn nút yêu cầu chat trực tiếp với nhân viên.",
+              history: chatHistory,
+              session: sessionId,
+              mode: 'live'
+            })
+          });
+        } catch (e) {
+          console.error(e);
+        }
+
+        startLiveChatPolling();
+      };
+
+      // Tối ưu Polling khi ẩn/hiện Tab
+      document.addEventListener("visibilitychange", () => {
+        if (chatMode !== 'live' || isClosed) return;
+        if (document.hidden) {
+          pollTimerMs = 15000; // Giãn 15s khi ẩn tab
+        } else {
+          pollTimerMs = 2500; // Trở lại 2.5s khi mở tab
+          pollMessages(); // Poll ngay lập tức 1 phát cho đỡ trễ
+        }
+        startLiveChatPolling();
+      });
+
+      const sendMessage = async () => {
+        const message = chatInput.value.trim();
+        if (!message || isClosed) return;
+
+        appendMessage(message, 'user');
+        chatHistory.push({ role: "user", text: message });
+
+        chatInput.value = '';
+        chatInput.style.height = 'auto';
+        chatSendBtn.disabled = true;
+
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'flex items-start gap-3 w-full chat-msg bot-msg';
+        typingIndicator.innerHTML = `<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0">🤖</div><div class="bg-white border border-slate-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm flex items-center gap-1"><span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span><span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.15s"></span><span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></span></div>`;
+        chatMessages.appendChild(typingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+          const response = await fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: message, history: chatHistory, session: sessionId, mode: chatMode })
+          });
+
+          const data = await response.json();
+
+          if (chatMode === 'ai') {
+            if (typingIndicator.parentNode) chatMessages.removeChild(typingIndicator);
+
+            if (data.reply) {
+              appendMessage(data.reply, 'bot');
+              chatHistory.push({ role: "model", text: data.reply });
+            } else {
+              appendMessage(data.error || 'Xin lỗi, hệ thống AI đang bận.', 'bot');
+            }
+          } else {
+            // Live Chat Mode
+            if (typingIndicator.parentNode) chatMessages.removeChild(typingIndicator);
+            if (data.error) {
+              appendMessage(data.error, 'bot');
+            }
+          }
+        } catch (err) {
+          if (typingIndicator.parentNode) chatMessages.removeChild(typingIndicator);
+          appendMessage('Xin lỗi, không thể kết nối đến máy chủ.', 'bot');
+        } finally {
+          chatSendBtn.disabled = false;
+          if (!isClosed) chatInput.focus();
+        }
+      };
+
+      chatSendBtn.addEventListener('click', sendMessage);
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+
+      chatInput.addEventListener('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+      });
+    }
+});

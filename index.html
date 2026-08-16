@@ -1216,35 +1216,6 @@
     </div>
   </div>
 
-  <script>
-    // Chat toggle logic (self-contained for homepage)
-    (function() {
-      const toggle = document.getElementById('chat-toggle');
-      const widget = document.getElementById('chat-widget');
-      const minimize = document.getElementById('chat-minimize');
-      const iconOpen = document.getElementById('chat-icon-open');
-      const iconClose = document.getElementById('chat-icon-close');
-      let isOpen = false;
-
-      function openChat() {
-        widget.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
-        widget.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
-        iconOpen.classList.add('hidden');
-        iconClose.classList.remove('hidden');
-        isOpen = true;
-      }
-      function closeChat() {
-        widget.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
-        widget.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
-        iconOpen.classList.remove('hidden');
-        iconClose.classList.add('hidden');
-        isOpen = false;
-      }
-
-      if (toggle) toggle.addEventListener('click', function() { isOpen ? closeChat() : openChat(); });
-      if (minimize) minimize.addEventListener('click', closeChat);
-    })();
-  </script>
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-OzvjY+ajO2+czO5JRVqV82zi/zGj1HkGv1WvQeBkWaA3E2K+N0g0kS5j0H4kGz1+j8w9a2u6g9a7j+v3v+X7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
