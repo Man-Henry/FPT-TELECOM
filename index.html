@@ -423,81 +423,96 @@
   <!-- Lead Gen & Contact Section -->
   <section id="register" class="py-20 bg-slate-50 relative overflow-hidden">
     <!-- SVG Mascot Decor -->
-    <div class="absolute left-10 top-20 hidden lg:block animate-float opacity-80">
-      <div class="bg-white px-4 py-2 rounded-2xl rounded-bl-none shadow-md text-sm font-semibold text-blue-600 mb-2">
-        Nhập số điện thoại, mình gọi lại liền nha! 🚀
-      </div>
-      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="11" width="18" height="10" rx="2"></rect>
-        <circle cx="12" cy="5" r="2"></circle>
-        <path d="M12 7v4"></path>
-        <line x1="8" y1="16" x2="8" y2="16"></line>
-        <line x1="16" y1="16" x2="16" y2="16"></line>
+    <div class="mascot-container">
+      <svg class="mascot-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="85" rx="25" ry="5" fill="#cbd8ef" />
+        <g class="mascot-float">
+          <!-- Antenna -->
+          <line x1="50" y1="20" x2="50" y2="8" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+          <circle cx="50" cy="6" r="4.5" fill="#f97316" />
+          <!-- Body -->
+          <rect x="22" y="20" width="56" height="42" rx="14" fill="#ffffff" stroke="#2563eb" stroke-width="3" />
+          <!-- Screen -->
+          <rect x="30" y="28" width="40" height="20" rx="5" fill="#1e293b" />
+          <!-- Eyes -->
+          <circle cx="38" cy="38" r="3.5" fill="#00e5ff" />
+          <circle cx="62" cy="38" r="3.5" fill="#00e5ff" />
+          <!-- Cheeks -->
+          <circle cx="30" cy="48" r="4" fill="#f97316" opacity="0.25" />
+          <circle cx="70" cy="48" r="4" fill="#f97316" opacity="0.25" />
+          <!-- Smile -->
+          <path d="M 45 47 Q 50 51 55 47" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" />
+          <!-- Base -->
+          <path d="M 33 62 L 67 62 L 78 80 L 22 80 Z" fill="#2563eb" stroke="#2563eb" stroke-linejoin="round" />
+          <rect x="40" y="68" width="20" height="4" rx="2" fill="#ffffff" opacity="0.8" />
+          <!-- Arms -->
+          <path d="M 22 65 Q 8 68 15 80" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round" />
+          <path d="M 78 65 Q 92 68 85 80" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round" />
+        </g>
       </svg>
+      <div class="chat-bubble">
+        Em là Trợ lý AI. Có thắc mắc gì cứ điền form hoặc chat với em qua nút Zalo bên dưới nhé!
+      </div>
     </div>
-
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
-        
-        <div class="mb-12 lg:mb-0 text-center lg:text-left fade-in-up">
-          <h2 class="text-4xl font-extrabold text-slate-900 mb-4">Đăng Ký Khảo Sát<br><span class="text-blue-600">Nhận Tư Vấn Tận Nơi</span></h2>
-          <p class="text-lg text-slate-600 mb-8">Điền form bên cạnh hoặc gọi ngay Hotline để nhận báo giá chi tiết, khuyến mãi lắp đặt khu vực của bạn.</p>
-          <div class="inline-flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-200">
-            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-            </div>
-            <div>
-              <div class="text-sm text-slate-500 font-medium">Hotline tư vấn 24/7</div>
-              <a href="tel:0383900321" class="text-2xl font-bold text-slate-900">0383 900 321</a>
-            </div>
-          </div>
+    <!-- Right Column: Lead Form -->
+    <div class="lead-form-card">
+      <div class="social-proof-bar">
+        🔥 Hơn 142 khách hàng đã đăng ký trong tuần qua
+      </div>
+      <form id="leadForm">
+        <!-- Bẫy Honeypot ẩn (Bot tự động điền sẽ bị JS chặn) -->
+        <div aria-hidden="true" style="position:absolute;left:-9999px">
+          <label>Không điền ô này<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
         </div>
-
-        <!-- Form Card -->
-        <div class="fade-in-up" style="transition-delay: 100ms;">
-          <div class="bg-white rounded-3xl p-8 shadow-2xl relative">
-            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-orange-100 text-orange-700 text-sm font-semibold px-4 py-1.5 rounded-full whitespace-nowrap border border-orange-200">
-              🔥 Hơn 142 khách hàng đã đăng ký tuần qua
+        <div class="form-group">
+          <label class="form-label">Họ và tên *</label>
+              <input type="text" class="form-input" required name="Họ Và Tên" placeholder="Ví dụ: Nguyễn Văn A" pattern="^[^<>%$\/]+$" title="Không chứa ký tự đặc biệt">
             </div>
-            
-            <form id="leadForm" class="space-y-5 mt-4">
-              <!-- Bẫy Honeypot ẩn (Bot tự động điền sẽ bị JS chặn) -->
-              <input type="text" name="website" tabindex="-1" style="display:none" autocomplete="off">
-              <div>
-                <input type="text" name="Họ Và Tên" placeholder="Họ và tên *" required pattern="^[^<>%$\/]+$" title="Không chứa ký tự đặc biệt" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors placeholder-slate-400 font-medium">
+            <div class="form-group">
+              <label class="form-label">Số điện thoại *</label>
+              <input type="tel" class="form-input" required name="Số điện thoại" placeholder="09xxxxxxxxx" inputmode="tel" autocomplete="tel" pattern="(84|0[3|5|7|8|9])+([0-9]{8})" title="Vui lòng nhập đúng số điện thoại Việt Nam">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Địa chỉ lắp đặt *</label>
+              <input type="text" class="form-input" required name="Địa chỉ" placeholder="Số nhà, đường, phường/xã, quận/huyện..." pattern="^[^<>%$\/]+$">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Gói cước quan tâm</label>
+              <div class="radio-chips-container">
+                <label class="radio-chip-label">
+                  <input type="radio" name="Gói cước quan tâm" value="Internet" checked>
+                  <span class="radio-chip-content">Internet Tốc Độ Cao</span>
+                </label>
+                <label class="radio-chip-label">
+                  <input type="radio" name="Gói cước quan tâm" value="Combo">
+                  <span class="radio-chip-content">Combo Internet + TV</span>
+                </label>
+                <label class="radio-chip-label">
+                  <input type="radio" name="Gói cước quan tâm" value="Camera">
+                  <span class="radio-chip-content">Lắp đặt Camera AI</span>
+                </label>
+                <label class="radio-chip-label">
+                  <input type="radio" name="Gói cước quan tâm" value="Unknown">
+                  <span class="radio-chip-content">Cần tư vấn thêm</span>
+                </label>
               </div>
-              <div>
-                <input type="tel" name="Số điện thoại" placeholder="Số điện thoại di động *" required pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" title="Vui lòng nhập đúng số điện thoại Việt Nam" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors placeholder-slate-400 font-medium">
-              </div>
-              <div>
-                <input type="text" name="Địa chỉ" placeholder="Địa chỉ lắp đặt (Quận/Huyện, Tỉnh/TP) *" required pattern="^[^<>%$\/]+$" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors placeholder-slate-400 font-medium">
-              </div>
-              
-              <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Dịch vụ quan tâm:</label>
-                <div class="grid grid-cols-2 gap-3">
-                  <label class="relative flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
-                    <input type="radio" name="Gói cước quan tâm" value="Internet" class="w-4 h-4 text-orange-600 border-slate-300 focus:ring-orange-500" checked>
-                    <span class="ml-2 text-sm font-medium text-slate-700">Internet WiFi</span>
-                  </label>
-                  <label class="relative flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
-                    <input type="radio" name="Gói cước quan tâm" value="Combo" class="w-4 h-4 text-orange-600 border-slate-300 focus:ring-orange-500">
-                    <span class="ml-2 text-sm font-medium text-slate-700">Combo (WiFi+TV)</span>
-                  </label>
-                </div>
-              </div>
-
-              <button type="submit" class="w-full bg-orange-500 text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-colors hover:-translate-y-0.5">
-                Gửi Yêu Cầu Tư Vấn
-              </button>
-              <p class="text-xs text-center text-slate-500 mt-4 flex items-center justify-center gap-1">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                Thông tin được bảo mật tuyệt đối 100%.
-              </p>
-            </form>
-          </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Thời gian liên hệ</label>
+              <select class="form-input" name="Thời gian liên hệ" required>
+                <option value="Gọi ngay">Gọi ngay</option>
+                <option value="Buổi sáng">Buổi sáng</option>
+                <option value="Buổi chiều">Buổi chiều</option>
+                <option value="Buổi tối">Buổi tối</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-submit-orange">ĐĂNG KÝ TƯ VẤN NGAY</button>
+            <div class="microcopy">
+              <span>🔒 Thông tin của bạn được bảo mật tuyệt đối</span>
+            </div>
+            <p class="success" role="status"></p>
+          </form>
         </div>
-
       </div>
     </div>
   </section>
