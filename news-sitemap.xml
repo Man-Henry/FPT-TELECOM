@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
-    <loc>https://fpttelecomvn.click/tin-tuc/co-nen-bat-wifi-lien-tuc-24-7/</loc>
-    <news:news>
-      <news:publication>
-        <news:name>FPT Telecom</news:name>
-        <news:language>vi</news:language>
-      </news:publication>
-      <news:publication_date>2026-07-20</news:publication_date>
-      <news:title>Có nên bật WiFi liên tục 24/7 không?</news:title>
-    </news:news>
-  </url>
-  <url>
     <loc>https://fpttelecomvn.click/tin-tuc/bang-gia-internet-fpt-thang-7-2026/</loc>
     <news:news>
       <news:publication>
@@ -19,29 +8,18 @@
         <news:language>vi</news:language>
       </news:publication>
       <news:publication_date>2026-07-01</news:publication_date>
-      <news:title>Bảng giá Internet FPT tháng 7/2026</news:title>
+      <news:title>Bảng giá internet FPT tháng 7 2026</news:title>
     </news:news>
   </url>
   <url>
-    <loc>https://fpttelecomvn.click/tin-tuc/khuyen-mai-fpt-thang-7-2026/</loc>
+    <loc>https://fpttelecomvn.click/tin-tuc/co-nen-bat-wifi-lien-tuc-24-7/</loc>
     <news:news>
       <news:publication>
         <news:name>FPT Telecom</news:name>
         <news:language>vi</news:language>
       </news:publication>
-      <news:publication_date>2026-07-02</news:publication_date>
-      <news:title>Khuyến mãi FPT tháng 7/2026</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://fpttelecomvn.click/tin-tuc/ngoai-hang-anh-2026-27-fpt-play/</loc>
-    <news:news>
-      <news:publication>
-        <news:name>FPT Telecom</news:name>
-        <news:language>vi</news:language>
-      </news:publication>
-      <news:publication_date>2026-07-15</news:publication_date>
-      <news:title>Ngoại Hạng Anh 2026-27 trên FPT Play</news:title>
+      <news:publication_date>2026-07-05</news:publication_date>
+      <news:title>Có nên bật WiFi liên tục 24/7?</news:title>
     </news:news>
   </url>
   <url>
@@ -51,8 +29,19 @@
         <news:name>FPT Telecom</news:name>
         <news:language>vi</news:language>
       </news:publication>
-      <news:publication_date>2026-07-22</news:publication_date>
+      <news:publication_date>2026-07-10</news:publication_date>
       <news:title>Công ty của Musk bắt đầu bán Internet vệ tinh tại Việt Nam</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/tin-tuc/fpt-cong-bo-40-khach-hang-may-man-trung-xe-dien-15007/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>FPT Telecom</news:name>
+        <news:language>vi</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-12</news:publication_date>
+      <news:title>FPT công bố 40 khách hàng may mắn trúng xe điện 15007</news:title>
     </news:news>
   </url>
   <url>
@@ -62,19 +51,30 @@
         <news:name>FPT Telecom</news:name>
         <news:language>vi</news:language>
       </news:publication>
-      <news:publication_date>2026-07-25</news:publication_date>
-      <news:title>iPhone 2028 - 5 thay đổi đột phá</news:title>
+      <news:publication_date>2026-07-15</news:publication_date>
+      <news:title>iPhone 2028: 5 thay đổi đột phá</news:title>
     </news:news>
   </url>
   <url>
-    <loc>https://fpttelecomvn.click/tin-tuc/san-van-dong-vinfast-135000-cho-lon-nhat-the-gioi/</loc>
+    <loc>https://fpttelecomvn.click/tin-tuc/khuyen-mai-fpt-thang-7-2026/</loc>
     <news:news>
       <news:publication>
         <news:name>FPT Telecom</news:name>
         <news:language>vi</news:language>
       </news:publication>
-      <news:publication_date>2026-07-28</news:publication_date>
-      <news:title>Sân vận động VinFast 135.000 chỗ lớn nhất thế giới</news:title>
+      <news:publication_date>2026-07-01</news:publication_date>
+      <news:title>Khuyến mãi FPT tháng 7 2026</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/tin-tuc/ky-thuat-vien-fpt-telecom-dung-cam-lao-xuong-song-cuu-song-be-trai-duoi-nuoc-tai-hai-phong-14999/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>FPT Telecom</news:name>
+        <news:language>vi</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-18</news:publication_date>
+      <news:title>Kỹ thuật viên FPT Telecom dũng cảm lao xuống sông cứu sống bé trai dưới nước tại Hải Phòng 14999</news:title>
     </news:news>
   </url>
   <url>
@@ -84,8 +84,41 @@
         <news:name>FPT Telecom</news:name>
         <news:language>vi</news:language>
       </news:publication>
-      <news:publication_date>2026-08-01</news:publication_date>
+      <news:publication_date>2026-07-20</news:publication_date>
       <news:title>Lịch thi đấu ASEAN Cup 2026</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/tin-tuc/ngoai-hang-anh-2026-27-fpt-play/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>FPT Telecom</news:name>
+        <news:language>vi</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-22</news:publication_date>
+      <news:title>Ngoại hạng Anh 2026-27 FPT Play</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/tin-tuc/san-van-dong-vinfast-135000-cho-lon-nhat-the-gioi/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>FPT Telecom</news:name>
+        <news:language>vi</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-25</news:publication_date>
+      <news:title>Sân vận động VinFast 135000 chỗ lớn nhất thế giới</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/tin-tuc/uu-dai-den-100000-dong-khi-thanh-toan-tren-hi-fpt-15012/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>FPT Telecom</news:name>
+        <news:language>vi</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-28</news:publication_date>
+      <news:title>Ưu đãi đến 100000 đồng khi thanh toán trên Hi FPT 15012</news:title>
     </news:news>
   </url>
 </urlset>

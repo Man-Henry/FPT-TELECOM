@@ -248,40 +248,34 @@ def update_home_index(article):
         content = f.read()
         
     date_str = datetime.now().strftime("%d/%m/%Y")
-    new_card = f'''        <article class="news-card" style="background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-          <div class="news-img" style="margin-bottom: 16px;">
-            <a href="/FPT-TELECOM/tin-tuc/{article['slug']}/">
-              <img src="{article['image']}" alt="{article['title']}" loading="lazy" style="width: 100%; border-radius: 8px; aspect-ratio: 16/9; object-fit: cover;">
-            </a>
-          </div>
-          <div class="news-content" style="flex-grow: 1; display: flex; flex-direction: column;">
-            <p class="news-date" style="color: #64748b; font-size: 0.85rem; margin-bottom: 8px;">{date_str}</p>
-            <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 12px; flex-grow: 1;"><a href="/FPT-TELECOM/tin-tuc/{article['slug']}/" style="color: inherit; text-decoration: none;">{article['title']}</a></h3>
-            <p style="color: #475569; font-size: 0.9rem; margin-bottom: 16px;">Đọc bài viết chi tiết tại trang chính thức của FPT.vn...</p>
-            <a href="/FPT-TELECOM/tin-tuc/{article['slug']}/" style="color: #ff6500; font-weight: 600; font-size: 0.9rem; text-decoration: none;">Đọc tiếp →</a>
-          </div>
-        </article>\n'''
+    new_card = f'''          <a href="/FPT-TELECOM/tin-tuc/{article['slug']}/" class="group block">
+            <div class="aspect-video bg-slate-200 rounded-2xl overflow-hidden mb-4 relative">
+              <img src="{article['image']}" alt="{article['title']}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="text-sm text-slate-500 mb-2">{date_str}</div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{article['title']}</h3>
+          </a>\n'''
         
     if article['slug'] not in content:
-        pattern = '<div class="news-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">'
+        # Look for the news grid section - using Tailwind classes
+        pattern = '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">'
         if pattern in content:
             parts = content.split(pattern)
-            grid_content = parts[1].split('</div>\n      <div style="text-align: center; margin-top: 30px;">')[0]
+            grid_content = parts[1].split('</div>\\n      </div>')[0]
             
-            # Count existing cards
-            cards = grid_content.split('</article>')
-            cards = [c for c in cards if '<article' in c]
+            # Count existing cards (looking for <a href="/FPT-TELECOM/tin-tuc/...")
+            cards = [c for c in grid_content.split('</a>') if '<a href="/FPT-TELECOM/tin-tuc/' in c]
             
             if len(cards) >= 3:
-                last_card = cards[-1] + '</article>'
+                last_card = cards[-1] + '</a>'
                 content = content.replace(last_card, '')
                 
-            content = content.replace(pattern, pattern + '\n' + new_card)
+            content = content.replace(pattern, pattern + '\\n' + new_card)
             with open(index_file, 'w', encoding='utf-8') as f:
                 f.write(content)
             print(f"Updated index.html with {article['slug']}")
         else:
-            print("news-grid pattern not found in index.html")
+            print("News grid pattern not found in index.html")
 
 def update_sitemap(article):
     if not os.path.exists(sitemap_file):
