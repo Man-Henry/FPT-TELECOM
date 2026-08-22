@@ -29,7 +29,7 @@ jobs:
         run: npm install
 
       - name: Run FPT News Sync Script
-        run: node scripts/sync_fpt_news.js
+        run: node --dns-result-order=ipv4first scripts/sync_fpt_news.js
 
       - name: Commit and Push Changes
         run: |

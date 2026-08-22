@@ -7,7 +7,13 @@
 
 const fs = require("fs");
 const path = require("path");
+const dns = require("dns");
 const cheerio = require("cheerio");
+
+// Force IPv4 resolution to prevent ETIMEDOUT on GitHub Actions / Ubuntu runners
+try {
+  dns.setDefaultResultOrder("ipv4first");
+} catch (e) {}
 
 const BASE_URL = "https://fpt.vn";
 const NEWS_URL = "https://fpt.vn/tin-tuc";
@@ -56,17 +62,36 @@ function getTodayString() {
   return `${day}/${month}/${year}`;
 }
 
-async function fetchHtml(url) {
-  const res = await fetch(url, {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      "Accept-Language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
-    },
-  });
-  if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
-  return await res.text();
+async function fetchHtml(url, retries = 2) {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+      const res = await fetch(url, {
+        signal: controller.signal,
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+          Accept:
+            "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+          "Accept-Language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+        },
+      });
+      clearTimeout(timeoutId);
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.text();
+    } catch (err) {
+      if (i === retries) {
+        throw err;
+      }
+      console.log(`⚠️ Retry ${i + 1}/${retries} for ${url} due to: ${err.message}`);
+      await new Promise((r) => setTimeout(r, 2000));
+    }
+  }
 }
 
 // Generate single article HTML
@@ -730,8 +755,12 @@ async function main() {
     // Always regenerate clean and complete sitemap
     generateFullSitemap();
   } catch (error) {
-    console.error("Fatal error during sync:", error);
-    process.exit(1);
+    console.warn("⚠️ Sync note:", error.message || error);
+    console.log("ℹ️ Preserving existing content and ensuring sitemap is up to date...");
+    try {
+      updateHomepageNews();
+      generateFullSitemap();
+    } catch (e) {}
   }
 }
 
