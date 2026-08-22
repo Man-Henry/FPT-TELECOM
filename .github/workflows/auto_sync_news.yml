@@ -26,7 +26,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci --prefer-offline || npm install --no-save
 
       - name: Run FPT News Sync Script
         run: node --dns-result-order=ipv4first scripts/sync_fpt_news.js
@@ -36,10 +36,10 @@ jobs:
           git config --global user.name "Mẫn Henry"
           git config --global user.email "tvm19624@gmail.com"
           git add index.html pages/posts/*.html pages/news.html sitemap.xml data/synced_news.json
-          if ! git diff-index --quiet HEAD --; then
+          if git diff --staged --quiet; then
+            echo "No new news articles found. Everything is up to date."
+          else
             git commit -m "Tu dong cap nhat tin tuc FPT Telecom moi nhat"
             git push
             echo "Successfully updated and pushed new articles."
-          else
-            echo "No new news articles found. Everything is up to date."
           fi
