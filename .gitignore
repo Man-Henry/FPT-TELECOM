@@ -24,12 +24,9 @@ yarn-error.log*
 Thumbs.db
 desktop.ini
 
-# Cloudflare Worker & Backend (Sensitive AI Prompt, Tokens, Configs)
+# Cloudflare Worker state & Local dev
 .wrangler/
 .wrangler
-wrangler.toml
-src/
-google-apps-script.js
 
 # Secrets, Credentials & Sensitive Data
 .dev.vars
@@ -71,9 +68,6 @@ firebase-debug.log*
 # AI / Agents (if containing sensitive prompts/keys)
 .agents/
 .gemini/
-
-# Backend / Cloudflare Worker (Contains System Prompts and Bot Logic)
-src/
 
 # Scratch scripts (local utilities, not for production)
 scratch/
