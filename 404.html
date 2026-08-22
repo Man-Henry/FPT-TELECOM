@@ -1,0 +1,105 @@
+﻿<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Không tìm thấy trang</title>
+    <style>
+      body {
+        font-family: "Lora", sans-serif;
+        text-align: center;
+        padding: 50px;
+        color: #333;
+      }
+      h1 {
+        font-size: 50px;
+        color: #0665f5;
+      }
+      p {
+        font-size: 20px;
+      }
+      a {
+        color: #0665f5;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/images/main/fptlogo.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/images/main/fptlogo.png"
+    />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/images/main/fptlogo.png" />
+  </head>
+  <body>
+    <h1>404</h1>
+    <p>Rất tiếc, trang bạn đang tìm kiếm không tồn tại.</p>
+    <p><a href="index.html">Quay về trang chủ</a></p>
+    <!-- Cookie Consent Banner -->
+    <div
+      id="cookie-banner"
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0f172a;
+        color: white;
+        padding: 15px 24px;
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 9999;
+        font-size: 14px;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <div style="flex: 1; margin-right: 20px">
+        Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn trên trang web
+        này. Bằng cách tiếp tục duyệt web, bạn đồng ý với của chúng tôi.
+      </div>
+      <div>
+        <button
+          onclick="
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+          "
+          style="
+            background: #0665f5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+          "
+        >
+          Đồng ý
+        </button>
+      </div>
+    </div>
+    <script>
+      if (!localStorage.getItem("cookieConsent")) {
+        document.getElementById("cookie-banner").style.display = "flex";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea/
+.vscode/
+.vs/
+.vs
+*.suo
+*.wsuo
+*.ntvs*
+*.njsproj
+*.sln
+*.slnx
+*.sw?
+*.tmp
+*.bak
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Cloudflare Worker & Backend (Sensitive AI Prompt, Tokens, Configs)
+.wrangler/
+.wrangler
+wrangler.toml
+src/
+google-apps-script.js
+
+# Secrets, Credentials & Sensitive Data
+.dev.vars
+.env*
+.env
+secret.json
+credentials.json
+client_secret.json
+aws_credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.cert
+*.crt
+*.ovpn
+secrets/
+private/
+auth.json
+firebase-adminsdk.json
+
+# Databases
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+*.sql
+*.mdb
+*.mdf
+*.ldf
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+firebase-debug.log*
+
+# AI / Agents (if containing sensitive prompts/keys)
+.agents/
+.gemini/
+
+# Backend / Cloudflare Worker (Contains System Prompts and Bot Logic)
+src/
+
+# Scratch scripts (local utilities, not for production)
+scratch/
+
+# Audit reports
+fpttelecomvn.click-audit/
+
+# Python cache
+__pycache__/
+*.pyc

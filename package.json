@@ -1,0 +1,19 @@
+{
+  "name": "fpt-telecom-site",
+  "version": "1.0.0",
+  "scripts": {
+    "sync": "node scripts/sync_fpt_news.js",
+    "sync-news": "node scripts/sync_fpt_news.js",
+    "build:css": "npx clean-css-cli -o css/styles.min.css css/styles.css",
+    "build:js": "npx terser js/script.js -o js/script.min.js --compress --mangle",
+    "build": "node scripts/sync_fpt_news.js && npx clean-css-cli -o css/styles.min.css css/styles.css && npx terser js/script.js -o js/script.min.js --compress --mangle"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "sharp": "^0.35.3",
+    "terser": "^5.46.1"
+  }
+}

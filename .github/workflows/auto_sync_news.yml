@@ -1,0 +1,45 @@
+name: Auto Sync FPT News
+
+on:
+  schedule:
+    # Runs every 6 hours (at 00:00, 06:00, 12:00, 18:00 UTC)
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  sync-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run FPT News Sync Script
+        run: node scripts/sync_fpt_news.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Mẫn Henry"
+          git config --global user.email "tvm19624@gmail.com"
+          git add index.html pages/posts/*.html pages/news.html sitemap.xml data/synced_news.json
+          if ! git diff-index --quiet HEAD --; then
+            git commit -m "Tu dong cap nhat tin tuc FPT Telecom moi nhat"
+            git push
+            echo "Successfully updated and pushed new articles."
+          else
+            echo "No new news articles found. Everything is up to date."
+          fi
