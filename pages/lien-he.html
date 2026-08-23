@@ -1048,6 +1048,8 @@
             Hơn 143 khách hàng đã đăng ký trong tuần qua
           </div>
           <form id="leadForm" class="glass-form" action="javascript:void(0);">
+            <input type="hidden" name="form_type" id="form_type" value="registration" />
+            <input type="hidden" name="website" value="" />
             <div>
               <label>Họ và tên *</label>
               <input
@@ -1057,50 +1059,80 @@
                 required
               />
             </div>
-            <div>
-              <label>Số điện thoại *</label>
-              <input
-                type="tel"
-                name="Số điện thoại"
-                placeholder="Nhập số điện thoại"
-                pattern="[0-9]{10,11}"
-                required
-              />
-            </div>
-            <div>
-              <label>Địa chỉ lắp đặt *</label>
-              <input
-                type="text"
-                name="Khu vực"
-                placeholder="Số nhà, phường/xã, quận/huyện"
-                required
-              />
-            </div>
-            <div class="glass-row">
+
+            <!-- Registration Fields -->
+            <div id="registration-fields">
               <div>
-                <label>Gói cước quan tâm</label>
-                <select name="Gói cước">
-                  <option value="Chưa rõ - Cần tư vấn">
-                    Chọn dịch vụ quan tâm
-                  </option>
-                  <option value="GIGA / SKY">Gói GIGA / SKY</option>
-                  <option value="META">
-                    Gói META (Dành cho Streamer, Game thủ)
-                  </option>
-                  <option value="COMBO Internet + Truyền hình">
-                    COMBO Internet + Truyền hình
-                  </option>
-                  <option value="FPT Camera">FPT Camera</option>
-                </select>
+                <label>Số điện thoại *</label>
+                <input
+                  type="tel"
+                  name="Số điện thoại"
+                  id="regPhone"
+                  placeholder="Nhập số điện thoại"
+                  pattern="[0-9]{10,11}"
+                  required
+                />
               </div>
               <div>
-                <label>Thời gian liên hệ</label>
-                <select name="Thời gian liên hệ">
-                  <option value="Gọi ngay bây giờ">Gọi ngay</option>
-                  <option value="Sáng (8h - 12h)">Sáng</option>
-                  <option value="Chiều (13h - 17h)">Chiều</option>
-                  <option value="Tối (sau 18h)">Tối</option>
-                </select>
+                <label>Địa chỉ lắp đặt *</label>
+                <input
+                  type="text"
+                  name="Khu vực"
+                  id="regAddress"
+                  placeholder="Số nhà, phường/xã, quận/huyện"
+                  required
+                />
+              </div>
+              <div class="glass-row">
+                <div>
+                  <label>Gói cước quan tâm</label>
+                  <select name="Gói cước" id="regPackage">
+                    <option value="Chưa rõ - Cần tư vấn">
+                      Chọn dịch vụ quan tâm
+                    </option>
+                    <option value="GIGA / SKY">Gói GIGA / SKY</option>
+                    <option value="META">
+                      Gói META (Dành cho Streamer, Game thủ)
+                    </option>
+                    <option value="COMBO Internet + Truyền hình">
+                      COMBO Internet + Truyền hình
+                    </option>
+                    <option value="FPT Camera">FPT Camera</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Thời gian liên hệ</label>
+                  <select name="Thời gian liên hệ" id="regContactTime">
+                    <option value="Gọi ngay bây giờ">Gọi ngay</option>
+                    <option value="Sáng (8h - 12h)">Sáng</option>
+                    <option value="Chiều (13h - 17h)">Chiều</option>
+                    <option value="Tối (sau 18h)">Tối</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Support Fields (Hidden by default) -->
+            <div id="support-fields" style="display: none;">
+              <div>
+                <label>Số điện thoại đăng ký hoặc Mã hợp đồng *</label>
+                <input
+                  type="text"
+                  name="Thông tin khách hàng"
+                  id="supportContactInfo"
+                  placeholder="Ví dụ: 0987654321 hoặc HĐ SGN123456"
+                  disabled
+                />
+              </div>
+              <div>
+                <label>Nhập nội dung cần hỗ trợ *</label>
+                <textarea
+                  name="Nội dung hỗ trợ"
+                  id="supportContent"
+                  rows="3"
+                  placeholder="Mô tả vấn đề cần hỗ trợ: báo hỏng mạng, đổi mật khẩu WiFi, dời địa điểm, đóng cước..."
+                  disabled
+                ></textarea>
               </div>
             </div>
 
@@ -1117,12 +1149,17 @@
               </label>
             </div>
 
-            <button type="submit" class="btn-orange-glow">
+            <button type="submit" class="btn-orange-glow" id="formSubmitBtn">
               ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY →
             </button>
-            <a href="tel:0383900321" class="btn-blue-outline"
-              >Nhập yêu cầu hỗ trợ</a
+            <button
+              type="button"
+              class="btn-blue-outline"
+              id="formToggleBtn"
+              onclick="toggleSupportForm(this)"
             >
+              Nhập yêu cầu hỗ trợ
+            </button>
           </form>
         </div>
       </section>

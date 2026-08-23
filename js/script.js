@@ -290,16 +290,26 @@ document.addEventListener("submit", async (event) => {
   }
 
   const formData = new FormData(form);
+  const isSupportMode = formData.get("form_type") === "support" || !!formData.get("Nội dung hỗ trợ");
   const name = formData.get("Họ tên") || "";
-  const phone = formData.get("Số điện thoại") || "";
-  const pkg = formData.get("Gói cước") || "Tư vấn chung";
+  const phone = isSupportMode
+    ? (formData.get("Thông tin khách hàng") || formData.get("Số điện thoại") || "")
+    : (formData.get("Số điện thoại") || "");
+  const pkg = isSupportMode ? "Yêu cầu hỗ trợ CSKH / Kỹ thuật" : (formData.get("Gói cước") || "Tư vấn chung");
+  const note = isSupportMode ? (formData.get("Nội dung hỗ trợ") || "") : (formData.get("Ghi chú") || "");
+
+  if (isSupportMode) {
+    formData.set("Số điện thoại", phone);
+    formData.set("Gói cước", pkg);
+    formData.set("Ghi chú", note);
+  }
 
   // Honeypot check — silently reject bots
   const honeypot = form.querySelector('[name="website"]');
   if (honeypot && honeypot.value) {
     if (result)
       result.textContent =
-        "Cảm ơn bạn! FPT sẽ liên hệ tư vấn trong thời gian sớm nhất.";
+        "Cảm ơn bạn! FPT sẽ liên hệ hỗ trợ trong thời gian sớm nhất.";
     if (typeof window.closeRegisterModal === "function")
       window.closeRegisterModal();
     if (typeof window.openSuccessModal === "function")
@@ -2192,31 +2202,61 @@ document.querySelectorAll(".scroll-animate").forEach((el) => {
 // --- Support Form Toggle ---
 window.toggleSupportForm = function (btn) {
   const form = btn.closest("form");
-  const supportField = form.querySelector("#support-field");
-  const supportTextarea = form.querySelector("#support-textarea");
-  const defaultRow = form.querySelector(".form-row");
-  const submitBtn = form.querySelector("#main-submit-btn");
+  if (!form) return;
+  const regFields = form.querySelector("#registration-fields");
+  const supportFields = form.querySelector("#support-fields");
+  const submitBtn = form.querySelector("#formSubmitBtn") || form.querySelector("#main-submit-btn") || form.querySelector('button[type="submit"]');
+  const formTypeInput = form.querySelector("#form_type");
 
-  if (supportField.style.display === "none") {
-    supportField.style.display = "block";
-    defaultRow.style.display = "none";
+  const regPhone = form.querySelector("#regPhone");
+  const regAddress = form.querySelector("#regAddress");
+  const regSelects = regFields ? regFields.querySelectorAll("select") : [];
+  const supportContactInfo = form.querySelector("#supportContactInfo");
+  const supportContent = form.querySelector("#supportContent");
 
-    const selects = defaultRow.querySelectorAll("select");
-    selects.forEach((s) => (s.disabled = true));
+  const isSupport = supportFields && supportFields.style.display !== "none";
 
-    supportTextarea.required = true;
-    submitBtn.innerHTML = "GỬI YÊU CẦU HỖ TRỢ <span>→</span>";
-    btn.textContent = "Quay lại đăng ký dịch vụ";
+  if (!isSupport) {
+    // Switch to Support Mode
+    if (regFields) regFields.style.display = "none";
+    if (supportFields) supportFields.style.display = "block";
+    
+    if (regPhone) { regPhone.required = false; regPhone.disabled = true; }
+    if (regAddress) { regAddress.required = false; regAddress.disabled = true; }
+    regSelects.forEach((s) => (s.disabled = true));
+
+    if (supportContactInfo) {
+      supportContactInfo.required = true;
+      supportContactInfo.disabled = false;
+      supportContactInfo.focus();
+    }
+    if (supportContent) {
+      supportContent.required = true;
+      supportContent.disabled = false;
+    }
+    if (formTypeInput) formTypeInput.value = "support";
+    if (submitBtn) submitBtn.innerHTML = "GỬI YÊU CẦU HỖ TRỢ →";
+    btn.innerHTML = "← Quay lại đăng ký gói cước mới";
   } else {
-    supportField.style.display = "none";
-    defaultRow.style.display = "flex";
+    // Switch back to Registration Mode
+    if (regFields) regFields.style.display = "block";
+    if (supportFields) supportFields.style.display = "none";
 
-    const selects = defaultRow.querySelectorAll("select");
-    selects.forEach((s) => (s.disabled = false));
+    if (regPhone) { regPhone.required = true; regPhone.disabled = false; }
+    if (regAddress) { regAddress.required = true; regAddress.disabled = false; }
+    regSelects.forEach((s) => (s.disabled = false));
 
-    supportTextarea.required = false;
-    submitBtn.innerHTML = "ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY <span>→</span>";
-    btn.textContent = "Nhập yêu cầu hỗ trợ";
+    if (supportContactInfo) {
+      supportContactInfo.required = false;
+      supportContactInfo.disabled = true;
+    }
+    if (supportContent) {
+      supportContent.required = false;
+      supportContent.disabled = true;
+    }
+    if (formTypeInput) formTypeInput.value = "registration";
+    if (submitBtn) submitBtn.innerHTML = "ĐĂNG KÝ NHẬN KHUYẾN MÃI NGAY →";
+    btn.innerHTML = "Nhập yêu cầu hỗ trợ";
   }
 };
 
