@@ -2282,48 +2282,56 @@ const modalsHTML = `
   border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56,189,248,0.1);
 }
 .fpt-modal-content .consent-group {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin: 14px 0 10px 0;
+  background: #f0fdf4 !important;
+  border: 1px solid #bbf7d0 !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  margin: 14px 0 10px 0 !important;
+  box-shadow: 0 1px 3px rgba(22, 101, 52, 0.05) !important;
 }
 .fpt-modal-content .checkbox-label {
   display: flex !important;
+  flex-direction: row !important;
   align-items: flex-start !important;
   gap: 10px !important;
   font-size: 12.5px !important;
-  color: #334155 !important;
+  color: #166534 !important;
   font-weight: 500 !important;
   line-height: 1.45 !important;
   cursor: pointer !important;
   text-align: left !important;
   margin: 0 !important;
+  user-select: none !important;
 }
 .fpt-modal-content .checkbox-label input[type="checkbox"] {
   width: 18px !important;
+  max-width: 18px !important;
   height: 18px !important;
+  max-height: 18px !important;
   min-width: 18px !important;
   min-height: 18px !important;
-  margin: 1px 0 0 0 !important;
+  margin: 2px 0 0 0 !important;
   padding: 0 !important;
   flex-shrink: 0 !important;
-  accent-color: #0056d6 !important;
+  accent-color: #16a34a !important;
   cursor: pointer !important;
   display: inline-block !important;
-  background: none !important;
+  background: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
 .fpt-modal-content .checkbox-label span {
   flex: 1 !important;
   font-weight: 500 !important;
-  color: #475569 !important;
+  color: #166534 !important;
 }
 .fpt-modal-content .checkbox-label a {
-  color: #0056d6 !important;
-  font-weight: 600 !important;
+  color: #15803d !important;
+  font-weight: 700 !important;
   text-decoration: underline !important;
+}
+.fpt-modal-content .checkbox-label a:hover {
+  color: #047857 !important;
 }
 .form-note-text {
   font-size: 12px; color: #64748b; text-align: center; margin: 10px 0 14px 0; line-height: 1.4;
@@ -2396,7 +2404,7 @@ const modalsHTML = `
       <div class="form-group consent-group">
         <label class="checkbox-label">
           <input type="checkbox" name="consent_nd13" value="1" checked required>
-          <span>Tôi đồng ý cho phép FPT Telecom thu thập và xử lý dữ liệu cá nhân phục vụ tư vấn dịch vụ theo quy định tại <a href="${policyHref}" target="_blank">Nghị định 13/2023/NĐ-CP</a>.</span>
+          <span>🔒 <strong>Miễn phí khảo sát 100%.</strong> Tôi đồng ý cho FPT Telecom xử lý thông tin để tư vấn dịch vụ theo <a href="${policyHref}" target="_blank">Nghị định 13/2023/NĐ-CP</a>.</span>
         </label>
       </div>
 

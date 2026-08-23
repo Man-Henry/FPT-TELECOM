@@ -421,30 +421,35 @@
         box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.18);
       }
 
+      .form-consent-badge,
       .form-consent-wrap {
         width: 100%;
         margin: 14px 0 10px 0;
-        background: rgba(255, 255, 255, 0.65);
-        border: 1px solid rgba(255, 255, 255, 0.85);
+        background: #f0fdf4 !important;
+        border: 1px solid #bbf7d0 !important;
         border-radius: 12px;
         padding: 12px 14px;
         box-sizing: border-box;
+        box-shadow: 0 1px 3px rgba(22, 101, 52, 0.05);
       }
 
+      .consent-badge-label,
       .consent-label {
         display: flex !important;
         flex-direction: row !important;
         align-items: flex-start !important;
         gap: 10px !important;
         font-size: 12.5px !important;
-        color: #334155 !important;
+        color: #166534 !important;
         font-weight: 500 !important;
         line-height: 1.45 !important;
         cursor: pointer !important;
         text-align: left !important;
         margin: 0 !important;
+        user-select: none;
       }
 
+      .consent-badge-label input[type="checkbox"],
       .consent-label input[type="checkbox"] {
         width: 18px !important;
         max-width: 18px !important;
@@ -455,7 +460,7 @@
         margin: 2px 0 0 0 !important;
         padding: 0 !important;
         flex-shrink: 0 !important;
-        accent-color: #0056d6 !important;
+        accent-color: #16a34a !important;
         cursor: pointer !important;
         display: inline-block !important;
         background: transparent !important;
@@ -463,16 +468,23 @@
         box-shadow: none !important;
       }
 
+      .consent-badge-label span,
       .consent-label span {
         flex: 1 !important;
         font-weight: 500 !important;
-        color: #334155 !important;
+        color: #166534 !important;
       }
 
+      .consent-badge-label a,
       .consent-label a {
-        color: #0056d6 !important;
-        font-weight: 600 !important;
+        color: #15803d !important;
+        font-weight: 700 !important;
         text-decoration: underline !important;
+      }
+
+      .consent-badge-label a:hover,
+      .consent-label a:hover {
+        color: #047857 !important;
       }
 
       .glass-row {
@@ -1092,8 +1104,8 @@
               </div>
             </div>
 
-            <div class="form-consent-wrap">
-              <label class="consent-label">
+            <div class="form-consent-badge">
+              <label class="consent-badge-label">
                 <input
                   type="checkbox"
                   name="consent_nd13"
@@ -1101,7 +1113,7 @@
                   checked
                   required
                 />
-                <span>Tôi đồng ý cho phép FPT Telecom thu thập và xử lý dữ liệu cá nhân phục vụ tư vấn và đăng ký dịch vụ theo quy định tại <a href="chinh-sach.html#privacy" target="_blank">Nghị định 13/2023/NĐ-CP</a>.</span>
+                <span>🔒 <strong>Miễn phí khảo sát 100%.</strong> Tôi đồng ý cho FPT Telecom xử lý thông tin để tư vấn dịch vụ theo <a href="chinh-sach.html#privacy" target="_blank">Nghị định 13/2023/NĐ-CP</a>.</span>
               </label>
             </div>
 
@@ -1111,11 +1123,6 @@
             <a href="tel:0383900321" class="btn-blue-outline"
               >Nhập yêu cầu hỗ trợ</a
             >
-
-            <div class="form-footer">
-              🔒 Miễn phí khảo sát 100%. Thông tin được bảo mật tuyệt đối theo
-              <a href="chinh-sach.html#privacy">chính sách Nghị định 13/2023</a> của FPT Telecom.
-            </div>
           </form>
         </div>
       </section>

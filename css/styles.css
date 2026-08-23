@@ -6733,6 +6733,7 @@ footer {
 /* ========================================================
    NGHỊ ĐỊNH 13/2023/NĐ-CP CONSENT CHECKBOX & FORM ALIGNMENT
    ======================================================== */
+.form-consent-badge,
 .form-consent-wrap,
 .consent-group {
   width: 100% !important;
@@ -6741,23 +6742,31 @@ footer {
   clear: both !important;
   grid-column: 1 / -1 !important;
   box-sizing: border-box !important;
+  background: #f0fdf4 !important;
+  border: 1px solid #bbf7d0 !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  box-shadow: 0 1px 3px rgba(22, 101, 52, 0.05) !important;
 }
 
+.consent-badge-label,
 .consent-label,
 .checkbox-label {
   display: flex !important;
+  flex-direction: row !important;
   align-items: flex-start !important;
   gap: 10px !important;
-  font-size: 13px !important;
-  color: #334155 !important;
+  font-size: 12.5px !important;
+  color: #166534 !important;
   font-weight: 500 !important;
   line-height: 1.45 !important;
   cursor: pointer !important;
   text-align: left !important;
-  user-select: none;
+  user-select: none !important;
   margin: 0 !important;
 }
 
+.consent-badge-label input[type="checkbox"],
 .consent-label input[type="checkbox"],
 .checkbox-label input[type="checkbox"],
 .glass-form input[type="checkbox"],
@@ -6771,7 +6780,7 @@ footer {
   margin: 2px 0 0 0 !important;
   padding: 0 !important;
   flex-shrink: 0 !important;
-  accent-color: #0056d6 !important;
+  accent-color: #16a34a !important;
   cursor: pointer !important;
   display: inline-block !important;
   background: transparent !important;
@@ -6780,23 +6789,27 @@ footer {
   border-radius: 4px !important;
 }
 
+.consent-badge-label span,
 .consent-label span,
 .checkbox-label span {
   flex: 1 !important;
   font-weight: 500 !important;
+  color: #166534 !important;
 }
 
+.consent-badge-label a,
 .consent-label a,
 .checkbox-label a {
-  color: #0056d6 !important;
-  font-weight: 600 !important;
+  color: #15803d !important;
+  font-weight: 700 !important;
   text-decoration: underline !important;
   transition: color 0.2s ease;
 }
 
+.consent-badge-label a:hover,
 .consent-label a:hover,
 .checkbox-label a:hover {
-  color: #ea580c !important;
+  color: #047857 !important;
 }
 
 .glass-form .btn-orange-glow,
