@@ -10,9 +10,6 @@ binding = "DB"
 database_name = "chat_db"
 database_id = "e5c6610d-917e-48b3-8f6d-69edbce121d6"
 
-# Rate Limiter Binding (Chống Spam)
-# [[unsafe.bindings]]
-# name = "RATE_LIMITER"
-# type = "ratelimit"
-# namespace_id = "1001"
-# simple = { limit = 20, period = 60 }
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "fpt-pricing-index"

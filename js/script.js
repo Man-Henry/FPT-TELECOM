@@ -1357,7 +1357,12 @@ if (chatToggle && chatWidget) {
   const chatHistory = []; // Lưu ngữ cảnh trò chuyện
 
   if (chatInput && chatSendBtn && chatMessages) {
-    const appendMessage = (text, sender) => {
+    const escapeText = (str) => {
+      if (typeof str !== "string") return "";
+      return str.replace(/[&<>'"]/g, (tag) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[tag] || tag));
+    };
+
+    const appendMessage = (text, sender, cards = null, showHotline = false) => {
       const msgDiv = document.createElement("div");
       msgDiv.className = `chat-msg ${sender}-msg`;
       const bubble = document.createElement("div");
@@ -1380,6 +1385,89 @@ if (chatToggle && chatWidget) {
           bubble.appendChild(document.createTextNode(part));
         }
       });
+
+      // Render 3D Pricing Cards if present (Milestone 2.6)
+      if (cards && Array.isArray(cards) && cards.length > 0) {
+        const cardsWrap = document.createElement("div");
+        cardsWrap.className = "pricing-cards-container";
+
+        cards.forEach((c) => {
+          const card = document.createElement("article");
+          card.className = "pricing-card-3d";
+          card.setAttribute("role", "article");
+          card.setAttribute("aria-label", c.name || "Gói cước FPT");
+
+          const badgeHtml = c.promo
+            ? `<div class="card-badge">Ưu đãi</div>`
+            : "";
+          const speedHtml = c.speed
+            ? `<div class="card-speed-badge">⚡ ${escapeText(c.speed)}</div>`
+            : "";
+          const equipHtml = c.equipment
+            ? `<li><span class="feat-icon">✓</span> <span>${escapeText(c.equipment)}</span></li>`
+            : "";
+          const promoHtml = c.promo
+            ? `<li><span class="feat-icon">🎁</span> <span>${escapeText(c.promo)}</span></li>`
+            : "";
+
+          card.innerHTML = `
+            ${badgeHtml}
+            <div>
+              <div class="card-title">${escapeText(c.name || "Gói cước FPT")}</div>
+              ${speedHtml}
+              <div class="card-price-wrap">
+                <div class="card-price">${escapeText(c.price || "")}</div>
+              </div>
+              <ul class="card-features-list">
+                ${equipHtml}
+                ${promoHtml}
+                <li><span class="feat-icon">✓</span> <span>Khảo sát & ký online 24h</span></li>
+              </ul>
+            </div>
+            <button class="card-cta-btn" type="button" aria-label="Đăng ký ${escapeText(c.name || "")}">
+              <span>ĐĂNG KÝ NGAY</span> <span>→</span>
+            </button>
+          `;
+
+          const ctaBtn = card.querySelector(".card-cta-btn");
+          ctaBtn.addEventListener("click", () => {
+            // Track GA4 event card_cta_click (Requirement 2.7.2)
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: "card_cta_click",
+              package_name: c.name,
+              package_price: c.price,
+            });
+
+            if (typeof window.openRegisterModal === "function") {
+              window.openRegisterModal(c.name);
+            }
+          });
+
+          cardsWrap.appendChild(card);
+        });
+
+        bubble.appendChild(cardsWrap);
+
+        // Track GA4 event card_impression (Requirement 2.7.1)
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "card_impression",
+          card_count: cards.length,
+          packages: cards.map((c) => c.name),
+        });
+      }
+
+      // Render Hotline Fallback UI if needed
+      if (showHotline) {
+        const hotlineBox = document.createElement("div");
+        hotlineBox.className = "chat-hotline-fallback";
+        hotlineBox.innerHTML = `
+          <p>📞 Cần tư vấn nhanh theo khu vực?</p>
+          <a href="tel:0383900321">GỌI HOTLINE: 0383 900 321</a>
+        `;
+        bubble.appendChild(hotlineBox);
+      }
 
       msgDiv.appendChild(bubble);
       chatMessages.appendChild(msgDiv);
@@ -1613,7 +1701,7 @@ if (chatToggle && chatWidget) {
             chatMessages.removeChild(typingIndicator);
 
           if (data.reply) {
-            appendMessage(data.reply, "bot");
+            appendMessage(data.reply, "bot", data.cards, data.show_hotline);
             chatHistory.push({ role: "model", text: data.reply });
           } else {
             appendMessage(

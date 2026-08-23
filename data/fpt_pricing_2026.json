@@ -1,0 +1,506 @@
+[
+  {
+    "id": "giga_hcm_noithanh",
+    "text": "Gói cước Internet GIGA khu vực Nội thành TP.HCM (Quận 1, 3, 4, 5, 7, 10, 11, Phú Nhuận, Bình Thạnh, Tân Bình, Gò Vấp, TP. Thủ Đức). Băng thông: Tốc độ tải lên/xuống đạt 150Mbps tối thiểu đến 1Gbps. Giá cước: 255.000đ/tháng (đã gồm VAT). Thiết bị trang bị: Modem Wi-Fi 6 AX3000 thế hệ mới 2 băng tần cực mạnh. Khuyến mãi: Miễn phí lắp đặt, tặng Voucher 200K trừ trực tiếp cước, trả trước 6 tháng hoặc 12 tháng tặng thêm 1 tháng cước. Phù hợp hộ gia đình từ 3-5 người, học tập trực tuyến, giải trí xem phim 4K.",
+    "metadata": {
+      "name": "Gói GIGA (Nội thành TP.HCM)",
+      "region": "hcm",
+      "sub_region": "noithanh",
+      "service_type": "internet",
+      "speed": "150Mbps - 1Gbps",
+      "price": "255.000đ/tháng",
+      "price_value": 255000,
+      "promo": "Tặng Voucher 200K + 1 Tháng cước",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "sky_hcm_noithanh",
+    "text": "Gói cước Internet SKY khu vực Nội thành TP.HCM (Quận 1, 3, 4, 5, 7, 10, 11, Phú Nhuận, Bình Thạnh, Tân Bình, Gò Vấp, TP. Thủ Đức). Băng thông: Tải xuống 1Gbps, tải lên 300Mbps. Giá cước: 265.000đ/tháng (đã gồm VAT). Thiết bị trang bị: Modem Wi-Fi 6 AX3000 Dual-Band. Khuyến mãi: Miễn phí hòa mạng, tặng Voucher 200K, trả trước 6 hoặc 12 tháng tặng thêm 1 tháng sử dụng. Phù hợp gia đình đông người, kinh doanh online, livestream bán hàng mượt mà.",
+    "metadata": {
+      "name": "Gói SKY (Nội thành TP.HCM)",
+      "region": "hcm",
+      "sub_region": "noithanh",
+      "service_type": "internet",
+      "speed": "1Gbps / 300Mbps",
+      "price": "265.000đ/tháng",
+      "price_value": 265000,
+      "promo": "Bán chạy nhất - Tặng Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "meta_hcm_noithanh",
+    "text": "Gói cước Internet META khu vực Nội thành TP.HCM (Quận 1, 3, 4, 5, 7, 10, 11, Phú Nhuận, Bình Thạnh, Tân Bình, Gò Vấp, TP. Thủ Đức). Băng thông: Tải lên và tải xuống đối xứng 1Gbps Không Giới Hạn. Giá cước: 365.000đ/tháng (đã gồm VAT). Thiết bị trang bị: Router Wi-Fi 6 chuyên dụng 2 băng tần cao cấp. Khuyến mãi: Miễn phí lắp đặt, tặng Voucher 200K, tặng 1 tháng khi trả trước. Dành cho Streamer, Game thủ chuyên nghiệp, lập trình viên, gia đình tải file nặng.",
+    "metadata": {
+      "name": "Gói META 1Gbps Đối Xứng (Nội thành HCM)",
+      "region": "hcm",
+      "sub_region": "noithanh",
+      "service_type": "internet",
+      "speed": "1Gbps Không Giới Hạn (Đối xứng)",
+      "price": "365.000đ/tháng",
+      "price_value": 365000,
+      "promo": "Tốc độ đỉnh cao - Tặng Voucher 200K",
+      "equipment": "Router Wi-Fi 6 Gaming Pro",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": false,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "giga_hcm_ngoaithanh",
+    "text": "Gói cước Internet GIGA khu vực Ngoại thành TP.HCM (Quận 12, Bình Tân, Huyện Hóc Môn, Củ Chi, Bình Chánh, Nhà Bè, Cần Giờ). Băng thông: 150Mbps - 1Gbps. Giá cước siêu ưu đãi: 220.000đ/tháng (đã gồm VAT). Thiết bị trang bị: Modem Wi-Fi 6 AX3000 thế hệ mới. Khuyến mãi: Tặng Voucher 200K, miễn phí lắp đặt, tặng 1 tháng khi đóng trước 6 hoặc 12 tháng. Phù hợp hộ gia đình từ 2-4 người.",
+    "metadata": {
+      "name": "Gói GIGA (Ngoại thành TP.HCM)",
+      "region": "hcm",
+      "sub_region": "ngoaithanh",
+      "service_type": "internet",
+      "speed": "150Mbps - 1Gbps",
+      "price": "220.000đ/tháng",
+      "price_value": 220000,
+      "promo": "Giá rẻ Ngoại thành - Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "sky_hcm_ngoaithanh",
+    "text": "Gói cước Internet SKY khu vực Ngoại thành TP.HCM (Quận 12, Bình Tân, Huyện Hóc Môn, Củ Chi, Bình Chánh, Nhà Bè, Cần Giờ). Băng thông: Tải xuống 1Gbps, tải lên 300Mbps. Giá cước: 235.000đ/tháng (đã gồm VAT). Thiết bị trang bị: Modem Wi-Fi 6 AX3000. Khuyến mãi: Miễn phí lắp đặt, tặng Voucher 200K, tặng 1 tháng khi đóng trước. Lựa chọn số 1 cho hộ gia đình ngoại thành cần mạng mạnh giá tốt.",
+    "metadata": {
+      "name": "Gói SKY (Ngoại thành TP.HCM)",
+      "region": "hcm",
+      "sub_region": "ngoaithanh",
+      "service_type": "internet",
+      "speed": "1Gbps / 300Mbps",
+      "price": "235.000đ/tháng",
+      "price_value": 235000,
+      "promo": "Bán chạy nhất Ngoại thành",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "meta_hcm_ngoaithanh",
+    "text": "Gói cước Internet META khu vực Ngoại thành TP.HCM (Quận 12, Bình Tân, Hóc Môn, Củ Chi, Bình Chánh, Nhà Bè, Cần Giờ). Băng thông: Tải lên và tải xuống đối xứng 1Gbps Không Giới Hạn. Giá cước: 335.000đ/tháng. Thiết bị: Router Wi-Fi 6 chuyên dụng. Khuyến mãi: Tặng Voucher 200K, tặng tháng cước khi trả trước.",
+    "metadata": {
+      "name": "Gói META (Ngoại thành TP.HCM)",
+      "region": "hcm",
+      "sub_region": "ngoaithanh",
+      "service_type": "internet",
+      "speed": "1Gbps Không Giới Hạn",
+      "price": "335.000đ/tháng",
+      "price_value": 335000,
+      "promo": "Mạng đối xứng 1Gbps",
+      "equipment": "Router Wi-Fi 6 Gaming Pro",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": false,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "combo_giga_hcm_noithanh",
+    "text": "Gói COMBO Internet GIGA + Truyền hình FPT Play tại Nội thành TP.HCM (Thủ Đức, Q.1, Q.3, Q.7, Q.10...). Băng thông Internet 150Mbps - 1Gbps kèm gần 200 kênh truyền hình đặc sắc, kho phim bom tấn và bản quyền bóng đá UEFA Champions League, V-League, FA Cup. Giá cước: 285.000đ/tháng (đã gồm VAT). Thiết bị: Modem Wi-Fi 6 + Box FPT Play điều khiển giọng nói 4K. Khuyến mãi: Tặng Voucher 200K, tặng 1 tháng khi đóng trước.",
+    "metadata": {
+      "name": "COMBO GIGA + FPT Play (Nội thành HCM)",
+      "region": "hcm",
+      "sub_region": "noithanh",
+      "service_type": "combo",
+      "speed": "150Mbps - 1Gbps + 200 Kênh TV",
+      "price": "285.000đ/tháng",
+      "price_value": 285000,
+      "promo": "Tặng Box 4K Giọng Nói + Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 + FPT Play Box 4K",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "combo_sky_hcm_noithanh",
+    "text": "Gói COMBO Internet SKY + Truyền hình FPT Play tại Nội thành TP.HCM (Thủ Đức, Q.1, Q.3, Q.7, Q.10...). Băng thông: Tải xuống 1Gbps, tải lên 300Mbps kèm truyền hình FPT Play 4K. Giá cước: 295.000đ/tháng (đã gồm VAT). Thiết bị: Modem Wi-Fi 6 AX3000 + Đầu thu FPT Play Box 4K điều khiển giọng nói tiếng Việt. Khuyến mãi: Tặng Voucher 200K, miễn phí lắp đặt trong 24h, tặng 1 tháng khi trả trước.",
+    "metadata": {
+      "name": "COMBO SKY + FPT Play (Nội thành HCM)",
+      "region": "hcm",
+      "sub_region": "noithanh",
+      "service_type": "combo",
+      "speed": "1Gbps/300Mbps + 200 Kênh TV 4K",
+      "price": "295.000đ/tháng",
+      "price_value": 295000,
+      "promo": "Hot nhất cho Gia đình - Tặng Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 + FPT Play Box 4K",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "combo_sky_hcm_ngoaithanh",
+    "text": "Gói COMBO Internet SKY + Truyền hình FPT Play tại Ngoại thành TP.HCM (Q.12, Bình Tân, Hóc Môn, Củ Chi, Bình Chánh, Nhà Bè). Tốc độ 1Gbps / 300Mbps kèm 200 kênh truyền hình FPT Play xem bóng đá đỉnh cao. Giá cước: 265.000đ/tháng. Trang bị: Modem Wi-Fi 6 AX3000 + Box FPT Play 4K. Khuyến mãi: Tặng Voucher 200K, miễn phí lắp đặt.",
+    "metadata": {
+      "name": "COMBO SKY + FPT Play (Ngoại thành HCM)",
+      "region": "hcm",
+      "sub_region": "ngoaithanh",
+      "service_type": "combo",
+      "speed": "1Gbps/300Mbps + FPT Play TV",
+      "price": "265.000đ/tháng",
+      "price_value": 265000,
+      "promo": "Tiết kiệm 50k/tháng - Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 + FPT Play Box 4K",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "giga_binhduong",
+    "text": "Gói cước Internet GIGA tại Tỉnh Bình Dương (TP. Thủ Dầu Một, Dĩ An, Thuận An, Bến Cát, Tân Uyên, Bắc Tân Uyên, Bàu Bàng, Dầu Tiếng, Phú Giáo). Tốc độ: 150Mbps - 1Gbps. Giá cước: 195.000đ/tháng (đã gồm VAT). Thiết bị: Modem Wi-Fi 6 AX3000 chuẩn mới. Khuyến mãi: Miễn phí hòa mạng, tặng Voucher 200K, đóng trước 6 hoặc 12 tháng tặng thêm 1 tháng cước. Phù hợp công nhân, người đi làm, hộ gia đình trẻ.",
+    "metadata": {
+      "name": "Gói GIGA (Bình Dương - Dĩ An/Thuận An)",
+      "region": "binh_duong",
+      "sub_region": "toan_tinh",
+      "service_type": "internet",
+      "speed": "150Mbps - 1Gbps",
+      "price": "195.000đ/tháng",
+      "price_value": 195000,
+      "promo": "Giá rẻ Bình Dương 195K + Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "sky_binhduong",
+    "text": "Gói cước Internet SKY tại Tỉnh Bình Dương (TP. Thủ Dầu Một, Dĩ An, Thuận An, Bến Cát, Tân Uyên...). Băng thông: Tải xuống 1Gbps, tải lên 300Mbps. Giá cước: 215.000đ/tháng (đã gồm VAT). Thiết bị: Modem Wi-Fi 6 AX3000 Dual-Band. Khuyến mãi: Tặng Voucher 200K, tặng 1 tháng khi đóng trước. Phù hợp nhà lầu, phòng trọ nhiều người, livestream buôn bán.",
+    "metadata": {
+      "name": "Gói SKY (Bình Dương)",
+      "region": "binh_duong",
+      "sub_region": "toan_tinh",
+      "service_type": "internet",
+      "speed": "1Gbps / 300Mbps",
+      "price": "215.000đ/tháng",
+      "price_value": 215000,
+      "promo": "Bán chạy nhất Bình Dương",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "combo_sky_binhduong",
+    "text": "Gói COMBO Internet SKY + Truyền hình FPT Play tại Bình Dương (Dĩ An, Thuận An, Thủ Dầu Một...). Tốc độ 1Gbps/300Mbps kèm gần 200 kênh truyền hình FPT Play, độc quyền bóng đá Cúp C1 Châu Âu và V-League. Giá cước: 245.000đ/tháng. Thiết bị: Modem Wi-Fi 6 + Box FPT Play 4K. Khuyến mãi: Tặng Voucher 200K, tặng tháng cước.",
+    "metadata": {
+      "name": "COMBO SKY + FPT Play (Bình Dương)",
+      "region": "binh_duong",
+      "sub_region": "toan_tinh",
+      "service_type": "combo",
+      "speed": "1Gbps/300Mbps + 200 Kênh TV",
+      "price": "245.000đ/tháng",
+      "price_value": 245000,
+      "promo": "Combo trọn gói tiết kiệm - Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 + Box FPT Play 4K",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "giga_dongnai",
+    "text": "Gói cước Internet GIGA tại Tỉnh Đồng Nai (TP. Biên Hòa, Long Thành, Nhơn Trạch, Trảng Bom, Vĩnh Cửu, Xuân Lộc, Định Quán, Thống Nhất, Cẩm Mỹ). Tốc độ 150Mbps - 1Gbps. Giá cước: 195.000đ/tháng (đã gồm VAT). Thiết bị: Modem Wi-Fi 6 AX3000 2 băng tần. Khuyến mãi: Miễn phí hòa mạng, tặng Voucher 200K, tặng 1 tháng khi đóng trước 6 hoặc 12 tháng.",
+    "metadata": {
+      "name": "Gói GIGA (Đồng Nai - Biên Hòa)",
+      "region": "dong_nai",
+      "sub_region": "toan_tinh",
+      "service_type": "internet",
+      "speed": "150Mbps - 1Gbps",
+      "price": "195.000đ/tháng",
+      "price_value": 195000,
+      "promo": "Chỉ 195K/tháng - Tặng Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "sky_dongnai",
+    "text": "Gói cước Internet SKY tại Tỉnh Đồng Nai (Biên Hòa, Long Thành, Nhơn Trạch...). Băng thông: Tải xuống 1Gbps, tải lên 300Mbps. Giá cước: 215.000đ/tháng (đã gồm VAT). Thiết bị: Modem Wi-Fi 6 AX3000. Khuyến mãi: Tặng Voucher 200K, tặng 1 tháng cước khi đóng trước. Phù hợp gia đình nhiều thiết bị kết nối.",
+    "metadata": {
+      "name": "Gói SKY (Đồng Nai - Biên Hòa)",
+      "region": "dong_nai",
+      "sub_region": "toan_tinh",
+      "service_type": "internet",
+      "speed": "1Gbps / 300Mbps",
+      "price": "215.000đ/tháng",
+      "price_value": 215000,
+      "promo": "Bán chạy nhất Đồng Nai",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "combo_sky_dongnai",
+    "text": "Gói COMBO Internet SKY + Truyền hình FPT Play tại Đồng Nai (Biên Hòa, Long Thành, Nhơn Trạch...). Tốc độ 1Gbps/300Mbps kèm 200 kênh truyền hình 4K và thể thao Ngoại Hạng Anh, Cúp C1. Giá cước: 245.000đ/tháng (đã gồm VAT). Thiết bị: Modem Wi-Fi 6 + Box FPT Play 4K giọng nói. Khuyến mãi: Tặng Voucher 200K, lắp nhanh trong ngày.",
+    "metadata": {
+      "name": "COMBO SKY + FPT Play (Đồng Nai)",
+      "region": "dong_nai",
+      "sub_region": "toan_tinh",
+      "service_type": "combo",
+      "speed": "1Gbps/300Mbps + 200 Kênh TV",
+      "price": "245.000đ/tháng",
+      "price_value": 245000,
+      "promo": "Trọn gói giải trí đỉnh cao",
+      "equipment": "Modem Wi-Fi 6 + Box FPT Play 4K",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "giga_vungtau",
+    "text": "Gói cước Internet GIGA tại Tỉnh Bà Rịa - Vũng Tàu (TP. Vũng Tàu, TP. Bà Rịa, TX. Phú Mỹ, Huyện Châu Đức, Đất Đỏ, Long Điền, Xuyên Mộc). Tốc độ 150Mbps - 1Gbps. Giá cước: 200.000đ/tháng. Thiết bị: Modem Wi-Fi 6 AX3000. Khuyến mãi: Miễn phí lắp đặt, tặng Voucher 200K, trả trước 6 hoặc 12 tháng tặng thêm 1 tháng.",
+    "metadata": {
+      "name": "Gói GIGA (Bà Rịa - Vũng Tàu)",
+      "region": "vung_tau",
+      "sub_region": "toan_tinh",
+      "service_type": "internet",
+      "speed": "150Mbps - 1Gbps",
+      "price": "200.000đ/tháng",
+      "price_value": 200000,
+      "promo": "Ưu đãi Vũng Tàu 200K - Tặng Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "sky_vungtau",
+    "text": "Gói cước Internet SKY tại Tỉnh Bà Rịa - Vũng Tàu (Vũng Tàu, Bà Rịa, Phú Mỹ...). Băng thông 1Gbps / 300Mbps. Giá cước: 225.000đ/tháng. Thiết bị: Modem Wi-Fi 6 AX3000. Khuyến mãi: Tặng Voucher 200K, tặng 1 tháng cước. Thích hợp cho hộ kinh doanh nhà nghỉ, homestay, gia đình đông người.",
+    "metadata": {
+      "name": "Gói SKY (Bà Rịa - Vũng Tàu)",
+      "region": "vung_tau",
+      "sub_region": "toan_tinh",
+      "service_type": "internet",
+      "speed": "1Gbps / 300Mbps",
+      "price": "225.000đ/tháng",
+      "price_value": 225000,
+      "promo": "Bán chạy nhất Vũng Tàu",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "giga_tiengiang_dongthap",
+    "text": "Gói cước Internet GIGA tại Khu vực Tiền Giang và Đồng Tháp (TP. Mỹ Tho, TP. Cao Lãnh, TP. Sa Đéc, TX. Cai Lậy, Gò Công, Hồng Ngự...). Tốc độ 150Mbps - 1Gbps. Giá cước: 185.000đ/tháng (đã gồm VAT). Thiết bị: Modem Wi-Fi 6 AX3000. Khuyến mãi: Miễn phí hòa mạng, tặng Voucher 200K, trả trước 6 hoặc 12 tháng tặng thêm 1 tháng sử dụng.",
+    "metadata": {
+      "name": "Gói GIGA (Tiền Giang - Đồng Tháp)",
+      "region": "tien_giang_dong_thap",
+      "sub_region": "toan_tinh",
+      "service_type": "internet",
+      "speed": "150Mbps - 1Gbps",
+      "price": "185.000đ/tháng",
+      "price_value": 185000,
+      "promo": "Giá sốc Miền Tây 185K - Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 AX3000",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "combo_sky_tiengiang_dongthap",
+    "text": "Gói COMBO Internet SKY + Truyền hình FPT Play tại Tiền Giang & Đồng Tháp (Mỹ Tho, Cao Lãnh, Sa Đéc...). Tốc độ 1Gbps/300Mbps kèm 200 kênh truyền hình FPT Play 4K. Giá cước: 235.000đ/tháng. Thiết bị: Modem Wi-Fi 6 + Box FPT Play điều khiển giọng nói 4K. Khuyến mãi: Tặng Voucher 200K, tặng tháng cước.",
+    "metadata": {
+      "name": "COMBO SKY + FPT Play (Tiền Giang - Đồng Tháp)",
+      "region": "tien_giang_dong_thap",
+      "sub_region": "toan_tinh",
+      "service_type": "combo",
+      "speed": "1Gbps/300Mbps + 200 Kênh TV",
+      "price": "235.000đ/tháng",
+      "price_value": 235000,
+      "promo": "Combo Tiết Kiệm Miền Tây",
+      "equipment": "Modem Wi-Fi 6 + Box FPT Play 4K",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "speedx1_wifi7",
+    "text": "Gói cước Siêu Tốc Độ FPT SpeedX 1 ứng dụng công nghệ Wi-Fi 7 và hạ tầng cáp quang XGS-PON thế hệ mới nhất. Băng thông: 1Gbps đối xứng không giới hạn. Giá cước: 450.000đ/tháng (đã gồm VAT). Thiết bị trang bị: Router Wi-Fi 7 XGS-PON FPT độ trễ cực thấp dưới 1ms, hỗ trợ kết nối đồng thời hàng trăm thiết bị. Khuyến mãi: Miễn phí triển khai kỹ thuật VIP, tặng Voucher 200K. Dành cho biệt thự, game thủ chuyên nghiệp, studio đồ họa.",
+    "metadata": {
+      "name": "SpeedX 1 - Công Nghệ Wi-Fi 7 (1Gbps)",
+      "region": "toan_quoc",
+      "sub_region": "toan_quoc",
+      "service_type": "speedx",
+      "speed": "1Gbps Đối Xứng Wi-Fi 7",
+      "price": "450.000đ/tháng",
+      "price_value": 450000,
+      "promo": "Công nghệ Wi-Fi 7 mới nhất - Độ trễ < 1ms",
+      "equipment": "Router Wi-Fi 7 XGS-PON Cao Cấp",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "speedx2_wifi7",
+    "text": "Gói cước Siêu Tốc Độ FPT SpeedX 2 chuẩn Wi-Fi 7 trên hạ tầng cáp quang 10G XGS-PON. Băng thông: 2Gbps đối xứng siêu khủng. Giá cước: 650.000đ/tháng (đã gồm VAT). Thiết bị trang bị: Hệ thống Mesh Wi-Fi 7 công suất lớn. Khuyến mãi: Miễn phí lắp đặt, tặng Voucher 200K, ưu tiên đường truyền quốc tế độc quyền.",
+    "metadata": {
+      "name": "SpeedX 2 - Wi-Fi 7 Cực Đại (2Gbps)",
+      "region": "toan_quoc",
+      "sub_region": "toan_quoc",
+      "service_type": "speedx",
+      "speed": "2Gbps Đối Xứng Wi-Fi 7",
+      "price": "650.000đ/tháng",
+      "price_value": 650000,
+      "promo": "Tốc độ 2Gbps Siêu Khủng",
+      "equipment": "Mesh Wi-Fi 7 XGS-PON Enterprise",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": false,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "speedx10_wifi7",
+    "text": "Gói cước Siêu Cấp FPT SpeedX 10 tốc độ 10Gbps đỉnh cao viễn thông Việt Nam. Băng thông: 10Gbps đối xứng 10.000Mbps trên nền tảng XGS-PON 10G. Giá cước: 1.500.000đ/tháng. Thiết bị: Router Quang Wi-Fi 7 cấp Doanh nghiệp. Dành cho trung tâm dữ liệu, đài truyền hình, tập đoàn công nghệ lớn.",
+    "metadata": {
+      "name": "SpeedX 10 - Đỉnh Cao 10Gbps Wi-Fi 7",
+      "region": "toan_quoc",
+      "sub_region": "toan_quoc",
+      "service_type": "speedx",
+      "speed": "10Gbps Đối Xứng (10.000Mbps)",
+      "price": "1.500.000đ/tháng",
+      "price_value": 1500000,
+      "promo": "Đỉnh cao công nghệ 10Gbps",
+      "equipment": "Router XGS-PON 10G Enterprise",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": false,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "camera_an_tam",
+    "text": "Gói Dịch Vụ FPT Camera AI An Tâm - Khi Cam Việt Hiểu Người Việt. Lưu trữ đám mây Cloud chuẩn mã hóa quốc tế Tier III an toàn tuyệt đối, không lo mất dữ liệu khi bị kẻ gian lấy trộm thẻ nhớ. Tính năng: Nhận diện khuôn mặt người quen, cảnh báo đột nhập thông minh gửi báo động tức thì về điện thoại qua ứng dụng Hi FPT. Giá cước: Từ 35.000đ - 70.000đ/tháng/mắt. Khuyến mãi: Trang bị miễn phí Camera AI Full HD 1080p, bảo hành trọn đời, hỗ trợ kỹ thuật bảo trì miễn phí tại nhà.",
+    "metadata": {
+      "name": "Gói FPT Camera AI An Tâm",
+      "region": "toan_quoc",
+      "sub_region": "toan_quoc",
+      "service_type": "camera",
+      "speed": "Full HD 1080p / 2K AI Cloud",
+      "price": "Từ 35.000đ/tháng",
+      "price_value": 35000,
+      "promo": "Miễn phí thiết bị Camera + Bảo hành trọn đời",
+      "equipment": "FPT Camera AI IQ3 / Play",
+      "contract": "Cam kết 12 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "combo_triple_camera",
+    "text": "Gói COMBO TRIPLE 3 trong 1: Internet Cáp Quang Wi-Fi 6 + Truyền Hình FPT Play + FPT Camera AI An Tâm. Giải pháp công nghệ toàn diện cho gia đình hiện đại: vừa có mạng siêu tốc, vừa giải trí xem bóng đá phim 4K, vừa giám sát an ninh ngôi nhà 24/7. Giá cước trọn gói: Từ 310.000đ/tháng. Thiết bị: Modem Wi-Fi 6 + Box TV 4K + 1 Camera AI. Khuyến mãi: Tặng Voucher 200K, miễn phí lắp đặt, tặng 1 tháng khi đóng trước.",
+    "metadata": {
+      "name": "COMBO TRIPLE (Net + TV + Camera AI)",
+      "region": "hcm",
+      "sub_region": "noithanh",
+      "service_type": "combo",
+      "speed": "150Mbps-1Gbps + TV + Camera",
+      "price": "310.000đ/tháng",
+      "price_value": 310000,
+      "promo": "Trọn gói 3 trong 1 - Tặng Voucher 200K",
+      "equipment": "Modem Wi-Fi 6 + Box 4K + Cam AI",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "lux500_doanhnghiep",
+    "text": "Gói cước Doanh Nghiệp & Quán Cafe FPT LUX 500 chuẩn Wi-Fi 6 cao cấp. Băng thông: 500Mbps trong nước, cam kết băng thông quốc tế tối thiểu 10.8Mbps. Giá cước: 800.000đ/tháng (đã gồm VAT). Thiết bị: 01 Modem Wi-Fi 6 AX1800GZ + 01 Thiết bị mở rộng sóng Mesh Wi-Fi 6 AX1800AZ. Phù hợp quán cafe, văn phòng công ty 30-50 nhân sự làm việc liên tục. Khuyến mãi: Miễn phí IP Tĩnh, hỗ trợ kỹ thuật ưu tiên 24/7 trong 1 giờ.",
+    "metadata": {
+      "name": "Gói Doanh Nghiệp LUX 500 (Wi-Fi 6)",
+      "region": "toan_quoc",
+      "sub_region": "toan_quoc",
+      "service_type": "enterprise",
+      "speed": "500Mbps (Quốc tế 10.8Mbps)",
+      "price": "800.000đ/tháng",
+      "price_value": 800000,
+      "promo": "Tặng IP Tĩnh + Thiết bị Mesh Wi-Fi 6",
+      "equipment": "Modem + Mesh Wi-Fi 6 AX1800",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "lux800_doanhnghiep",
+    "text": "Gói cước Doanh Nghiệp & Nhà Hàng Lớn FPT LUX 800 chuẩn Wi-Fi 6 Ultra. Băng thông: 800Mbps trong nước, cam kết băng thông quốc tế 12.6Mbps. Giá cước: 1.000.000đ/tháng (đã gồm VAT). Thiết bị: 01 Router Wi-Fi 6 Enterprise + 01 Mesh Access Point. Phù hợp công ty 50-100 người, chuỗi cửa hàng, nhà hàng, khách sạn cần kết nối ổn định tuyệt đối.",
+    "metadata": {
+      "name": "Gói Doanh Nghiệp LUX 800 (Wi-Fi 6)",
+      "region": "toan_quoc",
+      "sub_region": "toan_quoc",
+      "service_type": "enterprise",
+      "speed": "800Mbps (Quốc tế 12.6Mbps)",
+      "price": "1.000.000đ/tháng",
+      "price_value": 1000000,
+      "promo": "Bảo trì ưu tiên 1h + IP Tĩnh",
+      "equipment": "Hệ thống Router + Mesh Enterprise",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": false,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "super250_doanhnghiep",
+    "text": "Gói cước Internet Doanh Nghiệp Vừa & Nhỏ Super 250. Băng thông: 250Mbps trong nước, cam kết quốc tế 10.8Mbps. Giá cước: 545.000đ/tháng (đã gồm VAT). Thiết bị: Modem Vigor / Mikrotik chuyên dụng chịu tải cao 30-40 thiết bị. Khuyến mãi: Miễn phí lắp đặt khi trả trước 6 hoặc 12 tháng, tặng 1 tháng cước.",
+    "metadata": {
+      "name": "Gói Doanh Nghiệp Super 250",
+      "region": "toan_quoc",
+      "sub_region": "toan_quoc",
+      "service_type": "enterprise",
+      "speed": "250Mbps (Quốc tế 10.8Mbps)",
+      "price": "545.000đ/tháng",
+      "price_value": 545000,
+      "promo": "Modem chịu tải chuyên dụng",
+      "equipment": "Modem Mikrotik / Vigor Pro",
+      "contract": "Cam kết 24 tháng",
+      "is_popular": false,
+      "version": "2026-08-23"
+    }
+  },
+  {
+    "id": "fpt_play_vip",
+    "text": "Gói Tài Khoản FPT Play VIP (Xem trên App Smart TV, Điện thoại, Máy tính bảng, PC). Sở hữu độc quyền các giải thể thao đỉnh cao: UEFA Champions League, Europa League, V-League, Cúp Quốc Gia, Golf PGA, Võ thuật Bellator, cùng hơn 200 kênh truyền hình HD chất lượng cao. Giá cước: 98.000đ/tháng hoặc 66.000đ/tháng khi đăng ký 6-12 tháng. Đăng nhập cùng lúc trên 5 thiết bị.",
+    "metadata": {
+      "name": "Tài Khoản FPT Play VIP (Đa Thiết Bị)",
+      "region": "toan_quoc",
+      "sub_region": "toan_quoc",
+      "service_type": "combo",
+      "speed": "App Smart TV / Mobile / Web",
+      "price": "98.000đ/tháng",
+      "price_value": 98000,
+      "promo": "Xem cùng lúc 5 thiết bị - Cúp C1 Châu Âu",
+      "equipment": "Kích hoạt tài khoản trực tuyến",
+      "contract": "Không cam kết",
+      "is_popular": true,
+      "version": "2026-08-23"
+    }
+  }
+]
