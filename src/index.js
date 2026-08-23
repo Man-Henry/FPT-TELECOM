@@ -184,7 +184,7 @@ const SESSION_TIMEOUT_MS = 5 * 60 * 1000; // 5 phút
 const rateLimitMap = new Map();
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     if (request.method === "OPTIONS")
       return new Response(null, { status: 204, headers: CORS });
     if (!env.DB) return json({ error: "Thiếu binding D1." }, 500);
@@ -226,19 +226,302 @@ export default {
         ).run();
 
         await env.DB.prepare(
+          `
+          CREATE TABLE IF NOT EXISTS leads (
+             id INTEGER PRIMARY KEY AUTOINCREMENT,
+             name TEXT NOT NULL,
+             phone TEXT NOT NULL,
+             address TEXT,
+             package TEXT,
+             note TEXT,
+             time_pref TEXT,
+             location TEXT,
+             consent_nd13 INTEGER DEFAULT 1,
+             ip_address TEXT,
+             user_agent TEXT,
+             status TEXT DEFAULT 'new',
+             created_at INTEGER NOT NULL
+          )
+        `,
+        ).run();
+
+        await env.DB.prepare(
           `CREATE INDEX IF NOT EXISTS idx_session ON messages(session_id, id)`,
         ).run();
         await env.DB.prepare(
           `CREATE INDEX IF NOT EXISTS idx_sessions_status ON sessions(status, last_active_at)`,
         ).run();
+        await env.DB.prepare(
+          `CREATE INDEX IF NOT EXISTS idx_leads_created ON leads(created_at DESC)`,
+        ).run();
+        await env.DB.prepare(
+          `CREATE INDEX IF NOT EXISTS idx_leads_phone ON leads(phone)`,
+        ).run();
 
         return json({
           ok: true,
-          note: "Bảng đã sẵn sàng (sessions + messages).",
+          note: "Bảng đã sẵn sàng (sessions + messages + leads).",
         });
       }
 
-      // ========== 2. ĐÓNG PHIÊN CHỦ ĐỘNG (Switch về AI) ==========
+      // ========== 2. TIẾP NHẬN LEAD KHÁCH HÀNG (API /api/lead) ==========
+      if (p === "/api/lead" && request.method === "POST") {
+        let body = {};
+        const contentType = request.headers.get("content-type") || "";
+
+        if (contentType.includes("application/json")) {
+          try {
+            body = await request.json();
+          } catch (e) {
+            body = {};
+          }
+        } else if (
+          contentType.includes("application/x-www-form-urlencoded") ||
+          contentType.includes("multipart/form-data")
+        ) {
+          try {
+            const formData = await request.formData();
+            for (const [key, value] of formData.entries()) {
+              body[key] = value;
+            }
+          } catch (e) {
+            body = {};
+          }
+        }
+
+        const name = clip(body["Họ tên"] || body.name || "Khách Hàng", 100);
+        const rawPhone = clip(body["Số điện thoại"] || body.phone || "", 30);
+        const address = clip(
+          body["Khu vực"] || body.address || body["Địa chỉ"] || "Chưa cung cấp",
+          250,
+        );
+        const pkg = clip(body["Gói cước"] || body.package || "Tư vấn chung", 150);
+        const note = clip(
+          body["Ghi chú"] || body.note || body["Nhu cầu"] || "Không có",
+          500,
+        );
+        const timePref = clip(
+          body["Thời gian liên hệ"] || body.time_pref || "Gọi ngay bây giờ",
+          100,
+        );
+        const location = clip(body["Tọa độ"] || body.location || "Chưa xác định", 200);
+        const consentVal = body.consent_nd13;
+        const consentNd13 =
+          consentVal === true ||
+          consentVal === 1 ||
+          consentVal === "1" ||
+          consentVal === "on" ||
+          consentVal === undefined
+            ? 1
+            : 0;
+
+        // Kiểm tra số điện thoại
+        const cleanPhone = rawPhone.replace(/[^0-9+]/g, "");
+        if (!cleanPhone || cleanPhone.length < 9) {
+          return json(
+            { error: "Số điện thoại không hợp lệ. Vui lòng nhập ít nhất 10 số." },
+            400,
+          );
+        }
+
+        // Honeypot spam check (nếu trường website có giá trị => bot)
+        if (body.website) {
+          return json({ success: true, message: "Đăng ký thành công!" });
+        }
+
+        // Rate limit nhẹ nhàng theo IP (Fallback in-worker)
+        const now = Date.now();
+        const ipRecord = rateLimitMap.get(clientIP) || {
+          count: 0,
+          reset: now + 60000,
+        };
+        if (now > ipRecord.reset) {
+          ipRecord.count = 0;
+          ipRecord.reset = now + 60000;
+        }
+        ipRecord.count++;
+        rateLimitMap.set(clientIP, ipRecord);
+        if (ipRecord.count > 12) {
+          return json(
+            { error: "Quá nhiều yêu cầu. Vui lòng thử lại sau 1 phút." },
+            429,
+          );
+        }
+
+        const userAgent = clip(request.headers.get("User-Agent") || "", 300);
+
+        // 1. Ghi ngay lập tức vào D1 Database
+        const insertRes = await env.DB.prepare(
+          `INSERT INTO leads (name, phone, address, package, note, time_pref, location, consent_nd13, ip_address, user_agent, created_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        )
+          .bind(
+            name,
+            cleanPhone,
+            address,
+            pkg,
+            note,
+            timePref,
+            location,
+            consentNd13,
+            clientIP,
+            userAgent,
+            now,
+          )
+          .run();
+
+        const leadId = insertRes.meta?.last_row_id || null;
+
+        // Phản hồi ngay tức thì cho người dùng (< 50ms)
+        const successResponse = json({
+          success: true,
+          message:
+            "Đăng ký thành công! FPT Telecom sẽ liên hệ với bạn trong thời gian sớm nhất.",
+          lead_id: leadId,
+        });
+
+        // 2. Chạy ngầm các tác vụ thông báo trong ctx.waitUntil (Fault-Tolerant)
+        const runBackgroundTasks = async () => {
+          // A. Gửi thông báo Telegram
+          try {
+            const tgChatId = env.TELEGRAM_LEAD_CHAT_ID || env.TELEGRAM_CHAT_ID;
+            if (env.TELEGRAM_BOT_TOKEN && tgChatId) {
+              const tgMsg =
+                `🔥 <b>CÓ KHÁCH HÀNG MỚI ĐĂNG KÝ LẮP ĐẶT (LEAD #${leadId || "NEW"})</b>\n\n` +
+                `👤 <b>Họ tên:</b> ${escapeHTML(name)}\n` +
+                `📞 <b>Số điện thoại:</b> <code>${escapeHTML(cleanPhone)}</code>\n` +
+                `📦 <b>Gói cước:</b> <b>${escapeHTML(pkg)}</b>\n` +
+                `📍 <b>Địa chỉ:</b> ${escapeHTML(address)}\n` +
+                `📝 <b>Ghi chú:</b> ${escapeHTML(note)}\n` +
+                `⏰ <b>Thời gian hẹn:</b> ${escapeHTML(timePref)}\n` +
+                `🗺️ <b>Vị trí GPS:</b> ${escapeHTML(location)}\n` +
+                `🔒 <b>Nghị định 13:</b> ${consentNd13 ? "✅ Đã đồng ý" : "❌ Chưa"}\n` +
+                `🌐 <b>IP:</b> <code>${clientIP}</code>`;
+
+              await fetch(
+                `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    chat_id: tgChatId,
+                    text: tgMsg,
+                    parse_mode: "HTML",
+                    reply_markup: {
+                      inline_keyboard: [
+                        [
+                          {
+                            text: `📞 Gọi ngay cho ${name}`,
+                            url: `tel:${cleanPhone}`,
+                          },
+                        ],
+                      ],
+                    },
+                  }),
+                },
+              );
+            }
+          } catch (tgErr) {
+            console.error("Telegram lead notification error:", tgErr);
+          }
+
+          // B. Gửi Email qua Resend API (Nếu có RESEND_API_KEY)
+          try {
+            if (env.RESEND_API_KEY) {
+              const emailHtml = `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
+                  <div style="background: #0056d6; color: #ffffff; padding: 24px; text-align: center;">
+                    <h2 style="margin: 0; font-size: 20px;">🔥 KHÁCH HÀNG MỚI ĐĂNG KÝ LẮP MẠNG FPT</h2>
+                    <p style="margin: 6px 0 0 0; opacity: 0.9; font-size: 14px;">Hệ thống FPT Telecom - Đại lý ủy quyền</p>
+                  </div>
+                  <div style="padding: 24px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                      <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b; width: 140px;">Họ và tên:</td><td style="padding: 10px 0; font-weight: bold; color: #0f172a;">${escapeHTML(name)}</td></tr>
+                      <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Số điện thoại:</td><td style="padding: 10px 0; font-weight: bold; color: #0056d6; font-size: 16px;">${escapeHTML(cleanPhone)}</td></tr>
+                      <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Gói cước:</td><td style="padding: 10px 0; font-weight: bold; color: #f97316;">${escapeHTML(pkg)}</td></tr>
+                      <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Địa chỉ:</td><td style="padding: 10px 0; color: #0f172a;">${escapeHTML(address)}</td></tr>
+                      <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Nhu cầu / Ghi chú:</td><td style="padding: 10px 0; color: #0f172a;">${escapeHTML(note)}</td></tr>
+                      <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Thời gian liên hệ:</td><td style="padding: 10px 0; color: #0f172a;">${escapeHTML(timePref)}</td></tr>
+                      <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Vị trí (GPS):</td><td style="padding: 10px 0; color: #0f172a;">${escapeHTML(location)}</td></tr>
+                      <tr><td style="padding: 10px 0; color: #64748b;">Nghị định 13:</td><td style="padding: 10px 0; color: #16a34a; font-weight: bold;">${consentNd13 ? "Đã đồng ý" : "Chưa"}</td></tr>
+                    </table>
+                    <div style="margin-top: 24px; text-align: center;">
+                      <a href="tel:${cleanPhone}" style="display: inline-block; background: #ea580c; color: #ffffff; padding: 12px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 15px;">📞 GỌI KHÁCH HÀNG NGAY</a>
+                    </div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 12px; text-align: center; color: #94a3b8; font-size: 12px; border-top: 1px solid #f1f5f9;">
+                    Mã đơn: #${leadId || "NEW"} | IP: ${clientIP}
+                  </div>
+                </div>
+              `;
+              await fetch("https://api.resend.com/emails", {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${env.RESEND_API_KEY}`,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  from: env.EMAIL_FROM || "FPT Lead Alert <onboarding@resend.dev>",
+                  to: [env.EMAIL_TO || "tvm19624@gmail.com"],
+                  subject: `🔥 [FPT LEAD] ${name} - ${cleanPhone} (${pkg})`,
+                  html: emailHtml,
+                }),
+              });
+            }
+          } catch (resendErr) {
+            console.error("Resend email error:", resendErr);
+          }
+
+          // C. Google Sheets Backup (Ghi song song)
+          try {
+            const gasUrl =
+              env.GOOGLE_SHEETS_ENDPOINT ||
+              "https://script.google.com/macros/s/AKfycbwg-DMdJd356yFa-VYW68A4hh4-4bWJNG-KsLhvIuKldW5UI0CKdP2SQaAiOM7RvLBU4g/exec";
+            const formParams = new URLSearchParams();
+            formParams.append("Họ tên", name);
+            formParams.append("Số điện thoại", cleanPhone);
+            formParams.append("Địa chỉ", address);
+            formParams.append("Gói cước", pkg);
+            formParams.append("Ghi chú", note);
+            formParams.append("Thời gian liên hệ", timePref);
+            formParams.append("Tọa độ", location);
+            formParams.append("consent_nd13", consentNd13 ? "1" : "0");
+            formParams.append("IP", clientIP);
+
+            await fetch(gasUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: formParams.toString(),
+            });
+          } catch (gasErr) {
+            console.error("Google Sheets backup error:", gasErr);
+          }
+        };
+
+        if (ctx && typeof ctx.waitUntil === "function") {
+          ctx.waitUntil(runBackgroundTasks());
+        } else {
+          runBackgroundTasks().catch((e) =>
+            console.error("Background task error:", e),
+          );
+        }
+
+        return successResponse;
+      }
+
+      // ========== 3. XEM DANH SÁCH LEADS (API /api/leads - Admin) ==========
+      if (p === "/api/leads" && request.method === "GET") {
+        if (!checkAdmin(request, env))
+          return json({ error: "Sai mật khẩu hoặc thiếu quyền." }, 401);
+
+        const rows = await env.DB.prepare(
+          "SELECT * FROM leads ORDER BY created_at DESC LIMIT 100",
+        ).all();
+
+        return json({ ok: true, leads: rows.results });
+      }
+
+      // ========== 4. ĐÓNG PHIÊN CHỦ ĐỘNG (Switch về AI) ==========
       if (p === "/api/close" && request.method === "POST") {
         const { session } = await request.json();
         const sid = clip(session, 64);

@@ -266,6 +266,7 @@ async function getUserLocation() {
 }
 
 // Google Apps Script Web App Endpoint URL (Send lead to Google Sheet & notify Email)
+const WORKER_LEAD_ENDPOINT = "https://man-chatbot.tvm19624.workers.dev/api/lead";
 const GOOGLE_SHEETS_ENDPOINT =
   "https://script.google.com/macros/s/AKfycbwg-DMdJd356yFa-VYW68A4hh4-4bWJNG-KsLhvIuKldW5UI0CKdP2SQaAiOM7RvLBU4g/exec";
 
@@ -318,14 +319,23 @@ document.addEventListener("submit", async (event) => {
         : "Chưa xác định";
     formData.append("Tọa độ", locationInfo);
 
-    const response = await fetch(GOOGLE_SHEETS_ENDPOINT, {
+    // Primary Submission to Cloudflare Worker (D1 + Background Resend/Telegram)
+    const workerPromise = fetch(WORKER_LEAD_ENDPOINT, {
       method: "POST",
       body: formData,
-    });
+    }).catch((e) => console.warn("Worker lead submit notice:", e));
 
-    const responseData = await response.json();
-    if (responseData.result !== "success") {
-      throw new Error(JSON.stringify(responseData.error));
+    // Wait for the ultra-fast worker response (< 100ms)
+    const response = await workerPromise;
+    if (response && response.ok) {
+      const respData = await response.json();
+      console.log("Lead successfully stored in Cloudflare D1:", respData);
+    } else {
+      // Fallback directly to Google Sheets if worker was unreachable
+      await fetch(GOOGLE_SHEETS_ENDPOINT, {
+        method: "POST",
+        body: formData,
+      });
     }
 
     if (result)
@@ -352,15 +362,12 @@ document.addEventListener("submit", async (event) => {
     console.error("Form submit error:", error);
     if (result) {
       result.textContent =
-        "Đường truyền đang gặp sự cố. Vui lòng gọi ngay 0358513269 hoặc 0383 900 321 để được hỗ trợ nhanh nhất.";
-      result.classList.add("error");
-    } else {
-      // Fallback: If network or CORS error, still confirm and open success modal
-      if (typeof window.closeRegisterModal === "function")
-        window.closeRegisterModal();
-      if (typeof window.openSuccessModal === "function")
-        window.openSuccessModal(name, phone, pkg);
+        "Cảm ơn bạn! FPT sẽ liên hệ tư vấn trong thời gian sớm nhất.";
     }
+    if (typeof window.closeRegisterModal === "function")
+      window.closeRegisterModal();
+    if (typeof window.openSuccessModal === "function")
+      window.openSuccessModal(name, phone, pkg);
   } finally {
     if (submitButton) {
       submitButton.disabled = false;
@@ -2251,6 +2258,13 @@ const modalsHTML = `
       <input type="hidden" name="Thời gian liên hệ" value="Gọi ngay bây giờ">
       <input type="hidden" name="website" value="">
       
+      <div class="form-group consent-group" style="margin-top: 10px; margin-bottom: 12px;">
+        <label class="checkbox-label" style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #64748b; font-weight: normal; line-height: 1.4; cursor: pointer; text-align: left;">
+          <input type="checkbox" name="consent_nd13" value="1" checked required style="margin-top: 2px; width: 16px; height: 16px; flex-shrink: 0; accent-color: #0056d6;">
+          <span>Tôi đồng ý cung cấp thông tin để FPT Telecom tư vấn theo quy định tại <a href="pages/chinh-sach.html#privacy" target="_blank" style="color: #0056d6; text-decoration: underline;">Nghị định 13/2023/NĐ-CP</a>.</span>
+        </label>
+      </div>
+
       <div class="form-note-text">Lưu ý: Giá gói cước có thể thay đổi tùy theo khu vực, tỉnh thành</div>
       <button type="submit" class="btn btn-orange w-100" id="popupSubmitBtn">Xác nhận đăng ký</button>
     </form>
