@@ -3706,7 +3706,18 @@ footer {
   .chat-widget {
     right: 12px;
     bottom: 80px;
-    width: 300px;
+    width: min(340px, calc(100vw - 24px));
+    max-height: min(520px, calc(100dvh - 100px));
+  }
+
+  .chat-widget-body {
+    height: min(380px, calc(100dvh - 180px));
+  }
+
+  .chat-input-area textarea,
+  #chat-input,
+  #chat-name-input {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS Safari & Android Chrome */
   }
 
   .chat-toggle-btn {
@@ -3927,7 +3938,7 @@ footer {
   background: #f0f2f5;
   border-radius: 20px;
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: 16px;
   resize: none;
   outline: none;
   max-height: 80px;

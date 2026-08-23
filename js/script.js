@@ -1396,9 +1396,8 @@ if (chatToggle && chatWidget) {
       nameOverlay.innerHTML = `
         <img src="${assetBase}assets/images/main/logo.webp" alt="FPT Logo" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 12px; border-radius: 50%; padding: 2px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
         <h3 style="margin:0 0 10px 0;color:#333;font-size:16px;">Chào bạn! 👋</h3>
-        <p style="margin:0 0 15px 0;color:#666;font-size:14px;text-align:center;">Vui lòng để lại tên để nhân viên dễ xưng hô và hỗ trợ bạn tốt nhất</p>
-        <input type="text" id="chat-name-input" placeholder="Họ và tên..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:14px;outline:none;box-sizing:border-box;">
-        <button id="chat-name-submit" style="width:100%;padding:10px;background:#0066ff;color:#fff;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;">Bắt đầu chat</button>
+        <input type="text" id="chat-name-input" placeholder="Họ và tên..." style="width:100%;padding:12px 14px;border:1px solid #cbd5e1;border-radius:8px;margin-bottom:15px;font-size:16px;outline:none;box-sizing:border-box;font-family:inherit;">
+        <button id="chat-name-submit" style="width:100%;padding:12px;background:#0066ff;color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;font-weight:600;">Bắt đầu chat</button>
       `;
       chatWidgetBody.appendChild(nameOverlay);
 
