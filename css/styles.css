@@ -5514,36 +5514,6 @@ body {
   }
 }
 
-/* --- Topbar Ticker Glow --- */
-.topbar span {
-  position: relative;
-}
-.topbar span::after {
-  content: "";
-  position: absolute;
-  left: -8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow:
-    0 0 6px #4ade80,
-    0 0 12px #4ade80;
-  animation: live-pulse 1.8s ease-in-out infinite;
-}
-@keyframes live-pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: translateY(-50%) scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: translateY(-50%) scale(1.6);
-  }
-}
 
 /* --- Scroll Progress Bar --- */
 .scroll-progress-container {
