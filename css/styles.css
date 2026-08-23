@@ -4532,7 +4532,7 @@ footer {
   background: linear-gradient(90deg, var(--blue), var(--orange));
 }
 
-#leadForm label {
+#leadForm label:not(.consent-label):not(.checkbox-label) {
   font-size: 13px !important;
   font-weight: 700 !important;
   color: #1e293b !important;
@@ -4542,7 +4542,7 @@ footer {
   margin-bottom: 0 !important;
 }
 
-#leadForm input,
+#leadForm input:not([type="checkbox"]),
 #leadForm select {
   width: 100% !important;
   border: 1px solid #cbd5e1 !important;
@@ -4556,7 +4556,7 @@ footer {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02) !important;
 }
 
-#leadForm input:focus,
+#leadForm input:not([type="checkbox"]):focus,
 #leadForm select:focus {
   outline: none !important;
   border-color: var(--blue) !important;
@@ -4564,7 +4564,7 @@ footer {
   box-shadow: 0 0 0 4px rgba(6, 101, 245, 0.1) !important;
 }
 
-#leadForm input::placeholder {
+#leadForm input:not([type="checkbox"])::placeholder {
   color: #94a3b8 !important;
   font-weight: 400 !important;
 }
@@ -6740,6 +6740,7 @@ footer {
   display: block !important;
   clear: both !important;
   grid-column: 1 / -1 !important;
+  box-sizing: border-box !important;
 }
 
 .consent-label,
@@ -6748,7 +6749,7 @@ footer {
   align-items: flex-start !important;
   gap: 10px !important;
   font-size: 13px !important;
-  color: #475569 !important;
+  color: #334155 !important;
   font-weight: 500 !important;
   line-height: 1.45 !important;
   cursor: pointer !important;
@@ -6758,10 +6759,14 @@ footer {
 }
 
 .consent-label input[type="checkbox"],
-.checkbox-label input[type="checkbox"] {
+.checkbox-label input[type="checkbox"],
+.glass-form input[type="checkbox"],
+.fpt-modal-content input[type="checkbox"] {
   width: 18px !important;
-  height: 18px !important;
+  max-width: 18px !important;
   min-width: 18px !important;
+  height: 18px !important;
+  max-height: 18px !important;
   min-height: 18px !important;
   margin: 2px 0 0 0 !important;
   padding: 0 !important;
@@ -6769,11 +6774,16 @@ footer {
   accent-color: #0056d6 !important;
   cursor: pointer !important;
   display: inline-block !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 4px !important;
 }
 
 .consent-label span,
 .checkbox-label span {
   flex: 1 !important;
+  font-weight: 500 !important;
 }
 
 .consent-label a,
