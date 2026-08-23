@@ -1788,59 +1788,19 @@ const initPremiumAnimations = () => {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Prevent CSS & GSAP conflict: CSS transitions break GSAP animations, so we remove them from GSAP targets
-  const gsapTargets = document.querySelectorAll(
-    ".hero-copy > *, .hero-visual, .scroll-animate, .package, .triple, .offer-list > div, .testimonial-grid figure, .feature-card, .news-card",
-  );
-  gsapTargets.forEach((el) => {
-    el.classList.remove(
-      "fade-up",
-      "slide-left",
-      "slide-right",
-      "delay-100",
-      "delay-200",
-      "delay-300",
-      "delay-400",
-      "delay-500",
-      "is-visible",
-    );
-    el.style.transition = "none"; // Ensure no leftover CSS transitions
-  });
-
-  // 1. Hero Reveal (Stagger Fade-in Up)
-  const heroTl = gsap.timeline();
-  heroTl
-    .from(".hero-copy > *", {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: "power3.out",
-      clearProps: "transform,opacity",
-    })
-    .from(
-      ".hero-visual",
-      {
-        scale: 1.05,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power2.out",
-        clearProps: "transform,opacity",
+  // 1b. Parallax Hero Effect (Trôi nổi 3D mượt mà)
+  if (document.querySelector(".hero-visual")) {
+    gsap.to(".hero-visual", {
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.5,
       },
-      "-=0.6",
-    );
-
-  // 1b. Parallax Hero Effect (Trôi nổi 3D)
-  gsap.to(".hero-visual", {
-    scrollTrigger: {
-      trigger: ".hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: 0.5,
-    },
-    y: 80,
-    ease: "none",
-  });
+      y: 80,
+      ease: "none",
+    });
+  }
 
   // 1c. Kích hoạt toàn bộ các phần tử .scroll-animate bị bỏ sót (Tiêu đề, Text...)
   const animateElements = gsap.utils.toArray(".scroll-animate:not(.animated)");
@@ -2061,13 +2021,19 @@ const scrollObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
+  { threshold: 0.1, rootMargin: "0px 0px 40px 0px" },
 );
 
+const vh = window.innerHeight || document.documentElement.clientHeight;
 document
   .querySelectorAll(".fade-up, .slide-left, .slide-right")
   .forEach((el) => {
-    scrollObserver.observe(el);
+    const rect = el.getBoundingClientRect();
+    if (rect.top < vh) {
+      el.classList.add("is-visible");
+    } else {
+      scrollObserver.observe(el);
+    }
   });
 
 window.addEventListener(
