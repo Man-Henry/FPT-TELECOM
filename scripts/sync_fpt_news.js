@@ -136,7 +136,7 @@ function generateArticleHtml(article) {
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../../css/styles.min.css" />
+    <link rel="stylesheet" href="../../css/styles.min.css?v=VERSION" />
 
     <style>
       body {
@@ -371,7 +371,7 @@ function generateArticleHtml(article) {
         </div>
       </div>
     </footer>
-    <script src="../../js/script.js"></script>
+    <script defer src="../../js/script.min.js?v=VERSION"></script>
   </body>
 </html>`;
 }

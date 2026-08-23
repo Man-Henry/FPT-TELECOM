@@ -1,0 +1,101 @@
+name: Deploy Website to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Lấy source code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Tạo version từ mã commit
+      - name: Create version
+        run: |
+          VERSION="${GITHUB_SHA::8}"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Website version: $VERSION"
+
+      # 3. Tự động thay VERSION trong HTML và Service Worker
+      - name: Update CSS and JS versions
+        run: |
+          python3 << 'PY'
+          import os
+          import re
+          from pathlib import Path
+
+          version = os.environ["VERSION"]
+
+          # Cập nhật tất cả các file HTML
+          for file in Path(".").rglob("*.html"):
+              if ".git" in file.parts or "node_modules" in file.parts:
+                  continue
+
+              content = file.read_text(encoding="utf-8")
+
+              # CSS
+              content = re.sub(
+                  r'(\.css)\?v=VERSION',
+                  rf'\1?v={version}',
+                  content
+              )
+
+              # JS
+              content = re.sub(
+                  r'(\.js)\?v=VERSION',
+                  rf'\1?v={version}',
+                  content
+              )
+
+              file.write_text(content, encoding="utf-8")
+              print(f"Updated HTML: {file}")
+
+          # Cập nhật cache name trong sw.js để tự động phá cache khi có commit mới
+          sw_file = Path("sw.js")
+          if sw_file.exists():
+              sw_content = sw_file.read_text(encoding="utf-8")
+              sw_content = re.sub(r'fpt-telecom-v\d+|fpt-telecom-VERSION', f'fpt-telecom-{version}', sw_content)
+              sw_file.write_text(sw_content, encoding="utf-8")
+              print("Updated: sw.js")
+
+          PY
+
+      # 4. Cấu hình GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 5. Đóng gói website
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # 6. Deploy lên GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
