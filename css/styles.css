@@ -264,6 +264,10 @@ table {
   padding: 11px 16px;
 }
 
+.header-cta-mobile {
+  display: none;
+}
+
 .menu-toggle {
   display: none;
   background: transparent;
@@ -1506,15 +1510,23 @@ form .btn {
 
   .header {
     height: 60px !important;
-    padding: 0 16px !important;
+    padding: 0 14px !important;
     position: relative !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
+    gap: 8px !important;
+  }
+
+  .logo-image {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    margin-right: 0 !important;
   }
 
   .logo-image img {
-    width: 120px !important;
+    width: 110px !important;
     height: auto !important;
   }
 
@@ -1524,6 +1536,32 @@ form .btn {
 
   .header-cta {
     display: none !important;
+  }
+
+  .header-cta-mobile {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    background: linear-gradient(135deg, #ff6b00 0%, #ea580c 100%) !important;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    padding: 7px 14px !important;
+    border-radius: 20px !important;
+    text-decoration: none !important;
+    box-shadow: 0 2px 10px rgba(234, 88, 12, 0.3) !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    border: none !important;
+    outline: none !important;
+    flex-shrink: 0 !important;
+    margin: 0 auto !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  .header-cta-mobile:active {
+    transform: scale(0.95) !important;
   }
 
   .menu-toggle {
@@ -1538,7 +1576,8 @@ form .btn {
     font-size: 20px !important;
     color: #0f172a !important;
     cursor: pointer !important;
-    margin-left: auto !important;
+    margin-left: 0 !important;
+    flex-shrink: 0 !important;
     padding: 0 !important;
   }
 
