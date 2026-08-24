@@ -64,14 +64,30 @@
       href="https://fpttelecomvn.click/assets/images/main/fptfamily.webp"
       fetchpriority="high"
     />
+    <link rel="preconnect" href="https://man-chatbot.tvm19624.workers.dev" crossorigin />
+    <link rel="dns-prefetch" href="https://man-chatbot.tvm19624.workers.dev" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin />
+
+    <!-- Self-hosted Font Preload -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/assets/fonts/inter-400-vietnamese.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
+    <link
+      rel="preload"
+      href="/assets/fonts/inter-400-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Cloudflare Turnstile Bot Protection -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <link
       rel="icon"
       type="image/png"

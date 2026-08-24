@@ -24,8 +24,12 @@ const ASSETS_TO_CACHE = [
   "/assets/images/main/boxtv.webp",
   "/assets/images/main/modemmeta.webp",
   "/assets/images/main/cameraplay4.webp",
-  "/assets/images/main/cameraiq4s.webp",
-  "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap",
+  "/assets/fonts/inter-400-vietnamese.woff2",
+  "/assets/fonts/inter-400-latin.woff2",
+  "/assets/fonts/inter-600-vietnamese.woff2",
+  "/assets/fonts/inter-600-latin.woff2",
+  "/assets/fonts/inter-700-vietnamese.woff2",
+  "/assets/fonts/inter-700-latin.woff2",
 ];
 
 self.addEventListener("install", (event) => {

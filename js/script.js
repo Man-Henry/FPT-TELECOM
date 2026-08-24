@@ -304,6 +304,17 @@ document.addEventListener("submit", async (event) => {
     formData.set("Ghi chú", note);
   }
 
+  // Turnstile Bot Protection Token Extraction
+  let tsToken = formData.get("cf-turnstile-response");
+  if (!tsToken && typeof window.turnstile !== "undefined" && typeof window.turnstile.getResponse === "function") {
+    try {
+      tsToken = window.turnstile.getResponse();
+    } catch (e) {}
+  }
+  if (tsToken) {
+    formData.set("cf-turnstile-response", tsToken);
+  }
+
   // Honeypot check — silently reject bots
   const honeypot = form.querySelector('[name="website"]');
   if (honeypot && honeypot.value) {
@@ -329,7 +340,7 @@ document.addEventListener("submit", async (event) => {
         : "Chưa xác định";
     formData.append("Tọa độ", locationInfo);
 
-    // Primary Submission to Cloudflare Worker (D1 + Background Resend/Telegram)
+    // Primary Submission to Cloudflare Worker (D1 + Fail-Fast Turnstile + Background Notifications)
     const workerPromise = fetch(WORKER_LEAD_ENDPOINT, {
       method: "POST",
       body: formData,
@@ -866,7 +877,9 @@ function initMap3D() {
     });
 }
 
-const mapSection = document.getElementById("areas");
+const mapSection =
+  document.getElementById("areas") ||
+  document.getElementById("map3d-container");
 if (mapSection) {
   const mapObserver = new IntersectionObserver(
     (entries) => {
@@ -1372,6 +1385,76 @@ if (chatToggle && chatWidget) {
       return str.replace(/[&<>'"]/g, (tag) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[tag] || tag));
     };
 
+    const renderPricingCardsToBubble = (bubble, cards) => {
+      if (!cards || !Array.isArray(cards) || cards.length === 0) return;
+      const cardsWrap = document.createElement("div");
+      cardsWrap.className = "pricing-cards-container";
+
+      cards.forEach((c) => {
+        const card = document.createElement("article");
+        card.className = "pricing-card-3d";
+        card.setAttribute("role", "article");
+        card.setAttribute("aria-label", c.name || "Gói cước FPT");
+
+        const badgeHtml = c.promo
+          ? `<div class="card-badge">Ưu đãi</div>`
+          : "";
+        const speedHtml = c.speed
+          ? `<div class="card-speed-badge">⚡ ${escapeText(c.speed)}</div>`
+          : "";
+        const equipHtml = c.equipment
+          ? `<li><span class="feat-icon">✓</span> <span>${escapeText(c.equipment)}</span></li>`
+          : "";
+        const promoHtml = c.promo
+          ? `<li><span class="feat-icon">🎁</span> <span>${escapeText(c.promo)}</span></li>`
+          : "";
+
+        card.innerHTML = `
+          ${badgeHtml}
+          <div>
+            <div class="card-title">${escapeText(c.name || "Gói cước FPT")}</div>
+            ${speedHtml}
+            <div class="card-price-wrap">
+              <div class="card-price">${escapeText(c.price || "")}</div>
+            </div>
+            <ul class="card-features-list">
+              ${equipHtml}
+              ${promoHtml}
+              <li><span class="feat-icon">✓</span> <span>Khảo sát & ký online 24h</span></li>
+            </ul>
+          </div>
+          <button class="card-cta-btn" type="button" aria-label="Đăng ký ${escapeText(c.name || "")}">
+            <span>ĐĂNG KÝ NGAY</span> <span>→</span>
+          </button>
+        `;
+
+        const ctaBtn = card.querySelector(".card-cta-btn");
+        ctaBtn.addEventListener("click", () => {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "card_cta_click",
+            package_name: c.name,
+            package_price: c.price,
+          });
+
+          if (typeof window.openRegisterModal === "function") {
+            window.openRegisterModal(c.name);
+          }
+        });
+
+        cardsWrap.appendChild(card);
+      });
+
+      bubble.appendChild(cardsWrap);
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "card_impression",
+        card_count: cards.length,
+        packages: cards.map((c) => c.name),
+      });
+    };
+
     const appendMessage = (text, sender, cards = null, showHotline = false) => {
       const msgDiv = document.createElement("div");
       msgDiv.className = `chat-msg ${sender}-msg`;
@@ -1398,74 +1481,7 @@ if (chatToggle && chatWidget) {
 
       // Render 3D Pricing Cards if present (Milestone 2.6)
       if (cards && Array.isArray(cards) && cards.length > 0) {
-        const cardsWrap = document.createElement("div");
-        cardsWrap.className = "pricing-cards-container";
-
-        cards.forEach((c) => {
-          const card = document.createElement("article");
-          card.className = "pricing-card-3d";
-          card.setAttribute("role", "article");
-          card.setAttribute("aria-label", c.name || "Gói cước FPT");
-
-          const badgeHtml = c.promo
-            ? `<div class="card-badge">Ưu đãi</div>`
-            : "";
-          const speedHtml = c.speed
-            ? `<div class="card-speed-badge">⚡ ${escapeText(c.speed)}</div>`
-            : "";
-          const equipHtml = c.equipment
-            ? `<li><span class="feat-icon">✓</span> <span>${escapeText(c.equipment)}</span></li>`
-            : "";
-          const promoHtml = c.promo
-            ? `<li><span class="feat-icon">🎁</span> <span>${escapeText(c.promo)}</span></li>`
-            : "";
-
-          card.innerHTML = `
-            ${badgeHtml}
-            <div>
-              <div class="card-title">${escapeText(c.name || "Gói cước FPT")}</div>
-              ${speedHtml}
-              <div class="card-price-wrap">
-                <div class="card-price">${escapeText(c.price || "")}</div>
-              </div>
-              <ul class="card-features-list">
-                ${equipHtml}
-                ${promoHtml}
-                <li><span class="feat-icon">✓</span> <span>Khảo sát & ký online 24h</span></li>
-              </ul>
-            </div>
-            <button class="card-cta-btn" type="button" aria-label="Đăng ký ${escapeText(c.name || "")}">
-              <span>ĐĂNG KÝ NGAY</span> <span>→</span>
-            </button>
-          `;
-
-          const ctaBtn = card.querySelector(".card-cta-btn");
-          ctaBtn.addEventListener("click", () => {
-            // Track GA4 event card_cta_click (Requirement 2.7.2)
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-              event: "card_cta_click",
-              package_name: c.name,
-              package_price: c.price,
-            });
-
-            if (typeof window.openRegisterModal === "function") {
-              window.openRegisterModal(c.name);
-            }
-          });
-
-          cardsWrap.appendChild(card);
-        });
-
-        bubble.appendChild(cardsWrap);
-
-        // Track GA4 event card_impression (Requirement 2.7.1)
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "card_impression",
-          card_count: cards.length,
-          packages: cards.map((c) => c.name),
-        });
+        renderPricingCardsToBubble(bubble, cards);
       }
 
       // Render Hotline Fallback UI if needed
@@ -1693,38 +1709,120 @@ if (chatToggle && chatWidget) {
       chatMessages.scrollTop = chatMessages.scrollHeight;
 
       try {
+        const isAiMode = chatMode === "ai";
         const response = await fetch(API_ENDPOINT, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            ...(isAiMode ? { Accept: "text/event-stream, application/json" } : {}),
+          },
           body: JSON.stringify({
             text: message,
             history: chatHistory,
             session: sessionId,
             mode: chatMode,
+            stream: isAiMode,
           }),
         });
 
-        const data = await response.json();
+        if (typingIndicator.parentNode) {
+          chatMessages.removeChild(typingIndicator);
+        }
 
-        if (chatMode === "ai") {
-          if (typingIndicator.parentNode)
-            chatMessages.removeChild(typingIndicator);
+        const contentType = response.headers.get("content-type") || "";
 
-          if (data.reply) {
-            appendMessage(data.reply, "bot", data.cards, data.show_hotline);
-            chatHistory.push({ role: "model", text: data.reply });
-          } else {
-            appendMessage(
-              data.error || "Xin lỗi, hệ thống AI đang bận.",
-              "bot",
-            );
+        // Handle SSE Streaming (Real-time AI Token Typing)
+        if (isAiMode && contentType.includes("text/event-stream") && response.body) {
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let accumulatedText = "";
+          let streamCards = null;
+
+          const msgDiv = document.createElement("div");
+          msgDiv.className = "chat-msg bot-msg";
+          const bubble = document.createElement("div");
+          bubble.className = "msg-bubble";
+          msgDiv.appendChild(bubble);
+          chatMessages.appendChild(msgDiv);
+
+          let sseBuffer = "";
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            sseBuffer += decoder.decode(value, { stream: true });
+            const lines = sseBuffer.split("\n");
+            sseBuffer = lines.pop() || "";
+
+            for (const line of lines) {
+              const trimmed = line.trim();
+              if (!trimmed.startsWith("data: ")) continue;
+              const payloadStr = trimmed.slice(6).trim();
+              if (payloadStr === "[DONE]") continue;
+
+              try {
+                const parsed = JSON.parse(payloadStr);
+                if (parsed.chunk || parsed.text) {
+                  accumulatedText += (parsed.chunk || parsed.text);
+                  bubble.textContent = accumulatedText;
+                  chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+                if (parsed.cards && Array.isArray(parsed.cards)) {
+                  streamCards = parsed.cards;
+                }
+              } catch (pErr) {}
+            }
           }
+
+          // Format bold markers & markdown formatting
+          if (accumulatedText) {
+            bubble.innerHTML = "";
+            const parts = accumulatedText.split(/(\*\*.*?\*\*|\n)/g);
+            parts.forEach((part) => {
+              if (!part) return;
+              if (part === "\n") {
+                bubble.appendChild(document.createElement("br"));
+              } else if (
+                part.startsWith("**") &&
+                part.endsWith("**") &&
+                part.length >= 4
+              ) {
+                const b = document.createElement("b");
+                b.textContent = part.slice(2, -2);
+                bubble.appendChild(b);
+              } else {
+                bubble.appendChild(document.createTextNode(part));
+              }
+            });
+
+            chatHistory.push({ role: "model", text: accumulatedText });
+          }
+
+          // Render 3D Pricing Cards if returned
+          if (streamCards && streamCards.length > 0) {
+            renderPricingCardsToBubble(bubble, streamCards);
+          }
+
+          chatMessages.scrollTop = chatMessages.scrollHeight;
         } else {
-          // Live Chat Mode
-          if (typingIndicator.parentNode)
-            chatMessages.removeChild(typingIndicator);
-          if (data.error) {
-            appendMessage(data.error, "bot");
+          // Standard JSON (from Edge Cache HIT or Live Chat)
+          const data = await response.json();
+
+          if (isAiMode) {
+            if (data.reply) {
+              appendMessage(data.reply, "bot", data.cards, data.show_hotline);
+              chatHistory.push({ role: "model", text: data.reply });
+            } else {
+              appendMessage(
+                data.error || "Xin lỗi, hệ thống AI đang bận.",
+                "bot",
+              );
+            }
+          } else {
+            // Live Chat Mode
+            if (data.error) {
+              appendMessage(data.error, "bot");
+            }
           }
         }
       } catch (err) {
@@ -2413,6 +2511,8 @@ const modalsHTML = `
           <span>🔒 <strong>Miễn phí khảo sát 100%.</strong> Tôi đồng ý cho FPT Telecom xử lý thông tin để tư vấn dịch vụ theo <a href="${policyHref}" target="_blank">Nghị định 13/2023/NĐ-CP</a>.</span>
         </label>
       </div>
+
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEi6j9Y-0rZc7eU" data-size="flexible" data-theme="light" style="margin: 10px 0;"></div>
 
       <div class="form-note-text">💡 Giá cước có thể thay đổi theo từng khu vực</div>
       <button type="submit" class="btn btn-orange w-100" id="popupSubmitBtn">Xác nhận đăng ký</button>

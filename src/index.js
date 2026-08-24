@@ -107,11 +107,39 @@ const CORS = {
   "Access-Control-Max-Age": "86400",
 };
 
-const json = (data, status = 200) =>
+const json = (data, status = 200, extraHeaders = {}) =>
   new Response(JSON.stringify(data), {
     status,
-    headers: { "Content-Type": "application/json; charset=utf-8", ...CORS },
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      ...CORS,
+      ...extraHeaders,
+    },
   });
+
+async function verifyTurnstile(token, clientIP, secretKey) {
+  if (!secretKey) return { success: true, bypassed: true };
+  if (!token) return { success: false, error: "missing_token" };
+  try {
+    const formData = new URLSearchParams();
+    formData.append("secret", secretKey);
+    formData.append("response", token);
+    formData.append("remoteip", clientIP);
+
+    const res = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        body: formData,
+      },
+    );
+    const result = await res.json();
+    return result;
+  } catch (err) {
+    console.error("Turnstile verification error:", err);
+    return { success: true, warning: "turnstile_fetch_error" };
+  }
+}
 
 function safeEqual(a, b) {
   if (typeof a !== "string" || typeof b !== "string" || a.length !== b.length)
@@ -297,6 +325,35 @@ export default {
             body = {};
           }
         }
+        // 1. FAIL-FAST BOT & TURNSTILE CHECK (Chặn đứng Spam Bot ngay đầu tiên)
+        const turnstileToken =
+          body["cf-turnstile-response"] ||
+          body.turnstile_token ||
+          body.turnstile ||
+          request.headers.get("x-turnstile-token") ||
+          "";
+
+        if (env.TURNSTILE_SECRET_KEY) {
+          const tsResult = await verifyTurnstile(
+            turnstileToken,
+            clientIP,
+            env.TURNSTILE_SECRET_KEY,
+          );
+          if (!tsResult.success) {
+            return json(
+              {
+                error:
+                  "Xác thực bảo mật Turnstile không hợp lệ hoặc phát hiện Bot spam. Vui lòng thử lại!",
+              },
+              403,
+            );
+          }
+        }
+
+        // Honeypot spam check (nếu trường website có giá trị => bot)
+        if (body.website) {
+          return json({ success: true, message: "Đăng ký thành công!" });
+        }
 
         const name = clip(body["Họ tên"] || body.name || "Khách Hàng", 100);
         const rawPhone = clip(body["Số điện thoại"] || body.phone || "", 30);
@@ -348,10 +405,6 @@ export default {
           );
         }
 
-        // Honeypot spam check (nếu trường website có giá trị => bot)
-        if (body.website) {
-          return json({ success: true, message: "Đăng ký thành công!" });
-        }
 
         // Rate limit nhẹ nhàng theo IP (Fallback in-worker)
         const now = Date.now();
@@ -750,7 +803,8 @@ export default {
         else {
           if (!env.AI) return json({ error: "Thiếu binding Workers AI." }, 500);
 
-          const qLower = body.toLowerCase();
+          const qLower = body.toLowerCase().trim();
+          const normQ = qLower.replace(/[?!.,]/g, "").replace(/\s+/g, " ");
 
           // 1. Kiểm tra nếu khách hỏi khu vực ngoài phạm vi (Test case T4)
           const isOutsideArea =
@@ -771,7 +825,33 @@ export default {
             });
           }
 
-          // 2. Entity & Region Extraction (Metadata filtering)
+          // 2. Cloudflare Cache API (caches.default) - Semantic / Exact Match Edge Cache
+          const cache = caches.default;
+          const cacheUrl = new URL(
+            `https://fpt-edge-cache.local/api/chat?q=${encodeURIComponent(normQ)}`,
+          );
+          const cacheKey = new Request(cacheUrl.toString(), { method: "GET" });
+
+          const isSseRequested =
+            request.headers.get("Accept")?.includes("text/event-stream") ||
+            url.searchParams.get("stream") === "true";
+
+          if (!isSseRequested) {
+            try {
+              const cachedRes = await cache.match(cacheKey);
+              if (cachedRes) {
+                const cachedJson = await cachedRes.json();
+                return json(cachedJson, 200, {
+                  "X-Edge-Cache": "HIT",
+                  "Cache-Control": "public, s-maxage=3600",
+                });
+              }
+            } catch (cErr) {
+              console.warn("Edge cache read warning:", cErr);
+            }
+          }
+
+          // 3. Entity & Region Extraction (Metadata filtering)
           let regionFilter = null;
 
           if (
@@ -804,7 +884,7 @@ export default {
             regionFilter = "tien_giang_dong_thap";
           }
 
-          // 3. RAG Retrieval via Vectorize (@cf/baai/bge-m3)
+          // 4. RAG Retrieval via Vectorize (@cf/baai/bge-m3)
           let retrievedContext = "";
           let matchedCards = [];
 
@@ -845,7 +925,7 @@ export default {
                   retrievedContext = vecResult.matches
                     .map((m, idx) => {
                       const meta = m.metadata || {};
-                      return `[KẾT QUẢ ${idx + 1}]:\n- Mã gói: ${m.id}\n- Tên gói: ${meta.name}\n- Tốc độ: ${meta.speed}\n- Giá cước: ${meta.price}\n- Khuyến mãi: ${meta.promo}\n- Thiết bị: ${meta.equipment}\n- Chi tiết: ${meta.text}`;
+                      return `[GÓI ${idx + 1}]: ${meta.name} | Tốc độ: ${meta.speed} | Giá: ${meta.price} | KM: ${meta.promo} | Thiết bị: ${meta.equipment} | Chi tiết: ${meta.text}`;
                     })
                     .join("\n\n");
 
@@ -867,14 +947,13 @@ export default {
             }
           }
 
-          // 4. Structured System Prompt Guardrails
-          const RAG_SYSTEM_PROMPT = `Bạn là Trợ lý AI Tư Vấn Bán Hàng chuyên nghiệp của FPT Telecom (Đại lý ủy quyền TP.HCM & Miền Nam - Hotline: 0383 900 321 / 0358 513 269).
-
+          // 5. Structured Concise System Prompt
+          const RAG_SYSTEM_PROMPT = `Bạn là Trợ lý AI Tư Vấn Bán Hàng FPT Telecom (Hotline 0383 900 321 / 0358 513 269).
 QUY TẮC BẮT BUỘC (GUARDRAILS):
-1. Bạn CHỈ ĐƯỢC PHÉP tư vấn dựa trên [DỮ LIỆU GÓI CƯỚC THỰC TẾ] được cung cấp dưới đây. TUYỆT ĐỐI KHÔNG BỊA ĐẶT GIÁ CƯỚC.
-2. TỐC ĐỘ THẤP NHẤT HIỆN TẠI LÀ 300Mbps: FPT Telecom đã nâng cấp băng thông toàn diện, gói cước thấp nhất hiện tại là GIGA có tốc độ từ 300Mbps đến 1Gbps. Tuyệt đối KHÔNG tư vấn gói 150Mbps cũ.
-3. Luôn xưng hô lịch sự, thân thiện bằng 'em' và gọi khách là 'anh/chị'.
-4. BẮT BUỘC PHẢN HỒI DUY NHẤT DƯỚI ĐỊNH DẠNG JSON HỢP LỆ (Không thêm bất kỳ chữ nào ngoài khối JSON):
+1. BÁO GIÁ CHÍNH XÁC: Chỉ báo giá từ [DỮ LIỆU THỰC TẾ]. Tuyệt đối KHÔNG tự bịa giá.
+2. TỐC ĐỘ MIN 300Mbps: Tốc độ thấp nhất hiện tại là 300Mbps (gói GIGA). Không có gói 150Mbps cũ.
+3. PHONG CÁCH: Xưng 'em', gọi 'anh/chị', trả lời ngắn gọn (2-4 câu), thân thiện.
+4. BẮT BUỘC PHẢN HỒI DUY NHẤT ĐỊNH DẠNG JSON HỢP LỆ (Không thêm chữ ngoài JSON):
 {
   "type": "recommendation",
   "reply": "Nội dung câu trả lời tư vấn ngắn gọn, nêu rõ tốc độ, giá cước, khuyến mãi và thiết bị...",
@@ -890,9 +969,8 @@ QUY TẮC BẮT BUỘC (GUARDRAILS):
   ]
 }
 
-[DỮ LIỆU GÓI CƯỚC THỰC TẾ TRÍCH XUẤT TỪ VECTORIZE]:
-${retrievedContext || SYSTEM_INSTRUCTION}
-`;
+[DỮ LIỆU THỰC TẾ]:
+${retrievedContext || SYSTEM_INSTRUCTION}`;
 
           const messages = [
             { role: "system", content: RAG_SYSTEM_PROMPT },
@@ -909,6 +987,54 @@ ${retrievedContext || SYSTEM_INSTRUCTION}
             { role: "user", content: body },
           ];
 
+          // 6. SSE Streaming Support
+          if (isSseRequested) {
+            const aiStream = await env.AI.run(MODEL, {
+              messages,
+              max_tokens: 800,
+              temperature: 0.2,
+              stream: true,
+            });
+
+            const { readable, writable } = new TransformStream();
+            const writer = writable.getWriter();
+            const encoder = new TextEncoder();
+
+            ctx.waitUntil(
+              (async () => {
+                try {
+                  const reader = aiStream.getReader();
+                  while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    const chunkStr = new TextDecoder().decode(value);
+                    const sseMsg = `data: ${JSON.stringify({ chunk: chunkStr })}\n\n`;
+                    await writer.write(encoder.encode(sseMsg));
+                  }
+                  if (matchedCards.length > 0) {
+                    const cardsMsg = `data: ${JSON.stringify({ cards: matchedCards.slice(0, 3) })}\n\n`;
+                    await writer.write(encoder.encode(cardsMsg));
+                  }
+                  await writer.write(encoder.encode("data: [DONE]\n\n"));
+                } catch (sErr) {
+                  console.error("SSE stream writing error:", sErr);
+                } finally {
+                  await writer.close();
+                }
+              })(),
+            );
+
+            return new Response(readable, {
+              headers: {
+                "Content-Type": "text/event-stream; charset=utf-8",
+                "Cache-Control": "no-cache, no-transform",
+                "Connection": "keep-alive",
+                ...CORS,
+              },
+            });
+          }
+
+          // 7. Non-streaming Execution with Edge Caching
           const out = await env.AI.run(MODEL, {
             messages,
             max_tokens: 800,
@@ -926,7 +1052,7 @@ ${retrievedContext || SYSTEM_INSTRUCTION}
             rawText = JSON.stringify(out);
           }
 
-          // 5. Safe JSON Parsing
+          // 8. Safe JSON Parsing
           let responsePayload = null;
           try {
             const jsonMatch = rawText.match(/\{[\s\S]*\}/);
@@ -940,7 +1066,6 @@ ${retrievedContext || SYSTEM_INSTRUCTION}
               responsePayload = JSON.parse(cleanJson);
             }
           } catch (jsonErr) {
-            // Fallback khi JSON lỗi (Test case T5)
             responsePayload = {
               type: "recommendation",
               reply: rawText
@@ -961,7 +1086,28 @@ ${retrievedContext || SYSTEM_INSTRUCTION}
             }
           }
 
-          return json(responsePayload);
+          // Save into Cloudflare Edge Cache (caches.default) with TTL = 1 hour
+          try {
+            const cacheResponse = new Response(
+              JSON.stringify(responsePayload),
+              {
+                status: 200,
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8",
+                  "Cache-Control": "public, s-maxage=3600",
+                  "Access-Control-Allow-Origin": "*",
+                },
+              },
+            );
+            ctx.waitUntil(cache.put(cacheKey, cacheResponse));
+          } catch (pErr) {
+            console.warn("Edge cache put error:", pErr);
+          }
+
+          return json(responsePayload, 200, {
+            "X-Edge-Cache": "MISS",
+            "Cache-Control": "public, s-maxage=3600",
+          });
         }
       }
 

@@ -66,22 +66,61 @@
       media="(min-width: 601px)"
       fetchpriority="high"
     />
+    <!-- Preconnect & DNS-Prefetch tới Backend Edge Worker & CDN -->
+    <link rel="preconnect" href="https://man-chatbot.tvm19624.workers.dev" crossorigin />
+    <link rel="dns-prefetch" href="https://man-chatbot.tvm19624.workers.dev" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin />
+
+    <!-- Self-hosted Font Preload (Zero Google Fonts CDN Latency) -->
     <link
       rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      onload="this.rel = 'stylesheet'"
+      href="/assets/fonts/inter-400-vietnamese.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      />
-    </noscript>
+    <link
+      rel="preload"
+      href="/assets/fonts/inter-400-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Cloudflare Turnstile Bot Protection -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <!-- Critical CSS (Zero Layout Shift / Instant FCP) -->
+    <style id="critical-css">
+      :root {
+        --font-sans: "Inter", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --blue: #0056d6;
+        --navy: #071b42;
+        --orange: #d04900;
+        --ink: #13203a;
+        --muted: #4a5c76;
+        --line: #e6ebf3;
+        --pale: #f4f8ff;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; overflow-x: clip; -webkit-text-size-adjust: 100%; font-feature-settings: "cv02", "cv03", "cv04", "cv11"; }
+      body { margin: 0; font-family: var(--font-sans); font-size: 15px; color: var(--ink); line-height: 1.6; background: #e2e8f0; overflow-x: clip; width: 100%; min-width: 0; }
+      .skip-link { position: absolute; top: -100px; left: 16px; background: #0056d6; color: #fff; padding: 10px 16px; border-radius: 8px; z-index: 10000; font-weight: 700; text-decoration: none; transition: top 0.2s; }
+      .skip-link:focus { top: 16px; }
+      .topbar { background: linear-gradient(90deg, #071b42 0%, #0056d6 100%); color: #fff; padding: 7px 16px; font-size: 12.5px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+      .topbar a { color: #fed7aa; text-decoration: none; font-weight: 700; }
+      .pulse-dot { display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; margin-right: 6px; box-shadow: 0 0 0 2px rgba(34,197,94,0.3); }
+      .header { position: sticky; top: 0; z-index: 999; display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(226,232,240,0.8); }
+      .logo img { display: block; max-height: 40px; width: auto; }
+      .header-cta { background: linear-gradient(135deg, #ea580c, #c2410c); color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 14px; }
+      .hero { position: relative; padding: 48px 24px 60px; background: linear-gradient(180deg, #f0f7ff 0%, #e2e8f0 100%); overflow: hidden; }
+      .hero-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
+      .hero h1 { font-size: clamp(26px, 4.2vw, 44px); font-weight: 800; color: #071b42; line-height: 1.2; margin: 0 0 16px 0; letter-spacing: -0.02em; }
+      .hero p.hero-desc { font-size: 16px; color: #334155; margin: 0 0 24px 0; line-height: 1.6; }
+      @media (max-width: 900px) { .hero-content { grid-template-columns: 1fr; text-align: center; } .header nav { display: none; } }
+    </style>
     <link
       rel="icon"
       type="image/png"
@@ -735,10 +774,10 @@
           "
         >
           <article class="news-card tilt-3d fade-up delay-100">
-            <a href="pages/posts/viet-nam-thang-thai-lan-2-ban-fpt-tang-voucher-200k-cho-khach-lap-internet.html">
+            <a href="pages/posts/lpbank-la-nha-tai-tro-chinh-vleague-1-mua-giai-202627.html">
               <img
-                src="https://s3-api.fpt.vn/fptvn-storage/2026-08-22/1787415577_fpt-tang-voucher-200k-cho-khach-lap-mang.png"
-                alt="Việt Nam thắng Thái Lan 2 bàn - FPT tặng voucher 200K cho khách lắp Internet"
+                src="https://s3-api.fpt.vn/fptvn-storage/2026-08-24/1787567627_01.jpg"
+                alt="LPBank là nhà tài trợ chính V.League 1 mùa giải 2026/27"
                 loading="lazy"
                 width="400"
                 height="250"
@@ -746,19 +785,19 @@
               />
             </a>
             <div class="news-content">
-              <time>22/08/2026</time>
+              <time>24/08/2026</time>
               <h3>
-                <a href="pages/posts/viet-nam-thang-thai-lan-2-ban-fpt-tang-voucher-200k-cho-khach-lap-internet.html">Việt Nam thắng Thái Lan 2 bàn - FPT tặng voucher 200K cho khách lắp Internet</a>
+                <a href="pages/posts/lpbank-la-nha-tai-tro-chinh-vleague-1-mua-giai-202627.html">LPBank là nhà tài trợ chính V.League 1 mùa giải 2026/27</a>
               </h3>
-              <p>Việt Nam thắng Thái Lan 2-0 ở chung kết lượt đi ASEAN Cup 2026, FPT tặng voucher 200K cho khách hàng đăng ký Internet, Combo FPT Play, Camera và Triple Camera....</p>
-              <a href="pages/posts/viet-nam-thang-thai-lan-2-ban-fpt-tang-voucher-200k-cho-khach-lap-internet.html" class="read-more">Xem chi tiết →</a>
+              <p>Website chính thức cung cấp đầy đủ, chính xác thông tin về Internet FPT, Truyền hình FPT, FPT Play, FPT Play Box, FPT Camera, Foxpay, Fshare, Hi FPT...</p>
+              <a href="pages/posts/lpbank-la-nha-tai-tro-chinh-vleague-1-mua-giai-202627.html" class="read-more">Xem chi tiết →</a>
             </div>
           </article>
           <article class="news-card tilt-3d fade-up delay-200">
-            <a href="pages/posts/ky-thuat-vien-fpt-telecom-dung-cam-lao-xuong-song-cuu-song-be-trai-duoi-nuoc-tai-hai-phong.html">
+            <a href="pages/posts/fpt-play-ra-mat-giao-dien-truoc-them-ngoai-hang-anh-202627.html">
               <img
-                src="https://s3-api.fpt.vn/fptvn-storage/2026-08-07/1786089902_333.png"
-                alt="Kỹ thuật viên FPT Telecom dũng cảm lao xuống sông cứu sống bé trai đuối nước tại Hải Phòng"
+                src="https://s3-api.fpt.vn/fptvn-storage/2026-08-24/1787542172_thumbnail1.jpg"
+                alt="FPT Play ra mắt giao diện trước thềm Ngoại hạng Anh 2026/27"
                 loading="lazy"
                 width="400"
                 height="250"
@@ -766,22 +805,19 @@
               />
             </a>
             <div class="news-content">
-              <time>22/08/2026</time>
+              <time>24/08/2026</time>
               <h3>
-                <a href="pages/posts/ky-thuat-vien-fpt-telecom-dung-cam-lao-xuong-song-cuu-song-be-trai-duoi-nuoc-tai-hai-phong.html">Kỹ thuật viên FPT Telecom dũng cảm lao xuống sông cứu sống bé
-                  trai đuối nước tại Hải Phòng</a>
+                <a href="pages/posts/fpt-play-ra-mat-giao-dien-truoc-them-ngoai-hang-anh-202627.html">FPT Play ra mắt giao diện trước thềm Ngoại hạng Anh 2026/27</a>
               </h3>
-              <p>Website chính thức cung cấp đầy đủ, chính xác thông tin về
-                Internet FPT, Truyền hình FPT, FPT Play, FPT Play Box, FPT
-                Camera, Foxpay, Fshare, Hi FPT...</p>
-              <a href="pages/posts/ky-thuat-vien-fpt-telecom-dung-cam-lao-xuong-song-cuu-song-be-trai-duoi-nuoc-tai-hai-phong.html" class="read-more">Xem chi tiết →</a>
+              <p>Website chính thức cung cấp đầy đủ, chính xác thông tin về Internet FPT, Truyền hình FPT, FPT Play, FPT Play Box, FPT Camera, Foxpay, Fshare, Hi FPT...</p>
+              <a href="pages/posts/fpt-play-ra-mat-giao-dien-truoc-them-ngoai-hang-anh-202627.html" class="read-more">Xem chi tiết →</a>
             </div>
           </article>
           <article class="news-card tilt-3d fade-up delay-300">
-            <a href="pages/posts/fpt-camera-ra-mat-goi-an-tam-khi-cam-viet-hieu-nguoi-viet.html">
+            <a href="pages/posts/fpt-play-san-sang-cho-ngoai-hang-anh-202627.html">
               <img
-                src="https://s3-api.fpt.vn/fptvn-storage/2026-08-06/1786004953_OPT3-03-03.jpg"
-                alt="FPT Camera ra mắt Gói An Tâm - Khi cam Việt hiểu người Việt"
+                src="https://s3-api.fpt.vn/fptvn-storage/2026-08-24/1787541725_06.jpg"
+                alt="FPT Play sẵn sàng cho Ngoại hạng Anh 2026/27"
                 loading="lazy"
                 width="400"
                 height="250"
@@ -789,15 +825,12 @@
               />
             </a>
             <div class="news-content">
-              <time>22/08/2026</time>
+              <time>24/08/2026</time>
               <h3>
-                <a href="pages/posts/fpt-camera-ra-mat-goi-an-tam-khi-cam-viet-hieu-nguoi-viet.html">FPT Camera ra mắt Gói An Tâm - Khi cam Việt hiểu người
-                  Việt</a>
+                <a href="pages/posts/fpt-play-san-sang-cho-ngoai-hang-anh-202627.html">FPT Play sẵn sàng cho Ngoại hạng Anh 2026/27</a>
               </h3>
-              <p>Website chính thức cung cấp đầy đủ, chính xác thông tin về
-                Internet FPT, Truyền hình FPT, FPT Play, FPT Play Box, FPT
-                Camera, Foxpay, Fshare, Hi FPT...</p>
-              <a href="pages/posts/fpt-camera-ra-mat-goi-an-tam-khi-cam-viet-hieu-nguoi-viet.html" class="read-more">Xem chi tiết →</a>
+              <p>Website chính thức cung cấp đầy đủ, chính xác thông tin về Internet FPT, Truyền hình FPT, FPT Play, FPT Play Box, FPT Camera, Foxpay, Fshare, Hi FPT...</p>
+              <a href="pages/posts/fpt-play-san-sang-cho-ngoai-hang-anh-202627.html" class="read-more">Xem chi tiết →</a>
             </div>
           </article>
         </div>
