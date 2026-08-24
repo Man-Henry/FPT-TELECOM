@@ -688,7 +688,7 @@ async function main() {
         for (const selector of contentContainers) {
           if ($d(selector).length > 0) {
             $d(
-              `${selector} script, ${selector} style, ${selector} iframe, ${selector} .share-box, ${selector} .tag-box, ${selector} nav`,
+              `${selector} script, ${selector} style, ${selector} iframe, ${selector} form, ${selector} .g-recaptcha, ${selector} .share-box, ${selector} .tag-box, ${selector} nav, ${selector} .form_bordered, ${selector} .form-register`,
             ).remove();
             bodyHtml = $d(selector).html();
             break;
