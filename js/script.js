@@ -1283,17 +1283,83 @@ if (socialProofCountEl) {
 }
 
 // 7. Chat Widget Logic
-const chatToggle = document.getElementById("chat-toggle");
-const chatWidget = document.getElementById("chat-widget");
+let chatToggle = document.getElementById("chat-toggle");
+let chatWidget = document.getElementById("chat-widget");
+
+const scriptTag = document.querySelector('script[src*="script"]');
+const scriptSrc = scriptTag ? scriptTag.getAttribute("src") : "";
+const assetBase = scriptSrc.replace(/js\/script(?:\.min)?\.js.*$/, "") || "";
+
+if (!chatToggle) {
+  let floatingActions = document.querySelector(".floating-actions");
+  if (!floatingActions) {
+    floatingActions = document.createElement("div");
+    floatingActions.className = "floating-actions";
+    floatingActions.setAttribute("aria-label", "Liên hệ nhanh");
+    floatingActions.innerHTML = `<a href="tel:0383900321" class="floating-call" aria-label="Gọi hotline">☎ <span>Gọi ngay</span></a>`;
+    document.body.appendChild(floatingActions);
+  }
+  const btnHtml = `
+    <button class="chat-toggle-btn" id="chat-toggle" aria-label="Mở chat">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chat-icon">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+      </svg>
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon" style="display: none">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>`;
+  floatingActions.insertAdjacentHTML("beforeend", btnHtml);
+  chatToggle = document.getElementById("chat-toggle");
+}
+
+if (!chatWidget) {
+  const widgetHtml = `
+  <div class="chat-widget" id="chat-widget">
+    <div class="chat-widget-header">
+      <div class="chat-widget-brand">
+        <div class="chat-widget-logo">
+          <img src="${assetBase}assets/images/main/logo.webp" alt="FPT Telecom" width="28" height="28" style="object-fit: contain; background: #fff; border-radius: 50%; padding: 2px;">
+        </div>
+        <span>FPT Telecom</span>
+        <span class="chat-online-dot"></span>
+      </div>
+      <div class="chat-widget-controls">
+        <button type="button" aria-label="Chuyển sang Live Chat" title="Chat trực tiếp với nhân viên" class="chat-ctrl-btn" onclick="typeof switchToLiveChat === 'function' ? switchToLiveChat() : null">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="vertical-align: middle">
+            <path d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9z"></path>
+          </svg>
+        </button>
+        <button type="button" id="chat-minimize" aria-label="Thu nhỏ" class="chat-ctrl-btn">−</button>
+      </div>
+    </div>
+    <div class="chat-widget-body">
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-msg bot-msg">
+          <div class="msg-bubble">
+            Chào bạn! Mình là Trợ lý ảo FPT Telecom. Mình có thể tư vấn gói cước, hỗ trợ kỹ thuật hoặc giải đáp các thắc mắc về dịch vụ. Bạn cần mình giúp gì ạ?
+          </div>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <textarea id="chat-input" aria-label="Nhập câu hỏi chat" placeholder="Nhập câu hỏi của bạn..." rows="1" autocomplete="off"></textarea>
+        <button id="chat-send-btn" aria-label="Gửi tin nhắn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML("beforeend", widgetHtml);
+  chatWidget = document.getElementById("chat-widget");
+}
+
 const chatMinimize = document.getElementById("chat-minimize");
 const chatIcon = chatToggle?.querySelector(".chat-icon");
 const closeIcon = chatToggle?.querySelector(".close-icon");
 
 if (chatToggle && chatWidget) {
-  const scriptTag = document.querySelector('script[src*="script"]');
-  const scriptSrc = scriptTag ? scriptTag.getAttribute("src") : "";
-  const assetBase = scriptSrc.replace(/js\/script(?:\.min)?\.js.*$/, "") || "";
-
   const popupAudio = new Audio(assetBase + "assets/music/thongbao.mp3");
   popupAudio.preload = "auto";
 
