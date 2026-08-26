@@ -209,19 +209,52 @@ table {
 }
 
 .topbar {
-  height: 38px;
-  background: #061839;
+  height: 36px;
+  background: var(--navy, #061839);
   color: #cbd8ef;
   display: flex;
-  justify-content: center;
-  gap: 28px;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 16px;
   font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.topbar a {
+.topbar > span,
+.topbar .topbar-promo {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.topbar a,
+.topbar .topbar-hotline {
   color: #fff;
   text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.topbar a b,
+.topbar .topbar-hotline b {
+  color: #fed7aa;
+}
+
+.topbar-text-mobile {
+  display: none;
+}
+
+.topbar-text-desktop {
+  display: inline;
 }
 
 .pulse-dot {
@@ -1583,9 +1616,39 @@ form .btn {
   }
 
   .topbar {
-    height: 33px;
-    font-size: 10px;
-    justify-content: space-around;
+    height: 32px !important;
+    padding: 0 10px !important;
+    font-size: 11px !important;
+    gap: 6px !important;
+    justify-content: space-between !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+
+  .topbar > span,
+  .topbar .topbar-promo {
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .topbar a,
+  .topbar .topbar-hotline {
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    margin-left: 6px !important;
+  }
+
+  .topbar-text-desktop {
+    display: none !important;
+  }
+
+  .topbar-text-mobile {
+    display: inline !important;
   }
 
   .header {
