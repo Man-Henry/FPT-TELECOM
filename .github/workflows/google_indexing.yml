@@ -1,0 +1,49 @@
+name: Auto Google Indexing API
+
+on:
+  workflow_run:
+    workflows: ["Deploy Website to GitHub Pages"]
+    types:
+      - completed
+  schedule:
+    # Runs daily at 01:00 UTC (08:00 AM VN) to index any newly published pages
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  google-index:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Google Indexing API Script
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_INDEXING_KEY || secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          node scripts/google_indexing_api.js --new
+
+      - name: Commit and Push Indexing Logs
+        run: |
+          git config --global user.name "Mẫn Henry"
+          git config --global user.email "tvm19624@gmail.com"
+          git add data/indexing_logs.json
+          if git diff --staged --quiet; then
+            echo "No new indexing logs to commit."
+          else
+            git commit -m "chore(seo): Cap nhat lich su Google Indexing API"
+            git push
+            echo "Successfully updated indexing logs."
+          fi

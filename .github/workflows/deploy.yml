@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'data/indexing_logs.json'
+      - '**.md'
   workflow_dispatch:
 
 permissions:

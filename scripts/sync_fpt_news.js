@@ -582,13 +582,44 @@ function generateFullSitemap() {
     };
   });
 
-  const allUrls = [...mainPages, ...postEntries];
+  // Scan all topic landing pages
+  const topicsDir = path.join(REPO_ROOT, "pages", "topics");
+  const topicFiles = fs.existsSync(topicsDir)
+    ? fs.readdirSync(topicsDir).filter((f) => f.endsWith(".html"))
+    : [];
+
+  const topicEntries = topicFiles.map((file) => {
+    const fullPath = path.join(topicsDir, file);
+    let mtimeIso = todayIso;
+    try {
+      mtimeIso = fs.statSync(fullPath).mtime.toISOString().split("T")[0];
+    } catch (e) {}
+
+    return {
+      loc: `https://fpttelecomvn.click/pages/topics/${file}`,
+      lastmod: mtimeIso,
+      changefreq: "weekly",
+      priority: "0.85",
+    };
+  });
+
+  const allUrls = [...mainPages, ...topicEntries, ...postEntries];
 
   const xmlLines = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     "  <!-- Core Static Pages -->",
     ...mainPages.map(
+      (p) => `  <url>
+    <loc>${p.loc}</loc>
+    <lastmod>${p.lastmod}</lastmod>
+    <changefreq>${p.changefreq}</changefreq>
+    <priority>${p.priority}</priority>
+  </url>`,
+    ),
+    "",
+    `  <!-- Niche Programmatic Landing Pages (${topicEntries.length} topics) -->`,
+    ...topicEntries.map(
       (p) => `  <url>
     <loc>${p.loc}</loc>
     <lastmod>${p.lastmod}</lastmod>

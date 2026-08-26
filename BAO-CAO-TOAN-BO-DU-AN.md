@@ -158,9 +158,9 @@ flowchart TD
 
 ---
 
-### 6. Cấu Trúc Các Trang Web & Danh Mục Bài Viết Chuẩn SEO (`pages/`)
+### 6. Cấu Trúc Các Trang Web & Hệ Thống Programmatic SEO (`pages/`)
 
-Hệ thống bao gồm 6 trang giao diện chính và **18 bài viết tin tức tĩnh chuẩn SEO**:
+Hệ thống bao gồm 6 trang giao diện chính, **7 trang Landing Page ngách (Programmatic SEO) nhúng Schema `@graph`** và **19 bài viết tin tức tĩnh chuẩn SEO**:
 
 #### Các trang chính:
 1. [`index.html`](./index.html): Trang chủ (Hero banner, bảng so sánh tốc độ WiFi 6/7, gói cước nổi bật, bản đồ 3D Việt Nam, đối tác, đánh giá khách hàng, form đăng ký).
@@ -168,9 +168,18 @@ Hệ thống bao gồm 6 trang giao diện chính và **18 bài viết tin tức
 3. [`pages/khu-vuc.html`](./pages/khu-vuc.html): Tra cứu khu vực phủ sóng hạ tầng cáp quang toàn quốc và khuyến mãi theo quận/huyện.
 4. [`pages/chinh-sach.html`](./pages/chinh-sach.html): Chính sách bán hàng, điều khoản sử dụng, chính sách bảo vệ dữ liệu theo Nghị định 13/2023/NĐ-CP.
 5. [`pages/lien-he.html`](./pages/lien-he.html): Trang liên hệ tư vấn, địa chỉ văn phòng giao dịch và form hỗ trợ kỹ thuật.
-6. [`pages/news.html`](./pages/news.html): Cổng danh bạ tin tức công nghệ và khuyến mãi tổng hợp.
+6. [`pages/news.html`](./pages/news.html): Cổng danh bạ tin tức công nghệ và chuyên mục cẩm nang tư vấn ngách.
 
-#### Danh sách 18 bài viết tin tức tĩnh trong [`pages/posts/`](./pages/posts):
+#### Danh sách 7 trang Landing Page ngách (Programmatic SEO & Schema `@graph`) trong [`pages/topics/`](./pages/topics):
+1. `lap-mang-fpt-cho-sinh-vien-gia-re.html`: Gói cước sinh viên giá rẻ từ 195k, 0đ lắp đặt, đăng ký CCCD không cần hộ khẩu.
+2. `chuyen-phong-tro-mang-theo-mang-fpt-duoc-khong.html`: Hướng dẫn thủ tục dịch chuyển đường truyền miễn phí khi đổi phòng trọ.
+3. `phong-tro-3-den-4-nguoi-dung-chung-wifi-fpt-goi-nao.html`: Tư vấn gói SKY 1Gbps chia tiền chỉ ~50k/người cho phòng 3-4 bạn.
+4. `chu-tro-nen-lap-mang-tong-hay-de-khach-tu-lap.html`: Phân tích bài toán kinh tế & quản lý đường truyền cho chủ trọ, chung cư mini.
+5. `giai-phap-wifi-fpt-chiu-tai-day-tro-20-30-phong.html`: Giải pháp Router cân bằng tải và Mesh WiFi 6 cho dãy trọ 20-30 phòng không nghẽn.
+6. `chung-cu-toa-nha-co-bi-doc-quyen-nha-mang-khong.html`: Quy định pháp luật về không độc quyền viễn thông tại chung cư & cách kiểm tra sóng FPT.
+7. `combo-internet-camera-ai-smarthome-cho-can-ho.html`: Trọn bộ giải pháp kết nối căn hộ thông minh: Wi-Fi 6, Camera AI Cloud & Smart Home.
+
+#### Danh sách 19 bài viết tin tức tĩnh trong [`pages/posts/`](./pages/posts):
 1. `bang-gia-internet-fpt-thang-7-2026.html`: Bảng giá cước Internet FPT tháng 7/2026.
 2. `khuyen-mai-fpt-thang-7-2026.html`: Tổng hợp khuyến mãi FPT Telecom tháng 7/2026.
 3. `khuyen-mai-lap-mang-fpt-thang-8-nhan-camera-voucher-50k-tv-giam-43.html`: Khuyến mãi lắp mạng FPT tháng 8 tặng Camera và Voucher.
@@ -189,11 +198,16 @@ Hệ thống bao gồm 6 trang giao diện chính và **18 bài viết tin tức
 16. `ky-thuat-vien-fpt-telecom-dung-cam-lao-xuong-song-cuu-song-be-trai-duoi-nuoc-tai-hai-phong.html`: Câu chuyện người tốt việc tốt của kỹ thuật viên FPT Hải Phòng.
 17. `viet-nam-ghi-2-ban-fpt-tang-voucher-200k-cho-khach-hang-lap-internet.html`: Khuyến mãi tặng Voucher 200k khi tuyển Việt Nam ghi 2 bàn.
 18. `viet-nam-thang-thai-lan-2-ban-fpt-tang-voucher-200k-cho-khach-lap-internet.html`: Khuyến mãi mừng chiến thắng đội tuyển Việt Nam.
+19. `fpt-telecom-dong-hanh-cung-khanh-hoa-nang-cao-an-toan-duong-thuy-phong-ngua-duoi-nuoc.html`: FPT Telecom đồng hành nâng cao an toàn đường thủy.
 
 ---
 
-### 7. Tầng Mạng Biên, Bảo Mật, PWA & CI/CD Pipeline
+### 7. Tầng Mạng Biên, Bảo Mật, PWA, Google Indexing API & CI/CD Pipeline
 
+* **Tự Động Hóa Google Indexing API v3:**
+  * Script [`scripts/google_indexing_api.js`](./scripts/google_indexing_api.js) tự động ký JWT OAuth2 của Google Service Account, kiểm soát hạn mức 200 URLs/ngày, tự động đẩy thông báo `URL_UPDATED` để Googlebot lập chỉ mục ngay lập tức.
+  * Hướng dẫn cài đặt chi tiết tại [`HD-CAI-DAT-GOOGLE-INDEXING-API.md`](./HD-CAI-DAT-GOOGLE-INDEXING-API.md).
+  * Lịch sử và nhật ký quota lưu trữ tại [`data/indexing_logs.json`](./data/indexing_logs.json).
 * **Progressive Web App (PWA):**
   * [`manifest.json`](./manifest.json): Cấu hình cài đặt Web App về màn hình điện thoại (Standalone, Theme Color `#0665f5`, bộ icon 192x192, 512x512, maskable).
   * [`sw.js`](./sw.js): Service Worker áp dụng chiến lược **Network-First** cho mã nguồn HTML/CSS/JS (tự động phá cache khi có commit mới) và **Cache-First** cho tài nguyên hình ảnh/font chữ; bỏ qua cache đối với `/api/` và `/telegram`.
@@ -202,11 +216,12 @@ Hệ thống bao gồm 6 trang giao diện chính và **18 bài viết tin tức
   * [`_redirects`](./_redirects): Chuyển hướng 301 toàn diện chuẩn hóa domain (HTTP -> HTTPS, `www` -> `non-www`) và chuyển hướng URL bài viết cũ vào thư mục `/pages/posts/`.
 * **SEO & AI Bot Crawlers:**
   * [`robots.txt`](./robots.txt): Cho phép toàn bộ công cụ tìm kiếm và bot AI thế hệ mới (`GPTBot`, `ClaudeBot`, `Google-Extended`) thu thập dữ liệu phục vụ tìm kiếm ngữ nghĩa.
-  * [`sitemap.xml`](./sitemap.xml): Bản đồ website đầy đủ với các thông số `lastmod`, `priority` và `changefreq` được sinh tự động.
+  * [`sitemap.xml`](./sitemap.xml): Bản đồ website đầy đủ (32 URLs) với các thông số `lastmod`, `priority` và `changefreq` được sinh tự động.
   * [`google80fb096eb6b47793.html`](./google80fb096eb6b47793.html): Mã xác thực Google Search Console.
   * [`CNAME`](./CNAME): Cấu hình tên miền `fpttelecomvn.click`.
 * **Quy trình CI/CD GitHub Actions:**
   * [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml): Tự động kích hoạt khi push code lên `main`, trích xuất mã Git SHA (`${GITHUB_SHA::8}`), dùng Python thay thế hàng loạt `?v=VERSION` trong tất cả file HTML và `sw.js` thành `?v=GitSHA` (phá cache triệt để trên máy khách), đóng gói và deploy trực tiếp lên GitHub Pages.
+  * [`.github/workflows/google_indexing.yml`](./.github/workflows/google_indexing.yml): Tự động kích hoạt sau khi deploy thành công hoặc chạy cron hàng ngày để bắn Google Indexing API.
   * [`.github/workflows/auto_sync_news.yml`](./.github/workflows/auto_sync_news.yml): Cron job chạy định kỳ mỗi 6 tiếng một lần (`0 */6 * * *`), tự động cào tin tức mới, sinh HTML tĩnh, cập nhật Sitemap và tự commit/push về repository.
   * [`.github/workflows/lighthouse.yml`](./.github/workflows/lighthouse.yml): Kiểm tra tự động điểm số Core Web Vitals và SEO trên từng Pull Request.
 * **Công cụ hỗ trợ phát triển:**
@@ -222,9 +237,10 @@ c:\Users\ManHenry\source\repos\FPTTELECOM\
 │   └── workflows/
 │       ├── auto_sync_news.yml        # CI/CD Cron job cào tin tức FPT tự động mỗi 6 tiếng
 │       ├── deploy.yml                # CI/CD Tự động phá cache theo mã Git SHA & Deploy Pages
-│       └── lighthouse.yml           # CI/CD Audit hiệu năng Core Web Vitals
+│       ├── google_indexing.yml       # CI/CD Tự động kích hoạt Google Indexing API sau deploy
+│       └── lighthouse.yml            # CI/CD Audit hiệu năng Core Web Vitals
 ├── assets/
-│   ├── fonts/                       # Bộ 9 font chữ WOFF2 tự lưu trữ (Inter 400, 600, 700)
+│   ├── fonts/                        # Bộ 9 font chữ WOFF2 tự lưu trữ (Inter 400, 600, 700)
 │   │   ├── inter-400-latin.woff2
 │   │   ├── inter-400-latin-ext.woff2
 │   │   ├── inter-400-vietnamese.woff2
@@ -234,53 +250,47 @@ c:\Users\ManHenry\source\repos\FPTTELECOM\
 │   │   ├── inter-700-latin.woff2
 │   │   ├── inter-700-latin-ext.woff2
 │   │   └── inter-700-vietnamese.woff2
-│   ├── icons/                       # Bộ biểu tượng ứng dụng PWA
+│   ├── icons/                        # Bộ biểu tượng ứng dụng PWA
 │   │   ├── icon-192x192.png
 │   │   ├── icon-512x512.png
 │   │   └── icon-maskable-512x512.png
 │   ├── images/
-│   │   ├── features/                # Ảnh tính năng (WiFi 6, FPT Play, No Lag)
-│   │   ├── main/                    # 43 ảnh logo, modem Wi-Fi 6/7, TV Box, Camera AI, banner
-│   │   └── posts/                   # 13 ảnh thumbnail cho các bài viết tin tức
+│   │   ├── features/                 # Ảnh tính năng (WiFi 6, FPT Play, No Lag)
+│   │   ├── main/                     # 43 ảnh logo, modem Wi-Fi 6/7, TV Box, Camera AI, banner
+│   │   └── posts/                    # 13 ảnh thumbnail cho các bài viết tin tức
 │   ├── music/
-│   │   └── thongbao.mp3             # Âm thanh chuông báo tin nhắn chat
-│   └── vn-all.geo.json              # Dữ liệu tọa độ bản đồ Việt Nam (Hoàng Sa & Trường Sa)
+│   │   └── thongbao.mp3              # Âm thanh chuông báo tin nhắn chat
+│   └── vn-all.geo.json               # Dữ liệu tọa độ bản đồ Việt Nam (Hoàng Sa & Trường Sa)
 ├── css/
-│   ├── styles.css                   # File CSS nguồn đầy đủ (~6.500 dòng)
-│   └── styles.min.css               # File CSS nén tối ưu cho môi trường Production
+│   ├── styles.css                    # File CSS nguồn đầy đủ (~6.500 dòng)
+│   └── styles.min.css                # File CSS nén tối ưu cho môi trường Production
 ├── data/
-│   ├── fpt_pricing_2026.json        # Dữ liệu 507 dòng bảng giá chuẩn hóa 2026 (RAG Vectorize)
-│   └── synced_news.json             # Lịch sử các bài viết đã đồng bộ từ fpt.vn
+│   ├── fpt_pricing_2026.json         # Dữ liệu 507 dòng bảng giá chuẩn hóa 2026 (RAG Vectorize)
+│   ├── indexing_logs.json            # Lịch sử và nhật ký quota Google Indexing API
+│   ├── niche_topics.json             # Ma trận từ khóa & nội dung chuyên sâu 3 nhóm đối tượng
+│   └── synced_news.json              # Lịch sử các bài viết đã đồng bộ từ fpt.vn
 ├── js/
-│   ├── script.js                    # JavaScript nguồn chính (Three.js 3D, Chat RAG, Form, CRO)
-│   └── script.min.js                # JavaScript đã nén và obfuscate cho Production
+│   ├── script.js                     # JavaScript nguồn chính (Three.js 3D, Chat RAG, Form, CRO)
+│   └── script.min.js                 # JavaScript đã nén và obfuscate cho Production
 ├── pages/
-│   ├── bang-gia.html                # Bảng giá chi tiết tất cả gói cước FPT 2026
-│   ├── chinh-sach.html              # Chính sách bảo mật & quy định Nghị định 13/2023/NĐ-CP
-│   ├── khu-vuc.html                 # Tra cứu hạ tầng & khuyến mãi theo khu vực toàn quốc
-│   ├── lien-he.html                 # Trang liên hệ tư vấn, địa chỉ đại lý, hỗ trợ kỹ thuật
-│   ├── news.html                    # Cổng danh bạ tin tức & khuyến mãi tổng hợp
-│   └── posts/                       # 18 bài viết tĩnh chuẩn SEO Schema & OpenGraph
-│       ├── bang-gia-internet-fpt-thang-7-2026.html
-│       ├── co-nen-bat-wifi-lien-tuc-24-7.html
-│       ├── combo-internet-vvip-gia-sap-san-tron-ngoai-hang-anh-va-ca-kho-giai-tri-cho-ca-nha.html
-│       ├── cong-ty-cua-musk-bat-dau-ban-internet-ve-tinh-tai-viet-nam.html
-│       ├── fantasy-premier-league-lan-dau-co-league-chinh-thuc-danh-cho-nguoi-viet.html
-│       ├── fpt-camera-ra-mat-goi-an-tam-khi-cam-viet-hieu-nguoi-viet.html
-│       ├── fpt-play-ra-mat-giao-dien-truoc-them-ngoai-hang-anh-202627.html
-│       ├── fpt-play-san-sang-cho-ngoai-hang-anh-202627.html
-│       ├── iphone-2028-5-thay-doi-dot-pha.html
-│       ├── khuyen-mai-fpt-thang-7-2026.html
-│       ├── khuyen-mai-lap-mang-fpt-thang-8-nhan-camera-voucher-50k-tv-giam-43.html
-│       ├── ky-thuat-vien-fpt-telecom-dung-cam-lao-xuong-song-cuu-song-be-trai-duoi-nuoc-tai-hai-phong.html
-│       ├── lich-thi-dau-asean-cup-2026.html
-│       ├── lpbank-la-nha-tai-tro-chinh-vleague-1-mua-giai-202627.html
-│       ├── ngoai-hang-anh-2026-27-fpt-play.html
-│       ├── san-van-dong-vinfast-135000-cho-lon-nhat-the-gioi.html
-│       ├── viet-nam-ghi-2-ban-fpt-tang-voucher-200k-cho-khach-hang-lap-internet.html
-│       └── viet-nam-thang-thai-lan-2-ban-fpt-tang-voucher-200k-cho-khach-lap-internet.html
+│   ├── bang-gia.html                 # Bảng giá chi tiết tất cả gói cước FPT 2026
+│   ├── chinh-sach.html               # Chính sách bảo mật & quy định Nghị định 13/2023/NĐ-CP
+│   ├── khu-vuc.html                  # Tra cứu hạ tầng & khuyến mãi theo khu vực toàn quốc
+│   ├── lien-he.html                  # Trang liên hệ tư vấn, địa chỉ đại lý, hỗ trợ kỹ thuật
+│   ├── news.html                     # Cổng danh bạ tin tức & chuyên mục tư vấn chuyên sâu
+│   ├── posts/                        # 19 bài viết tĩnh chuẩn SEO Schema & OpenGraph
+│   └── topics/                       # 7 Landing Page ngách Programmatic SEO (Schema @graph)
+│       ├── chu-tro-nen-lap-mang-tong-hay-de-khach-tu-lap.html
+│       ├── chung-cu-toa-nha-co-bi-doc-quyen-nha-mang-khong.html
+│       ├── chuyen-phong-tro-mang-theo-mang-fpt-duoc-khong.html
+│       ├── combo-internet-camera-ai-smarthome-cho-can-ho.html
+│       ├── giai-phap-wifi-fpt-chiu-tai-day-tro-20-30-phong.html
+│       ├── lap-mang-fpt-cho-sinh-vien-gia-re.html
+│       └── phong-tro-3-den-4-nguoi-dung-chung-wifi-fpt-goi-nao.html
 ├── scripts/
 │   ├── compress_images.js           # Script nén ảnh WebP bằng thư viện Sharp
+│   ├── generate_niche_landing_pages.js # Bộ sinh trang ngách Programmatic SEO + Schema @graph
+│   ├── google_indexing_api.js       # Tự động hóa Google Indexing API v3 (OAuth2 JWT)
 │   └── sync_fpt_news.js             # Script tự động cào tin từ fpt.vn, tạo HTML tĩnh & Sitemap
 ├── src/
 │   └── index.js                     # Backend Cloudflare Worker (AI + D1 + RAG + Telegram Live Chat)
@@ -292,6 +302,7 @@ c:\Users\ManHenry\source\repos\FPTTELECOM\
 ├── favicon.ico                      # Biểu tượng tab trình duyệt
 ├── google-apps-script.js            # Mã nguồn triển khai Google Apps Script nhận Lead
 ├── google80fb096eb6b47793.html      # Token xác thực Google Search Console
+├── HD-CAI-DAT-GOOGLE-INDEXING-API.md # Hướng dẫn cài đặt Google Indexing API từng bước
 ├── HD-CAI-DAT-GOOGLE-SHEET-EMAIL.md # Hướng dẫn thiết lập Google Apps Script nhận Lead
 ├── index.html                       # Trang chủ chính của website
 ├── manifest.json                    # Cấu hình cài đặt ứng dụng Progressive Web App (PWA)
@@ -300,7 +311,7 @@ c:\Users\ManHenry\source\repos\FPTTELECOM\
 ├── push_code.bat                    # Script 1-click đẩy code lên GitHub
 ├── README.md                        # Hướng dẫn khởi chạy và triển khai Cloudflare Workers
 ├── robots.txt                       # Hướng dẫn bot tìm kiếm Google, Bing và các Bot AI
-├── sitemap.xml                      # Sơ đồ website chuẩn SEO XML
+├── sitemap.xml                      # Sơ đồ website chuẩn SEO XML (32 URLs)
 ├── sw.js                            # Service Worker quản lý bộ nhớ đệm Offline và Network-First
 └── wrangler.toml                    # File cấu hình Cloudflare Worker, D1 DB và Vectorize
 ```

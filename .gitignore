@@ -35,6 +35,9 @@ desktop.ini
 secret.json
 credentials.json
 client_secret.json
+service_account*.json
+*service-account*.json
+google-service-account.json
 aws_credentials
 *.pem
 *.key
