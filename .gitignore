@@ -78,3 +78,6 @@ fpttelecomvn.click-audit/
 # Python cache
 __pycache__/
 *.pyc
+
+# Markdowns
+*.md
