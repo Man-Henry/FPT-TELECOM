@@ -228,5 +228,253 @@
         "a": "An toàn hơn rất nhiều! Thẻ nhớ ngoài rất dễ bị hư hỏng do nhiệt độ hoặc bị kẻ gian tháo trộm mang đi. Với Cloud FPT, video được mã hóa và lưu trữ tức thì tại Trung tâm dữ liệu FPT chuẩn quốc tế, bạn có thể xem lại mọi lúc mọi nơi ngay cả khi camera bị mất kết nối."
       }
     ]
+  },
+  {
+    "id": "sc_01_no_internet",
+    "slug": "tai-sao-wifi-khong-co-ket-noi-internet",
+    "category": "su_co_ky_thuat",
+    "category_name": "Sự Cố & Khắc Phục Lỗi",
+    "title": "Tại Sao WiFi Hiện 'Không Có Kết Nối Internet' (No Internet)? 5 Cách Sửa Nhanh",
+    "h1": "Sửa Lỗi WiFi Báo 'Không Có Kết Nối Internet' (No Internet Access) Thành Công 100%",
+    "target_keyword": "tại sao wifi không có kết nối internet",
+    "meta_desc": "Hướng dẫn sửa lỗi WiFi hiện No Internet, không vào được mạng trên điện thoại & máy tính. 5 bước kiểm tra modem, DNS, IP và cách xử lý sự cố mạng FPT nhanh nhất.",
+    "badge": "Khắc Phục Sự Cố Mạng",
+    "intro": "Thiết bị vẫn kết nối sóng WiFi đầy vạch nhưng lại hiện thông báo 'Không có kết nối Internet' (No Internet Access, Connected without internet)? Đây là một trong những lỗi mạng phổ biến nhất. Xem ngay hướng dẫn từng bước để tự khắc phục trong 3 phút.",
+    "pricing_ids": ["giga_hcm_noithanh", "sky_hcm_noithanh"],
+    "key_benefits": [
+      "Khắc phục nhanh tình trạng No Internet trên Windows, iPhone, Android",
+      "Hướng dẫn đổi DNS Google 8.8.8.8 và Cloudflare 1.1.1.1 siêu tốc",
+      "Cách nhận biết Modem bị treo RAM và khởi động lại đúng cách",
+      "Tổng đài kỹ thuật FPT hỗ trợ từ xa 24/7 qua Hotline 0383 900 321"
+    ],
+    "deep_content": "<h3>5 bước sửa lỗi 'Không có kết nối Internet' chi tiết:</h3><ol><li><strong>Bước 1: Khởi động lại Modem (Power Cycle):</strong> Rút phích cắm nguồn điện modem WiFi ra, chờ khoảng 30 - 60 giây để xả hết điện tích tụ và giải phóng bộ nhớ đệm RAM, sau đó cắm lại nguồn.</li><li><strong>Bước 2: Kiểm tra đèn tín hiệu trên Modem:</strong> Đèn <em>PON / Internet</em> phải sáng xanh ổn định. Nếu đèn <em>LOS nhấp nháy đỏ</em>, đường dây quang bên ngoài bị đứt hoặc suy hao, cần liên hệ kỹ thuật FPT.</li><li><strong>Bước 3: Đổi DNS trên máy tính/điện thoại:</strong> Chuyển DNS tĩnh sang Google DNS (<code>8.8.8.8</code> / <code>8.8.4.4</code>) hoặc Cloudflare (<code>1.1.1.1</code> / <code>1.0.0.1</code>).</li><li><strong>Bước 4: Quên mạng WiFi và kết nối lại:</strong> Vào cài đặt WiFi trên điện thoại > Chọn mạng đang kết nối > Bấm <em>Quên mạng này (Forget Network)</em> và nhập lại mật khẩu.</li><li><strong>Bước 5: Gia hạn lại địa chỉ IP (Renew IP):</strong> Trên máy tính Windows, mở Command Prompt gõ <code>ipconfig /release</code> rồi <code>ipconfig /renew</code>.</li></ol>",
+    "faqs": [
+      {
+        "q": "Tại sao sóng WiFi vẫn đầy 3 vạch nhưng không vào được mạng?",
+        "a": "Sóng WiFi đầy vạch chỉ thể hiện kết nối không dây giữa điện thoại của bạn với Modem/Router phát sóng ở khoảng cách gần. Nếu modem bị mất tín hiệu cáp quang với nhà mạng (đứt cáp, bảo trì) hoặc bị lỗi cấp phát địa chỉ IP (DHCP), thiết bị vẫn hiện đầy sóng nhưng sẽ báo 'No Internet'."
+      },
+      {
+        "q": "Đổi DNS sang 8.8.8.8 có làm mạng chạy nhanh hơn không?",
+        "a": "Có! DNS Google (8.8.8.8) và Cloudflare (1.1.1.1) có tốc độ phân giải tên miền cực nhanh và ổn định, giúp máy tính/điện thoại mở trang web nhanh hơn và khắc phục tình trạng bị chặn truy cập vào một số website hoặc ứng dụng."
+      },
+      {
+        "q": "Nếu tự làm theo các bước trên vẫn không có mạng thì liên hệ ai?",
+        "a": "Bạn hãy liên hệ ngay Hotline kỹ thuật FPT <strong>0383 900 321</strong> hoặc tạo yêu cầu hỗ trợ trên app <strong>Hi FPT</strong>. Kỹ thuật viên sẽ kiểm tra tín hiệu cổng quang trên hệ thống và cử nhân viên đến tận nhà xử lý trong vòng 2 giờ."
+      }
+    ]
+  },
+  {
+    "id": "sc_02_den_los_do",
+    "slug": "modem-wifi-nhap-nhay-den-do-den-los",
+    "category": "su_co_ky_thuat",
+    "category_name": "Sự Cố & Khắc Phục Lỗi",
+    "title": "Modem WiFi Nhấp Nháy Đèn Đỏ (Đèn LOS) Là Bị Gì? Nguyên Nhân & Cách Xử Lý",
+    "h1": "Modem WiFi Bị Đèn Đỏ LOS: Nguyên Nhân, Cách Tự Kiểm Tra & Báo Hỏng FPT 24/7",
+    "target_keyword": "modem wifi nhấp nháy đèn đỏ đèn los",
+    "meta_desc": "Giải thích hiện tượng modem WiFi FPT nháy đèn đỏ LOS. Nguyên nhân do đứt cáp quang, gập dây hay suy hao tín hiệu và số tổng đài kỹ thuật hỗ trợ sửa chữa khẩn cấp.",
+    "badge": "Cảnh Báo Lỗi Tín Hiệu Cáp",
+    "intro": "Đang sử dụng bình thường thì mạng bị mất và cục Modem WiFi nhấp nháy đèn đỏ ở chữ LOS (Loss of Signal) hoặc PON? Đừng quá lo lắng, đây là cảnh báo mất tín hiệu quang. Hãy cùng tìm hiểu nguyên nhân và cách xử lý nhanh nhất.",
+    "pricing_ids": ["giga_hcm_noithanh", "sky_hcm_noithanh"],
+    "key_benefits": [
+      "Hiểu rõ ý nghĩa đèn LOS (Loss of Signal) trên các dòng Modem FPT",
+      "Hướng dẫn kiểm tra đầu Jack cắm quang SC/APC màu xanh lá",
+      "Phân biệt đứt cáp nội bộ trong nhà hay đứt cáp trục ngoài đường",
+      "Kỹ thuật viên FPT có mặt khắc phục sự cố tận nhà miễn phí 100%"
+    ],
+    "deep_content": "<h3>1. Đèn LOS trên Modem WiFi là gì?</h3><p><strong>LOS (Loss of Signal)</strong> nghĩa là 'Mất tín hiệu quang'. Khi đèn này nhấp nháy màu đỏ, có nghĩa là Modem không nhận được luồng ánh sáng laser truyền từ trạm tổng đài (OLT) của nhà mạng đến đầu thu quang của modem.</p><h3>2. Các nguyên nhân chính gây lỗi đèn đỏ LOS:</h3><ul><li><strong>Dây cáp quang trong nhà bị gập gãy:</strong> Dây nhảy quang màu vàng/trắng bị đồ đạc đè lên, bị chuột cắn hoặc bị uốn cong quá góc 90 độ làm gãy lõi thủy tinh bên trong.</li><li><strong>Đầu nối quang bị lỏng hoặc bám bụi:</strong> Đầu Jack cắm quang chuẩn SC/APC (màu xanh lá) cắm vào đáy modem bị lỏng hoặc bụi bẩn bám vào bề mặt sứ tiếp xúc.</li><li><strong>Đứt cáp quang ngoài đường:</strong> Do xe tải va quẹt làm đứt dây cáp trên cột điện, hoặc các đơn vị thi công đào đường làm đứt tuyến cáp trục.</li><li><strong>Bảo trì hạ tầng:</strong> Nhà mạng đang tiến hành nâng cấp cổng OLT tại khu vực của bạn.</li></ul>",
+    "faqs": [
+      {
+        "q": "Tôi có thể tự sửa lỗi đèn đỏ LOS tại nhà được không?",
+        "a": "Bạn chỉ có thể kiểm tra xem đầu cắm quang màu xanh lá ở đuôi modem có bị lỏng hay tuột ra không (rút nhẹ ra rồi cắm chặt lại nghe tiếng tách). Nếu dây quang bị đứt hoặc gãy lõi thủy tinh, bắt buộc phải có máy hàn cáp quang chuyên dụng của kỹ thuật viên FPT để hàn nối lại."
+      },
+      {
+        "q": "Kỹ thuật FPT đến sửa đường dây quang có thu tiền không?",
+        "a": "Hoàn toàn MIỄN PHÍ! FPT Telecom bảo hành và bảo trì trọn đời đường truyền cáp quang cho khách hàng đang sử dụng hợp đồng. Bạn không phải trả bất kỳ chi phí nào cho việc hàn nối hoặc kéo lại dây mới."
+      },
+      {
+        "q": "Số tổng đài báo hỏng mạng FPT khi bị đèn đỏ LOS là số nào?",
+        "a": "Hãy gọi ngay Hotline <strong>0383 900 321</strong> hoặc <strong>0358 513 269</strong> để được điều phối kỹ thuật viên khu vực gần nhất đến kiểm tra và xử lý."
+      }
+    ]
+  },
+  {
+    "id": "kt_01_nha_3_tang",
+    "slug": "lap-wifi-cho-nha-3-tang-dat-cuc-phat-o-dau",
+    "category": "kien_truc_nha_o",
+    "category_name": "Kiến Trúc & Nhà Ở",
+    "title": "Lắp WiFi Cho Nhà 2 - 3 Tầng: Đặt Cục Phát Ở Đâu Để Sóng Khỏe Căng Vạch?",
+    "h1": "Giải Pháp WiFi Cho Nhà 3 Tầng: Vị Trí Đặt Router & Hệ Thống Mesh WiFi 6 Không Góc Chết",
+    "target_keyword": "lắp wifi cho nhà 3 tầng đặt cục phát ở đâu",
+    "meta_desc": "Tư vấn vị trí đặt Modem WiFi tối ưu cho nhà ống 2-3 tầng. Giải pháp Mesh WiFi 6 phủ sóng xuyên tầng, không lo góc chết, chuyển vùng mượt mà không rớt mạng.",
+    "badge": "Giải Pháp Nhà Cao Tầng",
+    "intro": "Nhà cao tầng thường xuyên gặp tình trạng: Tầng trệt đặt modem thì tầng 2, tầng 3 sóng yếu chập chờn, vào phòng ngủ đóng cửa là mất mạng. Làm sao để cả 3 tầng đều bắt sóng full vạch mà không cần kéo dây nhợ rườm rà?",
+    "pricing_ids": ["sky_hcm_noithanh", "meta_hcm_noithanh", "super300_biz"],
+    "key_benefits": [
+      "Vị trí đặt modem chuẩn nguyên lý hình cầu truyền sóng",
+      "Giải pháp Mesh Wi-Fi 6 chuyển vùng Roaming tự động giữa các tầng",
+      "Triệt tiêu 100% điểm chết sóng sau tường bê tông và cửa gỗ dày",
+      "Tặng kèm 01 - 02 thiết bị Mesh Wi-Fi 6 khi đăng ký gói cước FPT"
+    ],
+    "deep_content": "<h3>1. Nguyên tắc vàng khi đặt vị trí cục phát WiFi trong nhà 3 tầng:</h3><ul><li><strong>Đặt ở vị trí trung tâm (Tầng 2 - Cầu thang):</strong> Sóng WiFi phát tỏa ra xung quanh theo dạng hình cầu. Khi đặt tại tầng 2 (khu vực giếng trời hoặc cầu thang hở), sóng sẽ lan tỏa đều lên tầng 3 và xuống tầng 1 một cách cân đối nhất.</li><li><strong>Đặt ở độ cao từ 1.2m - 1.8m:</strong> Tránh đặt modem sát mặt sàn nhà hoặc giấu trong hộc tủ tivi, vì sàn bê tông cốt thép và kim loại sẽ hấp thụ làm triệt tiêu đến 70% công suất phát sóng.</li><li><strong>Tránh xa các nguồn gây nhiễu:</strong> Không đặt gần lò vi sóng, tủ lạnh, tivi lớn hoặc gương soi lớn.</li></ul><h3>2. Giải pháp Mesh Wi-Fi 6 FPT chuyên dụng cho nhà nhiều tầng:</h3><p>Với nhà 3 tầng diện tích sàn từ 60m2 trở lên, 01 modem đơn lẻ khó có thể xuyên qua 2 lớp sàn bê tông dày. Giải pháp chuẩn nhất là <strong>Hệ thống Mesh Wi-Fi 6 (1 Router chính + 1 hoặc 2 Node phụ)</strong>: Sử dụng chung 1 tên WiFi (SSID) duy nhất, khi bạn đi từ tầng 1 lên tầng 3, điện thoại sẽ tự động bắt vào node phát mạnh nhất trong 0.05 giây mà không bị đứt cuộc gọi Zalo hay game.</p>",
+    "faqs": [
+      {
+        "q": "Nhà 3 tầng nên dùng bộ kích sóng (Repeater) cắm ổ điện hay dùng Mesh Wi-Fi?",
+        "a": "Nên dùng Mesh Wi-Fi! Bộ kích sóng giá rẻ (Repeater) chỉ thu sóng yếu rồi phát lại, làm suy hao 50% băng thông và tạo ra nhiều tên WiFi riêng biệt khiến bạn phải đổi mạng thủ công khi lên tầng. Trong khi đó, Mesh Wi-Fi 6 FPT giữ nguyên 100% tốc độ và tự động chuyển vùng mượt mà."
+      },
+      {
+        "q": "Gói cước nào của FPT có tặng sẵn bộ Mesh Wi-Fi 6 cho nhà nhiều tầng?",
+        "a": "FPT Telecom cung cấp các gói cước F-Mesh chuyên biệt như <strong>SKY F1 / META F1</strong> hoặc <strong>LUX 500 / LUX 800</strong> được trang bị sẵn 01 Modem chính Wi-Fi 6 + 01 đến 02 Access Point Mesh Wi-Fi 6 phủ sóng toàn bộ ngôi nhà."
+      }
+    ]
+  },
+  {
+    "id": "cp_01_phi_hoa_mang_modem",
+    "slug": "lap-mang-fpt-co-mat-tien-mua-modem-khong",
+    "category": "chi_phi_thu_tuc",
+    "category_name": "Chi Phí & Thủ Tục",
+    "title": "Lắp Mạng FPT Có Mất Tiền Mua Cục Modem Không? Phí Hòa Mạng Là Gì?",
+    "h1": "Lắp Mạng FPT Có Mất Tiền Modem Không? Giải Thích Chi Phí Hòa Mạng & Ưu Đãi 2026",
+    "target_keyword": "lắp mạng fpt có mất tiền mua modem không",
+    "meta_desc": "Giải đáp thắc mắc lắp mạng FPT có mất tiền mua modem không. Chi tiết phí hòa mạng ban đầu và cách đăng ký nhận miễn phí Modem Wi-Fi 6 + Voucher giảm 200K.",
+    "badge": "Minh Bạch Chi Phí",
+    "intro": "Rất nhiều khách hàng trước khi đăng ký lắp mạng internet đều thắc mắc: Thiết bị Modem WiFi nhà mạng cấp có phải bỏ tiền túi mua không? Phí hòa mạng ban đầu là bao nhiêu và có được miễn phí không?",
+    "pricing_ids": ["giga_hcm_noithanh", "sky_hcm_noithanh", "giga_bd_xa"],
+    "key_benefits": [
+      "Trang bị miễn phí Modem Wi-Fi 6 AX3000 hai băng tần trị giá 1.200.000đ",
+      "Bảo hành 1 đổi 1 và bảo trì thiết bị trọn đời trong suốt thời gian sử dụng",
+      "Chính sách tặng thêm 01 tháng cước khi thanh toán trả trước",
+      "Không phát sinh bất kỳ chi phí ngầm nào ngoài hợp đồng"
+    ],
+    "deep_content": "<h3>1. Khách hàng có phải mua Modem WiFi không?</h3><p><strong>Câu trả lời là KHÔNG!</strong> FPT Telecom sẽ <strong>trang bị miễn phí 100%</strong> thiết bị Modem Wi-Fi 6 thế hệ mới nhất cho khách hàng trong suốt quá trình sử dụng dịch vụ. Nếu thiết bị gặp sự cố hư hỏng, chập cháy do sét hoặc suy hao tự nhiên, kỹ thuật viên FPT sẽ đến đổi mới thiết bị hoàn toàn miễn phí.</p><h3>2. Phí hòa mạng 299.000đ - 300.000đ là gì?</h3><p>Phí hòa mạng là chi phí triển khai kỹ thuật bao gồm: Toàn bộ dây cáp quang kéo từ hộp tập điểm ngoài đường vào nhà khách hàng, công đo kiểm tín hiệu, vật tư đầu nối quang SC/APC và cấu hình kích hoạt đường truyền trên hệ thống tổng đài.</p><p><strong>Mẹo tiết kiệm chi phí:</strong> Khi tham gia chương trình trả trước 6 tháng hoặc 12 tháng, khách hàng sẽ được <strong>tặng Voucher 200.000đ</strong> trừ trực tiếp vào đơn hàng + tặng thêm 01 tháng cước miễn phí, giúp bạn tiết kiệm tối đa chi phí ban đầu.</p>",
+    "faqs": [
+      {
+        "q": "Khi ngưng sử dụng hợp đồng có phải trả lại Modem cho FPT không?",
+        "a": "Có! Vì modem là thiết bị FPT Telecom trang bị cho khách hàng mượn sử dụng miễn phí trong thời gian hợp đồng. Khi chấm dứt hợp đồng, bạn chỉ cần mang modem và cục nguồn adapter gửi lại quầy giao dịch FPT gần nhất."
+      },
+      {
+        "q": "Lắp mạng trả theo từng tháng thì chi phí ban đầu là bao nhiêu?",
+        "a": "Nếu chọn hình thức đóng cước từng tháng, chi phí ban đầu của bạn chỉ gồm: Phí hòa mạng 299.000đ (đã bao gồm toàn bộ dây cáp và modem Wi-Fi 6). Tiền cước tháng đầu tiên sẽ được thu vào cuối tháng sau khi sử dụng."
+      }
+    ]
+  },
+  {
+    "id": "gm_01_ping_thap_choi_game",
+    "slug": "goi-cuoc-wifi-fpt-choi-game-ping-thap",
+    "category": "game_cong_nghe",
+    "category_name": "Game Thủ & Công Nghệ",
+    "title": "Gói Cước WiFi FPT Nào Ping Thấp Nhất Để Chơi Liên Quân, PUBG, Valorant?",
+    "h1": "Gói Cước WiFi FPT Chơi Game Tốt Nhất: Ping Thấp Dưới 5ms, Công Nghệ Ultra Fast",
+    "target_keyword": "gói cước wifi fpt chơi game ping thấp",
+    "meta_desc": "Đánh giá các gói cước cáp quang FPT chơi game tốt nhất với tính năng Ultra Fast tích hợp AI. Giảm ping, chống giật lag, tối ưu cho Valorant, LOL, FO4, PUBG.",
+    "badge": "Dành Cho Game Thủ",
+    "intro": "Trong các trận đấu rank căng thẳng của Liên Quân, Valorant, Liên Minh Huyền Thoại hay PUBG, chỉ cần độ trễ Ping nhảy vọt từ 20ms lên 100ms hoặc mất gói (Packet Loss 1%) là đủ để thua cả trận đấu. Gói cước F-GAME FPT với tính năng Ultra Fast chính là vũ khí tối thượng cho game thủ.",
+    "pricing_ids": ["giga_fgame", "sky_fgame", "meta_fgame"],
+    "key_benefits": [
+      "Tích hợp sẵn tính năng Ultra Fast độc quyền của FPT Telecom",
+      "Sử dụng AI tự động nhận diện hơn 50+ tựa game Online phổ biến",
+      "Định tuyến đường truyền ưu tiên trực tiếp đến Server Game quốc tế & trong nước",
+      "Giảm độ trễ Ping xuống dưới 5ms, triệt tiêu hoàn toàn Packet Loss"
+    ],
+    "deep_content": "<h3>1. Tính năng Ultra Fast FPT hoạt động như thế nào?</h3><p>Tính năng <strong>Ultra Fast</strong> được phát triển bởi các kỹ sư công nghệ hàng đầu của FPT Telecom, sử công nghệ Big Data và Trí tuệ nhân tạo (AI) để liên tục phân tích luồng dữ liệu game trong thời gian thực:</p><ul><li>Tự động nhận diện lưu lượng gói tin của các tựa game đình đám: <em>Valorant, LMHT, CS:GO, FIFA Online 4, PUBG, Liên Quân Mobile, Tốc Chiến, Genshin Impact...</em></li><li>Chuyển hướng gói tin game sang làn đường truyền ưu tiên tốc độ cao (VIP Priority Routing), tránh đi chung với các luồng download hay xem video 4K trong nhà.</li><li>Kết nối trực tiếp đến các cụm máy chủ game tại Singapore, Hong Kong, Nhật Bản, Bắc Mỹ với độ trễ thấp nhất.</li></ul>",
+    "faqs": [
+      {
+        "q": "Gói F-GAME của FPT có cần phải cài đặt phần mềm giảm ping nào trên máy tính không?",
+        "a": "Không cần! Tính năng Ultra Fast được tích hợp thẳng vào luồng đường truyền tại cổng Modem cáp quang của FPT. Bạn chỉ cần cắm dây mạng hoặc kết nối WiFi là toàn bộ thiết bị (PC, Laptop, Điện thoại, iPad, PS5) đều tự động được hưởng ping siêu thấp."
+      },
+      {
+        "q": "Chơi game qua WiFi 5GHz có mượt bằng cắm dây mạng LAN trực tiếp không?",
+        "a": "Với Modem Wi-Fi 6 của FPT ở băng tần 5GHz, tốc độ và độ trễ gần như tương đương 98% so với cắm dây LAN ở khoảng cách cùng phòng. Tuy nhiên, để thi đấu chuyên nghiệp hoặc tryhard rank cao không có bất kỳ rủi ro nhiễu sóng nào, cắm dây mạng LAN Cat6 trực tiếp vào cổng Gigabit của modem vẫn là chuẩn mực vàng."
+      }
+    ]
+  },
+  {
+    "id": "sh_01_camera_wifi_5ghz",
+    "slug": "tai-sao-camera-khong-ket-noi-duoc-wifi-5ghz",
+    "category": "game_cong_nghe",
+    "category_name": "Game Thủ & Công Nghệ",
+    "title": "Tại Sao Camera Giám Sát Không Kết Nối Được Với WiFi 5GHz? Cách Tách Băng Tần",
+    "h1": "Tại Sao Camera Không Bắt Được WiFi 5GHz? Cách Tách Băng Tần 2.4GHz & 5GHz FPT",
+    "target_keyword": "tại sao camera không kết nối được wifi 5ghz",
+    "meta_desc": "Giải thích lý do Camera IP, Robot hút bụi và Smart Home không kết nối được WiFi 5GHz. Hướng dẫn cách tách 2 băng tần 2.4GHz và 5GHz trên Modem WiFi FPT.",
+    "badge": "Mẹo Smart Home",
+    "intro": "Bạn mới mua Camera an ninh (Ezviz, Imou, Yoosee, FPT Camera) hoặc Robot hút bụi, công tắc thông minh nhưng khi cài đặt app luôn báo lỗi 'Không tìm thấy mạng' hoặc 'Thiết bị chỉ hỗ trợ băng tần 2.4GHz'? Xem ngay cách xử lý đơn giản bên dưới.",
+    "pricing_ids": ["giga_antam", "sky_antam"],
+    "key_benefits": [
+      "Hiểu rõ sự khác biệt giữa sóng 2.4GHz (xuyên tường tốt) và 5GHz (tốc độ cao)",
+      "Hướng dẫn đổi tên WiFi tách riêng 2 băng tần trên Modem FPT qua app Hi FPT",
+      "Khắc phục 100% lỗi cài đặt thiết bị Smart Home, Camera, Ổ cắm thông minh",
+      "Kỹ thuật FPT hỗ trợ cấu hình từ xa chỉ trong 5 phút"
+    ],
+    "deep_content": "<h3>1. Tại sao thiết bị Smart Home & Camera chỉ dùng băng tần 2.4GHz?</h3><p>Hầu hết các dòng Camera giám sát, cảm biến cửa, công tắc thông minh và robot hút bụi trên thị trường chỉ tích hợp chip thu sóng <strong>Wi-Fi 2.4GHz</strong> vì 2 lý do:</p><ul><li><strong>Khả năng xuyên tường và phủ sóng xa:</strong> Băng tần 2.4GHz có bước sóng dài, khả năng xuyên qua tường gạch, cửa gỗ tốt hơn nhiều so với sóng 5GHz, rất phù hợp cho camera lắp ngoài hiên hay góc xa.</li><li><strong>Tiết kiệm năng lượng & chip giá rẻ:</strong> Camera chỉ cần băng thông 2 - 4 Mbps để truyền video HD, không cần tốc độ hàng trăm Mbps của băng tần 5GHz.</li></ul><h3>2. Hướng dẫn 2 bước tách băng tần 2.4GHz và 5GHz trên Modem FPT:</h3><ol><li><strong>Cách 1: Qua ứng dụng Hi FPT (Khuyên dùng):</strong> Mở app <em>Hi FPT</em> > Chọn mục <em>Quản lý Modem</em> > Chọn <em>Cài đặt Wi-Fi</em> > Tắt tính năng <em>Gộp băng tần (Band Steering)</em> > Đặt tên riêng: <code>FPT_2.4G</code> (dành cho Camera, Smart Home) và <code>FPT_5G</code> (dành cho Điện thoại, Laptop, TV).</li><li><strong>Cách 2: Đăng nhập giao diện web Modem (192.168.1.1):</strong> Vào mục <em>Wireless 2.4G</em> và <em>Wireless 5G</em> đặt SSID và mật khẩu riêng biệt.</li></ol>",
+    "faqs": [
+      {
+        "q": "Tách 2 băng tần riêng biệt có làm giảm tốc độ mạng WiFi không?",
+        "a": "Hoàn toàn không! Việc tách riêng 2 tên WiFi giúp bạn chủ động: Các thiết bị cần tốc độ cao như Smartphone, Laptop, Smart TV xem 4K thì kết nối vào sóng 5G; còn các thiết bị IoT, Camera thì kết nối vào sóng 2.4G để đảm bảo độ phủ xa ổn định."
+      },
+      {
+        "q": "FPT Camera AI có hỗ trợ bắt được cả 2 băng tần không?",
+        "a": "Các dòng FPT Camera AI mới nhất (như FPT Camera Play 4) được trang bị chip Wi-Fi thế hệ mới hỗ trợ kết nối linh hoạt và độ ổn định cao với hệ thống lưu trữ Cloud an toàn."
+      }
+    ]
+  },
+  {
+    "id": "exp_01_dung_gan_wifi_van_cham",
+    "slug": "tai-sao-dung-gan-cuc-wifi-ma-mang-van-cham",
+    "category": "trai_nghiem_toc_do",
+    "category_name": "Trải Nghiệm & Tốc Độ",
+    "title": "Tại Sao Đứng Gần Cục WiFi Mà Mạng Vẫn Chậm? 6 Thủ Phạm & Cách Khắc Phục",
+    "h1": "Tại Sao Đứng Sát Cục Phát WiFi Mạng Vẫn Chậm? 6 Nguyên Nhân Thường Gặp",
+    "target_keyword": "tại sao đứng gần cục wifi mà mạng vẫn chậm",
+    "meta_desc": "Lý giải nghịch lý đứng sát modem WiFi nhưng mạng vẫn load chậm, giật lag. 6 nguyên nhân do trùng kênh sóng, quá tải thiết bị, modem quá nhiệt và cách khắc phục.",
+    "badge": "Tối Ưu Tốc Độ Mạng",
+    "intro": "Đứng ngay cạnh cục phát WiFi, sóng điện thoại báo căng 3 vạch nhưng mở video YouTube cứ quay vòng vòng, lướt Facebook hình ảnh không load nổi? Đây là vấn đề rất nhiều người gặp phải. Hãy cùng bóc trần 6 thủ phạm gây ra tình trạng này.",
+    "pricing_ids": ["giga_hcm_noithanh", "sky_hcm_noithanh"],
+    "key_benefits": [
+      "Chỉ ra các nguyên nhân nghẽn kênh sóng (Channel Interference) do nhà hàng xóm",
+      "Cách chuyển từ băng tần 2.4GHz bị nghẽn sang băng tần 5GHz thông thoáng",
+      "Giải pháp kiểm tra số lượng thiết bị 'xài chùa' WiFi làm tràn RAM modem",
+      "Mẹo tản nhiệt và làm mát modem giúp tăng 40% hiệu năng phát sóng"
+    ],
+    "deep_content": "<h3>6 nguyên nhân khiến đứng gần WiFi nhưng mạng vẫn chậm:</h3><ol><li><strong>1. Bạn đang kết nối vào băng tần 2.4GHz bị nghẽn:</strong> Băng tần 2.4GHz chỉ có 3 kênh sóng không trùng lặp (1, 6, 11). Nếu xung quanh nhà bạn có hàng chục mạng WiFi của hàng xóm cùng phát trên kênh này, sóng sẽ bị can nhiễu dữ dội. <em>Giải pháp:</em> Kết nối sang sóng <strong>5GHz</strong> của modem FPT.</li><li><strong>2. Modem bị quá nhiệt (Nóng quá mức):</strong> Modem hoạt động liên tục 24/7 trong không gian kín sẽ bị nóng chip xử lý, dẫn đến hiện tượng 'Thermal Throttling' tự hạ công suất và drop gói tin.</li><li><strong>3. Quá nhiều thiết bị kết nối cùng lúc:</strong> Modem cũ chỉ chịu tải được 10-15 thiết bị. Nếu có nhiều máy đang tải phim, cập nhật app ngầm thì modem sẽ bị nghẽn băng thông.</li><li><strong>4. Thiết bị điện thoại/máy tính bị lỗi DNS hoặc cache:</strong> Bộ nhớ đệm mạng trên điện thoại bị đầy hoặc dính mã độc chạy ngầm.</li><li><strong>5. Dây cáp quang ngoài đường bị suy hao tín hiệu:</strong> Cáp quang bị uốn cong hoặc đầu tiếp xúc quang bị bẩn làm giảm lưu lượng truyền tải.</li><li><strong>6. Ứng dụng/Server đích đang bị quá tải:</strong> Bản thân máy chủ Facebook/TikTok đang gặp sự cố, không phải do mạng WiFi của bạn.</li></ol>",
+    "faqs": [
+      {
+        "q": "Làm sao để biết điện thoại của tôi đang bắt sóng 2.4GHz hay 5GHz?",
+        "a": "Trên điện thoại Android, vào Cài đặt WiFi > Bấm vào mạng đang kết nối > Xem dòng 'Tần số' (sẽ hiện 2.4 GHz hoặc 5 GHz). Trên iPhone, nếu bạn đã tách 2 tên WiFi (ví dụ FPT_2.4G và FPT_5G), bạn chỉ cần chọn kết nối vào tên có chữ 5G."
+      },
+      {
+        "q": "Modem WiFi 6 của FPT có giải quyết được tình trạng nghẽn sóng này không?",
+        "a": "Giải quyết triệt để! Chuẩn Wi-Fi 6 tích hợp công nghệ OFDMA, BSS Coloring và MU-MIMO giúp chia nhỏ kênh truyền và gắn 'màu sắc' nhận diện riêng cho từng gói tin, loại bỏ 95% hiện tượng can nhiễu sóng từ các nhà xung quanh."
+      }
+    ]
+  },
+  {
+    "id": "cskh_01_tong_dai_bao_hong",
+    "slug": "so-tong-dai-bao-hong-mang-fpt-ho-tro-ky-thuat",
+    "category": "chi_phi_thu_tuc",
+    "category_name": "Chi Phí & Thủ Tục",
+    "title": "Số Tổng Đài Báo Hỏng Mạng FPT & Hotline Kỹ Thuật Hỗ Trợ Khẩn Cấp 24/7",
+    "h1": "Số Tổng Đài Báo Hỏng Mạng FPT: Hotline Tiếp Nhận Sự Cố & Kỹ Thuật 24/7",
+    "target_keyword": "số tổng đài báo hỏng mạng fpt",
+    "meta_desc": "Danh bạ số tổng đài báo hỏng mạng FPT Telecom, hotline tư vấn lắp đặt và tiếp nhận sự cố kỹ thuật 24/7. Hướng dẫn báo hỏng qua ứng dụng Hi FPT có kỹ thuật viên sau 2h.",
+    "badge": "Hotline Hỗ Trợ 24/7",
+    "intro": "Mạng internet FPT nhà bạn bỗng nhiên bị mất, modem báo đèn đỏ hoặc tốc độ truy cập chập chờn cần kỹ thuật viên hỗ trợ gấp? Lưu ngay danh bạ số tổng đài chính thức và các kênh hỗ trợ khách hàng nhanh nhất của FPT Telecom dưới đây.",
+    "pricing_ids": ["giga_hcm_noithanh", "sky_hcm_noithanh"],
+    "key_benefits": [
+      "Hotline trực tiếp chuyên viên kỹ thuật: 0383 900 321 & 0358 513 269",
+      "Tổng đài toàn quốc tiếp nhận sự cố 24/7 không ngày nghỉ",
+      "Kênh báo hỏng 1-Click trên ứng dụng di động Hi FPT",
+      "Cam kết cử kỹ thuật viên xử lý tận nhà trong vòng 2 giờ"
+    ],
+    "deep_content": "<h3>Danh bạ các kênh liên hệ FPT Telecom chính thức:</h3><table style='width:100%;border-collapse:collapse;margin:16px 0;font-size:14.5px;'><tr style='background:#0056d6;color:#fff;'><th style='padding:12px;text-align:left;'>Kênh Liên Hệ</th><th style='padding:12px;'>Số Điện Thoại / Link</th><th style='padding:12px;'>Chức Năng Hỗ Trợ</th></tr><tr style='border-bottom:1px solid #e2e8f0;'><td style='padding:12px;font-weight:bold;'>Hotline Kỹ Thuật & Đăng Ký Nhanh</td><td style='padding:12px;text-align:center;color:#ea580c;font-weight:bold;'><a href='tel:0383900321' style='color:#ea580c;'>0383 900 321</a></td><td style='padding:12px;'>Tư vấn gói cước, đăng ký lắp mới, hỗ trợ kỹ thuật khẩn cấp</td></tr><tr style='border-bottom:1px solid #e2e8f0;'><td style='padding:12px;font-weight:bold;'>Hotline Hỗ Trợ Kỹ Thuật 24/7</td><td style='padding:12px;text-align:center;font-weight:bold;'><a href='tel:0358513269' style='color:#0056d6;'>0358 513 269</a></td><td style='padding:12px;'>Xử lý lỗi đứt cáp, đèn đỏ LOS, đổi mật khẩu WiFi</td></tr><tr style='border-bottom:1px solid #e2e8f0;'><td style='padding:12px;font-weight:bold;'>Ứng dụng Hi FPT</td><td style='padding:12px;text-align:center;'>App Store / Google Play</td><td style='padding:12px;'>Báo hỏng 1 chạm, theo dõi tiến độ kỹ thuật viên đến nhà</td></tr><tr style='border-bottom:1px solid #e2e8f0;'><td style='padding:12px;font-weight:bold;'>Hộp Chat Trực Tuyến</td><td style='padding:12px;text-align:center;'>Góc phải màn hình web</td><td style='padding:12px;'>Trợ lý ảo AI & Live Chat với chuyên viên Tiểu Mẫn FPT</td></tr></table>",
+    "faqs": [
+      {
+        "q": "Báo hỏng mạng FPT vào ban đêm hoặc ngày Lễ / Chủ Nhật có nhân viên sửa không?",
+        "a": "Có! Đội ngũ kỹ thuật viên FPT trực ca 24/7/365 kể cả ngày Lễ, Tết và Chủ Nhật. Khi tiếp nhận sự cố khẩn cấp, kỹ thuật viên trực ca sẽ liên hệ hỗ trợ từ xa hoặc đến tận nhà xử lý trong ca làm việc sớm nhất."
+      },
+      {
+        "q": "Tôi có bị tính phí dịch vụ khi nhân viên FPT đến sửa mạng tại nhà không?",
+        "a": "Hoàn toàn MIỄN PHÍ! FPT Telecom cam kết miễn phí 100% công kiểm tra, bảo trì và thay thế vật tư dây cáp quang, bộ nguồn adapter cho khách hàng sử dụng dịch vụ."
+      }
+    ]
   }
 ]

@@ -151,7 +151,7 @@
       },
       "inLanguage": "vi-VN",
       "datePublished": "2026-08-01T08:00:00+07:00",
-      "dateModified": "2026-08-26T14:51:51.375Z"
+      "dateModified": "2026-08-26T15:08:49.327Z"
     },
     {
       "@type": "BreadcrumbList",
@@ -458,6 +458,75 @@
         background: #fff;
       }
       .topic-faq-answer p { margin: 0; }
+      .topic-contact-section {
+        margin-top: 50px;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 36px 30px;
+        box-shadow: 0 10px 30px rgba(0, 86, 214, 0.08);
+        border: 1px solid #e2e8f0;
+        text-align: center;
+      }
+      .topic-contact-section h2 {
+        font-size: 24px;
+        font-weight: 800;
+        color: #071b42;
+        margin: 0 0 8px;
+      }
+      .topic-contact-section p {
+        color: #64748b;
+        font-size: 14px;
+        margin: 0 0 24px;
+      }
+      .topic-contact-form {
+        max-width: 640px;
+        margin: 0 auto;
+        text-align: left;
+      }
+      .topic-contact-form .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      @media (max-width: 600px) {
+        .topic-contact-form .form-row {
+          grid-template-columns: 1fr;
+        }
+        .topic-contact-section {
+          padding: 24px 16px;
+        }
+      }
+      .topic-contact-form .form-group {
+        margin-bottom: 16px;
+      }
+      .topic-contact-form label:not(.checkbox-label) {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 6px;
+      }
+      .topic-contact-form input:not([type="checkbox"]),
+      .topic-contact-form textarea {
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 14px;
+        color: #334155;
+        font-family: inherit;
+        outline: none;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .topic-contact-form input:not([type="checkbox"]):focus,
+      .topic-contact-form textarea:focus {
+        border-color: #0056d6;
+        box-shadow: 0 0 0 3px rgba(0, 86, 214, 0.12);
+      }
+      .w-100 {
+        width: 100%;
+      }
       .related-topics-box {
         background: #f1f5f9;
         border-radius: 14px;
@@ -682,10 +751,10 @@
       </div>
 
       <!-- Form Đăng Ký Trực Tiếp Tại Chỗ -->
-      <section class="contact" id="contact" style="margin-top:50px;">
+      <section class="topic-contact-section" id="contact">
         <h2>Đăng Ký Tư Vấn &amp; Khảo Sát Hạ Tầng Miễn Phí</h2>
         <p>Chuyên viên FPT Telecom sẽ liên hệ tư vấn và khảo sát cổng mạng trong vòng 15 phút</p>
-        <form class="contact-form" id="leadForm" action="javascript:void(0);">
+        <form class="topic-contact-form" id="leadForm" action="javascript:void(0);">
           <input type="hidden" name="form_type" id="form_type" value="registration" />
           <input type="hidden" name="website" value="" />
           <input type="hidden" name="Gói cước" value="Lắp Mạng FPT Cho Sinh Viên 2026: Gói Rẻ Từ 195K, 0Đ Lắp Đặt, Không Hộ Khẩu" />
@@ -754,71 +823,301 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-logo">
-            <img src="../../assets/images/main/fptlogo.png" alt="FPT Telecom" width="36" height="36" />
-            <h3>FPT Telecom</h3>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="footer-logo" href="../../index.html">
+              <img
+                src="../../assets/images/main/logo.webp"
+                alt="FPT Telecom"
+                width="164"
+                height="45"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <p>Giải pháp viễn thông và công nghệ hàng đầu Việt Nam.</p>
+            <div
+              class="footer-contact-info"
+              style="
+                font-size: 13px;
+                color: #a0b3ce;
+                line-height: 1.6;
+                margin: 12px 0 16px 0;
+              "
+            >
+              <div>
+                📍 <strong>Địa chỉ:</strong> 107-109 Man Thiện, P. Tăng Nhơn
+                Phú, TP. Thủ Đức, TP. Hồ Chí Minh
+              </div>
+              <div style="margin-top: 4px">
+                ✉️ <strong>Email:</strong>
+                <a
+                  href="mailto:tvm19624@gmail.com"
+                  style="color: #cbd8ef; text-decoration: none"
+                  >tvm19624@gmail.com</a
+                >
+                &bull;
+                <a
+                  href="mailto:mantv2@fpt.com"
+                  style="color: #cbd8ef; text-decoration: none"
+                  >mantv2@fpt.com</a
+                >
+              </div>
+            </div>
+            <div class="footer-socials">
+              <a
+                href="https://www.facebook.com/ManHenryyy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-social-btn fb"
+                aria-label="Facebook"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#081836">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://zalo.me/0358513269"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-social-btn zalo"
+                aria-label="Zalo"
+              >
+                Zalo
+              </a>
+            </div>
           </div>
-          <p>Đại lý ủy quyền phân phối chính hãng dịch vụ viễn thông FPT Telecom toàn quốc.</p>
-          <p><strong>Hotline:</strong> <a href="tel:0383900321" style="color:#fff;">0383 900 321</a> - <a href="tel:0358513269" style="color:#fff;">0358 513 269</a></p>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Dịch vụ</h4>
+            <ul class="footer-link-list">
+              <li><a href="../bang-gia.html">Bảng giá</a></li>
+              <li><a href="../../index.html#offers">Ưu đãi</a></li>
+              <li><a href="../bang-gia.html#internet">Internet</a></li>
+              <li><a href="../bang-gia.html#truyen-hinh">Truyền hình</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Hỗ trợ khách hàng</h4>
+            <ul class="footer-link-list">
+              <li><a href="../chinh-sach.html">Chính sách gói cước</a></li>
+              <li><a href="../news.html">Tin tức</a></li>
+              <li><a href="../lien-he.html">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-hotlines">
+            <a href="tel:0358513269" class="footer-hotline-btn">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"
+                />
+              </svg>
+              <span>0358 513 269</span>
+            </a>
+            <a href="tel:0383900321" class="footer-hotline-btn">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"
+                />
+              </svg>
+              <span>0383 900 321</span>
+            </a>
+          </div>
         </div>
-        <div>
-          <h4>Dịch vụ cung cấp</h4>
-          <ul>
-            <li><a href="../bang-gia.html">Internet Cáp Quang Wi-Fi 6</a></li>
-            <li><a href="../bang-gia.html">Truyền hình FPT Play</a></li>
-            <li><a href="../bang-gia.html">FPT Camera AI Thông Minh</a></li>
-            <li><a href="../bang-gia.html">Gói Wi-Fi 7 SpeedX XGS-PON</a></li>
-          </ul>
+        <div class="footer-bottom">
+          <span>© 2026 FPT Telecom. All rights reserved.</span>
+          <span>Bản quyền thuộc về Trần Văn Mẫn - ManHenry.</span>
         </div>
-        <div>
-          <h4>Chính sách &amp; Quy định</h4>
-          <ul>
-            <li><a href="../chinh-sach.html#terms">Điều khoản sử dụng</a></li>
-            <li><a href="../chinh-sach.html#privacy">Bảo mật thông tin (NĐ 13)</a></li>
-            <li><a href="../lien-he.html">Hỗ trợ kỹ thuật 24/7</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 FPT Telecom - Đại lý ủy quyền. Hotline 24/7: 0383 900 321.</p>
       </div>
     </footer>
 
-    <!-- Chat Widget Component -->
-    <button class="chat-toggle" id="chat-toggle" aria-label="Mở khung chat hỗ trợ">
-      <span class="chat-icon">💬</span>
-      <span class="close-icon" style="display:none;">✕</span>
-    </button>
-    <div class="chat-widget" id="chat-widget" role="dialog" aria-label="Hộp thoại trợ lý ảo FPT">
-      <div class="chat-header">
-        <div class="chat-header-info">
-          <img src="../../assets/images/main/logo.webp" alt="FPT Logo" width="32" height="32" style="border-radius:50%;background:#fff;padding:2px;" />
-          <div>
-            <strong>Trợ lý ảo FPT</strong>
-            <span class="chat-status"><span class="pulse-dot"></span> Đang trực tuyến</span>
+    <!-- Floating Actions Component -->
+    <div class="floating-actions" aria-label="Liên hệ nhanh">
+      <a href="tel:0383900321" class="floating-call" aria-label="Gọi hotline"
+        >☎ <span>Gọi ngay</span></a
+      >
+      <button class="chat-toggle-btn" id="chat-toggle" aria-label="Mở chat">
+        <svg
+          viewBox="0 0 24 24"
+          width="28"
+          height="28"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="chat-icon"
+        >
+          <path
+            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+          ></path>
+        </svg>
+        <svg
+          viewBox="0 0 24 24"
+          width="28"
+          height="28"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="close-icon"
+          style="display: none"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- CRO: Social Proof Toast -->
+    <div class="toast-notification" id="social-proof-toast">
+      <div class="toast-icon">⚡</div>
+      <div class="toast-text">
+        <b id="toast-name">Anh Khang (Q.7)</b>
+        <span id="toast-action">vừa đăng ký gói COMBO VIP</span>
+      </div>
+    </div>
+
+    <!-- Custom Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+      <div class="chat-widget-header">
+        <div class="chat-widget-brand">
+          <div class="chat-widget-logo">
+            <img
+              src="../../assets/images/main/logo.webp"
+              alt="FPT Telecom"
+              width="28"
+              height="28"
+              style="
+                object-fit: contain;
+                background: #fff;
+                border-radius: 50%;
+                padding: 2px;
+              "
+            />
           </div>
+          <span>FPT Telecom</span>
+          <span class="chat-online-dot"></span>
         </div>
-        <div class="chat-header-actions">
-          <button id="chat-minimize" aria-label="Thu nhỏ chat">−</button>
+        <div class="chat-widget-controls">
+          <button
+            type="button"
+            aria-label="Chuyển sang Live Chat"
+            title="Chat trực tiếp với nhân viên"
+            class="chat-ctrl-btn"
+            onclick="switchToLiveChat()"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="currentColor"
+              style="vertical-align: middle"
+            >
+              <path
+                d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9z"
+              ></path>
+            </svg>
+          </button>
+          <button
+            type="button"
+            id="chat-minimize"
+            aria-label="Thu nhỏ"
+            class="chat-ctrl-btn"
+          >
+            −
+          </button>
         </div>
       </div>
       <div class="chat-widget-body">
-        <div class="chat-messages" id="chat-messages">
+        <div id="chat-messages" class="chat-messages">
           <div class="chat-msg bot-msg">
             <div class="msg-bubble">
-              Chào bạn! 👋 Mình là trợ lý ảo FPT Telecom. Bạn đang quan tâm đến gói cước nào hay cần tư vấn khu vực nào ạ?
+              Chào bạn! Mình là Trợ lý ảo FPT Telecom. Mình có thể tư vấn gói
+              cước, hỗ trợ kỹ thuật hoặc giải đáp các thắc mắc về dịch vụ. Bạn
+              cần mình giúp gì ạ?
             </div>
           </div>
         </div>
-        <div class="chat-input-wrap">
-          <textarea id="chat-input" placeholder="Nhập câu hỏi của bạn..." rows="1"></textarea>
-          <button id="chat-send-btn" aria-label="Gửi tin nhắn">➤</button>
+        <div class="chat-input-area">
+          <textarea
+            id="chat-input"
+            aria-label="Nhập câu hỏi chat"
+            placeholder="Nhập câu hỏi của bạn..."
+            rows="1"
+            autocomplete="off"
+          ></textarea>
+          <button id="chat-send-btn" aria-label="Gửi tin nhắn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
+
+    <!-- Cookie Consent Banner -->
+    <div
+      id="cookie-banner"
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0f172a;
+        color: white;
+        padding: 15px 24px;
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 9999;
+        font-size: 14px;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <div style="flex: 1; margin-right: 20px">
+        Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn trên trang web
+        này. Bằng cách tiếp tục duyệt web, bạn đồng ý với chính sách dịch vụ của chúng tôi.
+      </div>
+      <div>
+        <button
+          onclick="
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+          "
+          style="
+            background: #0665f5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+          "
+        >
+          Đồng ý
+        </button>
+      </div>
+    </div>
+    <script>
+      if (!localStorage.getItem("cookieConsent")) {
+        document.getElementById("cookie-banner").style.display = "flex";
+      }
+    </script>
 
     <!-- JavaScript & PWA -->
     <script src="../../js/script.min.js?v=VERSION" defer></script>

@@ -38,7 +38,7 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Niche Programmatic Landing Pages (7 topics) -->
+  <!-- Niche Programmatic Landing Pages (15 topics) -->
   <url>
     <loc>https://fpttelecomvn.click/pages/topics/lap-mang-fpt-cho-sinh-vien-gia-re.html</loc>
     <lastmod>2026-08-26</lastmod>
@@ -77,6 +77,54 @@
   </url>
   <url>
     <loc>https://fpttelecomvn.click/pages/topics/combo-internet-camera-ai-smarthome-cho-can-ho.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/pages/topics/tai-sao-wifi-khong-co-ket-noi-internet.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/pages/topics/modem-wifi-nhap-nhay-den-do-den-los.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/pages/topics/lap-wifi-cho-nha-3-tang-dat-cuc-phat-o-dau.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/pages/topics/lap-mang-fpt-co-mat-tien-mua-modem-khong.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/pages/topics/goi-cuoc-wifi-fpt-choi-game-ping-thap.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/pages/topics/tai-sao-camera-khong-ket-noi-duoc-wifi-5ghz.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/pages/topics/tai-sao-dung-gan-cuc-wifi-ma-mang-van-cham.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://fpttelecomvn.click/pages/topics/so-tong-dai-bao-hong-mang-fpt-ho-tro-ky-thuat.html</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
